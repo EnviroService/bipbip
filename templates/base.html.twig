@@ -4,15 +4,45 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            {{ encore_entry_link_tags('reset') }}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <header>
+            <img src="#" alt="logo bipbip" />
+            <nav>
+                <img src="/images/menu-burger.png" alt="menu burger" />
+                <div>
+                    <p>FAQ</p>
+                </div>
+            </nav>
+        </header>
+
+        {% block body %}
+        {% endblock %}
+
+        <footer>
+            <div class="social-networks">
+                <a href="#" title="Lien vers la page facebook">
+                    <img src="/images/facebook.png" alt="logo de Facebook" />
+                </a>
+                <a href="#" title="Lien vers la page Instagram">
+                    <img src="/images/instagram.png" alt="logo d'Instagram" />
+                </a>
+                <a href="#" title="Lien vers le compte Twitter">
+                    <img src="/images/twitter.png" alt="logo de Twitter" />
+                </a>
+            </div>
+            <div class="legal-section">
+                <a href="#" title="Lien vers les mentions légales">Mentions Légales</a>
+                <a href="#" title="Lien vers les paramètres de cookies">Cookies</a>
+                <a href="#" title="Lien vers les Conditions Générales d'Utilisation">Conditions Générales d'Utilisation</a>
+            </div>
+        </footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </body>
+
 </html>
