@@ -19,9 +19,9 @@ class Users
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=10)
      */
-    private $civility;
+    private $gender;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -59,7 +59,7 @@ class Users
     private $phone;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $signupDate;
 
