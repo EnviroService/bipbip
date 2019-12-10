@@ -1,0 +1,37 @@
+@import "vars";
+@import "~bootstrap/scss/bootstrap";
+
+// customize some Bootstrap variables
+$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+.primary-title{
+    display: flex;
+    justify-content: center;
+}
+.question, .question ul {
+    margin-right: 10%;
+    padding:0;
+    list-style:none;
+    width:100%; /* seule ligne rajoutée */
+}
+
+.question li {
+    position: relative;
+}
+.question a {
+    display:block;
+    text-decoration: none;
+}
+.question ul {
+    position: absolute;
+    left:-999em;
+}
+.question:hover li ul {
+    top: -10px;
+    left: 30%;
+    z-index: 1;
+    padding: 20px;
+    max-width: 75%;
+}
+
