@@ -1,3 +1,4 @@
+@import url("https://p.typekit.net/p.css?s=1&k=xdq8cqe&ht=tk&f=9727.9728.9729&a=26360072&app=typekit&e=css");
 @import "vars";
 
 /* Boutons */
@@ -33,12 +34,9 @@
     text-align : center;
 }
 
-.arrow-down{
-    width: 0;
-    height: 0;
-    border-right: 4rem solid transparent;
-    border-left: 4rem solid transparent;
-    border-top: 2rem solid $secondary-color;
+/* GENERAL */
+body{
+    font-family: 'Quicksand', Arial sans-serif;
 }
 
 /* HEADER NAV */
@@ -131,7 +129,8 @@ footer {
             margin : 1%;
             color : white;
             text-decoration : none;
-            font-size : 1.2em;
+            font-size : 1.4em;
+            font-family: 'Quicksand', Arial sans-serif;
         }
     }
 }
