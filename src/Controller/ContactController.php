@@ -27,6 +27,8 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
 
+            //TODO config mailer to send the message
+
             return $this->redirectToRoute(
                 'contact_success',
                 [
