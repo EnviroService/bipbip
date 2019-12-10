@@ -59,12 +59,12 @@ class Organisms
     private $organismPhone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="organismsId")
+     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="organism")
      */
     private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Collects", mappedBy="organismsId")
+     * @ORM\OneToMany(targetEntity="App\Entity\Collects", mappedBy="organism")
      */
     private $collects;
 
@@ -187,7 +187,7 @@ class Organisms
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setOrganismsId($this);
+            $user->setOrganism($this);
         }
 
         return $this;
@@ -198,8 +198,8 @@ class Organisms
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getOrganismsId() === $this) {
-                $user->setOrganismsId(null);
+            if ($user->getOrganism() === $this) {
+                $user->setOrganism(null);
             }
         }
 
@@ -218,7 +218,7 @@ class Organisms
     {
         if (!$this->collects->contains($collect)) {
             $this->collects[] = $collect;
-            $collect->setOrganismsId($this);
+            $collect->setOrganism($this);
         }
 
         return $this;
@@ -229,13 +229,11 @@ class Organisms
         if ($this->collects->contains($collect)) {
             $this->collects->removeElement($collect);
             // set the owning side to null (unless already changed)
-            if ($collect->getOrganismsId() === $this) {
-                $collect->setOrganismsId(null);
+            if ($collect->getOrganism() === $this) {
+                $collect->setOrganism(null);
             }
         }
 
         return $this;
     }
-
-
 }

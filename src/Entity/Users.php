@@ -76,10 +76,10 @@ class Users
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisms", inversedBy="users")
      */
-    private $organisms;
+    private $organism;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="usersId")
+     * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="user")
      */
     private $estimations;
 
@@ -225,17 +225,7 @@ class Users
         return $this;
     }
 
-    public function getOrganisms(): ?Organisms
-    {
-        return $this->organisms;
-    }
 
-    public function setOrganisms(?Organisms $organisms): self
-    {
-        $this->organisms = $organisms;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Estimations[]
@@ -249,7 +239,7 @@ class Users
     {
         if (!$this->estimations->contains($estimation)) {
             $this->estimations[] = $estimation;
-            $estimation->setUsersId($this);
+            $estimation->setUser($this);
         }
 
         return $this;
@@ -260,13 +250,23 @@ class Users
         if ($this->estimations->contains($estimation)) {
             $this->estimations->removeElement($estimation);
             // set the owning side to null (unless already changed)
-            if ($estimation->getUsersId() === $this) {
-                $estimation->setUsersId(null);
+            if ($estimation->getUser() === $this) {
+                $estimation->setUser(null);
             }
         }
 
         return $this;
     }
 
+    public function getOrganism(): ?Organisms
+    {
+        return $this->organism;
+    }
 
+    public function setOrganism(?Organisms $organism): self
+    {
+        $this->organism = $organism;
+
+        return $this;
+    }
 }
