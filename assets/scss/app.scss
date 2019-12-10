@@ -46,9 +46,11 @@ header{
     .logo-bipbip{
         text-align : center;
     }
+
     nav{
         display : flex;
         justify-content: space-between;
+
         .menu-burger{
             display : flex;
             flex-direction : column;
@@ -65,16 +67,19 @@ header{
             position : fixed;
             right : 5vw;
             bottom : 5vh;
+
             img{
                 width : 35%;
                 margin-bottom : 2%;
             }
+
             p{
                 font-size : 1.6em;
                 color : white;
                 margin-top : 2%;
             }
         }
+
         .faq-button{
             display : flex;
             justify-content : center;
@@ -90,6 +95,7 @@ header{
             position : fixed;
             left : 5vw;
             bottom : 5vh;
+
             p{
                 color : white;
                 font-size : 2em;
@@ -101,15 +107,18 @@ header{
 /* FOOTER */
 footer {
     background-color : $secondary-color;
+
     .social-networks{
         display : flex;
         justify-content : space-around;
         padding : 2%;
         background-color : $primary-color;
+
         img{
           width : 150%;
         }
     }
+
     .legal-section{
         display : flex;
         flex-direction : column;
@@ -117,6 +126,7 @@ footer {
         align-items : center;
         border-radius : 5% 5% 0 0;
         padding : 2%;
+
         a{
             margin : 1%;
             color : white;
