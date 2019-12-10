@@ -31,7 +31,7 @@ class Organisms
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $link;
+    private $organismLink;
 
     /**
      * @ORM\Column(type="string", length=255)
