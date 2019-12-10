@@ -17,14 +17,14 @@ class Estimations
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="datetime")
      */
     private $estimationDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $collected;
+    private $isCollected;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -39,7 +39,7 @@ class Estimations
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $make;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -84,44 +84,44 @@ class Estimations
     /**
      * @ORM\Column(type="boolean")
      */
-    private $validatedPayment;
+    private $isValidatedPayment;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $validatedSignature;
+    private $isValidatedSignature;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="estimations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $usersId;
+    private $user;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEstimationDate(): ?string
+    public function getEstimationDate(): ?\DateTimeInterface
     {
         return $this->estimationDate;
     }
 
-    public function setEstimationDate(string $estimationDate): self
+    public function setEstimationDate(\DateTimeInterface $estimationDate): self
     {
         $this->estimationDate = $estimationDate;
 
         return $this;
     }
 
-    public function getCollected(): ?bool
+    public function getIsCollected(): ?bool
     {
-        return $this->collected;
+        return $this->isCollected;
     }
 
-    public function setCollected(bool $collected): self
+    public function setIsCollected(bool $isCollected): self
     {
-        $this->collected = $collected;
+        $this->isCollected = $isCollected;
 
         return $this;
     }
@@ -150,14 +150,14 @@ class Estimations
         return $this;
     }
 
-    public function getMake(): ?string
+    public function getBrand(): ?string
     {
-        return $this->make;
+        return $this->brand;
     }
 
-    public function setMake(string $make): self
+    public function setBrand(string $brand): self
     {
-        $this->make = $make;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -258,39 +258,43 @@ class Estimations
         return $this;
     }
 
-    public function getValidatedPayment(): ?bool
+    public function getIsValidatedPayment(): ?bool
     {
-        return $this->validatedPayment;
+        return $this->isValidatedPayment;
     }
 
-    public function setValidatedPayment(bool $validatedPayment): self
+    public function setIsValidatedPayment(bool $isValidatedPayment): self
     {
-        $this->validatedPayment = $validatedPayment;
+        $this->isValidatedPayment = $isValidatedPayment;
 
         return $this;
     }
 
-    public function getValidatedSignature(): ?bool
+    public function getIsValidatedSignature(): ?bool
     {
-        return $this->validatedSignature;
+        return $this->isValidatedSignature;
     }
 
-    public function setValidatedSignature(bool $validatedSignature): self
+    public function setIsValidatedSignature(bool $isValidatedSignature): self
     {
-        $this->validatedSignature = $validatedSignature;
+        $this->isValidatedSignature = $isValidatedSignature;
 
         return $this;
     }
 
-    public function getUsersId(): ?Users
+    public function getUser(): ?Users
     {
-        return $this->usersId;
+        return $this->user;
     }
 
-    public function setUsersId(?Users $usersId): self
+    public function setUser(?Users $user): self
     {
-        $this->usersId = $usersId;
+        $this->user = $user;
 
         return $this;
     }
+
+
+
+
 }

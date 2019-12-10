@@ -19,7 +19,7 @@ class Phones
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $make;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -86,14 +86,14 @@ class Phones
         return $this->id;
     }
 
-    public function getMake(): ?string
+    public function getBrand(): ?string
     {
-        return $this->make;
+        return $this->brand;
     }
 
-    public function setMake(string $make): self
+    public function setBrand(string $brand): self
     {
-        $this->make = $make;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -241,4 +241,6 @@ class Phones
 
         return $this;
     }
+
+
 }

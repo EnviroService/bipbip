@@ -17,7 +17,7 @@ class Collects
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $dateCollect;
 
@@ -25,7 +25,7 @@ class Collects
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisms", inversedBy="collects")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $organismsId;
+    private $organisms;
 
     public function getId(): ?int
     {
@@ -44,15 +44,17 @@ class Collects
         return $this;
     }
 
-    public function getOrganismsId(): ?Organisms
+    public function getOrganisms(): ?Organisms
     {
-        return $this->organismsId;
+        return $this->organisms;
     }
 
-    public function setOrganismsId(?Organisms $organismsId): self
+    public function setOrganisms(?Organisms $organisms): self
     {
-        $this->organismsId = $organismsId;
+        $this->organisms = $organisms;
 
         return $this;
     }
+
+
 }

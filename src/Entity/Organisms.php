@@ -31,7 +31,7 @@ class Organisms
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $link;
+    private $organismLink;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -103,14 +103,14 @@ class Organisms
         return $this;
     }
 
-    public function getLink(): ?string
+    public function getOrganismLink(): ?string
     {
-        return $this->link;
+        return $this->organismLink;
     }
 
-    public function setLink(string $link): self
+    public function setOrganismLink(string $organismLink): self
     {
-        $this->link = $link;
+        $this->organismLink = $organismLink;
 
         return $this;
     }
@@ -236,4 +236,6 @@ class Organisms
 
         return $this;
     }
+
+
 }

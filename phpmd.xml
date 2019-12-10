@@ -10,7 +10,14 @@
         <exclude name="ElseExpression" />
         <exclude name="StaticAccess" />
     </rule>
-    <rule ref="rulesets/codesize.xml" />
+    <rule ref="rulesets/codesize.xml" >
+        <exclude name="TooManyFields" />
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="20" />
+        </properties>
+    </rule>
     <rule ref="rulesets/controversial.xml" >
         <exclude name="Superglobals" />
     </rule>

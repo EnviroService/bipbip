@@ -21,7 +21,7 @@ class Users
     /**
      * @ORM\Column(type="string", length=5)
      */
-    private $civility;
+    private $gender;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -59,7 +59,7 @@ class Users
     private $phone;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $signupDate;
 
@@ -76,7 +76,7 @@ class Users
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisms", inversedBy="users")
      */
-    private $organismsId;
+    private $organisms;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="usersId")
@@ -93,14 +93,14 @@ class Users
         return $this->id;
     }
 
-    public function getCivility(): ?string
+    public function getGender(): ?string
     {
-        return $this->civility;
+        return $this->gender;
     }
 
-    public function setCivility(string $civility): self
+    public function setGender(string $gender): self
     {
-        $this->civility = $civility;
+        $this->gender = $gender;
 
         return $this;
     }
@@ -225,14 +225,14 @@ class Users
         return $this;
     }
 
-    public function getOrganismsId(): ?Organisms
+    public function getOrganisms(): ?Organisms
     {
-        return $this->organismsId;
+        return $this->organisms;
     }
 
-    public function setOrganismsId(?Organisms $organismsId): self
+    public function setOrganisms(?Organisms $organisms): self
     {
-        $this->organismsId = $organismsId;
+        $this->organisms = $organisms;
 
         return $this;
     }
@@ -267,4 +267,6 @@ class Users
 
         return $this;
     }
+
+
 }
