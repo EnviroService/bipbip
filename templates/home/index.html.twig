@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <section class="steps">
+        <h2 class="primary-title" >Cash - Rapide - Rentable</h2>
+    </section>
+
+    <section class="home-estimation">
+        <h2 class="primary-title">A toi de jouer !</h2>
+        <h3>Télécharge l'appli</h3>
+        <a><img src="/images/app-store.png" alt="Lien vers l'applestore"/></a>
+        <a><img src="/images/google-play.png" alt="Lien vers le Google Play"/></a>
+        <p>pour avoir une estimation précise</p>
+        <h3>Ou</h3>
+        <a href="#" title="Lien vers l'estimation en ligne" class="secondary-button">Fais une estimation en ligne</a>
+        <h3>Tu décides de vendre ton tèl</h3>
+        <a href="#" title="Lien vers les points de collecte" class="secondary-button">Trouve un point de collecte</a>
+    </section>
+
+    <section class="soon">
+        <h2 class="primary-title">Bientôt</h2>
+        <p class="secondary-button">Achète un bibip mobile</p>
+    </section>
+
+    <section class="home-partner">
+        <h2 class="primary-title">Ils nous font confiance</h2>
+        <h3>+ de 15 partenaires nous font confiance</h3>
+        <a href="#" title="Lien vers la page partenaire">Rejoindre nos partenaires</a>
+        <img src="#" alt="#"/>
+    </section>
+
+    <section class="contact">
+        <h2 class="primary-title">Contact</h2>
+        <a href="#" title="Lien vers la page contact">Contacte nous</a>
+    </section>
+{% endblock %}

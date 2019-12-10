@@ -1,0 +1,41 @@
+@import "vars";
+
+.primary-title{
+    position : relative;
+    text-transform : uppercase;
+    font-size : 3rem;
+    color : $secondary-color;
+    text-align : center;
+    padding : 2%;
+    box-shadow : 0 10px 10px #9f9f9f;
+    border-radius : 5px;
+    width : 80%;
+    margin : auto;
+    margin-bottom : 8%;
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        bottom : -2rem;
+        left : 40%;
+        text-align : center;
+        border-right: 80px solid transparent;
+        border-left: 80px solid transparent;
+        border-top: 30px solid $secondary-color;
+    }
+}
+
+.home-estimation{
+    h3{
+        color : $primary-color;
+        text-align : center;
+        font-weight : bold;
+        font-size : 2.5em;
+    }
+    p{
+        color : $secondary-color;
+        font-size : 1.5rem;
+    }
+}
