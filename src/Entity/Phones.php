@@ -19,7 +19,7 @@ class Phones
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $make;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=45)
