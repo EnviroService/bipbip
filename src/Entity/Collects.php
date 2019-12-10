@@ -49,9 +49,9 @@ class Collects
         return $this->organismsId;
     }
 
-    public function setOrganismsId(?Organisms $organismsId): self
+    public function setOrganisms(?Organisms $organisms): self
     {
-        $this->organismsId = $organismsId;
+        $this->organisms = $organisms;
 
         return $this;
     }
