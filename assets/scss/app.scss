@@ -1,7 +1,14 @@
 @import "vars";
 
+// customize some Bootstrap variables
+$primary: darken(#428bca, 20%);
+$validButton: $primary-color;
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
+
 body {
-    background-color: $secondary-color;
+    background-color: $light;
 }
 
 a {
