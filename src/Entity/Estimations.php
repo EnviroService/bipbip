@@ -17,14 +17,14 @@ class Estimations
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="datetime")
      */
     private $estimationDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $collected;
+    private $isCollected;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -39,7 +39,7 @@ class Estimations
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $make;
+    private $brand;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -84,18 +84,18 @@ class Estimations
     /**
      * @ORM\Column(type="boolean")
      */
-    private $validatedPayment;
+    private $isValidatedPayment;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $validatedSignature;
+    private $isValidatedSignature;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="estimations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $usersId;
+    private $userId;
 
     public function getId(): ?int
     {
