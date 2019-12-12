@@ -1,4 +1,5 @@
 @import "vars";
+@import '~bootstrap/scss/bootstrap';
 
 
 // customize some Bootstrap variables
@@ -39,14 +40,6 @@ $validButton: $primary-color;
   margin-top : 2%;
   padding : 3%;
   text-align : center;
-}
-
-.arrow-down{
-  width: 0;
-  height: 0;
-  border-right: 4rem solid transparent;
-  border-left: 4rem solid transparent;
-  border-top: 2rem solid $secondary-color;
 }
 
 /* HEADER NAV */
@@ -133,4 +126,3 @@ footer {
     }
   }
 }
-
