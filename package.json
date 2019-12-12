@@ -1,14 +1,23 @@
 {
     "devDependencies": {
         "@symfony/webpack-encore": "^0.27.0",
+
+        "add": "^2.0.6",
+
+        "bootstrap": "^4.4.1",
         "core-js": "^3.0.0",
         "eslint": "^6.1.0",
         "eslint-config-airbnb": "^17.1.1",
         "eslint-plugin-import": "^2.18.2",
         "eslint-plugin-jsx-a11y": "^6.2.3",
         "eslint-plugin-react": "^7.14.3",
+        "jquery": "^3.4.1",
+
+        "popper.js": "^1.16.0",
+
         "sass-lint": "^1.13.1",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.6.0",
+        "yarn": "^1.21.0"
     },
     "license": "UNLICENSED",
     "private": true,
