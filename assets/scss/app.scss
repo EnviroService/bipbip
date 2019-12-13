@@ -1,127 +1,159 @@
 @import "vars";
+@import '~bootstrap/scss/bootstrap';
+
 
 /* Boutons */
 .primary-button{
-  background-color : $primary-color;
-  text-decoration : none;
-  font-size : 2.5em;
-  text-transform: uppercase;
-  color : white;
-  border-radius : 20px;
-  width : 40%;
-  display : block;
-  margin : auto;
-  margin-bottom: 2%;
-  margin-top : 2%;
-  padding : 3%;
-  text-align : center;
+    background-color : $primary-color;
+    text-decoration : none;
+    font-size : 2.5em;
+    text-transform: uppercase;
+    color : white;
+    border-radius : 20px;
+    width : 40%;
+    display : block;
+    margin : 2% auto;
+    padding : 3%;
+    text-align : center;
 }
 
 .secondary-button{
-  background-color : $secondary-color;
-  text-decoration : none;
-  font-size : 2.5em;
-  text-transform: uppercase;
-  color : white;
-  border-radius : 20px;
-  width : 40%;
-  display : block;
-  margin : auto;
-  margin-bottom: 2%;
-  margin-top : 2%;
-  padding : 3%;
-  text-align : center;
+    background-color : $secondary-color;
+    text-decoration : none;
+    font-size : 2.5em;
+    text-transform: uppercase;
+    color : white;
+    border-radius : 20px;
+    width : 40%;
+    display : block;
+    margin : 2% auto;
+    padding : 3%;
+    text-align : center;
 }
 
-.arrow-down{
-  width: 0;
-  height: 0;
-  border-right: 4rem solid transparent;
-  border-left: 4rem solid transparent;
-  border-top: 2rem solid $secondary-color;
+/* GENERAL */
+body{
+    font-family: 'co-headline', Arial sans-serif;
+}
+
+.primary-title{
+    position : relative;
+    text-transform : uppercase;
+    font-size : 3rem;
+    color : $secondary-color;
+    text-align : center;
+    padding : 2%;
+    box-shadow : 0 10px 10px #9f9f9f;
+    border-radius : 5px;
+    width : 80%;
+    margin : 12% auto;
+
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        bottom : -2rem;
+        left : 40%;
+        text-align : center;
+        border-right: 80px solid transparent;
+        border-left: 80px solid transparent;
+        border-top: 30px solid $secondary-color;
+    }
 }
 
 /* HEADER NAV */
 header{
-  .logo-bipbip{
-    text-align : center;
-  }
-  nav{
-    display : flex;
-    justify-content: space-between;
-    .menu-burger{
-      display : flex;
-      flex-direction : column;
-      justify-content : center;
-      align-items: center;
-      border-radius : 50%;
-      width : 10vw;
-      min-width : 150px;
-      max-width : 150px;
-      height : 10vw;
-      min-height: 150px;
-      max-height : 150px;
-      background-color : $primary-color;
-      position : fixed;
-      right : 5vw;
-      bottom : 5vh;
-      img{
-        width : 35%;
-        margin-bottom : 2%;
-      }
-      p{
-        font-size : 1.6em;
-        color : white;
-        margin-top : 2%;
-      }
+    .logo-bipbip{
+        text-align : center;
     }
-    .faq-button{
-      display : flex;
-      justify-content : center;
-      align-items : center;
-      border-radius : 50%;
-      width : 10vw;
-      min-width : 150px;
-      max-width : 150px;
-      height : 10vw;
-      min-height: 150px;
-      max-height : 150px;
-      background-color : black;
-      position : fixed;
-      left : 5vw;
-      bottom : 5vh;
-      p{
-      color : white;
-      font-size : 2em;
-      }
+
+    nav{
+        display : flex;
+        justify-content: space-between;
+
+        .menu-burger{
+            display : flex;
+            flex-direction : column;
+            justify-content : center;
+            align-items: center;
+            border-radius : 50%;
+            width : 10vw;
+            min-width : 150px;
+            max-width : 150px;
+            height : 10vw;
+            min-height: 150px;
+            max-height : 150px;
+            background-color : $primary-color;
+            position : fixed;
+            right : 5vw;
+            bottom : 5vh;
+
+            img{
+                width : 35%;
+                margin-bottom : 2%;
+            }
+
+            p{
+                font-size : 1.6em;
+                color : white;
+                margin-top : 2%;
+            }
+        }
+
+        .faq-button{
+            display : flex;
+            justify-content : center;
+            align-items : center;
+            border-radius : 50%;
+            width : 10vw;
+            min-width : 150px;
+            max-width : 150px;
+            height : 10vw;
+            min-height: 150px;
+            max-height : 150px;
+            background-color : black;
+            position : fixed;
+            left : 5vw;
+            bottom : 5vh;
+
+            p{
+                color : white;
+                font-size : 2em;
+            }
+        }
     }
-  }
 }
 
 /* FOOTER */
 footer {
-  background-color : $secondary-color;
-  .social-networks{
-    display : flex;
-    justify-content : space-around;
-    padding : 2%;
-    background-color : $primary-color;
-    img{
-      width : 150%;
+    background-color : $secondary-color;
+
+    .social-networks{
+        display : flex;
+        justify-content : space-around;
+        padding : 2%;
+        background-color : $primary-color;
+
+        img{
+            width : 150%;
+        }
     }
-  }
-  .legal-section{
-    display : flex;
-    flex-direction : column;
-    justify-content : space-around;
-    align-items : center;
-    border-radius : 5% 5% 0 0;
-    padding : 2%;
-    a{
-      margin : 1%;
-      color : white;
-      text-decoration : none;
-      font-size : 1.2em;
+
+    .legal-section{
+        display : flex;
+        flex-direction : column;
+        justify-content : space-around;
+        align-items : center;
+        border-radius : 5% 5% 0 0;
+        padding : 2%;
+
+        a{
+            margin : 1%;
+            color : white;
+            text-decoration : none;
+            font-size : 1.4em;
+        }
     }
-  }
 }
