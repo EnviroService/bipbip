@@ -8,6 +8,11 @@
 
 {% block body %}
     <main class="home">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
 
         {{ include('/home/slide.html.twig') }}
 
