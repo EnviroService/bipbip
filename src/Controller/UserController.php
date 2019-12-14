@@ -29,8 +29,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $status = 'user';
             $entityManager = $this->getDoctrine()->getManager();
-            $user->setSignupDate(new \DateTime('now'));
-            $user->setSigninLast(new \DateTime('now'));
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninLast(new DateTime('now'));
             $user->setStatus($status);
             $entityManager->persist($user);
             $entityManager->flush();
