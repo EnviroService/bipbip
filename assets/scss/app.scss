@@ -69,9 +69,10 @@ header{
         text-align : center;
     }
 
-    nav{
+    .circle-buttons{
         display : flex;
         justify-content: space-between;
+        z-index : 5;
 
         .menu-burger{
             display : flex;
@@ -89,16 +90,19 @@ header{
             position : fixed;
             right : 5vw;
             bottom : 5vh;
+            z-index : 2;
 
             img{
                 width : 35%;
                 margin-bottom : 2%;
+                z-index : 2;
             }
 
             p{
                 font-size : 1.6em;
                 color : white;
                 margin-top : 2%;
+                z-index : 2;
             }
         }
 
@@ -117,10 +121,12 @@ header{
             position : fixed;
             left : 5vw;
             bottom : 5vh;
+            z-index : 2;
 
             p{
                 color : white;
                 font-size : 2em;
+                margin-bottom : 0;
             }
         }
     }
