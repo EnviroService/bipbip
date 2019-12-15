@@ -34,6 +34,12 @@
 /* GENERAL */
 body{
     font-family: 'co-headline', Arial sans-serif;
+    color : black;
+    font-size : 1.8rem;
+}
+
+a{
+    color : black;
 }
 
 .primary-title{
@@ -96,7 +102,7 @@ header{
             }
 
             p{
-                font-size : 1.6em;
+                font-size : 1.4em;
                 color : white;
                 margin-top : 2%;
             }
@@ -120,7 +126,8 @@ header{
 
             p{
                 color : white;
-                font-size : 2em;
+                font-size : 1.5em;
+                margin : 0;
             }
         }
     }
@@ -128,32 +135,24 @@ header{
 
 /* FOOTER */
 footer {
-    background-color : $secondary-color;
+    li{
+        text-align : center;
+        margin : 2%;
+        font-size : 2.5rem;
+    }
 
     .social-networks{
         display : flex;
-        justify-content : space-around;
-        padding : 2%;
-        background-color : $primary-color;
-
-        img{
-            width : 150%;
-        }
-    }
-
-    .legal-section{
-        display : flex;
-        flex-direction : column;
-        justify-content : space-around;
-        align-items : center;
-        border-radius : 5% 5% 0 0;
+        justify-content : center;
+        align-items: center;
         padding : 2%;
 
         a{
-            margin : 1%;
-            color : white;
-            text-decoration : none;
-            font-size : 1.4em;
+            margin : 3%;
+        }
+
+        img{
+            width : 175%;
         }
     }
 }
