@@ -5,7 +5,6 @@
 /* Boutons */
 .primary-button{
     background-color : $primary-color;
-    text-decoration : none;
     font-size : 2.5em;
     text-transform: uppercase;
     color : white;
@@ -19,7 +18,6 @@
 
 .secondary-button{
     background-color : $secondary-color;
-    text-decoration : none;
     font-size : 2.5em;
     text-transform: uppercase;
     color : white;
@@ -34,6 +32,17 @@
 /* GENERAL */
 body{
     font-family: 'co-headline', Arial sans-serif;
+    color : $secondary-color;
+}
+
+a{
+    cursor : pointer;
+    text-decoration : none;
+    color : $secondary-color;
+}
+
+ul li{
+    list-style-type : none;
 }
 
 .primary-title{
@@ -63,10 +72,38 @@ body{
     }
 }
 
+
 /* HEADER NAV */
 header{
     .logo-bipbip{
         text-align : center;
+    }
+
+    #menu{
+        display : none;
+        z-index : 3;
+        background : #FFFFFF;
+        padding : 4em 2em;
+        width : 100%;
+        height : 100%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        #header-menu{
+            display : flex;
+            justify-content : space-around;
+            align-items : center;
+
+            .close-button{
+                width : 15%;
+            }
+        }
+    }
+
+    #menu.displayed{
+        display : block;
     }
 
     .circle-buttons{
@@ -74,7 +111,7 @@ header{
         justify-content: space-between;
         z-index : 5;
 
-        .menu-burger{
+        #menu-burger{
             display : flex;
             flex-direction : column;
             justify-content : center;
@@ -106,7 +143,7 @@ header{
             }
         }
 
-        .faq-button{
+        #faq-button{
             display : flex;
             justify-content : center;
             align-items : center;

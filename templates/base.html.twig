@@ -10,14 +10,26 @@
     </head>
     <body>
         <header>
+            <nav id="menu">
+                <div id="header-menu">
+                    <p class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></p>
+                    <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                </div>
+                <ul>
+                    <li class="primary-title"><a href="#" title="Accueil">Accueil</a></li>
+                    <li class="primary-title"><a href="#" title="Qui sommes-nous ?">Qui sommes-nous ?</a></li>
+                    <li class="primary-title"><a href="#" title="Nos partenaires">Nos partenaires</a></li>
+                    <li class="primary-title"><a href="#" title="Nous contacter">Contact</a></li>
+                    <li class="primary-title"><a href="#" title="Estime ton mobile">Estime ton mobile</a></li>
+                </ul>
+            </nav>
             <p class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></p>
-            {% include 'burger_menu.html.twig' %}
             <div class="circle-buttons">
-                <div class="menu-burger">
+                <div id="menu-burger">
                     <img src="/images/menu-burger.png" alt="menu burger" />
                     <p>Menu</p>
                 </div>
-                <div class="faq-button">
+                <div id="faq-button">
                     <p>FAQ</p>
                 </div>
             </div>
