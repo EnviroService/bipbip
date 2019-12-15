@@ -1,11 +1,33 @@
 @import "vars";
 
 .home{
+    h1{
+        font-size : 3.8rem;
+        margin : 3% auto;
+        text-align : center;
+        text-transform : uppercase;
+        line-height: 1.5em;
+        width : 80%;
+
+        .orange-font{
+            color : $primary-color;
+            font-weight : bold;
+        }
+
+        .blue-font{
+            color : $secondary-color;
+            font-weight : lighter;
+
+            b{
+                font-weight : bold;
+            }
+        }
+    }
     #app-download-title{
         margin : 0;
     }
 
-    h2{
+    h3{
         color : $primary-color;
         text-align : center;
         font-weight : bold;
