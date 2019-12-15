@@ -5,30 +5,80 @@
 /* Boutons */
 .primary-button{
     background-color : $primary-color;
+    position : relative;
     text-decoration : none;
-    font-size : 2.5em;
-    text-transform: uppercase;
+    font-size : 2.5rem;
     color : white;
-    border-radius : 20px;
-    width : 40%;
+    width : 60%;
     display : block;
     margin : 2% auto;
     padding : 3%;
     text-align : center;
+
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        left : -1%;
+        bottom : -3rem;
+        border-right: 300px solid transparent;
+        border-left: 300px solid transparent;
+        border-top: 50px solid $primary-color;
+    }
 }
 
 .secondary-button{
     background-color : $secondary-color;
+    position : relative;
     text-decoration : none;
-    font-size : 2.5em;
-    text-transform: uppercase;
+    font-size : 2.5rem;
     color : white;
-    border-radius : 20px;
-    width : 40%;
+    width : 60%;
     display : block;
     margin : 2% auto;
     padding : 3%;
     text-align : center;
+
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        left : -1%;
+        bottom : -3rem;
+        border-right: 300px solid transparent;
+        border-left: 300px solid transparent;
+        border-top: 50px solid $secondary-color;
+    }
+}
+
+.third-button{
+    background-color : $third-color;
+    position : relative;
+    text-decoration : none;
+    font-size : 2.5rem;
+    color : white;
+    width : 60%;
+    display : block;
+    margin : 2% auto;
+    padding : 3%;
+    text-align : center;
+
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        left : -1%;
+        bottom : -3rem;
+        border-right: 300px solid transparent;
+        border-left: 300px solid transparent;
+        border-top: 50px solid $third-color;
+    }
 }
 
 /* GENERAL */
