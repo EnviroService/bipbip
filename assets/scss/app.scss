@@ -59,7 +59,7 @@
     background-color : $third-color;
     position : relative;
     text-decoration : none;
-    font-size : 1rem;
+    font-size : 0.9rem;
     color : white;
     width : 60%;
     display : block;
@@ -125,9 +125,10 @@ a{
 header{
     .logo-bipbip{
         text-align : center;
+        margin : 0;
 
         img{
-            width : 75%;
+            width : 70%;
         }
     }
 
@@ -147,6 +148,7 @@ header{
             min-height: 70px;
             background-color : $primary-color;
             position : fixed;
+            z-index : 9999;
             right : 5vw;
             bottom : 5vh;
 
@@ -173,6 +175,7 @@ header{
             min-height: 70px;
             background-color : black;
             position : fixed;
+            z-index : 9999;
             left : 5vw;
             bottom : 5vh;
 
