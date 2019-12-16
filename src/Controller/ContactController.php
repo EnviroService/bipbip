@@ -5,36 +5,46 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Contact;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("contact/", name="add_message")
      * @param Request $request
+     * @param MailerInterface $mailer
      * @return Response A response instance
+     * @throws TransportExceptionInterface
      */
-    public function add(Request $request): Response
+    public function add(Request $request, MailerInterface $mailer): Response
     {
-        $contact = new Contact();
-
-        $form = $this->createForm(ContactType::class, $contact);
+        $form = $this->createForm(ContactType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData();
+            $contactFormData = $form->getData();
 
-            //TODO config mailer to send the message
+            $email = (new Email())
+                ->from(new Address($contactFormData->getEmail(), $contactFormData
+                    ->getFirstname() . ' ' . $contactFormData->getLastname()))
+                ->to(new Address('jyaire@gmail.com', 'BipBip Mobile'))
+                ->replyTo($contactFormData->getEmail())
+                ->subject($contactFormData->getSubject())
+                ->text($contactFormData->getMessage());
 
-            return $this->redirectToRoute(
-                'contact_success',
-                [
-                'contact' => $contact,
-                                ]
-            );
+            // TODO récupérer le subject du choice et non l'id
+            // TODO intégration d'un message en twig pour remplacer le 'text'
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Ton message a été envoyé, nous te répondrons rapidement !');
+
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(
@@ -42,16 +52,6 @@ class ContactController extends AbstractController
             [
                 'form' => $form->createView(),
             ]
-        );
-    }
-
-    /**
-     * @Route("contact/", name="contact_success")
-     */
-    public function success()
-    {
-        return $this->render(
-            'contact/contact_success.html.twig'
         );
     }
 }

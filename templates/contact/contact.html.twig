@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block title %}Contacte-nous !{% endblock %}
 {% block body %}
+    <h1 class="primary-title">Contacte-nous</h1>
     <div class="container">
     <div class="row">
-    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
-        <h1 class="primary-title">Contacte-nous</h1>
+    <div class="col-12 mx-auto text-center form p-4">
     {{ form_start(form, {'class': 'form-group'}) }}
-    {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Prénom', 'label': 'Prénom', 'required': true}}) }}
-    {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom', 'label': 'Nom', 'required': true}}) }}
-    {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Email', 'label': 'Email', 'required': true}}) }}
-    {{ form_widget(form.phone, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Téléphone', 'label': 'Téléphone', 'required': true}}) }}
-    {{ form_widget(form.subject, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Objet du message', 'label': 'Objet du message', 'required': true}}) }}
-    {{ form_widget(form.message, {'attr': {'class': 'form-control mt-3 mb-3', 'placeholder': 'Message', 'label': 'Message', 'required': true}}) }}
+    {{ form_widget(form.firstname, {'attr': {'class': 'form-control-lg mt-3', 'placeholder': 'Prénom', 'label': 'Prénom', 'required': true}}) }}
+    {{ form_widget(form.lastname, {'attr': {'class': 'form-control-lg mt-3', 'placeholder': 'Nom', 'label': 'Nom', 'required': true}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control-lg mt-3', 'placeholder': 'Email', 'label': 'Email', 'required': true}}) }}
+    {{ form_widget(form.phone, {'attr': {'class': 'form-control-lg mt-3', 'placeholder': 'Téléphone', 'label': 'Téléphone', 'required': true}}) }}
+    {{ form_widget(form.subject, {'attr': {'class': 'form-control-lg mt-3', 'placeholder': 'Objet du message', 'label': 'Objet du message', 'required': true}}) }}
+    {{ form_widget(form.message, {'attr': {'class': 'form-control-lg mt-3 mb-3', 'placeholder': 'Message', 'label': 'Message', 'required': true}}) }}
     {{ form_row(form.save, {'label': 'Envoyer le message', 'class': 'btn btn-validButton'}) }}
     {{ form_end(form) }}
     </div></div></div>
