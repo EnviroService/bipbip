@@ -7,7 +7,7 @@
     background-color : $primary-color;
     position : relative;
     text-decoration : none;
-    font-size : 2.5rem;
+    font-size : 1rem;
     color : white;
     width : 60%;
     display : block;
@@ -21,11 +21,11 @@
         width : 0;
         position : absolute;
         z-index : -1;
-        left : -1%;
-        bottom : -3rem;
-        border-right: 300px solid transparent;
-        border-left: 300px solid transparent;
-        border-top: 50px solid $primary-color;
+        left : 0;
+        bottom : -4.9vh;
+        border-right: 30vw solid transparent;
+        border-left: 30vw solid transparent;
+        border-top: 5vh solid $primary-color;
     }
 }
 
@@ -33,7 +33,7 @@
     background-color : $secondary-color;
     position : relative;
     text-decoration : none;
-    font-size : 2.5rem;
+    font-size : 1rem;
     color : white;
     width : 60%;
     display : block;
@@ -47,11 +47,11 @@
         width : 0;
         position : absolute;
         z-index : -1;
-        left : -1%;
-        bottom : -3rem;
-        border-right: 300px solid transparent;
-        border-left: 300px solid transparent;
-        border-top: 50px solid $secondary-color;
+        left : 0;
+        bottom : -4.9vh;
+        border-right: 30vw solid transparent;
+        border-left: 30vw solid transparent;
+        border-top: 5vh solid $secondary-color;
     }
 }
 
@@ -59,7 +59,7 @@
     background-color : $third-color;
     position : relative;
     text-decoration : none;
-    font-size : 2.5rem;
+    font-size : 1rem;
     color : white;
     width : 60%;
     display : block;
@@ -73,11 +73,11 @@
         width : 0;
         position : absolute;
         z-index : -1;
-        left : -1%;
-        bottom : -3rem;
-        border-right: 300px solid transparent;
-        border-left: 300px solid transparent;
-        border-top: 50px solid $third-color;
+        left : 0;
+        bottom : -4.9vh;
+        border-right: 30vw solid transparent;
+        border-left: 30vw solid transparent;
+        border-top: 5vh solid $third-color;
     }
 }
 
@@ -85,7 +85,7 @@
 body{
     font-family: 'co-headline', Arial sans-serif;
     color : black;
-    font-size : 1.8rem;
+    font-size : 1rem;
 }
 
 a{
@@ -93,13 +93,15 @@ a{
 }
 
 .primary-title{
+    background-color : white;
     position : relative;
     text-transform : uppercase;
-    font-size : 3rem;
+    font-size : 1rem;
+    font-weight: bold;
     color : $secondary-color;
     text-align : center;
     padding : 2%;
-    box-shadow : 0 10px 10px #9f9f9f;
+    box-shadow : 0 5px 15px #9f9f9f;
     border-radius : 5px;
     width : 80%;
     margin : 12% auto;
@@ -110,12 +112,12 @@ a{
         width : 0;
         position : absolute;
         z-index : -1;
-        bottom : -2rem;
-        left : 40%;
+        bottom : -2vh;
+        left : 27vw;
         text-align : center;
-        border-right: 80px solid transparent;
-        border-left: 80px solid transparent;
-        border-top: 30px solid $secondary-color;
+        border-right: 13vw solid transparent;
+        border-left: 13vw solid transparent;
+        border-top: 2vh solid $secondary-color;
     }
 }
 
@@ -123,6 +125,10 @@ a{
 header{
     .logo-bipbip{
         text-align : center;
+
+        img{
+            width : 75%;
+        }
     }
 
     nav{
@@ -135,26 +141,24 @@ header{
             justify-content : center;
             align-items: center;
             border-radius : 50%;
-            width : 10vw;
-            min-width : 150px;
-            max-width : 150px;
-            height : 10vw;
-            min-height: 150px;
-            max-height : 150px;
+            width : 8vw;
+            min-width: 70px;
+            height : 8vw;
+            min-height: 70px;
             background-color : $primary-color;
             position : fixed;
             right : 5vw;
             bottom : 5vh;
 
             img{
-                width : 35%;
-                margin-bottom : 2%;
+                width : 30%;
+                margin-bottom: 8%;
             }
 
             p{
-                font-size : 1.4em;
+                font-size : 0.8rem;
                 color : white;
-                margin-top : 2%;
+                margin-bottom : 0;
             }
         }
 
@@ -163,12 +167,10 @@ header{
             justify-content : center;
             align-items : center;
             border-radius : 50%;
-            width : 10vw;
-            min-width : 150px;
-            max-width : 150px;
-            height : 10vw;
-            min-height: 150px;
-            max-height : 150px;
+            width : 8vw;
+            min-width: 70px;
+            height : 8vw;
+            min-height: 70px;
             background-color : black;
             position : fixed;
             left : 5vw;
@@ -176,7 +178,7 @@ header{
 
             p{
                 color : white;
-                font-size : 1.5em;
+                font-size : 0.8rem;
                 margin : 0;
             }
         }
@@ -187,22 +189,24 @@ header{
 footer {
     li{
         text-align : center;
-        margin : 2%;
-        font-size : 2.5rem;
+        margin : 4%;
+        font-size : 1rem;
     }
 
     .social-networks{
         display : flex;
         justify-content : center;
         align-items: center;
-        padding : 2%;
+        margin : 10% 5% 30% 5%;
 
         a{
-            margin : 3%;
-        }
+            text-align : center;
+            display : block;
+            margin : 0 2%;
 
-        img{
-            width : 175%;
+            img{
+                width : 75%;
+            }
         }
     }
 }
