@@ -1,151 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} FAQ {% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('faq') }}
+{% endblock %}
+
+{% block title %} {{ controller_name }} {% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 10% 10% ; max-width: 90%; width: 90%; font: 18px/1.5 sans-serif; }
-    .card { margin-left: 5%; margin-right: 5%;}
+    .example-wrapper { margin: 10% 10% ; max-width: 80%; width: 80%; }
+    .card { margin-left: 20%; margin-right: 10%;}
     .card-text { border: 1px solid black; list-style: type;}
 </style>
+    <main id="faq">
     <div class = primary-title>
         <h1> {{ controller_name }} </h1>
     </div>
-    <div class="example-wrapper">
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color text-dark" >
-                <ul class="question">
-                    <li><a href="#">Comment va se passer la revente de mon téléphone ?</a>
-                        <ul>
+        <div class="example-wrapper">
+            <div class="card border-dark" style="max-width: 60%;">
+                <div class="card-header primary-color text-dark" >
+                    <ul class="question">
+                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
+                                <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
+                         </article>
+                    </ul>
+                </div>
+            </div>
+            <br><br>
+            <div class="card border-dark" style="max-width: 60%;">
+                <div class="card-header primary-color text-dark" >
+                    <ul class="question">
+                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
                             <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
-                        </ul>
-                    </li>
-                </ul>
+                        </article>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Comment déclarer un problème technique sur mon produit?</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Lors de l'utilisation de l'application d'estimation ou au moment de la collecte</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
             <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">L’écran de mon produit est cassé, je peux vous le revendre ?</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Oui, nous reprenons aussi les produits avec écran cassé.
-                                    Ton appareil va ensuite être réparé pour retrouver une nouvelle vie !</li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="card border-dark" style="max-width: 60%;">
+                <div class="card-header primary-color text-dark" >
+                    <ul class="question">
+                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
+                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
+                        </article>
+                    </ul>
+                </div>
             </div>
-        </div>
             <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Que se passe-t-il si j’ai mal décrit l’état de mon produit?</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Si tu as mal décrit l'état de ton téléphone, le collecteur qui te reçoit te fera une contre-offre correspondant au réel état de ton téléphone.</li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="card border-dark" style="max-width: 60%;">
+                <div class="card-header primary-color text-dark" >
+                    <ul class="question">
+                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
+                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
+                        </article>
+                    </ul>
+                </div>
             </div>
-        </div>
             <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Qu’arrive-t-il aux données de mon appareil après sa revente?</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Les appareils sont systématiquement et intégralement vidés de leurs données, dàs leur arrivée à l'usine. Pas de risque de les voir se balader dans la nature.
-                                    Et d'ailleurs, avant d'envoyer ton mobile, tu peux également supprimer toutes tes données comme ceci :
-                                    • Sur IPhone : Va dans Réglages > Général > Réinitialiser > Effacer contenu et réglages
-                                    • Sur Android : Va dans Paramètres > Sauvegarder et réinitialiser > Réinitialiser toutes les données
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
-        <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Comment trouver une collecte ?</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Connecte toi sur ton compte client BIPBIPMobile clique sur le bouton "Trouver une collecte prés de chez moi"</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Question 1 ...</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Réponse</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Question 1 ...</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Réponse</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br>
-        <div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Question 1 ...</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Réponse</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br><div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Question 1 ...</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Réponse</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br><div class="card border-dark" style="max-width: 80%;">
-            <div class="card-header primary-color border-dark text-dark" >
-                <ul class="question">
-                    <li><a href="#">Question 1 ...</a>
-                        <ul>
-                            <li class="card-text secondary-color mr-3 border-dark text-dark">Réponse</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br><br>
-    </div>
+    </main>
 {% endblock %}
+
