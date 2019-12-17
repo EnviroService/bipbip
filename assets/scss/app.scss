@@ -3,15 +3,16 @@
 
 
 /* Boutons */
-.primary-button{
-    background-color : $primary-color;
+
+@mixin button($color){
+    background-color : $color;
     position : relative;
     text-decoration : none;
     font-size : 1rem;
     color : white;
     width : 60%;
     display : block;
-    margin : 2% auto;
+    margin : 5% auto 10% auto;
     padding : 3%;
     text-align : center;
 
@@ -25,61 +26,22 @@
         bottom : -4.9vh;
         border-right: 30vw solid transparent;
         border-left: 30vw solid transparent;
-        border-top: 5vh solid $primary-color;
+        border-top: 5vh solid $color;
     }
+}
+
+.primary-button{
+    @include button($primary-color)
 }
 
 .secondary-button{
-    background-color : $secondary-color;
-    position : relative;
-    text-decoration : none;
-    font-size : 1rem;
-    color : white;
-    width : 60%;
-    display : block;
-    margin : 2% auto;
-    padding : 3%;
-    text-align : center;
-
-    &:after{
-        content : "";
-        height : 0;
-        width : 0;
-        position : absolute;
-        z-index : -1;
-        left : 0;
-        bottom : -4.9vh;
-        border-right: 30vw solid transparent;
-        border-left: 30vw solid transparent;
-        border-top: 5vh solid $secondary-color;
-    }
+    @include button($secondary-color)
 }
 
 .third-button{
-    background-color : $third-color;
-    position : relative;
-    text-decoration : none;
-    font-size : 0.9rem;
-    color : white;
-    width : 60%;
-    display : block;
-    margin : 2% auto;
-    padding : 3%;
-    text-align : center;
-
-    &:after{
-        content : "";
-        height : 0;
-        width : 0;
-        position : absolute;
-        z-index : -1;
-        left : 0;
-        bottom : -4.9vh;
-        border-right: 30vw solid transparent;
-        border-left: 30vw solid transparent;
-        border-top: 5vh solid $third-color;
-    }
+    @include button($third-color)
 }
+
 
 /* GENERAL */
 body{

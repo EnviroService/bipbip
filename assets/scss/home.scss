@@ -28,28 +28,41 @@
     .steps {
 
         article{
-            #step1{
-                background-image: url("/images/etape1.png");
-                background-position : center;
-                background-repeat: no-repeat;
-                width : 100%;
-                height : 45vh;
+            .ugly-divs{
+                width : 300px;
+                height : 300px;
+                max-width: 100%;
+                margin : 5% 5%;
                 display : flex;
-                flex-direction : column;
+                flex-flow : column wrap;
                 justify-content: space-around;
                 align-items: center;
-
-                h3{
-                    background-color : $third-color;
-                    width : 40%;
-                    height : 7vh;
-                    font-size : 1.3rem;
-                    font-weight: bold;
-                    color : white;
-                    text-align : center;
-                    margin : 0 7% 0 0;
-                    padding : 3%;
+                position: relative;
+                .background-pic{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
                 }
+
+                div{
+                    background-color : $third-color;
+                    -webkit-transform:skew(-30deg);
+                    -moz-transform:skew(-30deg);
+                    -o-transform:skew(-30deg);
+                    transform:skew(-30deg);
+                    padding : 10px 25px;
+                    margin-right: 27px;
+                    h3{
+                        font-size : 1.3rem;
+                        font-weight: bold;
+                        color : white;
+                        text-align : center;
+                        transform:skew(30deg);
+                    }
+                }
+
 
                 p{
                     text-transform : uppercase;
@@ -63,7 +76,6 @@
             #links-apps{
                 display : flex;
                 justify-content : center;
-                margin-top : 5%;
 
                 img{
                     width : 13%;
@@ -92,7 +104,6 @@
                 flex-direction : column;
                 justify-content: space-around;
                 align-items: center;
-                margin-top : 8%;
 
                 h3{
                     background-color : $primary-color;
@@ -113,19 +124,27 @@
                     width : 50%;
                     padding-right : 3%;
                 }
+
             }
+
+            ul{
+                list-style-type: disc;
+                text-align: center;
+                line-height: 1.5em;
+            }
+
+
 
             #step3{
                 background-image: url("/images/etape3.png");
                 background-position : center;
                 background-repeat: no-repeat;
                 width : 100%;
-                height : 45vh;
+                height : 47vh;
                 display : flex;
                 flex-direction : column;
                 justify-content: space-around;
                 align-items: center;
-                margin-top : 15%;
 
                 h3{
                     background-color : $secondary-color;
@@ -150,6 +169,7 @@
         }
     }
 
+/* BAIL BIPBIP */
     .bail-bipbip{
         a{
             display : block;
@@ -159,6 +179,7 @@
         }
     }
 
+/* PARTNERS */
     .home-partner{
         h3{
             font-size : 1.5rem;
@@ -167,8 +188,14 @@
             font-weight: bold;
         }
 
-        img {
-            width : 25%;
+        article{
+            display : flex;
+            justify-content: space-around;
+            flex-wrap : wrap;
+            img {
+                width : 25%;
+                margin : 5%;
+            }
         }
     }
 }
