@@ -1,0 +1,32 @@
+@import "vars";
+
+.partnersList {
+    section{
+        display: flex;
+        justify-content : space-around;
+        flex-wrap: wrap;
+
+        .logo{
+            width: 10%;
+
+            img{
+                width :100px;
+                margin : 5% 5%;
+            }
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 1em;
+            text-align: center;
+        }
+
+
+        a {
+            font-size: 1em;
+
+        }
+    }
+}
+
+

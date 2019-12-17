@@ -19,7 +19,7 @@ class Users
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=5)
+     * @ORM\Column(type="string", length=12)
      */
     private $gender;
 
@@ -54,7 +54,7 @@ class Users
     private $city;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=50)
      */
     private $phone;
 
@@ -82,6 +82,11 @@ class Users
      * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="user")
      */
     private $estimations;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
 
     public function __construct()
     {
@@ -266,6 +271,18 @@ class Users
     public function setOrganism(?Organisms $organism): self
     {
         $this->organism = $organism;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
