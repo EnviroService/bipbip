@@ -24,7 +24,7 @@
         }
     }
 
-/* STEPS */
+    /* STEPS */
     .steps {
 
         article{
@@ -63,6 +63,7 @@
                     width : 200px;
                     vertical-align: center;
                     margin-right: 20px;
+
                     h3{
                         font-size : 1.3rem;
                         font-weight: bold;
@@ -103,6 +104,7 @@
             }
             
             #step2{
+
                 div{
                     background-color: $primary-color;
                 }
@@ -129,7 +131,7 @@
         }
     }
 
-/* BAIL BIPBIP */
+    /* BAIL BIPBIP */
     .bail-bipbip{
         a{
             display : block;
@@ -139,7 +141,7 @@
         }
     }
 
-/* PARTNERS */
+    /* PARTNERS */
     .home-partner{
         h3{
             font-size : 1.5rem;
@@ -155,6 +157,7 @@
             flex-wrap : wrap;
             margin-bottom : 6%;
             margin-top : 6%;
+
             img {
                 width : 25%;
                 margin : 5%;
