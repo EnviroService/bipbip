@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class FaqController extends AbstractController
 {
 
-
     /**
      *
      * @return Response
