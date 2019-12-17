@@ -4,60 +4,32 @@
     {{ encore_entry_link_tags('faq') }}
 {% endblock %}
 
-{% block title %} {{ controller_name }} {% endblock %}
+{% block title %} Foire Aux Questions {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 10% 10% ; max-width: 80%; width: 80%; }
-    .card { margin-left: 20%; margin-right: 10%;}
-    .card-text { border: 1px solid black; list-style: type;}
-</style>
     <main id="faq">
+
     <div class = primary-title>
-        <h1> {{ controller_name }} </h1>
+        <h1> Foire Aux Questions </h1>
     </div>
-        <div class="example-wrapper">
-            <div class="card border-dark" style="max-width: 60%;">
-                <div class="card-header primary-color text-dark" >
-                    <ul class="question">
-                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
-                                <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
-                         </article>
-                    </ul>
+
+        {% for faq in faqContent %}
+
+            <div class="example-wrapper">
+                <div class="card border-dark" >
+                    <div class="card-header text-dark" >
+                        <ul class="question">
+                            <li>
+                                <a href="">{{faq.question}}</a>
+                                <article class="card-text mr-3 mt-4 border-dark text-dark">{{faq.answer}}</article>
+                             </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <br><br>
-            <div class="card border-dark" style="max-width: 60%;">
-                <div class="card-header primary-color text-dark" >
-                    <ul class="question">
-                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
-                        </article>
-                    </ul>
-                </div>
-            </div>
-            <br><br>
-            <div class="card border-dark" style="max-width: 60%;">
-                <div class="card-header primary-color text-dark" >
-                    <ul class="question">
-                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
-                        </article>
-                    </ul>
-                </div>
-            </div>
-            <br><br>
-            <div class="card border-dark" style="max-width: 60%;">
-                <div class="card-header primary-color text-dark" >
-                    <ul class="question">
-                        <article><a href="#">Comment va se passer la revente de mon téléphone ?</a>
-                            <li class="card-text secondary-color mr-3 mt-4 border-dark text-dark">Estime la valeur de ton télèphone en 30 secondes puis renseigne toi sur un lieu de collecte et tu seras payé immédiatement.</li>
-                        </article>
-                    </ul>
-                </div>
-            </div>
-            <br><br>
-        </div>
+
+            {% endfor %}
+
     </main>
 {% endblock %}
 

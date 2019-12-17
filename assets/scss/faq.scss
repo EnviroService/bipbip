@@ -4,29 +4,46 @@
 // customize some Bootstrap variables
 $primary: darken(#428bca, 20%);
 // the ~ allows you to reference things in node_modules
-
+#faq{
+    width: 100%;
+    font-size: 1.1em;
+}
 .question, .question ul {
     padding:0;
     list-style:none;
     width:100%;
 }
-.question article {
+.question li {
     position: relative;
 }
 .question a {
     display:block;
     text-decoration: none;
 }
-.card-text {
-    position: absolute;
-    left:-999em;
+.example-wrapper {
+    margin: 10% 10% ;
+    max-width: 80%;
+    width: 80%;
 }
-.question:hover article li {
-    top: 15px;
+.card {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+article.card-text {
+    position: absolute;
+    background-color : $secondary-color;
+    opacity: 95%;
+    border: 1px solid black;
+    list-style: type;
+    border-radius: 5px;
+    top: 25px;
     left: 30%;
     z-index: 1;
     padding: 20px;
-    width: 80%;
+    width: 100%;
+    display: none;
 }
-
+.question li:hover article.card-text {
+  display: block;
+}
 

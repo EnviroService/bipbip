@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 
+use App\Repository\FAQRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FaqController extends AbstractController
 {
+
+
     /**
-     * @Route("/faq", name="faq")
+     *
+     * @return Response
+     * @Route("/faq", name="show_faq")
      */
-    public function index()
+
+    public function showFaq(FAQRepository $faqRepo): Response
     {
+        $faqContent = $faqRepo->findAll();
         return $this->render('faq/index.html.twig', [
-            'controller_name' => 'FAQ',
-        ]);
+            'faqContent' => $faqContent]);
     }
 }

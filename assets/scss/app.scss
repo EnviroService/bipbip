@@ -65,8 +65,8 @@ body{
 
 /* HEADER NAV */
 header{
-    .logo-bipbip{
-        text-align : center;
+    > img{
+        width: 100%;
     }
 
     nav{
