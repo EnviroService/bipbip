@@ -10,6 +10,12 @@
     <main class="home">
         <h1><span class="orange-font">Bipbip</span> <span class="blue-font">rachète ton tel et en fait</span> <span class="orange-font">le 1er mobile</span> <span class="blue-font"><b>recyclé et connecté aux</b></span> <span class="orange-font">bons plans de ta région</span></h1>
 
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {{ include('/home/slide.html.twig') }}
 
         <section class="steps">
