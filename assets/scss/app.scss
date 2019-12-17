@@ -86,11 +86,12 @@ a{
 /* HEADER NAV */
 header{
     .logo-bipbip{
-        text-align : center;
-        margin : 0;
+        display : block;
+        width : 75%;
+        margin : auto;
 
         img{
-            width : 70%;
+            width : 100%;
         }
     }
 
