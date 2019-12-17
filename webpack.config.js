@@ -23,6 +23,8 @@ Encore
 
     .addEntry('home', './assets/js/home.js')
 
+    .addEntry('faq', './assets/scss/faq.scss')
+
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
