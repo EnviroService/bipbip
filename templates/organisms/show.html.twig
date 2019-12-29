@@ -19,7 +19,7 @@
 
         <p>{{ organism.description }}</p>
 
-        <p><a href="{{ organism.organismLink }}">Visiter le site</a></p>
+        <div class="partnerInfo">
 
         <p>{{ organism.organismAddress }}</p>
 
@@ -29,13 +29,18 @@
 
         <p>{{ organism.organismPhone }}</p>
 
+        <p><a href="{{ organism.organismLink }}">Visiter le site</a></p>
+
+        </div>
+
         <div id="clickLink">
 
         <a href="{{ path('organisms_index') }}">back to list</a>
         <br>
         <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>
-
+{#
     {{ include('organisms/_delete_form.html.twig') }}
+#}
         </div>
 
     </main>

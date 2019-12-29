@@ -14,9 +14,9 @@ class OrganismsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('organismName' , TextType::class)
-            ->add('description' , TextType::class)
-            ->add('organismLink' , TextType::class)
+            ->add('organismName', TextType::class)
+            ->add('description', TextType::class)
+            ->add('organismLink', TextType::class)
             ->add('logo', TextType::class)
             ->add('organismAddress', TextType::class)
             ->add('organismCity', TextType::class)
