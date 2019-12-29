@@ -8,6 +8,7 @@
 require('bootstrap');
 
 // any CSS you require will output into a single css file (app.css in this case)
+require('../scss/faq.scss');
 require('../scss/app.scss');
 require('../scss/reset.scss');
 require('../scss/partnerList.scss');

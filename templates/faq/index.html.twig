@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('faq') }}
+{% endblock %}
+
+{% block title %} Foire Aux Questions {% endblock %}
+
+{% block body %}
+    <main id="faq">
+
+    <div class = primary-title>
+        <h1> Foire Aux Questions </h1>
+    </div>
+
+        {% for faq in faqContent %}
+
+            <div class="example-wrapper">
+                <div class="card border-dark" >
+                    <div class="card-header text-dark" >
+                        <ul class="question">
+                            <li>
+                                <a href="">{{faq.question}}</a>
+                                <article class="card-text mr-3 mt-4 border-dark text-dark">{{faq.answer}}</article>
+                             </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+    </main>
+{% endblock %}
+
