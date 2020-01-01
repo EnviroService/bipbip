@@ -34,11 +34,11 @@ class ContactController extends AbstractController
                     ->getFirstname() . ' ' . $contactFormData->getLastname()))
                 ->to(new Address('jyaire@gmail.com', 'BipBip Mobile'))
                 ->replyTo($contactFormData->getEmail())
-                ->subject($contactFormData->getSubject())
-                ->text($contactFormData->getMessage());
-
-            // TODO récupérer le subject du choice et non l'id
-            // TODO intégration d'un message en twig pour remplacer le 'text'
+                ->subject('Nouveau message reçu depuis l\'application BipBip Mobile')
+                ->html($this->renderView(
+                    'contact/sentmail.html.twig',
+                    array('form' => $contactFormData)
+                ));
 
             $mailer->send($email);
 
