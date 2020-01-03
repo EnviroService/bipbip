@@ -54,7 +54,7 @@ class Users
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=15)
      */
     private $phone;
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Organisms;
 use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,14 +29,13 @@ class OrganismsController extends AbstractController
     /**
      * @Route("/new", name="organisms_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $organism = new Organisms();
         $form = $this->createForm(OrganismsType::class, $organism);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($organism);
             $entityManager->flush();
 
