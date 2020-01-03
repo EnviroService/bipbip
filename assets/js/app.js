@@ -11,7 +11,8 @@ require('bootstrap');
 require('../scss/faq.scss');
 require('../scss/app.scss');
 require('../scss/reset.scss');
+require('../scss/partnerList.scss');
+require('../scss/partnerPage.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
-

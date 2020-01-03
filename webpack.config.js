@@ -23,10 +23,12 @@ Encore
 
     .addEntry('home', './assets/js/home.js')
 
+
+    .addEntry('partnerList', './assets/scss/partnerList.scss')
+    .addEntry('partnerPage', './assets/scss/partnerPage.scss')
+
     .addEntry('faq', './assets/scss/faq.scss')
 
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

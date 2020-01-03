@@ -68,6 +68,11 @@ class Organisms
      */
     private $collects;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $organismStatus;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -233,6 +238,18 @@ class Organisms
                 $collect->setOrganism(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrganismStatus(): ?string
+    {
+        return $this->organismStatus;
+    }
+
+    public function setOrganismStatus(string $organismStatus): self
+    {
+        $this->organismStatus = $organismStatus;
 
         return $this;
     }
