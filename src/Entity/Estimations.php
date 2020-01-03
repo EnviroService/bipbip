@@ -276,5 +276,4 @@ class Estimations
 
         return $this;
     }
-
 }
