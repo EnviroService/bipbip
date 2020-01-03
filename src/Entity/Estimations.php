@@ -91,11 +91,6 @@ class Estimations
      */
     private $isValidatedSignature;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="estimations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
 
     public function getId(): ?int
     {
@@ -282,15 +277,4 @@ class Estimations
         return $this;
     }
 
-    public function getUser(): ?Users
-    {
-        return $this->user;
-    }
-
-    public function setUser(?Users $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 }
