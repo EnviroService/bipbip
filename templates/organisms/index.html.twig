@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisms index{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('partnerList') }}
+{% endblock %}
+
+{% block body %}
+
+    <main class="partnersList">
+        <h1 class="primary-title">Les partenaires</h1>
+
+        <section>
+            {% for organism in organisms %}
+
+            <article>
+                <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
+                    <img src="{{ organism.logo }}" alt="logo"></a>
+
+
+
+            </article>
+                {#
+                <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>
+                <a href="{{ path('organisms_show', {'id': organism.id}) }}">show</a>
+                #}
+
+
+
+
+            {% else %}
+
+                <td colspan="11">no records found</td>
+
+            {% endfor %}
+
+        </section>
+
+
+
+        <br><a href="{{ path('organisms_new') }}">Create new</a>
+
+
+    </main>
+
+
+
+{% endblock %}
