@@ -1,4 +1,12 @@
 security:
+    # ...
+    encoders:
+        # use your user class name here
+        App\Entity\Users:
+            # Use native password encoder
+            # This value auto-selects the best possible hashing algorithm
+            # (i.e. Sodium when available).
+            algorithm: auto
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }

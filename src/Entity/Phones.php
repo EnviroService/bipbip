@@ -117,7 +117,7 @@ class Phones
 
     public function setCapacity(int $capacity): self
     {
-        $this->capacity = $capacity;
+        $this->capacity = intval($capacity);
 
         return $this;
     }
@@ -139,9 +139,9 @@ class Phones
         return $this->priceLiquidDamage;
     }
 
-    public function setPriceLiquidDamage(int $priceLiquidDamage): self
+    public function setPriceLiquidDamage($priceLiquidDamage): self
     {
-        $this->priceLiquidDamage = $priceLiquidDamage;
+        $this->priceLiquidDamage = intval($priceLiquidDamage);
 
         return $this;
     }
@@ -151,9 +151,9 @@ class Phones
         return $this->priceScreenCracks;
     }
 
-    public function setPriceScreenCracks(int $priceScreenCracks): self
+    public function setPriceScreenCracks($priceScreenCracks): self
     {
-        $this->priceScreenCracks = $priceScreenCracks;
+        $this->priceScreenCracks = intval($priceScreenCracks);
 
         return $this;
     }
@@ -163,9 +163,9 @@ class Phones
         return $this->priceCasingCracks;
     }
 
-    public function setPriceCasingCracks(int $priceCasingCracks): self
+    public function setPriceCasingCracks($priceCasingCracks): self
     {
-        $this->priceCasingCracks = $priceCasingCracks;
+        $this->priceCasingCracks = intval($priceCasingCracks);
 
         return $this;
     }
@@ -175,9 +175,9 @@ class Phones
         return $this->priceBattery;
     }
 
-    public function setPriceBattery(int $priceBattery): self
+    public function setPriceBattery($priceBattery): self
     {
-        $this->priceBattery = $priceBattery;
+        $this->priceBattery = intval($priceBattery);
 
         return $this;
     }
@@ -187,9 +187,9 @@ class Phones
         return $this->priceButtons;
     }
 
-    public function setPriceButtons(int $priceButtons): self
+    public function setPriceButtons($priceButtons): self
     {
-        $this->priceButtons = $priceButtons;
+        $this->priceButtons = intval($priceButtons);
 
         return $this;
     }
@@ -199,9 +199,9 @@ class Phones
         return $this->priceBlacklisted;
     }
 
-    public function setPriceBlacklisted(int $priceBlacklisted): self
+    public function setPriceBlacklisted($priceBlacklisted): self
     {
-        $this->priceBlacklisted = $priceBlacklisted;
+        $this->priceBlacklisted = intval($priceBlacklisted);
 
         return $this;
     }
@@ -211,9 +211,9 @@ class Phones
         return $this->priceRooted;
     }
 
-    public function setPriceRooted(int $priceRooted): self
+    public function setPriceRooted($priceRooted): self
     {
-        $this->priceRooted = $priceRooted;
+        $this->priceRooted = intval($priceRooted);
 
         return $this;
     }
@@ -223,9 +223,9 @@ class Phones
         return $this->maxPrice;
     }
 
-    public function setMaxPrice(int $maxPrice): self
+    public function setMaxPrice($maxPrice): self
     {
-        $this->maxPrice = $maxPrice;
+        $this->maxPrice = intval($maxPrice);
 
         return $this;
     }
@@ -237,7 +237,7 @@ class Phones
 
     public function setValidityPeriod(int $validityPeriod): self
     {
-        $this->validityPeriod = $validityPeriod;
+        $this->validityPeriod = intval($validityPeriod);
 
         return $this;
     }
