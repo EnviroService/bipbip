@@ -16,8 +16,9 @@ require('jquery');
 const question = document.querySelectorAll('article.question');
 const answer = document.querySelectorAll('article.answer');
 
-for (let i = 0; i < question.length; question [i++]) {
-    question[i].addEventListener('click', function () {
+// eslint-disable-next-line no-plusplus
+for (let i = 0; i < question.length; i++) {
+    question[i].addEventListener('click', () => {
         answer[i].classList.toggle('displayed');
-    })
+    });
 }
