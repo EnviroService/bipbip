@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 class UserController extends AbstractController
 {
@@ -29,8 +30,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $status = 'user';
             $entityManager = $this->getDoctrine()->getManager();
-            $user->setSignupDate(new \DateTime('now'));
-            $user->setSigninLast(new \DateTime('now'));
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninLast(new DateTime('now'));
             $user->setStatus($status);
             $entityManager->persist($user);
             $entityManager->flush();
