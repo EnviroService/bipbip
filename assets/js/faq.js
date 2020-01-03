@@ -13,10 +13,10 @@ require('../scss/faq.scss');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 require('jquery');
 
-const question = document.querySelectorAll("article.question");
-const answer = document.querySelectorAll("article.answer");
+const question = document.querySelectorAll('article.question');
+const answer = document.querySelectorAll('article.answer');
 
-for (let i=0; i< question.length; question [i++]) {
+for (let i = 0; i < question.length; question [i++]) {
     question[i].addEventListener('click', function () {
         answer[i].classList.toggle('displayed');
     })

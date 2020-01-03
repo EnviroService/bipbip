@@ -12,6 +12,7 @@
     max-width: 80%;
     width: 80%;
 }
+
 .question {
     display: block;
     width: 100%;
@@ -23,6 +24,7 @@
     opacity: 90%;
     color : white;
 }
+
 .answer {
     display : none;
     background-color : rgba(243, 252, 251, 0.35);
@@ -35,6 +37,7 @@
     text-align: justify;
     box-shadow: inset 2px 0px 10px rgba(150, 134, 134, 0.25);
 }
+
 .answer.displayed {
     display: block;
 }
