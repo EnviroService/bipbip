@@ -1,10 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-5 mx-auto text-center form p-4">
+        <div class="col-10 mx-auto text-center form p-4">
             {{ form_start(form) }}
+                {{ form_row(form.gender, {'attr': {'class': 'form-control mb-5'}}) }}
                 {{ form_widget(form.firstname, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Prénom'}}) }}
                 {{ form_widget(form.lastname, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Nom'}}) }}
-                {{ form_widget(form.adress, {'attr': {'class': 'form-control mb-3', 'placeholder': 'adresse'}}) }}
+                {{ form_widget(form.postcode, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Code postal'}}) }}
+                {{ form_widget(form.city, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Ville'}}) }}
+                {{ form_widget(form.password, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Mot de pase'}}) }}
                 {{ form_widget(form.phone, {'attr': {'class': 'form-control mb-3', 'placeholder': 'téléphone'}}) }}
                 {{ form_widget(form.mail, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Email'}}) }}
                 {{ form_row(form.submit, {'label': 'Valider', 'class': 'btn btn-primary'}) }}

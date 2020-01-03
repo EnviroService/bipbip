@@ -3,47 +3,67 @@
 
 
 /* Boutons */
-.primary-button{
-    background-color : $primary-color;
+
+@mixin button($color){
+    background-color : $color;
+    position : relative;
     text-decoration : none;
-    font-size : 2.5em;
-    text-transform: uppercase;
+    font-size : 1rem;
     color : white;
-    border-radius : 20px;
-    width : 40%;
+    width : 60%;
     display : block;
-    margin : 2% auto;
+    margin : 2% auto 15% auto;
     padding : 3%;
     text-align : center;
+
+    &:after{
+        content : "";
+        height : 0;
+        width : 0;
+        position : absolute;
+        z-index : -1;
+        left : 0;
+        bottom : -4.9vh;
+        border-right: 30vw solid transparent;
+        border-left: 30vw solid transparent;
+        border-top: 5vh solid $color;
+    }
+}
+
+.primary-button{
+    @include button($primary-color)
 }
 
 .secondary-button{
-    background-color : $secondary-color;
-    text-decoration : none;
-    font-size : 2.5em;
-    text-transform: uppercase;
-    color : white;
-    border-radius : 20px;
-    width : 40%;
-    display : block;
-    margin : 2% auto;
-    padding : 3%;
-    text-align : center;
+    @include button($secondary-color)
 }
+
+.third-button{
+    @include button($third-color)
+}
+
 
 /* GENERAL */
 body{
     font-family: 'co-headline', Arial sans-serif;
+    color : black;
+    font-size : 1rem;
+}
+
+a{
+    color : black;
 }
 
 .primary-title{
+    background-color : white;
     position : relative;
     text-transform : uppercase;
-    font-size : 3rem;
+    font-size : 1rem;
+    font-weight: bold;
     color : $secondary-color;
     text-align : center;
     padding : 2%;
-    box-shadow : 0 10px 10px #9f9f9f;
+    box-shadow : 0 5px 15px #9f9f9f;
     border-radius : 5px;
     width : 80%;
     margin : 12% auto;
@@ -54,19 +74,25 @@ body{
         width : 0;
         position : absolute;
         z-index : -1;
-        bottom : -2rem;
-        left : 40%;
+        bottom : -2vh;
+        left : 27vw;
         text-align : center;
-        border-right: 80px solid transparent;
-        border-left: 80px solid transparent;
-        border-top: 30px solid $secondary-color;
+        border-right: 13vw solid transparent;
+        border-left: 13vw solid transparent;
+        border-top: 2vh solid $secondary-color;
     }
 }
 
 /* HEADER NAV */
 header{
     .logo-bipbip{
-        text-align : center;
+        display : block;
+        width : 80%;
+        margin : auto;
+
+        img{
+            width : 100%;
+        }
     }
 
     nav{
@@ -79,26 +105,25 @@ header{
             justify-content : center;
             align-items: center;
             border-radius : 50%;
-            width : 10vw;
-            min-width : 150px;
-            max-width : 150px;
-            height : 10vw;
-            min-height: 150px;
-            max-height : 150px;
+            width : 8vw;
+            min-width: 70px;
+            height : 8vw;
+            min-height: 70px;
             background-color : $primary-color;
             position : fixed;
+            z-index : 9999;
             right : 5vw;
             bottom : 5vh;
 
             img{
-                width : 35%;
-                margin-bottom : 2%;
+                width : 30%;
+                margin-bottom: 8%;
             }
 
             p{
-                font-size : 1.6em;
+                font-size : 0.8rem;
                 color : white;
-                margin-top : 2%;
+                margin-bottom : 0;
             }
         }
 
@@ -107,20 +132,20 @@ header{
             justify-content : center;
             align-items : center;
             border-radius : 50%;
-            width : 10vw;
-            min-width : 150px;
-            max-width : 150px;
-            height : 10vw;
-            min-height: 150px;
-            max-height : 150px;
+            width : 8vw;
+            min-width: 70px;
+            height : 8vw;
+            min-height: 70px;
             background-color : black;
             position : fixed;
+            z-index : 9999;
             left : 5vw;
             bottom : 5vh;
 
             p{
                 color : white;
-                font-size : 2em;
+                font-size : 0.8rem;
+                margin : 0;
             }
         }
     }
@@ -128,32 +153,26 @@ header{
 
 /* FOOTER */
 footer {
-    background-color : $secondary-color;
+    li{
+        text-align : center;
+        margin : 4%;
+        font-size : 1rem;
+    }
 
     .social-networks{
         display : flex;
-        justify-content : space-around;
-        padding : 2%;
-        background-color : $primary-color;
-
-        img{
-            width : 150%;
-        }
-    }
-
-    .legal-section{
-        display : flex;
-        flex-direction : column;
-        justify-content : space-around;
-        align-items : center;
-        border-radius : 5% 5% 0 0;
-        padding : 2%;
+        justify-content : center;
+        align-items: center;
+        margin : 10% 5% 30% 5%;
 
         a{
-            margin : 1%;
-            color : white;
-            text-decoration : none;
-            font-size : 1.4em;
+            text-align : center;
+            display : block;
+            margin : 0 2%;
+
+            img{
+                width : 75%;
+            }
         }
     }
 }
