@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
+    <style>
+        @font-face {
+            font-family: 'barcode_fontregular';
+            src: url('/font/BarcodeFont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+{% endblock %}
+{%  block header %}{%  endblock %}
+
+{%  block body %}
+<main style="font-family: 'co-headline', Arial sans-serif;">
+    <table>
+        <tr>
+            <td width="30%">
+                <img width="200px;" src="images/logo-bipbip.png" alt="BipBip Mobile">
+            </td>
+            <td width="70%">
+                <h1 style="font-size: 1.7rem; text-align: center; padding-top: 30px;
+                text-transform: uppercase;">Bon de cession de propriété</h1>
+                <h2>Signature obligatoire par les 2 parties</h2>
+                <p>1 exemplaire pour Enviro Services France et 1 exemplaire
+                    à envoyer au client par mail sous les 48h</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Création du dossier : 04/01/2020</p>
+                <p>Numéro du bon de cession : ESF107884714478</p>
+                <br>
+                <p>IMEI :{{ IMEI }}</p>
+                <p class="barcode">355 402 092 374 478</p>
+            </td>
+            <td>
+                <p>Lieu de collecte : Wild Code School - Lille</p>
+                <p>ENVIRO SERVICES FRANCE<br>
+                391 avenue Clément Ader<br>
+                59118 WAMBRECHIES<br>
+                Téléphone : 03 00 00 00 00</p>
+            </td>
+        </tr>
+    </table>
+</main>
+{%  endblock %}
+
+{% block footer %}{%  endblock %}

@@ -10,6 +10,7 @@
         {% endblock %}
     </head>
     <body>
+    {% block header %}
         <header>
             <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
             <nav>
@@ -22,10 +23,12 @@
                 </div>
             </nav>
         </header>
+        {% endblock %}
 
         {% block body %}
         {% endblock %}
 
+        {% block footer %}
         <footer>
             <h2 class="primary-title">Plus d'infos</h2>
             <ul>
@@ -66,6 +69,7 @@
                 </a>
             </div>
         </footer>
+        {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
