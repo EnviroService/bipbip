@@ -14,22 +14,14 @@
     </div>
 
         {% for faq in faqContent %}
-
-            <div class="example-wrapper">
-                <div class="card border-dark" >
-                    <div class="card-header text-dark" >
-                        <ul class="question">
-                            <li>
-                                <a href="">{{faq.question}}</a>
-                                <article class="card-text mr-3 mt-4 border-dark text-dark">{{faq.answer}}</article>
-                             </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="menu-faq">
+                <article class="question">{{faq.question}}</article>
+                <article class="answer">{{faq.answer}}</article>
             </div>
-
             {% endfor %}
 
     </main>
 {% endblock %}
-
+{%  block javascripts %}
+    {{ encore_entry_script_tags('faq') }}
+{% endblock %}

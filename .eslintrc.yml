@@ -17,6 +17,6 @@ parserOptions:
 rules: {
   no-console: 'error',
   indent: ['error', 4],
-  import/no-extraneous-dependencies: ["error", {"DevDependencies": true}],
+  import/no-extraneous-dependencies: ["error", {"devDependencies": true}],
   no-unused-vars: 0
 }

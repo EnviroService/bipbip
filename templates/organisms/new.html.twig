@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Organisms{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un partenaire</h1>
+
+    {{ include('organisms/_form.html.twig') }}
+
+    <a href="{{ path('organisms_index') }}">back to list</a>
+{% endblock %}
