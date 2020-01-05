@@ -27,6 +27,6 @@ menuBurger.addEventListener('click', () => {
     menu.classList.toggle('displayed');
 });
 
-closeButton.addEventListener('click', function () {
+closeButton.addEventListener('click', () => {
     menu.classList.toggle('displayed');
 });
