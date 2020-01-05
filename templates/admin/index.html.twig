@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Administrateur{% endblock %}</title>
+    <link rel="stylesheet" href="assets/scss/homeAdmin.scss">
+    {{ encore_entry_link_tags('homeAdmin') }}
+</head>
+<h1>Administration</h1>
+<main class="cards-admin">
+    <div class="menu-admin">
+        <ul>
+            <li class="estimations"><a href="#">Estimations</a></li>
+            <li class="collecters"><a href="#">Collecteurs</a></li>
+            <li class="documents"><a href="#">Documents stockés</a></li>
+        </ul>
+    </div>
+    <div class="card-central-admin">
+        <p></p>
+    </div>
+    <div class="card-right-admin">
+        <p></p>
+    </div>
+    // block javascripts
+    //encore_entry_script_tags('XX')
+    //endblock
+</main>
+</html>
