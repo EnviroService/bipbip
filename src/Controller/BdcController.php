@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Repository\EstimationsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Entity\Estimations;
 
 /**
  * @Route("/bdc")
@@ -25,12 +29,12 @@ class BdcController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="bdc_show")
+     * @Route("/new/", name="bdc_show")
      */
     public function show()
     {
         return $this->render('bdc/bdc.html.twig', [
-            'IMEI' => "355 402 092 374 478"
+            'IMEI' => "355 402 092 374 478",
         ]);
     }
 

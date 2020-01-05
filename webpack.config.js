@@ -28,7 +28,6 @@ Encore
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
 
     .addEntry('faq', './assets/scss/faq.scss')
-    .addEntry('bdc', './assets/scss/bdc.scss')
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
