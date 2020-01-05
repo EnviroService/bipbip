@@ -16,15 +16,15 @@ const $ = require('jquery');
 
 // BURGER MENU
 
-const menu_burger = document.querySelector("#menu-burger");
-const menu = document.querySelector("#menu");
-const close_button = document.querySelector(".close-button");
+const menuBurger = document.querySelector('#menu-burger');
+const menu = document.querySelector('#menu');
+const closeButton = document.querySelector('.close-button');
 
-menu_burger.addEventListener('click', function () {
+menuBurger.addEventListener('click', function () {
     menu.classList.toggle('displayed');
 });
 
-close_button.addEventListener('click', function () {
+closeButton.addEventListener('click', function () {
     menu.classList.toggle('displayed');
 });
 
