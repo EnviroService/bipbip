@@ -23,9 +23,9 @@ class ContactType extends AbstractType
             ->add('email', EmailType::class)
             ->add('subject', ChoiceType::class, [
                 'choices'  => [
-                    'Je veux proposer un point de collecte' => true,
-                    'Je veux devenir partenaire' => false,
-                    'Autre' => false,
+                    'Je veux proposer un point de collecte' => 'Je veux proposer un point de collecte',
+                    'Je veux devenir partenaire' => 'Je veux devenir partenaire',
+                    'Autre' => 'Autre',
                 ]
             ])
             ->add('message', TextAreaType::class)
