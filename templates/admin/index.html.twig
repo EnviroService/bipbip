@@ -7,12 +7,24 @@
     <link rel="stylesheet" href="assets/scss/homeAdmin.scss">
     {{ encore_entry_link_tags('homeAdmin') }}
 </head>
-<h1>Administration</h1>
+<div class="head">
+    <article>
+        <h3>Bienvenue</h3>
+        <p>Identifiant</p>
+        <p>Role</p>
+
+    </article>
+    <h1>Rechercher(futur searchBar)</h1>
+</div>
 <main class="cards-admin">
     <div class="menu-admin">
         <ul>
             <li class="estimations"><a href="#">Estimations</a></li>
-            <li class="collecters"><a href="#">Collecteurs</a></li>
+            <li class="collecters"><a href="#">Collecteurs</a>
+                <p class="show Lister">Lister</p>
+                <p class="add Collecteur">Ajouter</p>
+            </li>
+
             <li class="documents"><a href="#">Documents stockés</a></li>
         </ul>
     </div>
@@ -22,8 +34,5 @@
     <div class="card-right-admin">
         <p></p>
     </div>
-    // block javascripts
-    //encore_entry_script_tags('XX')
-    //endblock
 </main>
 </html>
