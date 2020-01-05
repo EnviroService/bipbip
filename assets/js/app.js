@@ -23,7 +23,7 @@ const menuBurger = document.querySelector('#menu-burger');
 const menu = document.querySelector('#menu');
 const closeButton = document.querySelector('.close-button');
 
-menuBurger.addEventListener('click', function () {
+menuBurger.addEventListener('click', () => {
     menu.classList.toggle('displayed');
 });
 
