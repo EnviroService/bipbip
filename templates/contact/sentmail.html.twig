@@ -1,0 +1,14 @@
+{% block body %}
+    <p>Un message vous a été envoyé via l'application BipBip Mobile</p>
+    <ul>
+        <li>Auteur : {{ form.firstname }} {{ form.lastname }}</li>
+        <li>Mail : {{ form.email }}</li>
+        <li>Téléphone : {{ form.phone }}</li>
+        <li>Objet : {{ form.subject }}</li>
+    </ul>
+    <p>Message :<br>
+        {{ form.message }}</p>
+
+    <p>--<br>
+        Une réponse à ce message enverra le message à l'expéditeur.</p>
+{% endblock %}

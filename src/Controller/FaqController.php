@@ -12,6 +12,7 @@ class FaqController extends AbstractController
 
     /**
      *
+     * @param FAQRepository $faqRepo
      * @return Response
      * @Route("/faq", name="show_faq")
      */

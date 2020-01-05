@@ -59,18 +59,17 @@ class Organisms
     private $organismPhone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="organism")
-     */
-    private $users;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Collects", mappedBy="organism")
      */
     private $collects;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $organismStatus;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->collects = new ArrayCollection();
     }
 
@@ -175,36 +174,6 @@ class Organisms
         return $this;
     }
 
-    /**
-     * @return Collection|Users[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(Users $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setOrganism($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(Users $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getOrganism() === $this) {
-                $user->setOrganism(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Collects[]
@@ -233,6 +202,18 @@ class Organisms
                 $collect->setOrganism(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrganismStatus(): ?string
+    {
+        return $this->organismStatus;
+    }
+
+    public function setOrganismStatus(string $organismStatus): self
+    {
+        $this->organismStatus = $organismStatus;
 
         return $this;
     }
