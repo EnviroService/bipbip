@@ -28,7 +28,8 @@ Encore
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
 
     .addEntry('faq', './assets/scss/faq.scss')
-    .addEntry('homeAdmin', './assets/scss/adminHomePage.scss')
+
+    .addEntry('adminHomePage', './assets/scss/adminHomePage.scss')
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -72,7 +73,7 @@ Encore
 
     // uncomment if you use API Platform admin (composer req api-admin)
     //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
+    //.addEntry('admin', './assets/js/adminHomePage.js')
 
 
 module.exports = Encore.getWebpackConfig();

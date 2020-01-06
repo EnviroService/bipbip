@@ -1,6 +1,5 @@
 @import "vars";
 
-
 // En tête
 .head {
     display: flex;
@@ -57,11 +56,16 @@
         color : white;
     }
     .collecters {
+        display : block;
         width: 100%;
         height: 40px;
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
         color : white;
+
+    .collecterActions.displayed {
+        display: none;
+    }
     }
     .documents {
         width: 100%;

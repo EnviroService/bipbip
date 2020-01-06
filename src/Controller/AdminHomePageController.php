@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminHomePageController extends AbstractController
 {
     /**
-     * @Route("/administrateur", name="homeAdmin")
+     * @Route("/administrateur", name="adminHomePage")
      */
     public function show(): Response
     {

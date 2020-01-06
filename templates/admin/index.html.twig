@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Administrateur{% endblock %}</title>
-    <link rel="stylesheet" href="assets/scss/homeAdmin.scss">
-    {{ encore_entry_link_tags('homeAdmin') }}
+    <link rel="stylesheet" href="assets/scss/adminHomePage.scss">
+    {{ encore_entry_link_tags('adminHomePage') }}
 </head>
 <div class="head">
     <article>
@@ -21,11 +21,16 @@
         <ul>
             <li class="estimations"><a href="#">Estimations</a></li>
             <li class="collecters"><a href="#">Collecteurs</a>
-                <p class="show Lister">Lister</p>
-                <p class="add Collecteur">Ajouter</p>
+                <div class="collecterActions">
+                    <p>Lister</p>
+                    <p>Ajouter</p>
+                </div>
             </li>
-
             <li class="documents"><a href="#">Documents stockés</a></li>
+            <div class="officialDocuments">
+                <p>Bons de cessions</p>
+                <p>Carte d'identitée</p>
+            </div>
         </ul>
     </div>
     <div class="card-central-admin">
@@ -34,5 +39,9 @@
     <div class="card-right-admin">
         <p></p>
     </div>
+
+{%  block javascripts %}
+    {{ encore_entry_script_tags('adminHomePage') }}
+{% endblock %}
 </main>
 </html>
