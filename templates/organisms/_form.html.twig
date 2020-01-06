@@ -1,6 +1,10 @@
+{% block stylesheets %}
+    {{ encore_entry_link_tags('editPartner') }}
+{% endblock %}
+
 {% block body %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
             {{ form_start(form, {'class': 'form-group'}) }}

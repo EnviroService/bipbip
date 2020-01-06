@@ -2,10 +2,14 @@
 
 {% block title %}New Organisms{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('newPartner') }}
+{% endblock %}
+
 {% block body %}
-    <h1>Ajouter un partenaire</h1>
+    <h1 class="addTitle">Ajouter un partenaire</h1>
 
     {{ include('organisms/_form.html.twig') }}
 
-    <a href="{{ path('organisms_index') }}">back to list</a>
+    <a id="newLink" href="{{ path('organisms_index') }}">Retour à la liste</a>
 {% endblock %}
