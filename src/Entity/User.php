@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -77,6 +79,26 @@ class User implements UserInterface
      * @ORM\Column(type="date")
      */
     private $signinDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Organisms", inversedBy="users")
+     */
+    private $organism;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collects", inversedBy="clients")
+     */
+    private $collect;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="user")
+     */
+    private $estimations;
+
+    public function __construct()
+    {
+        $this->estimations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -260,6 +282,61 @@ class User implements UserInterface
     public function setSigninDate(\DateTimeInterface $signinDate): self
     {
         $this->signinDate = $signinDate;
+
+        return $this;
+    }
+
+    public function getOrganism(): ?Organisms
+    {
+        return $this->organism;
+    }
+
+    public function setOrganism(?Organisms $organism): self
+    {
+        $this->organism = $organism;
+
+        return $this;
+    }
+
+    public function getCollect(): ?Collects
+    {
+        return $this->collect;
+    }
+
+    public function setCollect(?Collects $collect): self
+    {
+        $this->collect = $collect;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Estimations[]
+     */
+    public function getEstimations(): Collection
+    {
+        return $this->estimations;
+    }
+
+    public function addEstimation(Estimations $estimation): self
+    {
+        if (!$this->estimations->contains($estimation)) {
+            $this->estimations[] = $estimation;
+            $estimation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstimation(Estimations $estimation): self
+    {
+        if ($this->estimations->contains($estimation)) {
+            $this->estimations->removeElement($estimation);
+            // set the owning side to null (unless already changed)
+            if ($estimation->getUser() === $this) {
+                $estimation->setUser(null);
+            }
+        }
 
         return $this;
     }

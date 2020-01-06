@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,7 +27,17 @@ class Collects
      * @ORM\ManyToOne(targetEntity="App\Entity\Organisms", inversedBy="collects")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $organism;
+    private $collector;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="collect")
+     */
+    private $clients;
+
+    public function __construct()
+    {
+        $this->clients = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,14 +56,45 @@ class Collects
         return $this;
     }
 
-    public function getOrganism(): ?Organisms
+    public function getCollector(): ?Organisms
     {
-        return $this->organism;
+        return $this->collector;
     }
 
-    public function setOrganism(?Organisms $organism): self
+    public function setCollector(?Organisms $collector): self
     {
-        $this->organism = $organism;
+        $this->collector = $collector;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getClients(): Collection
+    {
+        return $this->clients;
+    }
+
+    public function addClient(User $client): self
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->setCollect($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClient(User $client): self
+    {
+        if ($this->clients->contains($client)) {
+            $this->clients->removeElement($client);
+            // set the owning side to null (unless already changed)
+            if ($client->getCollect() === $this) {
+                $client->setCollect(null);
+            }
+        }
 
         return $this;
     }
