@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Administrateur{% endblock %}</title>
-    <link rel="stylesheet" href="assets/scss/adminHomePage.scss">
-    {{ encore_entry_link_tags('adminHomePage') }}
+    <title>{% block title %}Administration {% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
 </head>
-<div class="head">
-    <article>
-        <h3>Bienvenue</h3>
-        <p>Identifiant</p>
-        <p>Role</p>
+    <div class="card-id">
+        <article>
+            <p>Identifiant</p>
+            <p>Role</p>
+        </article>
+        <h1>Bienvenue sur l'interface d'administration</h1>
+    </div>
 
-    </article>
-    <h1>Rechercher(futur searchBar)</h1>
-</div>
 <main class="cards-admin">
     <div class="menu-admin">
-        <ul>
+        <ul class="icon-menu">
             <li class="estimations"><a href="#">Estimations</a></li>
             <li class="collecters"><a href="#">Collecteurs</a>
-                <div class="collecterActions">
-                    <p>Lister</p>
-                    <p>Ajouter</p>
-                </div>
+                    <p class="collecterActionsLister">Lister</p>
+                    <p class="collecterActionsAdd">Ajouter</p>
             </li>
-            <li class="documents"><a href="#">Documents stockés</a></li>
-            <div class="officialDocuments">
-                <p>Bons de cessions</p>
-                <p>Carte d'identitée</p>
-            </div>
+            <li class="officialDocuments"><a href="#">Documents stockés</a>
+                    <p class="officialDocumentsBc">Bons de cessions</p>
+                    <p class="officialDocumentsCi">Cartes d'identitées</p>
+            </li>
         </ul>
     </div>
     <div class="card-central-admin">
@@ -40,8 +37,11 @@
         <p></p>
     </div>
 
+
 {%  block javascripts %}
-    {{ encore_entry_script_tags('adminHomePage') }}
+    {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 </main>
 </html>
+
+

@@ -7,14 +7,29 @@
 
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../scss/adminHomePage.scss');
+require('../scss/admin.scss');
 
-const collecters = document.querySelectorAll('a.collecters');
-const collecterAtions = document.querySelectorAll('div.collecterActions');
+const collecters = document.querySelectorAll('li.collecters');
+const collecterAtionsLister = document.querySelectorAll('p.collecterActionsLister');
+const collecterAtionsAdd = document.querySelectorAll('p.collecterActionsAdd');
 // eslint-disable-next-line no-plusplus
+
 for (let i = 0; i < collecters.length; i++) {
     collecters[i].addEventListener('click', () => {
-        collecterAtions[i].classList.toggle('displayed');
+        collecterAtionsLister[i].classList.toggle('displayed');
+        collecterAtionsAdd[i].classList.toggle('displayed');
+    });
+}
+
+const officialDocuments = document.querySelectorAll('li.officialDocuments');
+const officialDocumentsBc = document.querySelectorAll('p.officialDocumentsBc');
+const officialDocumentsCi = document.querySelectorAll('p.officialDocumentsCi');
+// eslint-disable-next-line no-plusplus
+
+for (let i = 0; i < collecters.length; i++) {
+    officialDocuments[i].addEventListener('click', () => {
+        officialDocumentsBc[i].classList.toggle('displayed');
+        officialDocumentsCi[i].classList.toggle('displayed');
     });
 }
 

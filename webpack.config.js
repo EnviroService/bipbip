@@ -29,7 +29,7 @@ Encore
 
     .addEntry('faq', './assets/scss/faq.scss')
 
-    .addEntry('adminHomePage', './assets/scss/adminHomePage.scss')
+    .addEntry('admin', './assets/js/adminHomePage.js')
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

@@ -1,85 +1,209 @@
 @import "vars";
 
 // En tête
-.head {
+.card-id {
     display: flex;
     flex-direction : row;
     width: 100%;
     margin-bottom: 5%;
-
-    h1 {
-        width: 70%;
-        font-size: 2rem;
-        font-style: italic;
-        color : $secondary-color;
-
-    }
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-family: 'co-headline', Arial sans-serif;
+    box-shadow: inset 5px 0 10px rgb(135,151,151);
     article {
-        width: 20%;
-        margin-right: 10%;
-        box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
-        background-color: $secondary-color;
-        color : white;
+        width: 25%;
+        box-shadow: inset 2px 0 5px rgb(135,151,151);
+        color : White;
         font-size: 1.3rem;
         font-style: italic;
         padding: 5px;
         border-radius: 5px;
+        font-weight: bold;
+        background-color: $secondary-color;
+        opacity: 70%;
+        p{
+            margin-left: 10px;
+        }
+    }
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        font-size: 1.8rem;
+        font-style: italic;
+        color : $secondary-color;
+
     }
 }
-// Card genérale
 
+// Card genérale
 .cards-admin {
     display : flex;
     flex-direction : row;
     width: 100%;
-
+    height: auto;
 }
 // Menu gauche
-.menu-admin {
-    display: block;
-    width: 20%;
-    font-size : 1.2rem;
+.menu-admin {;
+    width: 25%;
+    font-size : 1.4rem;
     color : white;
     text-decoration: none;
-    box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-    ul {
-    list-style-type: none;
-    margin-left: 0;
-    padding: 5px;
+    .icon-menu {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        margin-top: 0;
+        margin-left: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
     }
     .estimations {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        height: 40px;
+        height: 60px;
+        margin-bottom: 5px;
         border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
-        color : white;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        a {
+            display : block;
+            text-decoration: none;
+            color: $secondary-color;
+            font-weight: bold;
+        }
     }
     .collecters {
-        display : block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        height: 40px;
+        height: 60px;
+        position:relative;
+        margin-bottom: 5px;
         border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
-        color : white;
-
-    .collecterActions.displayed {
-        display: none;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        a {
+            display : block;
+            text-decoration: none;
+            color: $secondary-color;
+            font-weight: bold;
+        }
+        .collecterActionsLister{
+            display : none;
+            position: absolute;
+            left: 102%;
+            top : -33%;
+            width: 100%;
+            height: 30px;
+            margin-left: 3px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+        }
+        .collecterActionsLister.displayed {
+            display: block;
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+            font-size: 1.3rem;
+         }
+        .collecterActionsAdd{
+            display : none;
+            position: absolute;
+            left: 102%;
+            top : 22%;
+            width: 100%;
+            height: 30px;
+            margin-left: 3px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+        }
+        .collecterActionsAdd.displayed {
+            display: block;
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+            font-size: 1.3rem;
+        }
     }
-    }
-    .documents {
+    .officialDocuments {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
         width: 100%;
-        height: 40px;
+        height: 60px;
+        margin-bottom: 5px;
         border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
-        color : white;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+            a {
+                display : block;
+                text-decoration: none;
+                color: $secondary-color;
+                font-weight: bold;
+            }
+        p{
+            margin-left: 5px;
+        }
+        .officialDocumentsBc{
+            display : none;
+            position: absolute;
+            width: 100%;
+            height: 70px;
+            left: 102%;
+            top : -29%;
+            margin-left: 3px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+        }
+        .officialDocumentsBc.displayed {
+            display: block;
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+            font-size: 1.3rem;
+        }
+        .officialDocumentsCi{
+            display : none;
+            position: absolute;
+            width: 100%;
+            height: 70px;
+            left: 102%;
+            top : 26%;
+            margin-left: 3px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+        }
+        .officialDocumentsCi.displayed {
+            display: block;
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: inset 2px 0 10px rgb(223,216,222);
+            color: $secondary-color;
+            font-size: 1.3rem;
+        }
     }
 }
 // Card centrale
 
 .card-central-admin {
-    width: 50%;
-    box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
+    width: 45%;
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
     border-radius: 5px;
 
 }
@@ -88,7 +212,6 @@
 
 .card-right-admin {
     width: 30%;
-    box-shadow: inset 2px 0 10px rgba(150, 134, 134, 0.25);
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
     border-radius: 5px;
-
 }
