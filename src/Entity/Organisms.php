@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrganismsRepository")
@@ -56,11 +55,6 @@ class Organisms
 
     /**
      * @ORM\Column(type="integer")
-     * @var string|null
-     * @Assert\NotBlank
-     * @Assert\Regex(
-     *     pattern="/[0-9]{10}/"
-     * )
      */
     private $organismPhone;
 
