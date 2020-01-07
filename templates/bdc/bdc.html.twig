@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
+{% block title %}PDF estimation{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
     <style>
         @font-face {
             font-family: 'barcode_fontregular';
-            src: url('public/font/BarcodeFont.ttf') format('truetype');
+            src: url('public/fonts/barcodefont-webfont.woff2') format('woff2'),
+            url('public/fonts/barcodefont-webfont.woff') format('woff');
+            url('public/fonts/BarcodeFont.ttf') format('ttf');
             font-weight: normal;
             font-style: normal;
         }
@@ -17,6 +20,10 @@
         }
         td {
             vertical-align:top;
+        }
+        .barcode {
+            font-family: 'barcode_fontregular', sans-serif;
+            font-size: 20px;
         }
     </style>
 {% endblock %}
@@ -41,10 +48,10 @@
     <table>
         <tr>
             <td style="width:40%;">
-                <p>Création du dossier : 04/01/2020</p>
-                <p>Numéro du bon de cession : ESF107884714478</p>
-                <p>IMEI :{{ IMEI }}</p>
-                <p class="barcode">355 402 092 374 478</p>
+                <p>Création du dossier : {{ "now"|date("d/m/Y") }}</p>
+                <p>Numéro du bon de cession : C{{ estimation.user.id }}E{{ estimation.id }}</p>
+                <p>IMEI : {{ IMEI }}</p>
+                <p class="barcode">{{ IMEI }}</p>
             </td>
             <td style="width:60%; padding-left:20px;">
                 <p>Lieu de collecte : Wild Code School - Lille</p>
@@ -68,11 +75,11 @@
                 Paiement immédiat :
             </td>
             <td style="width:60%; padding-left:20px;">
-                ESF1078471<br>
+                ESF{{ estimation.user.id }}<br>
                 MOBILE<br>
-                SAMSUNG<br>
-                Galaxy A8 2018 32 Go<br>
-                149,00 €<br>
+                {{estimation.brand}}<br>
+                {{ estimation.model }} {{ estimation.capacity }} Go<br>
+                {{ estimation.estimatedPrice }} €<br>
                 B<br>
                 Oui
             </td>
@@ -102,10 +109,10 @@
                 Email :<br>
             </td>
             <td style="width:30%; padding-left:20px;">
-                MASSON<br>
-                Jean-Roch<br>
-                06 61 93 03 90<br>
-                jyaire@gmail.com
+                {{ estimation.user.lastname }}<br>
+                {{ estimation.user.firstname }}<br>
+                0{{ estimation.user.phoneNumber }}<br>
+                {{ estimation.user.email }}
             </td>
             <td style="width:20%" class="bold-text">
                 Adresse :<br>
@@ -114,9 +121,9 @@
                 Pays :
             </td>
             <td style="width:30%; padding-left:20px;">
-                33 bd G. Pompidou<br>
-                59123<br>
-                Bray-Dunes<br>
+                {{ estimation.user.address }}<br>
+                {{ estimation.user.postCode }}<br>
+                {{ estimation.user.city }}<br>
                 France
             </td>
         </tr>
