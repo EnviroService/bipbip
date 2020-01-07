@@ -15,9 +15,9 @@ use App\Entity\Estimations;
  * @Route("/bdc")
  */
 
+
 class BdcController extends AbstractController
 {
-
     /**
      * @Route("/", name="bdc_index")
      */
