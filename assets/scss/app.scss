@@ -52,6 +52,7 @@ body{
 
 a{
     color : black;
+    cursor: pointer;
 }
 
 .primary-title{
@@ -87,7 +88,7 @@ a{
 header{
     .logo-bipbip{
         display : block;
-        width : 80%;
+        width : 325px;
         margin : auto;
 
         img{
@@ -137,6 +138,7 @@ header{
     .circle-buttons{
         display : flex;
         justify-content: space-between;
+        cursor : pointer;
 
         #menu-burger{
             display : flex;
@@ -160,7 +162,7 @@ header{
             }
 
             p{
-                font-size : 0.8rem;
+                font-size : 1rem;
                 color : white;
                 margin-bottom : 0;
             }
@@ -183,7 +185,7 @@ header{
 
             a{
                 color : white;
-                font-size : 0.8rem;
+                font-size : 1rem;
                 margin-bottom : 0;
             }
         }
@@ -216,3 +218,31 @@ footer {
     }
 }
 
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 740px)
+{
+    header{
+        .circle-buttons{
+            #menu-burger{
+                align-self : flex-start;
+                border-radius : 5px;
+                box-shadow : 5px 3px 10px $primary-color;
+                width : 120px;
+                min-height : 40px;
+                height : 40px;
+                position : absolute;
+                top : 50px;
+                right : 50px;
+
+                img{
+                    display : none;
+                }
+
+                p{
+                    font-size : 1.1rem;
+                }
+            }
+        }
+    }
+}
