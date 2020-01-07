@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
+        "dompdf/dompdf": "^0.8.3",
         "phpmd/phpmd": "^2.6",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "4.3.*",

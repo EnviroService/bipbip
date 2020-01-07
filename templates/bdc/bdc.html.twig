@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
+    <style>
+        @font-face {
+            font-family: 'barcode_fontregular';
+            src: url('public/font/BarcodeFont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            padding-top: 5px;
+        }
+        td {
+            vertical-align:top;
+        }
+    </style>
+{% endblock %}
+{%  block header %}{%  endblock %}
+
+{%  block body %}
+<main style="font-family: 'co-headline', Arial sans-serif;">
+    <table>
+        <tr>
+            <td style="width:30%;">
+                <img width="200px; margin-top:30px;" src="images/logo-bipbip.png" alt="BipBip Mobile">
+            </td>
+            <td style="width:70%; text-align: center">
+                <h1 style="font-size: 1.7rem; text-align: center;
+                text-transform: uppercase;">Bon de cession de propriété</h1>
+                <p class="bold-text">Signature obligatoire par les 2 parties</p>
+                <p>1 exemplaire pour Enviro Services France<br>
+                    et 1 exemplaire à envoyer au client par mail sous les 48h</p>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="width:40%;">
+                <p>Création du dossier : 04/01/2020</p>
+                <p>Numéro du bon de cession : ESF107884714478</p>
+                <p>IMEI :{{ IMEI }}</p>
+                <p class="barcode">355 402 092 374 478</p>
+            </td>
+            <td style="width:60%; padding-left:20px;">
+                <p>Lieu de collecte : Wild Code School - Lille</p>
+                <p>ENVIRO SERVICES FRANCE<br>
+                391 avenue Clément Ader<br>
+                59118 WAMBRECHIES<br>
+                Téléphone : 03 00 00 00 00</p>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:40%" class="bold-text">
+                N° Client :<br>
+                Type d'appareil :<br>
+                Marque :<br>
+                Modèle :<br>
+                Montant de la reprise :<br>
+                Grade cosmétique :<br>
+                Paiement immédiat :
+            </td>
+            <td style="width:60%; padding-left:20px;">
+                ESF1078471<br>
+                MOBILE<br>
+                SAMSUNG<br>
+                Galaxy A8 2018 32 Go<br>
+                149,00 €<br>
+                B<br>
+                Oui
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Diagnostic :
+            </td>
+            <td style="width:80%; padding-left:20px;">
+                Votre mobile est-il fonctionnel ? OUI<br>
+                Le LCD est-il fonctionnel ? OUI<br>
+                Le mobile est-il protégé par un mot de passe ou un compte ? NON<br>
+                Grade fonctionnel : OUI
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Nom :<br>
+                Prénom :<br>
+                Numéro de tél :<br>
+                Email :<br>
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                MASSON<br>
+                Jean-Roch<br>
+                06 61 93 03 90<br>
+                jyaire@gmail.com
+            </td>
+            <td style="width:20%" class="bold-text">
+                Adresse :<br>
+                Code Postal :<br>
+                Ville :<br>
+                Pays :
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                33 bd G. Pompidou<br>
+                59123<br>
+                Bray-Dunes<br>
+                France
+            </td>
+        </tr>
+    </table>
+
+<p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
+    de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
+    * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.</p>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Code Collecte :<br>
+                Code Association :
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                74543829<br>
+                L745
+            </td>
+            <td style="width:50%;">
+                <span class="bold-text">Le propriétaire du bien</span><br>
+                Date et signature avec la mention "Lu et Approuvé" :
+            </td>
+        </tr>
+    </table>
+
+    <table style="height:160px;">
+        <tr>
+            <td style="width:50%; border:2px solid black;">
+                cachet Enviro Services
+            </td>
+            <td style="width:50%; border:2px solid black;">
+                lu et approuvé
+            </td>
+        </tr>
+    </table>
+
+</main>
+{%  endblock %}
+{% block footer %}{%  endblock %}
