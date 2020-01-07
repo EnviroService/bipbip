@@ -63,10 +63,14 @@ a{
     font-weight: 500;
     color : $secondary-color;
     text-align : center;
-    padding : 2%;
+    padding : 1%;
     box-shadow : 0 5px 15px #9f9f9f;
     border-radius : 5px;
-    width : 80%;
+    width : 70%;
+    min-width : 300px;
+    max-width : 500px;
+    min-height: 40px;
+    max-height : 60px;
     margin : 12% auto;
 
     &:after{
@@ -75,12 +79,12 @@ a{
         width : 0;
         position : absolute;
         z-index : -1;
-        bottom : -2vh;
-        left : 27vw;
+        bottom : -15px;
+        left : 110px;
         text-align : center;
-        border-right: 13vw solid transparent;
-        border-left: 13vw solid transparent;
-        border-top: 2vh solid $secondary-color;
+        border-right: 60px solid transparent;
+        border-left: 60px solid transparent;
+        border-top: 15px solid $secondary-color;
     }
 }
 
@@ -230,6 +234,9 @@ footer {
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 740px) {
+    .primary-title{
+        font-size : 1.4rem;
+    }
     header {
         .circle-buttons {
             #menu-burger {
