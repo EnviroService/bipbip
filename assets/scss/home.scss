@@ -8,7 +8,6 @@
         text-transform : uppercase;
         line-height: 1.5em;
         width : 80%;
-        max-width : 600px;
 
         .orange-font{
             color : $primary-color;
@@ -176,12 +175,3 @@
     }
 }
 
-
-/* MEDIA QUERIES */
-@media screen and (min-width: 740px) {
-    .home {
-        h1{
-            font-size : 2rem;
-        }
-    }
-}
