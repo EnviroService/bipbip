@@ -85,23 +85,47 @@ class EstimationController extends AbstractController
 
     /**
      * @Route("/{brand}/{model}/{capacity}/quest", name="estimation_quest")
-     * @param string $brand
      * @param string $model
+     * @param string $brand
      * @param int $capacity
+     * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function quest(string $brand, string $model, int $capacity, EntityManagerInterface $em): Response
-    {
-        $em->getRepository(Phones::class)->findBy([
+    public function quest(
+        Request $request,
+        string $brand,
+        string $model,
+        int $capacity,
+        EntityManagerInterface $em
+    ): Response {
+        $phone = $em->getRepository(Phones::class)->findBy([
             "model" => $model,
             "capacity" => $capacity
         ]);
+        $estimation = new Estimations();
+        $form = $this->createForm(EstimationType::class, $estimation, ['method' => Request::METHOD_POST]);
+        $form->handleRequest($request);
+
+        /*if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninDate(new DateTime('now'));
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+
+            return $this->redirectToRoute('home');
+        }*/
+
 
         return $this->render("estimation/quest.html.twig", [
             "model" => $model,
             "brand" => $brand,
             "capacity" => $capacity
+            ,
+            "phone" => $phone,
+            "form" => $form->createView()
         ]);
     }
 }
