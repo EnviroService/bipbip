@@ -88,7 +88,8 @@ a{
 header{
     .logo-bipbip{
         display : block;
-        width : 325px;
+        width : 80%;
+        max-width : 325px;
         margin : auto;
 
         img{
@@ -108,20 +109,26 @@ header{
         left: 50%;
         transform: translate(-50%, -50%);
 
-        #header-menu{
-            display : flex;
-            justify-content : space-around;
-            align-items : center;
-
-            .close-button{
-                width : 15%;
-            }
+        .close-button{
+            width : 30%;
+            max-width : 50px;
+            position : absolute;
+            top : 3%;
+            right : 3%;
         }
 
         ul{
             .primary-title-menu{
+                max-width : 300px;
+                margin : 20px auto;
+                min-height : 45px;
+                max-height : 50px;
+                display : flex;
+                justify-content: center;
+                align-items : center;
+                
                 &:after{
-                    left : 32%;
+                    display:none;
                 }
 
                 a{
@@ -220,27 +227,26 @@ footer {
 
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 740px)
-{
-    header{
-        .circle-buttons{
-            #menu-burger{
-                align-self : flex-start;
-                border-radius : 5px;
-                box-shadow : 5px 3px 10px $primary-color;
-                width : 120px;
-                min-height : 40px;
-                height : 40px;
-                position : absolute;
-                top : 50px;
-                right : 50px;
+@media screen and (min-width: 740px) {
+    header {
+        .circle-buttons {
+            #menu-burger {
+                align-self: flex-start;
+                border-radius: 5px;
+                box-shadow: 5px 3px 10px $primary-color;
+                width: 120px;
+                min-height: 40px;
+                height: 40px;
+                position: absolute;
+                top: 50px;
+                right: 50px;
 
-                img{
-                    display : none;
+                img {
+                    display: none;
                 }
 
-                p{
-                    font-size : 1.1rem;
+                p {
+                    font-size: 1.1rem;
                 }
             }
         }
