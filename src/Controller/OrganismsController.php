@@ -60,6 +60,9 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Organisms $organism
+     * @return Response
      */
     public function edit(Request $request, Organisms $organism): Response
     {
