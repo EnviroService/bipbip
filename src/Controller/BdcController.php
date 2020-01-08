@@ -14,6 +14,8 @@ use App\Entity\Estimations;
 /**
  * @Route("/bdc")
  */
+
+
 class BdcController extends AbstractController
 {
     /**
@@ -41,6 +43,7 @@ class BdcController extends AbstractController
     /**
      * @Route("/new/pdf", name="bdc_pdf")
      */
+
     public function showPDF()
     {
         // Configure Dompdf according to your needs
