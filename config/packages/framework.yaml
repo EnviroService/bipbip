@@ -1,5 +1,5 @@
 framework:
-    fragments: { path: /contact/_form }
+    fragments: { path: /_fragment }
 
     secret: '%env(APP_SECRET)%'
     #default_locale: en
