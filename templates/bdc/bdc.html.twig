@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
     <style>
         @font-face {
-            font-family: 'barcode_fontregular';
-            src: url('public/fonts/barcodefont-webfont.woff2') format('woff2'),
-            url('public/fonts/barcodefont-webfont.woff') format('woff');
-            url('public/fonts/BarcodeFont.ttf') format('ttf');
+            font-family: 'Code 128';
+            src: url('Code128.woff2') format('woff2'),
+            url('Code128.woff') format('woff'),
+            url('Code128.svg#Code128') format('svg');
             font-weight: normal;
             font-style: normal;
         }
@@ -22,7 +22,9 @@
             vertical-align:top;
         }
         .barcode {
-            font-family: 'barcode_fontregular', sans-serif;
+            font-family: 'Code 128', serif;
+            font-weight: normal;
+            font-style: normal;
             font-size: 20px;
         }
     </style>
@@ -51,7 +53,7 @@
                 <p>Création du dossier : {{ "now"|date("d/m/Y") }}</p>
                 <p>Numéro du bon de cession : C{{ estimation.user.id }}E{{ estimation.id }}</p>
                 <p>IMEI : {{ IMEI }}</p>
-                <p class="barcode">{{ IMEI }}</p>
+                <p class="barcode">*{{ IMEI }}*</p>
             </td>
             <td style="width:60%; padding-left:20px;">
                 <p>Lieu de collecte : Wild Code School - Lille</p>
