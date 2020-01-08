@@ -1,5 +1,12 @@
 framework:
+<<<<<<< HEAD
     fragments: { path: /_fragment }
+=======
+
+    fragments: { path: /contact/_form }
+>>>>>>> 653d83c31eab312de0042bda308019942ebed079
+
+    validation: {enable_annotations: true }
 
     secret: '%env(APP_SECRET)%'
     #default_locale: en
