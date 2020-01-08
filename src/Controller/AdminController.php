@@ -7,10 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin", name="admin")
+ */
+
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/administrateur", name="admin")
+     * @Route("/home", name="homeAdmin")
      */
     public function show(): Response
     {
@@ -18,7 +22,7 @@ class AdminController extends AbstractController
     }
 
     /**
-   //  * @Route("/administrateur", name="adminSearchBar")
+   //  * @Route("/", name="adminSearchBar")
      //* @param $usersRepository
      //* @return Response
      */
