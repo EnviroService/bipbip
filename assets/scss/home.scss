@@ -195,15 +195,15 @@
             text-align : center;
             margin : 5%;
             text-decoration: underline;
-            &:hover{
-                color : $primary-color;
-            }
             @media screen and (min-width: 740px) {
                 font-size: 1.1rem;
                 margin : 3%;
             }
-        }
 
+            &:hover{
+                color : $primary-color;
+            }
+        }
     }
 
     /* PARTNERS */
