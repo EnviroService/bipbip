@@ -89,6 +89,11 @@
 
         <section class="contact">
             <h2 class="primary-title">Contact</h2>
+            {#{{ render(controller(
+                'App\\Controller\\ContactController::add'
+            )) }}
+            {{ include('contact/_form.html.twig') }}#}
+
             <a href="{{ path('add_message') }}" title="Lien vers la page contact">Contacte nous</a>
         </section>
     </main>
