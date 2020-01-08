@@ -12,16 +12,29 @@
     <body>
     {% block header %}
         <header>
+            <nav id="menu">
+                <div id="header-menu">
+                    <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
+                    <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                </div>
+                <ul>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('home') }}" title="Accueil">Accueil</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Qui sommes-nous ?">Qui sommes-nous ?</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Nos partenaires">Nos partenaires</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Nous contacter">Contact</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Estime ton mobile">Estime ton mobile</a></li>
+                </ul>
+            </nav>
             <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
-            <nav>
-                <div class="menu-burger">
+            <div class="circle-buttons">
+                <div id="menu-burger">
                     <img src="/images/menu-burger.png" alt="menu burger" />
                     <p>Menu</p>
                 </div>
-                <div class="faq-button">
-                    <p>FAQ</p>
+                <div id="faq-button">
+                    <a href="{{ path('show_faq') }}">FAQ</a>
                 </div>
-            </nav>
+            </div>
         </header>
         {% endblock %}
 

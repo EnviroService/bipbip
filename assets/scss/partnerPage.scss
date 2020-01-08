@@ -2,39 +2,47 @@
 
 .partnerPage {
     p {
-        font-size: 20px;
+        font-size: 15px;
         text-align: center;
     }
 
     img {
         width: 30%;
-        margin: 10% 36% 5%;
-
-
-    }
-
-    h3 {
-        text-align: center;
-        font-size: 2.5em;
-    }
-
-    .status {
-        font-size: 1.5em;
-        text-align: center;
+        margin: 10% 34% 5%;
     }
 
     #clickLink {
         font-size: 1em;
         margin-top: 20px;
 
+        a{
+            display: block;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+    }
+
+    .linkA{
+        color: blue;
+        line-height: 1.6;
     }
 
     .partnerInfo {
         p {
-            font-size: 15px;
+            line-height: 1.4;
+            font-size: 20px;
             flex-direction: column;
-            text-align: left;
-            margin: auto;
+            text-align: justify;
+            margin: 1px 20px;
+        }
+
+        .desBlock {
+            p{
+                margin-top: 13px;
+                font-size: 15px;
+                text-align: center;
+            }
         }
     }
 
