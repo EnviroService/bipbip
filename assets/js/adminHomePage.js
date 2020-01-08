@@ -39,7 +39,7 @@ for (let i = 0; i < collecters.length; i++) {
         $('$search-user').keyup(function () {
             // eslint-disable-next-line no-alert
             alert('ok');
-        });
+        });q
     });
 }
 // any CSS you require will output into a single css file (app.css in this case)
