@@ -16,7 +16,7 @@
 
             <article>
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
-                    <img src="{{ organism.logo }}" alt="logo"></a>
+                    <img title="{{ organism.organismName }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
 
 
 
@@ -39,7 +39,7 @@
 
 
 
-        <br><a href="{{ path('organisms_new') }}">Create new</a>
+        <br><a class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
 
 
     </main>

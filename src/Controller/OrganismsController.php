@@ -18,6 +18,8 @@ class OrganismsController extends AbstractController
 {
     /**
      * @Route("/", name="organisms_index", methods={"GET"})
+     * @param OrganismsRepository $organismsRepository
+     * @return Response
      */
     public function index(OrganismsRepository $organismsRepository): Response
     {
@@ -28,6 +30,9 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/new", name="organisms_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -50,6 +55,8 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}", name="organisms_show", methods={"GET"})
+     * @param Organisms $organism
+     * @return Response
      */
     public function show(Organisms $organism): Response
     {
@@ -60,6 +67,9 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Organisms $organism
+     * @return Response
      */
     public function edit(Request $request, Organisms $organism): Response
     {
@@ -80,6 +90,9 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}", name="organisms_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Organisms $organism
+     * @return Response
      */
     public function delete(Request $request, Organisms $organism): Response
     {

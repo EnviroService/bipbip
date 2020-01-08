@@ -1,5 +1,8 @@
 framework:
+
     fragments: { path: /contact/_form }
+
+    validation: {enable_annotations: true }
 
     secret: '%env(APP_SECRET)%'
     #default_locale: en

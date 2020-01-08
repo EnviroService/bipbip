@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Sélectionne ton modéle</h1>
+                <h2 class="text-dark">{{ brand.brand }}</h2>
+                {% for model in models %}
+                    <a class="btn btn-success mb-3" href="/estimation/{{ brand.brand }}/{{ model }}">{{ model }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
