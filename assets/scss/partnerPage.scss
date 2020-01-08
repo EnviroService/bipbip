@@ -1,0 +1,59 @@
+@import "vars";
+
+.partnerPage {
+    p {
+        font-size: 15px;
+        text-align: center;
+    }
+
+    img {
+        width: 30%;
+        margin: 10% 34% 5%;
+    }
+
+    #clickLink {
+        font-size: 1em;
+        margin-top: 20px;
+
+        a{
+            display: block;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+    }
+
+    .linkA{
+        color: blue;
+        line-height: 1.6;
+    }
+
+    .partnerInfo {
+        p {
+            line-height: 1.4;
+            font-size: 20px;
+            flex-direction: column;
+            text-align: justify;
+            margin: 1px 20px;
+        }
+
+        .desBlock {
+            p{
+                margin-top: 13px;
+                font-size: 15px;
+                text-align: center;
+            }
+        }
+    }
+
+
+    @media only screen and (min-width: 768px) {
+        .partnerInfo {
+            p {
+                text-align: center;
+            }
+        }
+    }
+}
+
+

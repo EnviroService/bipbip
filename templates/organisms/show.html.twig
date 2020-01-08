@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisms{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('partnerPage') }}
+{% endblock %}
+
+{% block body %}
+
+    <main class="partnerPage">
+
+
+        <img title="{{organism.organismName }} {{ organism.organismStatus }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}">
+
+
+        <div class="partnerInfo">
+            <p>{{ organism.description }}</p>
+
+            <div class="desBlock">
+                <p>{{ organism.organismAddress }}</p>
+
+                <p>{{ organism.organismCity }}</p>
+
+                <p>{{ organism.organismPostcode }}</p>
+
+                <p>{{ organism.organismPhone }}</p>
+            </div>
+
+
+        </div>
+
+
+        <p><a class="linkA" href="{{ organism.organismLink }}">Visiter le site</a></p>
+
+        <div id="clickLink">
+
+        <a href="{{ path('organisms_index') }}">Retour à la liste</a>
+        <br>
+        <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
+{#
+    {{ include('organisms/_delete_form.html.twig') }}
+#}
+        </div>
+
+    </main>
+{% endblock %}
