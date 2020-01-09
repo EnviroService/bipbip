@@ -52,7 +52,7 @@ class HomeController extends AbstractController
      */
     public function bdc()
     {
-        return $this->render('admin/bdc.html.twig');
+        return $this->render('bdc/index.html.twig');
     }
 
     /**
@@ -60,6 +60,14 @@ class HomeController extends AbstractController
      */
     public function bdcShow()
     {
-        return $this->render('admin/bdcShow.html.twig');
+        return $this->render('bdc/bdc.html.twig');
+    }
+
+    /**
+     * @Route("autres", name="autres")
+     */
+    public function autres()
+    {
+        return $this->render('estimation/autres.html.twig');
     }
 }

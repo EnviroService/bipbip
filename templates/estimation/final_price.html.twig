@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto text-center form p-4">
+                <h1 class="primary-title">Estimation</h1>
+                {% if message %}
+                <p class="text-danger">{{ message }}</p>
+                {% else %}
+                <h2 class="text-dark">Ton téléphone a une valeur de :</h2>
+                <h3 class="secondary-button">{{ estimation.estimatedPrice }} Euros</h3>
+                {% endif %}
+                <div class="jumbotron">
+                    <h4>Pour finaliser la vente de ton téléphone, tu dois créer ton compte et accéder aux lieux de collecte</h4>
+                    <a class="btn btn-primary" href="{{ path("user_add", {estimation: estimation.id}) }}">Créer mon compte</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

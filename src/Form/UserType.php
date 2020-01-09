@@ -30,9 +30,9 @@ class UserType extends AbstractType
         $builder->add('lastname', TextType::class, [
             'required' => true
         ]);
-        /*$builder->add('adress', TextType::class, [
+        $builder->add('address', TextType::class, [
             'required' => true
-        ]);*/
+        ]);
         $builder->add('postcode', NumberType::class, [
             'required' => true
         ]);
@@ -42,13 +42,11 @@ class UserType extends AbstractType
         $builder->add('password', PasswordType::class, [
             'required' => true
         ]);
-        /*$builder->add('password2', PasswordType::class, [
-            'required' => true
-        ]);*/
-        $builder->add('phone', NumberType::class, [
+
+        $builder->add('phoneNumber', NumberType::class, [
             'required' => true
         ]);
-        $builder->add('mail', EmailType::class, [
+        $builder->add('email', EmailType::class, [
             'required' => true
         ]);
         $builder->add('submit', SubmitType::class);
