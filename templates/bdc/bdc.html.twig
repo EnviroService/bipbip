@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
+{% block title %}PDF estimation{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
     <style>
         @font-face {
-            font-family: 'barcode_fontregular';
-            src: url('public/font/BarcodeFont.ttf') format('truetype');
+            font-family: 'Code 128';
+            src: url('Code128.woff2') format('woff2'),
+            url('Code128.woff') format('woff'),
+            url('Code128.svg#Code128') format('svg');
             font-weight: normal;
             font-style: normal;
         }
@@ -17,6 +20,12 @@
         }
         td {
             vertical-align:top;
+        }
+        .barcode {
+            font-family: 'Code 128', serif;
+            font-weight: normal;
+            font-style: normal;
+            font-size: 20px;
         }
     </style>
 {% endblock %}
@@ -40,18 +49,17 @@
     </table>
     <table>
         <tr>
-            <td style="width:40%;">
-                <p>Création du dossier : 04/01/2020</p>
-                <p>Numéro du bon de cession : ESF107884714478</p>
-                <p>IMEI :{{ IMEI }}</p>
-                <p class="barcode">355 402 092 374 478</p>
+            <td style="width:60%;">
+                <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
+                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
+                <p>IMEI : {{ IMEI }}</p>
+                <p class="barcode">*{{ IMEI }}*</p>
             </td>
-            <td style="width:60%; padding-left:20px;">
-                <p>Lieu de collecte : Wild Code School - Lille</p>
+            <td style="width:40%; padding-left:20px;">
                 <p>ENVIRO SERVICES FRANCE<br>
                 391 avenue Clément Ader<br>
                 59118 WAMBRECHIES<br>
-                Téléphone : 03 00 00 00 00</p>
+                Téléphone : 03 20 00 00 00</p>
             </td>
         </tr>
     </table>
@@ -64,16 +72,14 @@
                 Marque :<br>
                 Modèle :<br>
                 Montant de la reprise :<br>
-                Grade cosmétique :<br>
                 Paiement immédiat :
             </td>
             <td style="width:60%; padding-left:20px;">
-                ESF1078471<br>
+                {{ estimation.user.id }}<br>
                 MOBILE<br>
-                SAMSUNG<br>
-                Galaxy A8 2018 32 Go<br>
-                149,00 €<br>
-                B<br>
+                {{estimation.brand}}<br>
+                {{ estimation.model }} {{ estimation.capacity }} Go<br>
+                {{ estimation.estimatedPrice }} €<br>
                 Oui
             </td>
         </tr>
@@ -85,10 +91,40 @@
                 Diagnostic :
             </td>
             <td style="width:80%; padding-left:20px;">
-                Votre mobile est-il fonctionnel ? OUI<br>
-                Le LCD est-il fonctionnel ? OUI<br>
-                Le mobile est-il protégé par un mot de passe ou un compte ? NON<br>
-                Grade fonctionnel : OUI
+                Votre téléphone a-t-il été immergé dans l'eau ?
+                {% if estimation.liquidDamage > 0 %}
+                OUI
+                {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Votre écran est-il endommagé ?
+                {% if estimation.screenCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                La coque du téléphone est-elle endommagée ?
+                {% if estimation.casingCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Avez-vous des problèmes de charge au niveau de votre batterie ?
+                {% if estimation.batteryCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Tous vos boutons sont-ils fonctionnels ?
+                {% if estimation.buttonCracks > 0 %}
+                    NON
+                {% else %}
+                    OUI
+                {%  endif %}
             </td>
         </tr>
     </table>
@@ -102,10 +138,10 @@
                 Email :<br>
             </td>
             <td style="width:30%; padding-left:20px;">
-                MASSON<br>
-                Jean-Roch<br>
-                06 61 93 03 90<br>
-                jyaire@gmail.com
+                {{ estimation.user.lastname }}<br>
+                {{ estimation.user.firstname }}<br>
+                0{{ estimation.user.phoneNumber }}<br>
+                {{ estimation.user.email }}
             </td>
             <td style="width:20%" class="bold-text">
                 Adresse :<br>
@@ -114,9 +150,9 @@
                 Pays :
             </td>
             <td style="width:30%; padding-left:20px;">
-                33 bd G. Pompidou<br>
-                59123<br>
-                Bray-Dunes<br>
+                {{ estimation.user.address }}<br>
+                {{ estimation.user.postCode }}<br>
+                {{ estimation.user.city }}<br>
                 France
             </td>
         </tr>
@@ -129,10 +165,12 @@
     <table>
         <tr>
             <td style="width:20%" class="bold-text">
+                Lieu de collecte :<br>
                 Code Collecte :<br>
                 Code Association :
             </td>
             <td style="width:30%; padding-left:20px;">
+                Wild Code School - Lille<br>
                 74543829<br>
                 L745
             </td>
@@ -145,11 +183,11 @@
 
     <table style="height:160px;">
         <tr>
-            <td style="width:50%; border:2px solid black;">
-                cachet Enviro Services
+            <td style="width:50%; border:2px solid black; text-align:center;">
+                <img width="100px; margin-top:30px;" src="images/cachet.png" alt="BipBip Mobile">
             </td>
             <td style="width:50%; border:2px solid black;">
-                lu et approuvé
+
             </td>
         </tr>
     </table>
