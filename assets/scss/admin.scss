@@ -24,7 +24,7 @@
         background-color: $secondary-color;
         opacity: 70%;
 
-        p{
+        p {
             margin-left: 10px;
         }
     }
@@ -101,7 +101,6 @@
             color: $secondary-color;
             font-weight: bold;
         }
-
         .collecterActionsLister{
             display : none;
             position: absolute;
@@ -112,7 +111,6 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-
         .collecterActionsLister.displayed {
             display: block;
             width: 100%;
@@ -121,9 +119,8 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
             font-size: 1.3rem;
-         }
-
-        .collecterActionsAdd{
+        }
+        .collecterActionsAdd {
             display : none;
             position: absolute;
             bottom: -143%;
@@ -133,7 +130,6 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-
         .collecterActionsAdd.displayed {
             display: block;
             width: 100%;
@@ -144,7 +140,6 @@
             font-size: 1.3rem;
         }
     }
-
     .officialDocuments {
         display: flex;
         justify-content: center;
@@ -155,17 +150,16 @@
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-            a {
-                display : block;
-                text-decoration: none;
-                color: $secondary-color;
-                font-weight: bold;
-            }
+        a {
+            display : block;
+            text-decoration: none;
+            color: $secondary-color;
+            font-weight: bold;
+        }
 
-            p {
+        p {
             margin-left: 5px;
-             }
-
+        }
         .officialDocumentsBc {
             display : none;
             position: absolute;
@@ -176,7 +170,6 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-
         .officialDocumentsBc.displayed {
             display: block;
             width: 100%;
@@ -186,7 +179,6 @@
             color: $secondary-color;
             font-size: 1.3rem;
         }
-
         .officialDocumentsCi {
             display : none;
             position: absolute;
@@ -197,7 +189,6 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-
         .officialDocumentsCi.displayed {
             display: block;
             width: 100%;
