@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Form\UserType;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,16 +23,14 @@ class UserController extends AbstractController
     public function newUser(Request $request): Response
     {
 
-        $user = new Users();
+        $user = new User();
         $form = $this->createForm(UserType::class, $user, ['method' => Request::METHOD_POST]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $status = 'user';
             $entityManager = $this->getDoctrine()->getManager();
             $user->setSignupDate(new DateTime('now'));
-            $user->setSigninLast(new DateTime('now'));
-            $user->setStatus($status);
+            $user->setSigninDate(new DateTime('now'));
             $entityManager->persist($user);
             $entityManager->flush();
             $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');

@@ -24,12 +24,18 @@ Encore
     .addEntry('home', './assets/js/home.js')
 
 
+    .addEntry('faq', './assets/js/faq.js')
+
     .addEntry('partnerList', './assets/scss/partnerList.scss')
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
 
     .addEntry('faq', './assets/scss/faq.scss')
 
     .addEntry('admin', './assets/js/adminHomePage.js')
+
+
+    .addEntry('newPartner', './assets/scss/newPartner.scss')
+    .addEntry('editPartner', './assets/scss/editPartner.scss')
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

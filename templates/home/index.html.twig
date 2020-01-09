@@ -35,7 +35,7 @@
                     <img src="/images/apple-store-mini.png" class="link-app">
                     <img src="/images/google-play-mini.png" class="link-app">
                 </div>
-                <p>Si ton tèl est cassé, <a href="#" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
+                <p>Si ton tèl est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
             </article>
 
             <article>
@@ -65,7 +65,7 @@
                     <div>
                         <h3>Etape 3</h3>
                     </div>
-                    <p>Reçoit ton argent instantanément</p>
+                    <p>Reçois ton argent instantanément</p>
                 </div>
                 <a href="#" title="Lien vers l'application d'estimation" class="secondary-button">Télécharge l'appli Pumpkin</a>
             </article>
@@ -90,7 +90,7 @@
 
         <section class="contact">
             <h2 class="primary-title">Contact</h2>
-            <a href="#" title="Lien vers la page contact">Contacte nous</a>
+            <a href="{{ path('add_message') }}" title="Lien vers la page contact">Contacte nous</a>
         </section>
     </main>
 {% endblock %}
