@@ -18,14 +18,10 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-
     .addEntry('signup', './assets/scss/signup.scss')
-
     .addEntry('home', './assets/js/home.js')
-
-
     .addEntry('faq', './assets/js/faq.js')
-
+    .addEntry('signature', './assets/js/signature.js')
     .addEntry('partnerList', './assets/scss/partnerList.scss')
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
     .addEntry('newPartner', './assets/scss/newPartner.scss')
