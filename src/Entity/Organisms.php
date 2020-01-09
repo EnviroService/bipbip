@@ -59,7 +59,7 @@ class Organisms
     private $organismPhone;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Collects", mappedBy="organism")
+     * @ORM\OneToMany(targetEntity="App\Entity\Collects", mappedBy="collector")
      */
     private $collects;
 
@@ -68,9 +68,15 @@ class Organisms
      */
     private $organismStatus;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="organism")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->collects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,7 +175,7 @@ class Organisms
 
     public function setOrganismPhone(int $organismPhone): self
     {
-        $this->organismPhone = $organismPhone;
+        $this->organismPhone = "+33" . $organismPhone;
 
         return $this;
     }
@@ -187,7 +193,7 @@ class Organisms
     {
         if (!$this->collects->contains($collect)) {
             $this->collects[] = $collect;
-            $collect->setOrganism($this);
+            $collect->setCollector($this);
         }
 
         return $this;
@@ -198,8 +204,8 @@ class Organisms
         if ($this->collects->contains($collect)) {
             $this->collects->removeElement($collect);
             // set the owning side to null (unless already changed)
-            if ($collect->getOrganism() === $this) {
-                $collect->setOrganism(null);
+            if ($collect->getCollector() === $this) {
+                $collect->setCollector(null);
             }
         }
 
@@ -214,6 +220,37 @@ class Organisms
     public function setOrganismStatus(string $organismStatus): self
     {
         $this->organismStatus = $organismStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setOrganism($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getOrganism() === $this) {
+                $user->setOrganism(null);
+            }
+        }
 
         return $this;
     }
