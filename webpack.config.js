@@ -31,6 +31,8 @@ Encore
     .addEntry('newPartner', './assets/scss/newPartner.scss')
     .addEntry('editPartner', './assets/scss/editPartner.scss')
 
+    .addEntry('login', './assets/scss/login.scss')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
