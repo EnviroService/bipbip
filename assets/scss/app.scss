@@ -136,6 +136,15 @@ header{
             a{
                 display : block;
             }
+
+            .disconnection{
+                color : darkred;
+            }
+
+            .connect{
+                color : $primary-color;
+                font-weight: 500;
+            }
         }
     }
 

@@ -34,13 +34,13 @@
                     {% if app.user %}
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                         {% if app.user.roles == 'ROLE_USER' %}
-                            <a href="#" title="Page profil">Mon profil</a>
+                            <a href="#" title="Page profil" class="fourth-button">Mon profil</a>
                         {% else %}
-                            <a href="#" title="Page Admin">Accéder à la plateforme d'administration</a>
+                            <a href="#" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
                         {% endif %}
-                        <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
                     {% else %}
-                        <a href="{{ path('app_login') }}"> Se connecter</a>
+                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
                     {% endif %}
                 </div>
             </nav>
