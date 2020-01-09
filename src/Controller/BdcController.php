@@ -23,8 +23,7 @@ class BdcController extends AbstractController
     {
         // list all pdf in public/uploads/BDC/
         $files = scandir('uploads/BDC/');
-        unset($files[array_search('.', $files)]);
-        unset($files[array_search('..', $files)]);
+
         return $this->render('bdc/index.html.twig', [
             'files' => $files
         ]);
@@ -65,9 +64,9 @@ class BdcController extends AbstractController
         ]);
 
         // Create Filename
-        $clientId = 1;
+        $clientId = $this->getUser();
         $estimationId = $estimation->getId();
-        $filename = "C" . $clientId . "E" . $estimationId . ".pdf";
+        $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
