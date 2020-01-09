@@ -175,9 +175,6 @@ class EstimationController extends AbstractController
                 mais nous pouvons vous le reprendre $estimated euros symbolique";
             }
             $estimation->setEstimatedPrice($estimated);
-            /* Les barres de commentaires sont à retirer afin d'envoyer en base de donnée
-                actuellement le persist et le flush sont en commentaire pour les tests
-            */
             $em->persist($estimation);
             $em->flush();
 
@@ -188,7 +185,6 @@ class EstimationController extends AbstractController
             ]);
         }
 
-
         return $this->render("estimation/quest.html.twig", [
             "model" => $model,
             "brand" => $brand,
@@ -197,5 +193,4 @@ class EstimationController extends AbstractController
             "form" => $form->createView()
         ]);
     }
-
 }
