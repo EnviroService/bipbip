@@ -15,10 +15,11 @@ const collecterActionsLister = document.querySelectorAll('.collecterActionsListe
 const collecterActionsAdd = document.querySelectorAll('.collecterActionsAdd');
 // eslint-disable-next-line no-plusplus
 
-for (let i = 0; i < collecters.length; i++) {
-    collecters[i].addEventListener('click', () => {
-        collecterActionsLister[i].classList.toggle('displayed');
-        collecterActionsAdd[i].classList.toggle('displayed');
+// eslint-disable-next-line no-plusplus
+for (let number = 0; number < collecters.length; number++) {
+    collecters[number].addEventListener('click', () => {
+        collecterActionsLister[number].classList.toggle('displayed');
+        collecterActionsAdd[number].classList.toggle('displayed');
     });
 }
 
@@ -27,10 +28,11 @@ const officialDocumentsBc = document.querySelectorAll('.officialDocumentsBc');
 const officialDocumentsCi = document.querySelectorAll('.officialDocumentsCi');
 // eslint-disable-next-line no-plusplus
 
-for (let i = 0; i < collecters.length; i++) {
-    officialDocuments[i].addEventListener('click', () => {
-        officialDocumentsBc[i].classList.toggle('displayed');
-        officialDocumentsCi[i].classList.toggle('displayed');
+// eslint-disable-next-line no-plusplus
+for (let number = 0; number < collecters.length; number++) {
+    officialDocuments[number].addEventListener('click', () => {
+        officialDocumentsBc[number].classList.toggle('displayed');
+        officialDocumentsCi[number].classList.toggle('displayed');
     });
 }
 // any CSS you require will output into a single css file (app.css in this case)
