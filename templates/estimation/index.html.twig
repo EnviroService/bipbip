@@ -8,7 +8,12 @@
                 {% for brand in brands %}
                 <a class="btn btn-success" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
                 {% endfor %}
-                <a class="btn btn-primary" href="">Autres...</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-center"></div>
+            <div class="col-4">
+                <a class="btn btn-primary" href="{{ path("autres") }}">Autres...</a>
             </div>
         </div>
     </div>

@@ -5,12 +5,15 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\Phones;
+use App\Entity\User;
 use App\Form\EstimationType;
+use App\Repository\EstimationsRepository;
 use App\Repository\PhonesRepository;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -194,13 +197,5 @@ class EstimationController extends AbstractController
             "form" => $form->createView()
         ]);
     }
-/*
-    /**
-     * @return Response
-     * @Route("/autres", name="autres")
-    public function autres()
-    {
-        return $this->render("/autres.html.twig");
-    }
-    */
+
 }

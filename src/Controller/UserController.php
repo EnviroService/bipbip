@@ -7,6 +7,7 @@ use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\EstimationsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,14 +20,12 @@ class UserController extends AbstractController
     /**
      * @Route("/user/add/{estimation}", name="user_add")
      * @param Request $request
-     * @param EstimationsRepository $repo
      * @param Estimations $estimation
      * @return Response
      * @throws Exception
      */
     public function newUser(
         Request $request,
-        EstimationsRepository $repo,
         Estimations $estimation
     ): Response {
 
@@ -38,9 +37,9 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
+            $user->addEstimation($estimation);
             $entityManager->persist($user);
             $entityManager->flush();
-            //$estim = $repo->findOneBy(['id' => $estimation]);
 
             $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
 
