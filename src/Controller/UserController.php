@@ -40,7 +40,7 @@ class UserController extends AbstractController
             $user->setSigninDate(new DateTime('now'));
             $entityManager->persist($user);
             $entityManager->flush();
-            $estim = $repo->findOneBy(['id' => $estimation]);
+            //$estim = $repo->findOneBy(['id' => $estimation]);
 
             $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
 

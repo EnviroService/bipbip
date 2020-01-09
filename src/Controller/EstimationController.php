@@ -177,8 +177,6 @@ class EstimationController extends AbstractController
             */
             $em->persist($estimation);
             $em->flush();
-            var_dump($estimation);
-
 
             return $this->render('estimation/final_price.html.twig', [
                 'estimation' => $estimation,
