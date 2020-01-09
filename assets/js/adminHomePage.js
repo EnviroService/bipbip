@@ -10,7 +10,6 @@ const $ = require('jquery');
 // any CSS you require will output into a single css file (app.css in this case)
 require('../scss/admin.scss');
 
-
 const collecters = document.querySelectorAll('.collecters');
 const collecterActionsLister = document.querySelectorAll('.collecterActionsLister');
 const collecterActionsAdd = document.querySelectorAll('.collecterActionsAdd');
@@ -32,14 +31,6 @@ for (let i = 0; i < collecters.length; i++) {
     officialDocuments[i].addEventListener('click', () => {
         officialDocumentsBc[i].classList.toggle('displayed');
         officialDocumentsCi[i].classList.toggle('displayed');
-    });
-    // eslint-disable-next-line no-use-before-define
-    $(document).ready(function () {
-        // eslint-disable-next-line no-use-before-define
-        $('$search-user').keyup(function () {
-            // eslint-disable-next-line no-alert
-            alert('ok');
-        });q
     });
 }
 // any CSS you require will output into a single css file (app.css in this case)
