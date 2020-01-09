@@ -92,6 +92,7 @@ class EstimationController extends AbstractController
      * @param string $model
      * @param int $capacity
      * @param PhonesRepository $phone
+     * @param EntityManagerInterface $em
      * @return Response
      * @throws \Exception
      */
@@ -100,7 +101,8 @@ class EstimationController extends AbstractController
         string $brand,
         string $model,
         int $capacity,
-        PhonesRepository $phone
+        PhonesRepository $phone,
+        EntityManagerInterface $em
     ): Response {
         $phone = $phone->findOneBy(['model' => $model,
             'capacity' => $capacity
@@ -171,10 +173,12 @@ class EstimationController extends AbstractController
             }
             $estimation->setEstimatedPrice($estimated);
             /* Les barres de commentaires sont à retirer afin d'envoyer en base de donnée
-                actuellement le persist et le flush sot en commentaire pour les tests
+                actuellement le persist et le flush sont en commentaire pour les tests
+            */
             $em->persist($estimation);
             $em->flush();
-            */
+            var_dump($estimation);
+
 
             return $this->render('estimation/final_price.html.twig', [
                 'estimation' => $estimation,
@@ -192,4 +196,13 @@ class EstimationController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+/*
+    /**
+     * @return Response
+     * @Route("/autres", name="autres")
+    public function autres()
+    {
+        return $this->render("/autres.html.twig");
+    }
+    */
 }

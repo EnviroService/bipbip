@@ -12,7 +12,7 @@
                 {% endif %}
                 <div class="jumbotron">
                     <h4>Pour finaliser la vente de ton téléphone, tu dois créer ton compte et accéder aux lieux de collecte</h4>
-                    <a class="btn btn-primary" href="{{ path("user_add") }}">Créer mon compte</a>
+                    <a class="btn btn-primary" href="{{ path("user_add", {estimation: estimation.id}) }}">Créer mon compte</a>
                 </div>
 
             </div>
