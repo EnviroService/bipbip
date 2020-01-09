@@ -62,4 +62,12 @@ class HomeController extends AbstractController
     {
         return $this->render('admin/bdcShow.html.twig');
     }
+
+    /**
+     * @Route("autres", name="autres")
+     */
+    public function autres()
+    {
+        return $this->render('estimation/autres.html.twig');
+    }
 }
