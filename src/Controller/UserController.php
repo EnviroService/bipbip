@@ -21,12 +21,14 @@ class UserController extends AbstractController
      * @Route("/user/add/{estimation}", name="user_add")
      * @param Request $request
      * @param Estimations $estimation
+     * @param EntityManagerInterface $em
      * @return Response
      * @throws Exception
      */
     public function newUser(
         Request $request,
-        Estimations $estimation
+        Estimations $estimation,
+        EntityManagerInterface $em
     ): Response {
 
         $user = new User();
@@ -34,12 +36,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
             $user->addEstimation($estimation);
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $em->persist($user);
+            $em->flush();
 
             $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
 
