@@ -2,7 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 // En tête
-.card-id {
+.card-id{
     display: flex;
     flex-direction : row;
     width: 100%;
@@ -11,7 +11,7 @@
     font-family: 'co-headline', Arial sans-serif;
     box-shadow: inset 5px 0 10px rgb(135,151,151);
 
-    article {
+    article{
         width: 25%;
         box-shadow: inset 2px 0 5px rgb(135,151,151);
         color : White;
@@ -24,40 +24,41 @@
         background-color: $secondary-color;
         opacity: 70%;
 
-        p {
+        p{
             margin-left: 10px;
         }
     }
 
-    h1 {
+    h1{
         display: flex;
         justify-content: center;
         align-items: center;
         width: 75%;
         font-size: 1.8rem;
         font-style: italic;
-        color : $secondary-color;
+        color: $secondary-color;
         margin-right: 10px;
     }
 }
+
 // Card genérale
-.cards-admin {
+.cards-admin{
     width: 100%;
     height: 80%;
 }
 
 // Menu gauche
-.menu-admin {;
-    display : flex;
-    flex-direction : row;
+.menu-admin{
+    display: flex;
+    flex-direction: row;
     width: 100%;
     margin-right: 5px;
-    font-size : 1.4rem;
-    color : white;
+    font-size: 1.4rem;
+    color: white;
     text-decoration: none;
     box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-    .icon-menu {
+    .icon-menu{
         display: flex;
         flex-direction: row;
         list-style-type: none;
@@ -67,7 +68,7 @@
         height: 100%;
     }
 
-    .estimations {
+    .estimations{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,7 +77,7 @@
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-        a {
+        a{
             display : block;
             text-decoration: none;
             color: $secondary-color;
@@ -84,7 +85,7 @@
         }
     }
 
-    .collecters {
+    .collecters{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -94,13 +95,13 @@
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-        a {
+        a{
             display : block;
             text-decoration: none;
             color: $secondary-color;
             font-weight: bold;
         }
-        .collecterActionsLister {
+        .collecterActionsLister{
             display : none;
             position: absolute;
             bottom : -72%;
@@ -110,7 +111,7 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-        .collecterActionsLister.displayed {
+        .collecterActionsLister.displayed{
             display: block;
             width: 100%;
             height: 50px;
@@ -119,7 +120,7 @@
             color: $secondary-color;
             font-size: 1.3rem;
         }
-        .collecterActionsAdd {
+        .collecterActionsAdd{
             display : none;
             position: absolute;
             bottom: -143%;
@@ -129,7 +130,7 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-        .collecterActionsAdd.displayed {
+        .collecterActionsAdd.displayed{
             display: block;
             width: 100%;
             height: 50px;
@@ -139,7 +140,7 @@
             font-size: 1.3rem;
         }
     }
-    .officialDocuments {
+    .officialDocuments{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -149,16 +150,16 @@
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgb(223,216,222);
 
-        a {
+        a{
             display : block;
             text-decoration: none;
             color: $secondary-color;
             font-weight: bold;
         }
-        p {
+        p{
             margin-left: 5px;
         }
-        .officialDocumentsBc {
+        .officialDocumentsBc{
             display : none;
             position: absolute;
             width: 100%;
@@ -168,7 +169,7 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-        .officialDocumentsBc.displayed {
+        .officialDocumentsBc.displayed{
             display: block;
             width: 100%;
             height: 50px;
@@ -177,7 +178,7 @@
             color: $secondary-color;
             font-size: 1.3rem;
         }
-        .officialDocumentsCi {
+        .officialDocumentsCi{
             display : none;
             position: absolute;
             width: 100%;
@@ -187,7 +188,7 @@
             box-shadow: inset 2px 0 10px rgb(223,216,222);
             color: $secondary-color;
         }
-        .officialDocumentsCi.displayed {
+        .officialDocumentsCi.displayed{
             display: block;
             width: 100%;
             height: 50px;
@@ -198,14 +199,11 @@
         }
     }
 }
+
 // Card centrale
-.card-central-admin {
+.card-central-admin{
     width: 100%;
     box-shadow: inset 2px 0 10px rgb(223,216,222);
     border-radius: 5px;
     margin-right: 5px;
 }
-
-
-
-
