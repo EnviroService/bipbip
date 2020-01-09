@@ -1,0 +1,63 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Estimations index{% endblock %}
+
+{% block body %}
+    <h1>Estimations index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EstimationDate</th>
+                <th>IsCollected</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Brand</th>
+                <th>Color</th>
+                <th>LiquidDamage</th>
+                <th>ScreenCracks</th>
+                <th>CasingCracks</th>
+                <th>BatteryCracks</th>
+                <th>ButtonCracks</th>
+                <th>MaxPrice</th>
+                <th>EstimatedPrice</th>
+                <th>IsValidatedPayment</th>
+                <th>IsValidatedSignature</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estimation in estimations %}
+            <tr>
+                <td>{{ estimation.id }}</td>
+                <td>{{ estimation.estimationDate ? estimation.estimationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ estimation.isCollected ? 'Yes' : 'No' }}</td>
+                <td>{{ estimation.model }}</td>
+                <td>{{ estimation.capacity }}</td>
+                <td>{{ estimation.brand }}</td>
+                <td>{{ estimation.color }}</td>
+                <td>{{ estimation.liquidDamage }}</td>
+                <td>{{ estimation.screenCracks }}</td>
+                <td>{{ estimation.casingCracks }}</td>
+                <td>{{ estimation.batteryCracks }}</td>
+                <td>{{ estimation.buttonCracks }}</td>
+                <td>{{ estimation.maxPrice }}</td>
+                <td>{{ estimation.estimatedPrice }}</td>
+                <td>{{ estimation.isValidatedPayment ? 'Yes' : 'No' }}</td>
+                <td>{{ estimation.isValidatedSignature ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('estimations_show', {'id': estimation.id}) }}">show</a>
+                    <a href="{{ path('estimations_edit', {'id': estimation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('estimations_new') }}">Create new</a>
+{% endblock %}

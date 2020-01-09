@@ -20,19 +20,4 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/index.html.twig');
     }
-
-    /**
-   //  * @Route("/", name="adminSearchBar")
-     //* @param $usersRepository
-     //* @return Response
-     */
-    //public function showSearchBar($usersRepository): Response
-  //  {
-    //    $form = $this->createForm(UserType::class);
-     //   if ($form->isSubmitted() && $form->isValid()) {
-       //     $this->getDoctrine()->getManager()->flush();
-
-         //   return $this->redirectToRoute('adminSearchBar');
-        //}
-    //}
 }
