@@ -134,12 +134,12 @@ class Phones
         return $this;
     }
 
-    public function getPriceLiquidDamage(): ?float
+    public function getPriceLiquidDamage(): ?int
     {
         return $this->priceLiquidDamage;
     }
 
-    public function setPriceLiquidDamage(float $priceLiquidDamage): self
+    public function setPriceLiquidDamage(int $priceLiquidDamage): self
     {
         $this->priceLiquidDamage = $priceLiquidDamage;
 
@@ -177,7 +177,7 @@ class Phones
 
     public function setPriceBattery(int $priceBattery): self
     {
-        $this->priceBattery = $priceBattery;
+        $this->priceBattery = intval($priceBattery);
 
         return $this;
     }
@@ -189,7 +189,7 @@ class Phones
 
     public function setPriceButtons(int $priceButtons): self
     {
-        $this->priceButtons = $priceButtons;
+        $this->priceButtons = intval($priceButtons);
 
         return $this;
     }

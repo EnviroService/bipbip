@@ -11,13 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class AdminController
+ * @package App\Controller
+ * @SuppressWarnings(PHPMD)
+ */
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin/matrice", name="matrice_upload")
      * @param Request $request
      * @return Response
-     * @SuppressWarnings(PHPMD, UnusedLocalVariable)
      */
     public function newMatrice(Request $request): Response
     {
@@ -38,20 +42,21 @@ class AdminController extends AbstractController
 
             foreach ($csv as $key) {
                 $row = str_getcsv($key, ",");
+                var_dump($row[10]);
                 if ($row[0] != 'fin') {
                     $phone = new phones();
                     $phone->setBrand($row[2])
                         ->setModel($row[1])
                         ->setCapacity($row[4])
                         ->setColor($row[6])
-                        ->setPriceLiquidDamage($row[7])
-                        ->setPriceScreenCracks($row[8])
-                        ->setPriceCasingCracks($row[9])
-                        ->setPriceBattery($row[10])
-                        ->setPriceButtons($row[11])
-                        ->setPriceBlacklisted($row[12])
-                        ->setPriceRooted($row[13])
-                        ->setMaxPrice($row[14])
+                        ->setPriceLiquidDamage(intval($row[7]))
+                        ->setPriceScreenCracks(intval($row[8]))
+                        ->setPriceCasingCracks(intval($row[9]))
+                        ->setPriceBattery(intval($row[10]))
+                        ->setPriceButtons(intval($row[11]))
+                        ->setPriceBlacklisted(intval($row[12]))
+                        ->setPriceRooted(intval($row[13]))
+                        ->setMaxPrice(intval($row[14]))
                         ->setValidityPeriod(15);
                     $em->persist($phone);
                     $em->flush();
