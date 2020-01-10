@@ -75,142 +75,142 @@
         box-shadow: inset 2px 0 10px rgb(223,216,222);
         background-color: $secondary-color;
 
-         a{
-             display: flex;
-             justify-content: center;
-             align-items: center;
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
             height: 70px;
             text-decoration: none;
-             color: $white;
+            color: $white;
             font-weight: bold;
              }
         }
     }
 
-    .collecters {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.collecters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: inset 2px 0 10px rgb(223, 216, 222);
+    background-color: $secondary-color;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        }
+
+    .collecterActionsLister{
+        display : none;
+        position: absolute;
+        bottom : -72%;
         width: 100%;
-        height: 70px;
-        position: relative;
+        height: 50px;
         border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223, 216, 222);
-        background-color: $secondary-color;
-
-        a {
-            display: block;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
         }
 
-        .collecterActionsLister{
-            display : none;
-            position: absolute;
-            bottom : -72%;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
+    .collecterActionsLister.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
         }
 
-        .collecterActionsLister.displayed{
-            display: block;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-            font-size: 1.3rem;
+    .collecterActionsAdd{
+        display : none;
+        position: absolute;
+        bottom: -143%;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
         }
 
-        .collecterActionsAdd{
-            display : none;
-            position: absolute;
-            bottom: -143%;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-        }
-
-        .collecterActionsAdd.displayed{
-            display: block;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-            font-size: 1.3rem;
+    .collecterActionsAdd.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
         }
     }
 
-    .officialDocuments{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
+.officialDocuments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
+    background-color: $secondary-color;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        }
+
+    .officialDocumentsBc{
+        display : none;
+        position: absolute;
         width: 100%;
-        height: 70px;
+        height: 50px;
+        bottom: -72%;
         border-radius: 5px;
         box-shadow: inset 2px 0 10px rgb(223,216,222);
-        background-color: $secondary-color;
-
-        a {
-            display: block;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
+        color: white;
         }
 
-        .officialDocumentsBc{
-            display : none;
-            position: absolute;
-            width: 100%;
-            height: 50px;
-            bottom: -72%;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: white;
+    .officialDocumentsBc.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
         }
 
-        .officialDocumentsBc.displayed{
-            display: block;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-            font-size: 1.3rem;
-            text-align: center;
-            padding: 10px;
+    .officialDocumentsCi{
+        display : none;
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        bottom: -143%;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
         }
 
-        .officialDocumentsCi{
-            display : none;
-            position: absolute;
-            width: 100%;
-            height: 50px;
-            bottom: -143%;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-        }
-
-        .officialDocumentsCi.displayed{
-            display: block;
-            width: 100%;
-            height: 50px;
-            border-radius: 5px;
-            box-shadow: inset 2px 0 10px rgb(223,216,222);
-            color: $secondary-color;
-            font-size: 1.3rem;
-            text-align: center;
-            padding: 10px;
+    .officialDocumentsCi.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
         }
     }
 
