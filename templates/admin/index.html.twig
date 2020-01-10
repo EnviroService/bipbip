@@ -8,6 +8,8 @@
         {{ encore_entry_link_tags('admin') }}
     {% endblock %}
 </head>
+{% block body %}
+<header>
     <div class="card-id">
         <article>
             <p>Identifiant</p>
@@ -15,11 +17,18 @@
         </article>
         <h1>Bienvenue sur l'interface d'administration</h1>
     </div>
+</header>
+    <div class="form-group">
+        <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
+    </div>
 
 <main class="cards-admin">
     <div class="menu-admin">
         <ul class="icon-menu">
-            <li class="estimations"><a href="#">Estimations</a></li>
+            <li class="estimations">
+                <a href="{{ path ('estimations_index') }}">Estimations
+                </a>
+            </li>
             <li class="collecters">
                 <a href="#">Collecteurs</a>
                     <button type="button" class="collecterActionsLister">Lister</button>
@@ -27,18 +36,19 @@
             </li>
             <li class="officialDocuments">
                 <a href="#">Documents stockés</a>
-                    <button type="button" class="officialDocumentsBc">Bons de cessions</button>
-                    <button type="button" class="officialDocumentsCi">Cartes d'identitées</button>
+                <a class="officialDocumentsBc" href="{{ path ('bdc_index') }}">Bons de cessions</a>
+                <a class="officialDocumentsCi" href="{{ path ('bdc_index') }}">Cartes d'identitées</a>
             </li>
         </ul>
     </div>
     <div class="card-central-admin">
-        {% block body %}{% endblock %}
-    </div>
 
+    </div>
+    {% endblock %}
 
 {%  block javascripts %}
     {{ encore_entry_script_tags('admin') }}
+
 {% endblock %}
 </main>
 </html>

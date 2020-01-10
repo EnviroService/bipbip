@@ -10,6 +10,9 @@ const $ = require('jquery');
 // any CSS you require will output into a single css file (app.css in this case)
 require('../scss/admin.scss');
 
+// any CSS you require will output into a single css file (app.css in this case)
+require('bootstrap');
+
 const collecters = document.querySelectorAll('.collecters');
 const collecterActionsLister = document.querySelectorAll('.collecterActionsLister');
 const collecterActionsAdd = document.querySelectorAll('.collecterActionsAdd');
@@ -35,5 +38,3 @@ for (let number = 0; number < collecters.length; number++) {
         officialDocumentsCi[number].classList.toggle('displayed');
     });
 }
-// any CSS you require will output into a single css file (app.css in this case)
-require('bootstrap');
