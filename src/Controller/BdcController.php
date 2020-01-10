@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Estimations;
 use App\Repository\EstimationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -9,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use App\Entity\Estimations;
 
 /**
  * @Route("/bdc")
@@ -25,26 +25,32 @@ class BdcController extends AbstractController
     {
         // list all pdf in public/uploads/BDC/
         $files = scandir('uploads/BDC/');
+
         return $this->render('bdc/index.html.twig', [
             'files' => $files
         ]);
     }
 
     /**
-     * @Route("/new/", name="bdc_show")
+     * @Route("/show/{id}", name="bdc_show")
+     * @param Estimations $estimation
+     * @return Response
      */
-    public function show()
+    // route to show an estimation
+    public function show(Estimations $estimation)
     {
         return $this->render('bdc/bdc.html.twig', [
             'IMEI' => "355 402 092 374 478",
+            'estimation' => $estimation,
         ]);
     }
 
     /**
-     * @Route("/new/pdf", name="bdc_pdf")
+     * @Route("/pdf/{id}", name="bdc_pdf")
+     * @param Estimations $estimation
      */
-
-    public function showPDF()
+    // route to generate a PDF from estimation
+    public function showPDF(Estimations $estimation)
     {
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
@@ -55,8 +61,14 @@ class BdcController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('bdc/bdc.html.twig', [
-        'IMEI' => "355 402 092 374 478"
+            'IMEI' => "355 402 092 374 478",
+            'estimation' => $estimation
         ]);
+
+        // Create Filename
+        $clientId = $this->getUser();
+        $estimationId = $estimation->getId();
+        $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 
         // Load HTML to Dompdf
         $dompdf->loadHtml($html);
@@ -72,7 +84,7 @@ class BdcController extends AbstractController
 
         // we want to write the file in the public directory
         $publicDirectory = 'uploads/BDC';
-        $pdfFilepath =  $publicDirectory . '/mypdf.pdf';
+        $pdfFilepath =  $publicDirectory . '/' . $filename;
 
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
@@ -81,7 +93,7 @@ class BdcController extends AbstractController
         // return new Response("The PDF file has been succesfully generated !");
 
         // Output the generated PDF to Browser (inline view)
-        $dompdf->stream("mypdf.pdf", [
+        $dompdf->stream($filename, [
         "Attachment" => false
         ]);
     }
