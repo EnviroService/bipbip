@@ -42,7 +42,6 @@ class AdminController extends AbstractController
 
             foreach ($csv as $key) {
                 $row = str_getcsv($key, ",");
-                var_dump($row[10]);
                 if ($row[0] != 'fin') {
                     $phone = new phones();
                     $phone->setBrand($row[2])
