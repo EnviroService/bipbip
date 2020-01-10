@@ -6,10 +6,11 @@
 {% block header %}
 <header>
     <div class="card-id">
-        <article>
-            <p>Identifiant</p>
-            <p>Role</p>
-        </article>
+        <ul>
+            <li>Identifiant</li>
+            <li>Role</li>
+            <li>{{"now"|date('d/m/Y')}}</li>
+        </ul>
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
     </div>
 </header>

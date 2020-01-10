@@ -11,11 +11,12 @@
     font-family: 'co-headline', Arial sans-serif;
     box-shadow: inset 5px 0 10px rgb(135,151,151);
 
-    article{
+    ul{
         width: 25%;
         box-shadow: inset 2px 0 5px rgb(135,151,151);
         color : White;
         margin-right: 10px;
+        margin-bottom: 0px;
         font-size: 1.3rem;
         font-style: italic;
         padding: 5px;
@@ -24,7 +25,7 @@
         background-color: $secondary-color;
         opacity: 70%;
 
-        p{
+        li{
             margin-left: 10px;
         }
     }
