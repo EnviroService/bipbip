@@ -38,7 +38,9 @@ class BdcController extends AbstractController
     // route to generate a signature for PDF from estimation
     public function addSignature(Estimations $estimation)
     {
-        return $this->render('bdc/signature.html.twig');
+        return $this->render('bdc/signature.html.twig', [
+            'estimation' => $estimation
+        ]);
     }
 
     /**
