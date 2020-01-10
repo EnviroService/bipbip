@@ -134,12 +134,12 @@ class Phones
         return $this;
     }
 
-    public function getPriceLiquidDamage(): ?int
+    public function getPriceLiquidDamage(): ?float
     {
         return $this->priceLiquidDamage;
     }
 
-    public function setPriceLiquidDamage(int $priceLiquidDamage): self
+    public function setPriceLiquidDamage(float $priceLiquidDamage): self
     {
         $this->priceLiquidDamage = $priceLiquidDamage;
 

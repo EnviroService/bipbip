@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto text-center form p-4">
+            {{ form_start(form) }}
+            <h1 class="primary-title">Mettre à jour la matrice</h1>
+                {{ form_widget(form.matrice_field, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(form.submit, {'label': 'Valider', 'class': 'btn btn-primary'}) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
