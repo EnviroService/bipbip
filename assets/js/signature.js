@@ -38,9 +38,8 @@ class CanvasObject {
         };
         this.lastPosition = this.mousePosition;
         this.clearButton = document.getElementById('bt-clear');
-        this.canvas.width = 500;
-        this.canvas.height = 150;
-        this.canvas.border = '1px outset green';
+        this.canvas.width = 600;
+        this.canvas.height = 300;
     }
 
     // Events management
