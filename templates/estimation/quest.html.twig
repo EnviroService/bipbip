@@ -26,8 +26,11 @@
 
     <div class="container jumbotron">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>Votre écran est-il endommagé ?</h4>
+            </div>
+            <div class="col-1">
+                <img class="bulle_info " src="/images/pic_info.png" alt="information" title="Une simple griffe n'est pas considérée comme endommagé.">
             </div>
             <div class="col-4">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
