@@ -12,7 +12,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 /**
- * @Route("/bdc")
+ * @Route("admin/bdc")
  */
 
 

@@ -37,6 +37,11 @@
             <property name="exceptions" value="id,qb,em" />
         </properties>
     </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+    <properties>
+        <property name="maximum" value="30" />
+    </properties>
+</rule>
     <rule ref="rulesets/unusedcode.xml" >
         <exclude name="UnusedFormalParameter"/>
     </rule>
