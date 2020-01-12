@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Organisms;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -42,8 +44,21 @@ class RegistrationFormType extends AbstractType
                 'required' => true
             ])
             ->add('phoneNumber', NumberType::class, [
-                'required' => true
+                'required' => false
             ])
+            ->add(
+                'organism',
+                EntityType::class,
+                [
+                'class' => Organisms::class,
+                'required' => false,
+                'choice_label' => 'organismName',
+                'expanded' => false,
+                'multiple' => false,
+                'attr' => ['class' => 'selectpicker'],
+                'by_reference'=> false
+                ]
+            )
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
