@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+            $this->addFlash('success', 'Compte créé !');
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
