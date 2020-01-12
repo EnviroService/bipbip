@@ -22,7 +22,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/home", name="homeAdmin")
+     * @Route("/home", name="home_admin")
      */
     public function show(): Response
     {
@@ -30,7 +30,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="app_register_collector")
+     * @Route("/collector/register", name="app_register_collector")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
@@ -65,15 +65,10 @@ class AdminController extends AbstractController
 
             $this->addFlash('success', 'Compte Collecteur créé');
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+            return $this->render('admin/index.html.twig');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('admin/register_collector.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
