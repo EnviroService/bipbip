@@ -30,7 +30,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/collector/register", name="app_register_collector")
+     * @Route("/collector/register", name="register_collector")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
@@ -63,9 +63,7 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte Collecteur créé');
-
-            return $this->render('admin/index.html.twig');
+            return $this->redirectToRoute('adminhome_admin');
         }
 
         return $this->render('admin/register_collector.html.twig', [
