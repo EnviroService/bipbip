@@ -1,3 +1,225 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
+// En tête
+.card-id{
+    display: flex;
+    flex-direction : row;
+    width: 100%;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    font-family: 'co-headline', Arial sans-serif;
+    box-shadow: inset 5px 0 10px rgb(135,151,151);
+
+    ul{
+        width: 25%;
+        box-shadow: inset 2px 0 5px rgb(135,151,151);
+        color : White;
+        margin-right: 10px;
+        margin-bottom: 0px;
+        font-size: 1.3rem;
+        font-style: italic;
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: bold;
+        background-color: $secondary-color;
+        opacity: 70%;
+
+        li{
+            margin-left: 10px;
+        }
+    }
+
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        font-size: 1.8rem;
+        font-style: italic;
+        color: $secondary-color;
+        margin-right: 10px;
+    }
+}
+
+// Card genérale
+.cards-admin{
+    width: 100%;
+    height: 80%;
+}
+
+// Menu gauche
+.menu-admin{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-right: 5px;
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: none;
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
+
+    .icon-menu{
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin-top: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .estimations{
+        width: 100%;
+        height: 70px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        background-color: $secondary-color;
+
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 70px;
+            text-decoration: none;
+            color: $white;
+            font-weight: bold;
+             }
+        }
+    }
+
+.collecters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: inset 2px 0 10px rgb(223, 216, 222);
+    background-color: $secondary-color;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        }
+
+    .collecterActionsLister{
+        display : none;
+        position: absolute;
+        bottom : -72%;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        }
+
+    .collecterActionsLister.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        }
+
+    .collecterActionsAdd{
+        display : none;
+        position: absolute;
+        bottom: -143%;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        }
+
+    .collecterActionsAdd.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        }
+    }
+
+.officialDocuments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
+    background-color: $secondary-color;
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        }
+
+    .officialDocumentsBc{
+        display : none;
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        bottom: -72%;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: white;
+        }
+
+    .officialDocumentsBc.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
+        }
+
+    .officialDocumentsCi{
+        display : none;
+        position: absolute;
+        width: 100%;
+        height: 50px;
+        bottom: -143%;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        }
+
+    .officialDocumentsCi.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
+        }
+    }
+
+
+// Card centrale
+.card-central-admin{
+    width: 100%;
+    box-shadow: inset 2px 0 10px rgb(223,216,222);
+    border-radius: 5px;
+    margin-right: 5px;
+}

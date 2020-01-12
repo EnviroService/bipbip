@@ -1,20 +1,51 @@
 {% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-    {{ encore_entry_link_tags('admin') }}
-{% endblock %}
-
 {% block title %}Administration {% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
+{% block header %}
+<header>
+    <div class="card-id">
+        <ul>
+            <li>Identifiant</li>
+            <li>Role</li>
+            <li>{{"now"|date('d/m/Y')}}</li>
+        </ul>
+        <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
+    </div>
+</header>
 
-{% block body %}
-    <main id="admin">
-
-    <div class = primary-title>
-        <h1>Interface d'administration</h1>
+<div class="form-group">
+        <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
     </div>
 
-       <p>Bienvenue sur l'interface d'administration</p>
+<main class="cards-admin">
+    <div class="menu-admin">
+        <ul class="icon-menu">
+            <li class="estimations">
+                <a href="{{ path ('estimations_index') }}">Estimations
+                </a>
+            </li>
+            <li class="collecters">
+                <a href="#">Collecteurs</a>
+                    <button type="button" class="collecterActionsLister">Lister</button>
+                    <button type="button" class="collecterActionsAdd">Ajouter</button>
+            </li>
+            <li class="officialDocuments">
+                <a href="#">Documents stockés</a>
+                <a class="officialDocumentsBc" href="{{ path ('bdc_index') }}">Bons de cessions</a>
+                <a class="officialDocumentsCi" href="{{ path ('bdc_index') }}">Cartes d'identitées</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-central-admin">{% block bodyAdmin %} {% endblock %}</div>
+</main>
+{% endblock %}
+{% block body %}{% endblock %}
 
-    </main>
+{% block footer %}{% endblock %}
+
+{%  block javascripts %}
+    {{ encore_entry_script_tags('admin') }}
 {% endblock %}
 

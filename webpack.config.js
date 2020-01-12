@@ -28,10 +28,16 @@ Encore
 
     .addEntry('partnerList', './assets/scss/partnerList.scss')
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
+
+
+    .addEntry('admin', './assets/js/adminHomePage.js')
+
+
     .addEntry('newPartner', './assets/scss/newPartner.scss')
     .addEntry('editPartner', './assets/scss/editPartner.scss')
 
     .addEntry('login', './assets/scss/login.scss')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -72,9 +78,9 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
+    // uncomment if you use API Platform admin (composer req api-admin)
     //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
+    //.addEntry('admin', './assets/js/adminHomePage.js')
 
 
 module.exports = Encore.getWebpackConfig();
