@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                 'required' => true
             ])
             ->add('phoneNumber', NumberType::class, [
-                'required' => false
+                'required' => true
             ])
             ->add(
                 'organism',
