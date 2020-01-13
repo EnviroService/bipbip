@@ -16,8 +16,12 @@
 </header>
 
 <div class="form-group">
-        <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
-    </div>
+    <label for="searchUser"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
+</div>
+
+<div style="margin-top: 20px"></div>
+
+
 
 <main class="cards-admin">
     <div class="menu-admin">
@@ -38,13 +42,18 @@
             </li>
         </ul>
     </div>
-    <div class="card-central-admin">{% block bodyAdmin %} {% endblock %}</div>
+    <div class="card-central-admin">
+        {% block bodyAdmin %}
+              <div id="resultSearch"></div>
+        {% endblock %}
+    </div>
 </main>
 {% endblock %}
 {% block body %}{% endblock %}
 
 {% block footer %}{% endblock %}
-
+ {% block JsApp %}
+ {% endblock %}
 {%  block javascripts %}
     {{ encore_entry_script_tags('admin') }}
 {% endblock %}

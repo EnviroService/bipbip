@@ -29,7 +29,8 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+      "ext-json": "*"
     },
     "require-dev": {
         "phpro/grumphp": "^0.15.2",
