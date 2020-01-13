@@ -14,13 +14,12 @@
         <section>
             {% for organism in organisms %}
 
-            <article>
+            <article class="col-2">
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
                     <img title="{{ organism.organismName }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
 
-
-
             </article>
+
                 {#
                 <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>
                 <a href="{{ path('organisms_show', {'id': organism.id}) }}">show</a>

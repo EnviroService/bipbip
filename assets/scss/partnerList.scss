@@ -8,13 +8,23 @@
 
         article {
             margin: 10px;
+            @media screen and (min-width: 740px){
+                display: flex;
+                width: 20%;
+                overflow: hidden;
+            }
 
             .logo{
                 width: 10%;
 
                 img{
                     width :100px;
-                    margin : 4% 0%;
+                    margin : 4% 0;
+                    @media screen and (min-width: 740px){
+                        display: table;
+                        width: 200px;
+                        float: top;
+                    }
                 }
             }
 
