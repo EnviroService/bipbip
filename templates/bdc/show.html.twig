@@ -1,0 +1,168 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}PDF estimation{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('bdc') }}
+{% endblock %}
+{%  block body %}
+<main class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1 class="primary-title">Etape 2 : signature du client</h1>
+    <div class="row">
+            <div class="col-3">
+                <img width="200px; margin-top:30px;" src="/images/logo-bipbip.png" alt="BipBip Mobile">
+            </div>
+            <div class="col-9">
+                <h1 style="font-size: 1.7rem; text-align: center;
+                text-transform: uppercase;">Bon de cession de propriété</h1>
+                <p class="bold-text">Signature obligatoire par les 2 parties</p>
+                <p>1 exemplaire pour Enviro Services France<br>
+                    et 1 exemplaire à envoyer au client par mail sous les 48h</p>
+            </div>
+    </div>
+            
+        <div class="row">
+            <div class="col-7">
+                <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
+                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
+                <p>IMEI : {{ IMEI }}</p>
+                <p class="barcode">*{{ IMEI }}*</p>
+            </div>
+            <div class="col-5">
+                <p>ENVIRO SERVICES FRANCE<br>
+                391 avenue Clément Ader<br>
+                59118 WAMBRECHIES<br>
+                Téléphone : 03 20 00 00 00</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 font-weight-bold">
+                N° Client :<br>
+                Type d'appareil :<br>
+                Marque :<br>
+                Modèle :<br>
+                Montant de la reprise :<br>
+                Paiement immédiat :
+            </div>
+            <div class="col-9">
+                {{ estimation.user.id }}<br>
+                MOBILE<br>
+                {{estimation.brand}}<br>
+                {{ estimation.model }} {{ estimation.capacity }} Go<br>
+                {{ estimation.estimatedPrice }} €<br>
+                Oui
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3 font-weight-bold">
+                Diagnostic :
+            </div>
+            <div class="col-9">
+                Votre téléphone a-t-il été immergé dans l'eau ?
+                {% if estimation.liquidDamage > 0 %}
+                OUI
+                {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Votre écran est-il endommagé ?
+                {% if estimation.screenCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                La coque du téléphone est-elle endommagée ?
+                {% if estimation.casingCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Avez-vous des problèmes de charge au niveau de votre batterie ?
+                {% if estimation.batteryCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Tous vos boutons sont-ils fonctionnels ?
+                {% if estimation.buttonCracks > 0 %}
+                    NON
+                {% else %}
+                    OUI
+                {%  endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 font-weight-bold">
+                Nom :<br>
+                Prénom :<br>
+                Numéro de tél :<br>
+                Email :<br>
+            </div>
+            <div class="col-4">
+                {{ estimation.user.lastname }}<br>
+                {{ estimation.user.firstname }}<br>
+                0{{ estimation.user.phoneNumber }}<br>
+                {{ estimation.user.email }}
+            </div>
+            <div class="col-2 font-weight-bold">
+                Adresse :<br>
+                Code Postal :<br>
+                Ville :<br>
+                Pays :
+            </div>
+            <div class="col-4">
+                {{ estimation.user.address }}<br>
+                {{ estimation.user.postCode }}<br>
+                {{ estimation.user.city }}<br>
+                France
+            </div>
+        </div>
+
+<p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
+    de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
+    * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.<br>
+    * Je confirme que le téléphone n'a pas été rooté, et n'est pas bloqué (mot de passe, empreinte digitale...).</p>
+
+
+        <div class="row">
+            <div class="col-2 font-weight-bold">
+                Lieu de collecte :<br>
+                Code Collecte :<br>
+            </div>
+            <div class="col-4">
+                Wild Code School - Lille<br>
+                74543829
+            </div>
+            <div class="col-6 font-weight-bold">
+                <span class="bold-text">Le propriétaire du bien</span><br>
+                Date et signature avec la mention "Lu et Approuvé" :
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <img width="100px; margin-top:30px;" src="/images/cachet.png" alt="BipBip Mobile">
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-12 mx-auto text-center form p-4">
+            <p>Passer à l'étape suivante <span class="font-weight-bold">après avoir fait signer le client</span></p>
+            <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
+                <input type="submit" name="submit" class="primary-button" value="Générer le bon de cession">
+            </form>
+        </div>
+    </div>
+</main>
+{%  endblock %}
