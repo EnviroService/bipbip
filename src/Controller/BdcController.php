@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Estimations;
 use App\Entity\User;
 use App\Repository\EstimationsRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,14 +36,16 @@ class BdcController extends AbstractController
     /**
      * @Route("/capture/{id}", name="takePhoto")
      * @param Estimations $estimation
+     * @param UserRepository $user
      * @return Response
      */
     // route to take a photo of the Identity Card
-    public function takePhoto(Estimations $estimation)
+    public function takePhoto(Estimations $estimation, UserRepository $user)
     {
         if (isset($_POST['submit'])) {
             if ($estimation->getUser()) {
-                $user = $estimation->getUser();
+                $user = $this->getUser();
+                dd($user);
             } else {
                 $message = "Cette estimation n'est pas liée à un utilisateur";
                 $this->addFlash('danger', $message);
