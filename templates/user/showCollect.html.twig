@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table class="table">
+    <thead>
+        <td class="jumbotron">Nom d'organisme</td>
+        <td>Adresse</td>
+        <td>Date de collecte</td>
+    </thead>
+    {% for collect in collects %}
+    <tbody>
+        <td><h5>{{ collect.collector.organismName }}</h5></td>
+        <td>{{ collect.collector.organismAddress }}</td>
+        <td>{{ collect.dateCollect.date|date('d-m-Y H:i') }}</td>
+        <td><a class="btn btn-primary"  href="">Participer</a></td>
+    </tbody>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
