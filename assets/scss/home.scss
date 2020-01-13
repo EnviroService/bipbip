@@ -227,11 +227,16 @@
                 margin : auto;
             }
 
-            img {
-                width : 25%;
-                margin : 5%;
-                @media screen and (min-width: 740px) {
-                    width : 15%;
+            a {
+                display : block;
+                width : 15%;
+                margin: 5%;
+
+                img {
+                    width: 100%;
+                    @media screen and (min-width: 740px) {
+                        width: 100%;
+                    }
                 }
             }
         }
