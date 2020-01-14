@@ -45,7 +45,6 @@ class BdcController extends AbstractController
         if (isset($_POST['submit'])) {
             if ($estimation->getUser()) {
                 $user = $this->getUser();
-                dd($user);
             } else {
                 $message = "Cette estimation n'est pas liée à un utilisateur";
                 $this->addFlash('danger', $message);

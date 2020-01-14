@@ -1,6 +1,7 @@
 {% extends 'admin/index.html.twig' %}
 {% block title %}PDF estimation{% endblock %}
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('bdc') }}
 {% endblock %}
 {%  block body %}
