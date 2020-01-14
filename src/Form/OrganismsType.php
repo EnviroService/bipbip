@@ -24,7 +24,6 @@ class OrganismsType extends AbstractType
             ->add('organismPostcode', TextType::class)
             ->add('organismPhone', TelType::class)
             ->add('organismStatus', TextType::class)
-            ->add('createNew', SubmitType::class)
         ;
     }
 

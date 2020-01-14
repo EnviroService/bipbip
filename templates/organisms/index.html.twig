@@ -14,7 +14,7 @@
         <section>
             {% for organism in organisms %}
 
-            <article class="col-2">
+            <article>
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
                     <img title="{{ organism.organismName }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
 
@@ -38,7 +38,7 @@
 
 
 
-        <br><a class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
+        <br><a class="fourth-button" class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
 
 
     </main>

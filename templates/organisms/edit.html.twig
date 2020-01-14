@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
 {% block title %}Edit Organisms{% endblock %}
 
 {% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
     {{ encore_entry_link_tags('editPartner') }}
 {% endblock %}
 
@@ -11,7 +12,7 @@
 
     {{ include('organisms/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="editLink" href="{{ path('organisms_index') }}">Retour à la liste</a>
+    <a class="secondary-button" class="editLink" href="{{ path('organisms_index') }}">Retour à la liste</a>
 
     {{ include('organisms/_delete_form.html.twig') }}
 {% endblock %}
