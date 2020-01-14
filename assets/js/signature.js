@@ -2,6 +2,7 @@ require('bootstrap');
 require('../scss/signature.scss');
 require('jquery');
 
+// eslint-disable-next-line no-lone-blocks
 {
     /** @type {HTMLElement} */
     /** @type {number[]} */ // array types
@@ -24,8 +25,7 @@ require('jquery');
 
 
 class CanvasObject {
-    constructor()
-    {
+    constructor() {
         // Paramètres du canvas
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
@@ -43,8 +43,7 @@ class CanvasObject {
     }
 
     // Events management
-    evenements()
-    {
+    evenements() {
         const self = this;
         // Mouse
         this.canvas.addEventListener('mousedown', (e) => {
@@ -67,19 +66,19 @@ class CanvasObject {
 
         // Stop scrolling (touch)
         document.body.addEventListener('touchstart', (e) => {
-            if (e.target == self.canvas) {
+            if (e.target === self.canvas) {
                 e.preventDefault();
             }
         });
 
         document.body.addEventListener('touchend', (e) => {
-            if (e.target == self.canvas) {
+            if (e.target === self.canvas) {
                 e.preventDefault();
             }
         });
 
         document.body.addEventListener('touchmove', (e) => {
-            if (e.target == self.canvas) {
+            if (e.target === self.canvas) {
                 e.preventDefault();
             }
         });
@@ -119,8 +118,7 @@ class CanvasObject {
 
     // Give mouse coordinates
     // eslint-disable-next-line consistent-return
-    getMposition(mouseEvent)
-    {
+    getMposition(mouseEvent) {
         if (this.draw) {
             const oRect = this.canvas.getBoundingClientRect();
             return {
@@ -131,8 +129,7 @@ class CanvasObject {
     }
 
     // Give coordinates of pad
-    getTposition(touchEvent)
-    {
+    getTposition(touchEvent) {
         const oRect = this.canvas.getBoundingClientRect();
         return {
             x: touchEvent.touches[0].clientX - oRect.left,
@@ -141,8 +138,7 @@ class CanvasObject {
     }
 
     // Drawing of canvas
-    canvasResult()
-    {
+    canvasResult() {
         if (this.draw) {
             this.ctx.beginPath();
             this.ctx.moveTo(this.lastPosition.x, this.lastPosition.y);
@@ -153,8 +149,7 @@ class CanvasObject {
     }
 
     // Clear canvas
-    clearCanvas()
-    {
+    clearCanvas() {
         this.canvas.width = this.canvas.width;
         this.ctx.lineWidth = 3;
     }
