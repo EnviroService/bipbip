@@ -13,15 +13,33 @@
     {% block header %}
         <header>
             <nav id="menu">
-                <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('home') }}" title="Accueil">Accueil</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Qui sommes-nous ?">Qui sommes-nous ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('organisms_index') }}" title="Nos partenaires">Nos partenaires</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Nous contacter">Contact</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('new_estimation') }}" title="Estime ton mobile">Estime ton mobile</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Description Bip Bip">Bip Bip, qu'est ce que c'est ?</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Estimer son téléphone">Estimer mon tel</a></li>
+                    {% if app.user and app.user.roles == 'ROLE_USER' %}
+                        <li class="primary-title primary-title-menu"><a href="#" title="Revends ton téléphone">Revendre ton tel</a></li>
+                    {% endif %}
+                    <li class="primary-title primary-title-menu"><a href="#" title="Acheter un téléphone">Acheter un tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Les points de collecte">Les points de collecte</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Organiser une collecte">Organiser une collecte</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Les bons plans">Les bons plans</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Foire aux questions">FAQ</a></li>
+                    <li class="primary-title primary-title-menu"><a href="#" title="Contacte-nous">Contacte-nous</a></li>
                 </ul>
+                <div class="user-infos-menu">
+                    {% if app.user %}
+                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                        {% if app.user.roles == 'ROLE_USER' %}
+                            <a href="#" title="Page profil" class="fourth-button">Mon profil</a>
+                        {% else %}
+                            <a href="#" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
+                        {% endif %}
+                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                    {% endif %}
+                </div>
             </nav>
             <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
             <div class="circle-buttons">
@@ -29,9 +47,13 @@
                     <img src="/images/menu-burger.png" alt="menu burger" />
                     <p>Menu</p>
                 </div>
-                <div id="faq-button">
-                    <a href="{{ path('show_faq') }}">FAQ</a>
-                </div>
+
+                <a href="{{ path('show_faq') }}">
+                    <div id="faq-button">
+                        <p>FAQ</p>
+                    </div>
+                </a>
+
             </div>
         </header>
         {% endblock %}
@@ -45,9 +67,6 @@
             <ul>
                 <li><a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">Qui sommes-nous ?</a></li>
                 <li><a href="#" title="Revendre ton tèl">Revendre ton tèl</a></li>
-                <li><a href="#" title="Offre étudiants">Offre étudiants</a></li>
-                <li><a href="{{ path('recrute') }}" title="On recrute">On recrute</a></li>
-                <li><a href="#" title="Presse Kit">Presse Kit</a></li>
                 <li><a href="#" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
                 <li><a href="#" title="Collectes et évènements">Collectes et évènements</a></li>
                 <li><a href="{{ path('show_faq') }}" title="FAQ">Besoin d'aide ?</a></li>
@@ -63,6 +82,7 @@
                     <a href="#" title="Cookies">Cookies</a>
                      -
                     <a href="#" title="Mentions Légales">Mentions Légales</a>
+                    )
                 </li>
             </ul>
             <div class="social-networks">

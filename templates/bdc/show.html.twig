@@ -1,81 +1,69 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 {% block title %}PDF estimation{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
-    <style>
-        .bold-text {
-            font-weight: bold;
-        }
-        table {
-            width: 100%;
-            padding-top: 5px;
-        }
-        td {
-            vertical-align:top;
-        }
-    </style>
+    {{ parent() }}
+    {{ encore_entry_link_tags('bdc') }}
 {% endblock %}
-{%  block header %}{%  endblock %}
-
 {%  block body %}
-<main style="font-family: 'co-headline', Arial sans-serif;">
-    <table>
-        <tr>
-            <td style="width:30%;">
-                <img width="200px; margin-top:30px;" src="images/logo-bipbip.png" alt="BipBip Mobile">
-            </td>
-            <td style="width:70%; text-align: center">
+<main class="container">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1 class="primary-title">Etape 2 : signature du client</h1>
+    <div class="row">
+            <div class="col-3">
+                <img width="200px; margin-top:30px;" src="/images/logo-bipbip.png" alt="BipBip Mobile">
+            </div>
+            <div class="col-9">
                 <h1 style="font-size: 1.7rem; text-align: center;
                 text-transform: uppercase;">Bon de cession de propriété</h1>
                 <p class="bold-text">Signature obligatoire par les 2 parties</p>
                 <p>1 exemplaire pour Enviro Services France<br>
                     et 1 exemplaire à envoyer au client par mail sous les 48h</p>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width:60%;">
+            </div>
+    </div>
+            
+        <div class="row">
+            <div class="col-7">
                 <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
                 Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
                 <p>IMEI : {{ IMEI }}</p>
-            </td>
-            <td style="width:40%; padding-left:20px;">
+                <p class="barcode">*{{ IMEI }}*</p>
+            </div>
+            <div class="col-5">
                 <p>ENVIRO SERVICES FRANCE<br>
                 391 avenue Clément Ader<br>
                 59118 WAMBRECHIES<br>
                 Téléphone : 03 20 00 00 00</p>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
 
-    <table>
-        <tr>
-            <td style="width:40%" class="bold-text">
+        <div class="row">
+            <div class="col-3 font-weight-bold">
                 N° Client :<br>
                 Type d'appareil :<br>
                 Marque :<br>
                 Modèle :<br>
                 Montant de la reprise :<br>
                 Paiement immédiat :
-            </td>
-            <td style="width:60%; padding-left:20px;">
+            </div>
+            <div class="col-9">
                 {{ estimation.user.id }}<br>
                 MOBILE<br>
                 {{estimation.brand}}<br>
                 {{ estimation.model }} {{ estimation.capacity }} Go<br>
                 {{ estimation.estimatedPrice }} €<br>
                 Oui
-            </td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <td style="width:20%" class="bold-text">
+            </div>
+        </div>
+    <p></p>
+        <div class="row">
+            <div class="col-3 font-weight-bold">
                 Diagnostic :
-            </td>
-            <td style="width:80%; padding-left:20px;">
+            </div>
+            <div class="col-9">
                 Votre téléphone a-t-il été immergé dans l'eau ?
                 {% if estimation.liquidDamage > 0 %}
                 OUI
@@ -110,73 +98,70 @@
                 {% else %}
                     OUI
                 {%  endif %}
-            </td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <td style="width:20%" class="bold-text">
+            </div>
+        </div>
+    <p></p>
+        <div class="row">
+            <div class="col-2 font-weight-bold">
                 Nom :<br>
                 Prénom :<br>
                 Numéro de tél :<br>
                 Email :<br>
-            </td>
-            <td style="width:30%; padding-left:20px;">
+            </div>
+            <div class="col-4">
                 {{ estimation.user.lastname }}<br>
                 {{ estimation.user.firstname }}<br>
                 0{{ estimation.user.phoneNumber }}<br>
                 {{ estimation.user.email }}
-            </td>
-            <td style="width:20%" class="bold-text">
+            </div>
+            <div class="col-2 font-weight-bold">
                 Adresse :<br>
                 Code Postal :<br>
                 Ville :<br>
                 Pays :
-            </td>
-            <td style="width:30%; padding-left:20px;">
+            </div>
+            <div class="col-4">
                 {{ estimation.user.address }}<br>
                 {{ estimation.user.postCode }}<br>
                 {{ estimation.user.city }}<br>
                 France
-            </td>
-        </tr>
-    </table>
-
-<p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
-    de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
-    * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.</p>
-
-    <table>
-        <tr>
-            <td style="width:20%" class="bold-text">
+            </div>
+        </div>
+    <p></p>
+    <p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
+        de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
+        * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.<br>
+        * Je confirme que le téléphone n'a pas été rooté, et n'est pas bloqué (mot de passe, empreinte digitale...).</p>
+        <div class="row">
+            <div class="col-2 font-weight-bold">
                 Lieu de collecte :<br>
                 Code Collecte :<br>
-                Code Association :
-            </td>
-            <td style="width:30%; padding-left:20px;">
+            </div>
+            <div class="col-4">
                 Wild Code School - Lille<br>
-                74543829<br>
-                L745
-            </td>
-            <td style="width:50%;">
+                74543829
+            </div>
+            <div class="col-6 font-weight-bold">
                 <span class="bold-text">Le propriétaire du bien</span><br>
                 Date et signature avec la mention "Lu et Approuvé" :
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
 
-    <table style="height:160px;">
-        <tr>
-            <td style="width:50%; border:2px solid black; text-align:center;">
-                <img width="100px; margin-top:30px;" src="images/cachet.png" alt="BipBip Mobile">
-            </td>
-            <td style="width:50%; border:2px solid black;">
-
-            </td>
-        </tr>
-    </table>
-
+        <div class="row">
+            <div class="col-6">
+                <img width="100px; margin-top:30px;" src="/images/cachet.png" alt="BipBip Mobile">
+            </div>
+            <div class="col-6">
+                <p>lu et approuvé</p>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-12 mx-auto text-center form p-4">
+            <p>Passer à l'étape suivante <span class="font-weight-bold">après avoir fait signer le client</span></p>
+            <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
+                <input type="submit" name="submit" class="primary-button" value="Générer le bon de cession">
+            </form>
+        </div>
+    </div>
 </main>
 {%  endblock %}
-{% block footer %}{%  endblock %}

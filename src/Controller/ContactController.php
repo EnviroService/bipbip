@@ -29,18 +29,32 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
 
-            $email = (new Email())
+            // mail for bipbip
+            $emailBip = (new Email())
                 ->from(new Address($contactFormData->getEmail(), $contactFormData
                     ->getFirstname() . ' ' . $contactFormData->getLastname()))
                 ->to(new Address('jyaire@gmail.com', 'BipBip Mobile'))
                 ->replyTo($contactFormData->getEmail())
-                ->subject('Nouveau message reçu depuis l\'application BipBip Mobile')
+                ->subject($contactFormData->getSubject())
                 ->html($this->renderView(
                     'contact/sentmail.html.twig',
                     array('form' => $contactFormData)
                 ));
 
-            $mailer->send($email);
+            // send a copie to sender
+            $emailExp = (new Email())
+                ->from(new Address('nepasrepondre@bipbipmobile', 'BipBip Mobile'))
+                ->to(new Address($contactFormData->getEmail(), $contactFormData
+                        ->getFirstname() . ' ' . $contactFormData->getLastname()))
+                ->replyTo('nepasrepondre@bipbipmobile')
+                ->subject('Nouveau message reçu depuis l\'application BipBip Mobile')
+                ->html($this->renderView(
+                    'contact/sentmailexp.html.twig',
+                    array('form' => $contactFormData)
+                ));
+
+            $mailer->send($emailBip);
+            $mailer->send($emailExp);
 
             $this->addFlash('success', 'Ton message a été envoyé, nous te répondrons rapidement !');
 
