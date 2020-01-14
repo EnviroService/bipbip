@@ -50,6 +50,8 @@ class CollectsController extends AbstractController
 
     /**
      * @Route("/{id}", name="collects_show", methods={"GET"})
+     * @param Collects $collect
+     * @return Response
      */
     public function show(Collects $collect): Response
     {

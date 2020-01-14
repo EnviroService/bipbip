@@ -61,7 +61,6 @@ class UserController extends AbstractController
     public function searchCollect(CollectsRepository $collectsRepository)
     {
         $repo = $collectsRepository->findAll();
-        //dd($repo);
 
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo
