@@ -89,7 +89,7 @@
         }
     }
 
-.collecters {
+.organisms {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,7 +107,7 @@
         font-weight: bold;
         }
 
-    .collecterActionsLister{
+    .organismActionsLister{
         display : none;
         position: absolute;
         bottom : -72%;
@@ -118,7 +118,7 @@
         color: $secondary-color;
         }
 
-    .collecterActionsLister.displayed{
+    .organismActionsLister.displayed{
         display: block;
         width: 100%;
         height: 50px;
@@ -128,7 +128,7 @@
         font-size: 1.3rem;
         }
 
-    .collecterActionsAdd{
+    .organismActionsAdd{
         display : none;
         position: absolute;
         bottom: -143%;
@@ -139,7 +139,7 @@
         color: $secondary-color;
         }
 
-    .collecterActionsAdd.displayed{
+    .organismActionsAdd.displayed{
         display: block;
         width: 100%;
         height: 50px;

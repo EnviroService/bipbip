@@ -13,16 +13,16 @@ require('../scss/admin.scss');
 // any CSS you require will output into a single css file (app.css in this case)
 require('bootstrap');
 
-const collecters = document.querySelectorAll('.collecters');
-const collecterActionsLister = document.querySelectorAll('.collecterActionsLister');
-const collecterActionsAdd = document.querySelectorAll('.collecterActionsAdd');
+const organisms = document.querySelectorAll('.organisms');
+const organismActionsLister = document.querySelectorAll('.organismActionsLister');
+const organismActionsAdd = document.querySelectorAll('.organismActionsAdd');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
-for (let number = 0; number < collecters.length; number++) {
-    collecters[number].addEventListener('click', () => {
-        collecterActionsLister[number].classList.toggle('displayed');
-        collecterActionsAdd[number].classList.toggle('displayed');
+for (let number = 0; number < organisms.length; number++) {
+    organisms[number].addEventListener('click', () => {
+        organismActionsLister[number].classList.toggle('displayed');
+        organismActionsAdd[number].classList.toggle('displayed');
     });
 }
 
