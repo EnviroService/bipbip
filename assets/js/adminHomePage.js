@@ -14,15 +14,19 @@ require('../scss/admin.scss');
 require('bootstrap');
 
 const organisms = document.querySelectorAll('.organisms');
-const organismsActionsLister = document.querySelectorAll('.organismsActionsLister');
+const organismsLister = document.querySelectorAll('.organismsLister');
 const organismsActionsAdd = document.querySelectorAll('.organismsActionsAdd');
+const organismsListerCollector = document.querySelectorAll('.organismsListerCollector');
+const organismsAddCollector = document.querySelectorAll('.organismsAddCollector');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
 for (let number = 0; number < organisms.length; number++) {
     organisms[number].addEventListener('click', () => {
-        organismsActionsLister[number].classList.toggle('displayed');
+        organismsLister[number].classList.toggle('displayed');
         organismsActionsAdd[number].classList.toggle('displayed');
+        organismsListerCollector[number].classList.toggle('displayed');
+        organismsAddCollector[number].classList.toggle('displayed');
     });
 }
 
@@ -32,7 +36,7 @@ const officialDocumentsCi = document.querySelectorAll('.officialDocumentsCi');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
-for (let number = 0; number < collecters.length; number++) {
+for (let number = 0; number < officialDocuments.length; number++) {
     officialDocuments[number].addEventListener('click', () => {
         officialDocumentsBc[number].classList.toggle('displayed');
         officialDocumentsCi[number].classList.toggle('displayed');

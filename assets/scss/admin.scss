@@ -107,7 +107,7 @@
         font-weight: bold;
         }
 
-    .organismsActionsLister{
+    .organismsLister{
         display : none;
         position: absolute;
         bottom : -72%;
@@ -118,7 +118,7 @@
         color: $secondary-color;
         }
 
-    .organismsActionsLister.displayed{
+    .organismsLister.displayed{
         display: block;
         width: 100%;
         height: 50px;
@@ -149,11 +149,56 @@
         box-shadow: inset 2px 0 10px rgb(223,216,222);
         color: $secondary-color;
         font-size: 1.3rem;
-        font-size: 1.3rem;
         text-align: center;
         padding: 10px;
         }
+
+    .organismsListerCollector{
+        display : none;
+        position: absolute;
+        bottom: -214%;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
     }
+
+    .organismsListerCollector.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .organismsAddCollector{
+        display : none;
+        position: absolute;
+        bottom: -286%;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+    }
+
+    .organismsAddCollector.displayed{
+        display: block;
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        box-shadow: inset 2px 0 10px rgb(223,216,222);
+        color: $secondary-color;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
+    }
+}
 
 .officialDocuments{
     display: flex;
