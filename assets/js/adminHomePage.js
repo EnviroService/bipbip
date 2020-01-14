@@ -14,15 +14,15 @@ require('../scss/admin.scss');
 require('bootstrap');
 
 const organisms = document.querySelectorAll('.organisms');
-const organismActionsLister = document.querySelectorAll('.organismActionsLister');
-const organismActionsAdd = document.querySelectorAll('.organismActionsAdd');
+const organismsActionsLister = document.querySelectorAll('.organismsActionsLister');
+const organismsActionsAdd = document.querySelectorAll('.organismsActionsAdd');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
 for (let number = 0; number < organisms.length; number++) {
     organisms[number].addEventListener('click', () => {
-        organismActionsLister[number].classList.toggle('displayed');
-        organismActionsAdd[number].classList.toggle('displayed');
+        organismsActionsLister[number].classList.toggle('displayed');
+        organismsActionsAdd[number].classList.toggle('displayed');
     });
 }
 
