@@ -6,7 +6,7 @@ namespace App\Controller;
 use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\EstimationsRepository;
+use App\Repository\CollectsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -50,6 +50,20 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/showCollects", name="show_collect")
+     * @param CollectsRepository $collectsRepository
+     * @return Response
+     */
+    public function searchCollect(CollectsRepository $collectsRepository)
+    {
+        $repo = $collectsRepository->findAll();
+
+        return $this->render('user/showCollect.html.twig', [
+            'collects' => $repo
         ]);
     }
 }
