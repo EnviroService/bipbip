@@ -20,15 +20,17 @@ const $ = require('jquery');
 
 
 // BURGER MENU
+if (document.querySelector('#menu-burger') !== null) {
+    const menuBurger = document.querySelector('#menu-burger');
+    const menu = document.querySelector('#menu');
+    const closeButton = document.querySelector('.close-button');
 
-const menuBurger = document.querySelector('#menu-burger');
-const menu = document.querySelector('#menu');
-const closeButton = document.querySelector('.close-button');
+    menuBurger.addEventListener('click', () => {
+        menu.classList.toggle('displayed');
+    });
 
-menuBurger.addEventListener('click', () => {
-    menu.classList.toggle('displayed');
-});
+    closeButton.addEventListener('click', () => {
+        menu.classList.toggle('displayed');
+    });
+};
 
-closeButton.addEventListener('click', () => {
-    menu.classList.toggle('displayed');
-});

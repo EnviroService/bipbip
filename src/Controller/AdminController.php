@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,9 +31,10 @@ class AdminController extends AbstractController
      * @Route("/admin", name="searchBar")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param UserRepository $userRepository
      * @return Response
      */
-    public function searchBar(Request $request, EntityManagerInterface $em): Response
+    public function searchBar(Request $request, EntityManagerInterface $em, userRepository $userRepository): Response
     {
             $users= $em->getRepository(User::class)->findAll();
             $result = [];

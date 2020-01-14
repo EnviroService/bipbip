@@ -42,11 +42,10 @@ for (let number = 0; number < collecters.length; number++) {
 
 $(document).ready(function () {
     $('#search-user').keyup(function () {
-        console.log(3)
         // rafaraichir pour avoir un blanc lors de la frappe
         $('#users').html('');
         // recuperation des données
-        var users = $(this).val();
+        let users = $(this).val();
         // eslint-disable-next-line eqeqeq
         if (users !== "") {
             // animation et recuperation des données // rafraichir un bout de page
@@ -59,11 +58,9 @@ $(document).ready(function () {
                 // data valeur par def d'ajax données recup du resultat erreor ou succes.
                 success: function (data) {
                     if (data !== "") {
-                        console.log(data)
                         // afficher les données $data
                         $('#resultSearch').append(data)
                     } else {
-                        console.log(2)
                         //meme chose pour recup un element d'un id
                         document.getElementById('resultSearch').innerHTML="<div>Aucunes recherches trouvées</div>"
                     }
