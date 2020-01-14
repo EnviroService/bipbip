@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Form\UserType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Exception;
@@ -14,23 +14,39 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-/**
- * @Route("/admin", name="admin")
- */
-
-class AdminController extends AbstractController
+class SecurityController extends AbstractController
 {
     /**
-     * @Route("/home", name="home_admin")
+     * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
-    public function show(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('admin/index.html.twig');
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     /**
-     * @Route("/collector/register", name="register_collector")
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+    }
+
+    /**
+     * @Route("/register", name="app_register")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
@@ -38,7 +54,7 @@ class AdminController extends AbstractController
      * @return Response|null
      * @throws Exception
      */
-    public function registerCollector(
+    public function registerUser(
         Request $request,
         UserPasswordEncoderInterface $passwordEncoder,
         GuardAuthenticatorHandler $guardHandler,
@@ -49,7 +65,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles(['ROLE_COLLECTOR']);
+            $user->setRoles(['ROLE_USER']);
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
             $user->setPassword(
@@ -63,10 +79,17 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('adminhome_admin');
+            $this->addFlash('success', 'Compte créé !');
+
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
         }
 
-        return $this->render('admin/register_collector.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

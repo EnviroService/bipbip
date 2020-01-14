@@ -118,6 +118,27 @@ header{
                 }
             }
         }
+
+        .user-infos-menu{
+            text-align: center;
+
+            h3{
+                color : $primary-color;
+            }
+
+            a{
+                display : block;
+            }
+
+            .disconnection{
+                color : darkred;
+            }
+
+            .connect{
+                color : $primary-color;
+                font-weight: 500;
+            }
+        }
     }
 
     #menu.displayed{

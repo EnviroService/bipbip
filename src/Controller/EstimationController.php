@@ -7,8 +7,10 @@ use App\Entity\Estimations;
 use App\Entity\Phones;
 use App\Entity\User;
 use App\Form\EstimationType;
+use App\Form\RegistrationFormType;
 use App\Repository\EstimationsRepository;
 use App\Repository\PhonesRepository;
+use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,6 +19,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
  * Class EstimationController
@@ -191,6 +195,53 @@ class EstimationController extends AbstractController
             "capacity" => $capacity,
             "phone" => $phone,
             "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/user/register/{estimation}", name="estimation_register_user")
+     * @param Estimations $estimation
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $authenticator
+     * @return Response|null
+     * @throws \Exception
+     */
+    public function registerUser(
+        Estimations $estimation,
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder,
+        GuardAuthenticatorHandler $guardHandler,
+        LoginFormAuthenticator $authenticator
+    ) {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninDate(new DateTime('now'));
+            $user->addEstimation($estimation);
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
         ]);
     }
 }
