@@ -7,8 +7,14 @@
 <header>
     <div class="card-id">
         <ul>
-            <li>Identifiant</li>
-            <li>Role</li>
+            <li>{{ app.user.firstname }} {{ app.user.lastname }}</li>
+            <li>{% for role in app.user.roles|slice(0,1) %}
+                {% if role == 'ROLE_ADMIN' %}
+                Administrateur
+                {% else %}
+                Collecteur
+                {% endif %}
+            {% endfor %}</li>
             <li>{{"now"|date('d/m/Y')}}</li>
         </ul>
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
