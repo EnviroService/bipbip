@@ -89,7 +89,7 @@
         }
     }
 
-.organisms {
+.organisms{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +100,7 @@
     box-shadow: inset 2px 0 10px rgb(223, 216, 222);
     background-color: $secondary-color;
 
-    a {
+    a{
         display: block;
         text-decoration: none;
         color: white;
@@ -126,6 +126,8 @@
         box-shadow: inset 2px 0 10px rgb(223,216,222);
         color: $secondary-color;
         font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
         }
 
     .organismActionsAdd{
@@ -147,6 +149,9 @@
         box-shadow: inset 2px 0 10px rgb(223,216,222);
         color: $secondary-color;
         font-size: 1.3rem;
+        font-size: 1.3rem;
+        text-align: center;
+        padding: 10px;
         }
     }
 
