@@ -141,7 +141,7 @@
                 justify-content : center;
 
                 img{
-                    width : 15%;
+                    width : 70%;
                     margin : 7% 4% 3% 4%;
                 }
             }
@@ -227,11 +227,16 @@
                 margin : auto;
             }
 
-            img {
-                width : 25%;
-                margin : 5%;
-                @media screen and (min-width: 740px) {
-                    width : 15%;
+            a {
+                display : block;
+                width : 15%;
+                margin: 5%;
+
+                img {
+                    width: 100%;
+                    @media screen and (min-width: 740px) {
+                        width: 100%;
+                    }
                 }
             }
         }

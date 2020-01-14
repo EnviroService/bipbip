@@ -13,7 +13,6 @@
     {% block header %}
         <header>
             <nav id="menu">
-                <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path('home') }}" title="Accueil">Accueil</a></li>
@@ -29,9 +28,13 @@
                     <img src="/images/menu-burger.png" alt="menu burger" />
                     <p>Menu</p>
                 </div>
-                <div id="faq-button">
-                    <a href="{{ path('show_faq') }}">FAQ</a>
-                </div>
+
+                <a href="{{ path('show_faq') }}">
+                    <div id="faq-button">
+                        <p>FAQ</p>
+                    </div>
+                </a>
+
             </div>
         </header>
         {% endblock %}
@@ -63,6 +66,7 @@
                     <a href="#" title="Cookies">Cookies</a>
                      -
                     <a href="#" title="Mentions Légales">Mentions Légales</a>
+                    )
                 </li>
             </ul>
             <div class="social-networks">
