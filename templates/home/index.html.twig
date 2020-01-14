@@ -18,9 +18,8 @@
 
         {{ include('/home/slide.html.twig') }}
 
+        <h2 class="primary-title">Cash - Rapide - Rentable</h2>
         <section class="steps">
-            <h2 class="primary-title">Cash - Rapide - Rentable</h2>
-
             <article>
                 <div id="step1" class="step">
                     <img class="background-pic" src="/images/etape1.png" alt="c'est l'étape un ! ">
@@ -30,10 +29,10 @@
                     </div>
                     <p>Découvre la valeur de ton tèl</p>
                 </div>
-                <a href="#" title="Lien vers l'application d'estimation" class="third-button">Télécharge l'appli Bipbip</a>
+                <p class="third-button">Télécharge l'appli Bipbip</p>
                 <div id="links-apps">
-                    <img src="/images/apple-store-mini.png" class="link-app">
-                    <img src="/images/google-play-mini.png" class="link-app">
+                    <a href="#"><img src="/images/apple-store-mini.png" class="link-app"></a>
+                    <a href="#"><img src="/images/google-play-mini.png" class="link-app"></a>
                 </div>
                 <p>Si ton tèl est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
             </article>
@@ -55,7 +54,7 @@
                     <li>Au bipbip bus</li>
                     <li>Tu en veux plus...</li>
                 </ul>
-                <p><a href="#" title="lien vers la page contact">Organise une collecte</a></p>
+                <p><a href="{{ path('add_message') }}" title="lien vers la page contact">Organise une collecte</a></p>
             </article>
 
             <article>
@@ -67,7 +66,11 @@
                     </div>
                     <p>Reçois ton argent instantanément</p>
                 </div>
-                <a href="#" title="Lien vers l'application d'estimation" class="secondary-button">Télécharge l'appli Pumpkin</a>
+                <p class="secondary-button">Télécharge l'appli Pumpkin</p>
+                <div id="links-apps">
+                    <a target=_blank href="https://apps.apple.com/fr/app/pumpkin-remboursement-facile/id904976887"><img src="/images/apple-store-mini.png" class="link-app"></a>
+                    <a target=_blank href="https://play.google.com/store/apps/details?id=com.pumpkin.pumpkin&hl=fr"><img src="/images/google-play-mini.png" class="link-app"></a>
+                </div>
             </article>
         </section>
 
@@ -81,15 +84,20 @@
             <h2 class="primary-title">Ils nous font confiance</h2>
             <h3>+ de 15 partenaires nous font confiance</h3>
             <article>
-                <img src="/images/ilevia-logo.png" alt=""/>
-                <img src="/images/jules-logo.png" alt=""/>
-                <img src="/images/yuka-logo.png" alt=""/>
+                <a><img src="/images/ilevia-logo.png" alt=""/></a>
+                <a><img src="/images/jules-logo.png" alt=""/></a>
+                <a><img src="/images/yuka-logo.png" alt=""/></a>
             </article>
-            <a href="#" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
+            <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
         </section>
 
         <section class="contact">
             <h2 class="primary-title">Contact</h2>
+            {#{{ render(controller(
+                'App\\Controller\\ContactController::add'
+            )) }}
+            {{ include('contact/_form.html.twig') }}#}
+
             <a href="{{ path('add_message') }}" title="Lien vers la page contact">Contacte nous</a>
         </section>
     </main>

@@ -28,7 +28,9 @@
         "symfony/validator": "4.4.*",
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "4.3.*"
+        "symfony/yaml": "4.3.*",
+        "twig/extensions": "^1.5",
+        "ext-intl": "*"
     },
     "require-dev": {
         "phpro/grumphp": "^0.15.2",

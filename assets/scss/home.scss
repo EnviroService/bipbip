@@ -8,6 +8,14 @@
         text-transform : uppercase;
         line-height: 1.5em;
         width : 80%;
+        @media screen and (min-width: 740px) {
+            width : 50%;
+            font-size: 1.5rem;
+        }
+        @media screen and (min-width: 1025px) {
+            width : 50%;
+            font-size: 1.7rem;
+        }
 
         .orange-font{
             color : $primary-color;
@@ -26,19 +34,44 @@
 
     /* STEPS */
     .steps {
+        display : flex;
+        flex-direction : column;
+        justify-content : flex-start;
+        align-items : center;
+        @media screen and (min-width: 740px){
+            display : flex;
+            flex-direction : row;
+            justify-content:  space-around;
+            align-items: flex-start;
+            width : 80%;
+            margin : auto;
+        }
 
         article{
+            width : 300px;
+            @media screen and (min-width: 1025px){
+                width : 350px;
+            }
+
             .step{
-                width : 380px;
-                height : 380px;
+                width : 300px;
+                height : 300px;
                 max-width: 100%;
                 margin : 0 auto;
-                padding : 5% 0;
+                padding : 12% 0;
                 display : flex;
                 flex-flow : column wrap;
                 justify-content: space-around;
                 align-items: center;
                 position: relative;
+                @media screen and (min-width: 740px){
+                    width : 250px;
+                    height : 250px;
+                }
+                @media screen and (min-width: 1025px){
+                    width : 350px;
+                    height : 350px;
+                }
 
                 .background-pic{
                     position: absolute;
@@ -49,8 +82,8 @@
                 }
 
                 .step-logo{
-                    margin-top : 30px;
-                    margin-right: 20px;
+                    width : 18%;
+                    margin-right : 10px;
                 }
 
                 div{
@@ -59,26 +92,47 @@
                     -moz-transform:skew(-30deg);
                     -o-transform:skew(-30deg);
                     transform:skew(-30deg);
-                    padding : 10px 25px;
-                    width : 200px;
+                    margin-right : 10px;
+                    margin-bottom : 8px;
+                    width : 150px;
                     vertical-align: center;
-                    margin-right: 20px;
+                    @media screen and (min-width: 740px) {
+                        width : 130px;
+                    }
+                    @media screen and (min-width: 1025px) {
+                        width : 180px;
+                        margin-bottom : 15px;
+                    }
 
                     h3{
-                        font-size : 1.3rem;
+                        font-size : 1.1rem;
                         font-weight: bold;
                         color : white;
+                        margin : 0;
+                        padding : 8px 15px;
                         text-align : center;
                         transform:skew(30deg);
+                        @media screen and (min-width: 740px) {
+                            font-size: 1rem;
+                        }
+                        @media screen and (min-width: 1025px) {
+                            padding : 10px 15px;
+                            font-size : 1.1rem;
+                        }
                     }
                 }
 
                 p{
                     text-transform : uppercase;
-                    font-size : 1rem;
+                    font-size : 0.8rem;
                     text-align : center;
-                    padding-bottom : 75px;
-                    margin: 0 20px 0 0;
+                    margin : 0 10px 25px 0;
+                    @media screen and (min-width: 740px) {
+                        font-size: 0.7rem;
+                    }
+                    @media screen and (min-width: 1025px) {
+                        font-size: 1rem;
+                    }
                 }
             }
 
@@ -87,7 +141,7 @@
                 justify-content : center;
 
                 img{
-                    width : 13%;
+                    width : 70%;
                     margin : 7% 4% 3% 4%;
                 }
             }
@@ -110,7 +164,6 @@
             }
 
             ul{
-                list-style-type: disc;
                 text-align: center;
                 line-height: 1.5em;
             }
@@ -123,6 +176,11 @@
             }
 
             #step3{
+                .step-logo{
+                    width : 25%;
+                    margin-top : 15px;
+                }
+
                 div{
                     background-color: $secondary-color;
                 }
@@ -137,6 +195,14 @@
             text-align : center;
             margin : 5%;
             text-decoration: underline;
+            @media screen and (min-width: 740px) {
+                font-size: 1.1rem;
+                margin : 3%;
+            }
+
+            &:hover{
+                color : $primary-color;
+            }
         }
     }
 
@@ -156,10 +222,22 @@
             flex-wrap : wrap;
             margin-bottom : 6%;
             margin-top : 6%;
+            @media screen and (min-width: 740px) {
+                width : 80%;
+                margin : auto;
+            }
 
-            img {
-                width : 25%;
-                margin : 5%;
+            a {
+                display : block;
+                width : 15%;
+                margin: 5%;
+
+                img {
+                    width: 100%;
+                    @media screen and (min-width: 740px) {
+                        width: 100%;
+                    }
+                }
             }
         }
     }

@@ -5,15 +5,22 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\Phones;
+use App\Entity\User;
 use App\Form\EstimationType;
+use App\Form\RegistrationFormType;
+use App\Repository\EstimationsRepository;
 use App\Repository\PhonesRepository;
+use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
  * Class EstimationController
@@ -91,8 +98,8 @@ class EstimationController extends AbstractController
      * @param string $brand
      * @param string $model
      * @param int $capacity
-     * @param EntityManagerInterface $em
      * @param PhonesRepository $phone
+     * @param EntityManagerInterface $em
      * @return Response
      * @throws \Exception
      */
@@ -101,8 +108,8 @@ class EstimationController extends AbstractController
         string $brand,
         string $model,
         int $capacity,
-        EntityManagerInterface $em,
-        PhonesRepository $phone
+        PhonesRepository $phone,
+        EntityManagerInterface $em
     ): Response {
         $phone = $phone->findOneBy(['model' => $model,
             'capacity' => $capacity
@@ -113,58 +120,74 @@ class EstimationController extends AbstractController
         $casingCracks = $phone->getPriceCasingCracks();
         $bateryPrice = $phone->getPriceBattery();
         $buttonPrice = $phone->getPriceButtons();
+
         $estimation = new Estimations();
         $form = $this->createForm(EstimationType::class, $estimation, ['method' => Request::METHOD_POST]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $estimation->setEstimationDate(new DateTime('now'));
-            $estimation->setIsCollected(false);
-            $estimation->setBrand($brand);
-            $estimation->setModel($model);
-            $estimation->setCapacity($capacity);
-            $estimation->setColor("all");
-            $estimation->setMaxPrice($maxPrice);
-            $estimation->setEstimatedPrice($maxPrice);
-            $estimation->setIsValidatedPayment(false);
-            $estimation->setIsValidatedSignature(false);
+            $estimation->setEstimationDate(new DateTime('now'))
+                       ->setIsCollected(false)
+                       ->setBrand($brand)
+                       ->setModel($model)
+                       ->setCapacity($capacity)
+                       ->setColor("all")
+                       ->setMaxPrice($maxPrice)
+                       ->setIsValidatedPayment(false)
+                       ->setIsValidatedSignature(false);
+
+            $estimated = $maxPrice;
 
             if ($form['liquid_damage']->getData() === "1") {
                 $estimation->setLiquidDamage($liquidDamage);
+                $estimated -= $liquidDamage;
             } else {
                 $estimation->setLiquidDamage(0);
             }
 
             if ($form['screenCracks']->getData() === "1") {
                 $estimation->setScreenCracks($screenCracks);
+                $estimated -= $screenCracks;
             } else {
                 $estimation->setScreenCracks(0);
             }
 
             if ($form['casingCracks']->getData() === "1") {
                 $estimation->setCasingCracks($casingCracks);
+                $estimated -= $casingCracks;
             } else {
                 $estimation->setCasingCracks(0);
             }
 
             if ($form['batteryCracks']->getData() === "1") {
                 $estimation->setBatteryCracks($bateryPrice);
+                $estimated -= $bateryPrice;
             } else {
                 $estimation->setBatteryCracks(0);
             }
 
             if ($form['buttonCracks']->getData() === "1") {
                 $estimation->setButtonCracks($buttonPrice);
+                $estimated -= $buttonPrice;
             } else {
                 $estimation->setButtonCracks(0);
             }
-
+            $message = "";
+            if ($estimated < 1) {
+                $estimated = 1;
+                $message = "Votre téléphone a perdu trop de valeur, 
+                mais nous pouvons vous le reprendre $estimated euros symbolique";
+            }
+            $estimation->setEstimatedPrice($estimated);
             $em->persist($estimation);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->render('estimation/final_price.html.twig', [
+                'estimation' => $estimation,
+                'phone' => $phone,
+                'message' => $message
+            ]);
         }
-
 
         return $this->render("estimation/quest.html.twig", [
             "model" => $model,
@@ -172,6 +195,53 @@ class EstimationController extends AbstractController
             "capacity" => $capacity,
             "phone" => $phone,
             "form" => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/user/register/{estimation}", name="estimation_register_user")
+     * @param Estimations $estimation
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param GuardAuthenticatorHandler $guardHandler
+     * @param LoginFormAuthenticator $authenticator
+     * @return Response|null
+     * @throws \Exception
+     */
+    public function registerUser(
+        Estimations $estimation,
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder,
+        GuardAuthenticatorHandler $guardHandler,
+        LoginFormAuthenticator $authenticator
+    ) {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninDate(new DateTime('now'));
+            $user->addEstimation($estimation);
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
         ]);
     }
 }

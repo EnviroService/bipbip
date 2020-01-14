@@ -6,27 +6,19 @@
 
 @mixin button($color){
     background-color : $color;
-    position : relative;
+    border-radius : 5px;
     text-decoration : none;
-    font-size : 1rem;
+    font-size : 1.1rem;
     color : white;
     width : 60%;
+    max-width: 300px;
+    padding : 15px 10px;
+    max-height: 70px;
     display : block;
-    margin : 2% auto 15% auto;
-    padding : 3%;
+    margin : 2% auto 5% auto;
     text-align : center;
-
-    &:after{
-        content : "";
-        height : 0;
-        width : 0;
-        position : absolute;
-        z-index : -1;
-        left : 0;
-        bottom : -4.9vh;
-        border-right: 30vw solid transparent;
-        border-left: 30vw solid transparent;
-        border-top: 5vh solid $color;
+    @media screen and (min-width: 740px) {
+        font-size: 1rem;
     }
 }
 
@@ -42,6 +34,10 @@
     @include button($third-color)
 }
 
+.fourth-button{
+    @include button($fourth-color)
+}
+
 
 /* GENERAL */
 body{
@@ -52,35 +48,23 @@ body{
 
 a{
     color : black;
+    cursor : pointer;
 }
 
 .primary-title{
-    background-color : white;
-    position : relative;
     text-transform : uppercase;
     font-size : 1rem;
     font-weight: 500;
-    color : $secondary-color;
-    text-align : center;
-    padding : 2%;
-    box-shadow : 0 5px 15px #9f9f9f;
-    border-radius : 5px;
-    width : 80%;
-    margin : 12% auto;
-
-    &:after{
-        content : "";
-        height : 0;
-        width : 0;
-        position : absolute;
-        z-index : -1;
-        bottom : -2vh;
-        left : 27vw;
-        text-align : center;
-        border-right: 13vw solid transparent;
-        border-left: 13vw solid transparent;
-        border-top: 2vh solid $secondary-color;
-    }
+    color : $fourth-color;
+    text-align : left;
+    border-bottom : 1px $fourth-color solid;
+    padding : 1%;
+    width : 70%;
+    min-width: 200px;
+    max-width : 400px;
+    min-height: 40px;
+    max-height : 60px;
+    margin : 30px auto;
 }
 
 /* HEADER NAV */
@@ -88,7 +72,8 @@ header{
     .logo-bipbip{
         display : block;
         width : 80%;
-        margin : auto;
+        max-width : 350px;
+        margin : 2vw auto;
 
         img{
             width : 100%;
@@ -107,25 +92,51 @@ header{
         left: 50%;
         transform: translate(-50%, -50%);
 
-        #header-menu{
-            display : flex;
-            justify-content : space-around;
-            align-items : center;
-
-            .close-button{
-                width : 15%;
-            }
+        .close-button{
+            width : 30%;
+            max-width : 50px;
+            position : absolute;
+            top : 3%;
+            right : 3%;
         }
 
         ul{
+            margin : 50px auto;
+
             .primary-title-menu{
-                &:after{
-                    left : 32%;
-                }
+                max-width : 300px;
+                margin : 15px auto;
+                min-height : 35px;
+                max-height : 50px;
+                display : flex;
+                justify-content: left;
+                align-items : center;
 
                 a{
-                    color : $secondary-color;
+                    color : $fourth-color;
+                    text-align: left;
                 }
+            }
+        }
+
+        .user-infos-menu{
+            text-align: center;
+
+            h3{
+                color : $primary-color;
+            }
+
+            a{
+                display : block;
+            }
+
+            .disconnection{
+                color : darkred;
+            }
+
+            .connect{
+                color : $primary-color;
+                font-weight: 500;
             }
         }
     }
@@ -137,6 +148,7 @@ header{
     .circle-buttons{
         display : flex;
         justify-content: space-between;
+        cursor : pointer;
 
         #menu-burger{
             display : flex;
@@ -160,7 +172,7 @@ header{
             }
 
             p{
-                font-size : 0.8rem;
+                font-size : 1rem;
                 color : white;
                 margin-bottom : 0;
             }
@@ -173,17 +185,19 @@ header{
             border-radius : 50%;
             width : 8vw;
             min-width : 70px;
+            max-width : 75px;
             height : 8vw;
             min-height: 70px;
+            max-height: 75px;
             background-color : black;
             position : fixed;
             left : 5vw;
             bottom : 5vh;
             z-index : 5;
 
-            a{
+            p{
                 color : white;
-                font-size : 0.8rem;
+                font-size : 1rem;
                 margin-bottom : 0;
             }
         }
@@ -194,7 +208,7 @@ header{
 footer {
     li{
         text-align : center;
-        margin : 4%;
+        margin : 10px;
         font-size : 1rem;
     }
 
@@ -212,6 +226,44 @@ footer {
             img{
                 width : 75%;
             }
+        }
+    }
+}
+
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 740px) {
+    .primary-title{
+        font-size : 1.1rem;
+    }
+
+    header {
+        .circle-buttons {
+            #menu-burger {
+                align-self: flex-start;
+                border-radius: 5px;
+                box-shadow: 5px 3px 10px $primary-color;
+                width: 120px;
+                min-height: 40px;
+                height: 40px;
+                position: absolute;
+                top: 50px;
+                right: 50px;
+
+                img {
+                    display: none;
+                }
+
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+
+    footer{
+        .social-networks{
+            margin: 5% auto;
         }
     }
 }
