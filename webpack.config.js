@@ -21,6 +21,9 @@ Encore
 
     .addEntry('signup', './assets/scss/signup.scss')
 
+    .addEntry('estimationAdmin', './assets/scss/estimationAdmin.scss')
+
+
     .addEntry('home', './assets/js/home.js')
 
 
@@ -31,7 +34,6 @@ Encore
 
 
     .addEntry('admin', './assets/js/adminHomePage.js')
-
 
     .addEntry('newPartner', './assets/scss/newPartner.scss')
     .addEntry('editPartner', './assets/scss/editPartner.scss')
