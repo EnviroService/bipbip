@@ -1,9 +1,12 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block title %}Estimations{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('showEstimationAdmin') }}
+{% endblock %}
 {% block body %}
-    <h1>Estimations</h1>
+    <h1 class="primary-title">Estimations</h1>
 
     <table class="table">
         <tbody>
@@ -73,10 +76,11 @@
             </tr>
         </tbody>
     </table>
+<section>
+    <a class="fourth-button" href="{{ path('estimations_index') }}">Back to list</a>
 
-    <a href="{{ path('estimations_index') }}">back to list</a>
+    <a class="fourth-button" href="{{ path('estimations_edit', {'id': estimation.id}) }}">Edit</a>
 
-    <a href="{{ path('estimations_edit', {'id': estimation.id}) }}">edit</a>
-
-    {{ include('estimations/_delete_form.html.twig') }}
+    <a class="fourth-button" href="{{ include('estimations/_delete_form.html.twig') }}</a>
+</section>
 {% endblock %}

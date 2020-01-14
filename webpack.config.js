@@ -22,7 +22,7 @@ Encore
     .addEntry('signup', './assets/scss/signup.scss')
 
     .addEntry('estimationAdmin', './assets/scss/estimationAdmin.scss')
-
+    .addEntry('showEstimationAdmin', './assets/scss/showEstimationAdmin.scss')
 
     .addEntry('home', './assets/js/home.js')
 
@@ -40,6 +40,7 @@ Encore
     .addEntry('bdc', './assets/scss/bdc.scss')
 
     .addEntry('login', './assets/scss/login.scss')
+
 
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
