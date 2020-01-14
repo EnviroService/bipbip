@@ -24,20 +24,20 @@
 
                 <p>{{ organism.organismPostcode }}</p>
 
-                <p>{{ organism.organismPhone }}</p>
+                <p>0{{ organism.organismPhone }}</p>
             </div>
 
 
         </div>
 
-
-        <p><a class="linkA" href="{{ organism.organismLink }}">Visiter le site</a></p>
-
         <div id="clickLink">
-            <a class="btn btn-primary" href="{{ path('addCollect', {'id': organism.id}) }}">Organiser une collecte</a>
-            <a href="{{ path('organisms_index') }}">Retour à la liste</a>
-            <br>
-            <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
+
+            <a class="linkA"  target="_blank" href="{{ organism.organismLink }}">Visiter le site</a>
+
+            <a class="fourth-button" href="{{ path('organisms_index') }}">Retour à la liste</a>
+        <br>
+           <a class="fourth-button" href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
+
 {#
     {{ include('organisms/_delete_form.html.twig') }}
 #}
