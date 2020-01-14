@@ -6,6 +6,7 @@ use App\Entity\Organisms;
 use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +31,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/new", name="organisms_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
@@ -67,6 +69,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @return Response
@@ -90,6 +93,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}", name="organisms_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @return Response
