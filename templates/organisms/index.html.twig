@@ -38,8 +38,9 @@
         </section>
 
 
-
-        <br><a class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <br><a class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
+        {% endif %}
 
 
     </main>

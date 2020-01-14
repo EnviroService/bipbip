@@ -37,10 +37,15 @@
 
         <a href="{{ path('organisms_index') }}">Retour à la liste</a>
         <br>
-        <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
-{#
-    {{ include('organisms/_delete_form.html.twig') }}
-#}
+
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
+        {% endif %}
+
+        {% if is_granted("ROLE_ADMIN") %}
+            {{ include('organisms/_delete_form.html.twig') }}
+        {% endif %}
+
         </div>
 
     </main>
