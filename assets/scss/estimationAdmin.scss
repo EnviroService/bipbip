@@ -1,0 +1,63 @@
+@import "app";
+
+.table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+    width: 100%;
+    font-family: 'co-headline', Arial sans-serif;
+
+    thead{
+
+        width: 100%;
+        font-size: 20px;
+
+        tr{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            border: none;
+
+            th{
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                width: 25%;
+            }
+        }
+    }
+
+    tbody tr{
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
+        width: 100%;
+        margin-bottom: 0;
+
+        td{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            width: 25%;
+            margin: 7px 7px 7px 7px;
+
+            .fourth-button .info{
+                @include button($fourth-color);
+                margin-top: 0;
+            }
+
+            .fourth-button .editEstim{
+                @include button($fourth-color);
+                margin-top: 0;
+            }
+
+            .fourth-button .buttonsCollecters{
+                @include button($fourth-color);
+                margin-top: 0;
+            }
+
+        }
+    }
+}
+

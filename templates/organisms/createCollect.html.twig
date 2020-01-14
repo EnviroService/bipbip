@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+    {{ message }}
+    {% endfor %}
+    <form action="" method="post">
+        <div>
+            <label for="date">Quand souhaitez vous organiser la collecte ?</label>
+            <input type="date" id="date" name="date">
+            <label>
+                <input type="time" name="heure">Indiquez l'heure
+            </label>
+            <button class="btn-primary" type="submit">Valider</button>
+        </div>
+{% endblock %}

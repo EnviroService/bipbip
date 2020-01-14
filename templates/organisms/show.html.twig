@@ -24,19 +24,19 @@
 
                 <p>{{ organism.organismPostcode }}</p>
 
-                <p>{{ organism.organismPhone }}</p>
+                <p>0{{ organism.organismPhone }}</p>
             </div>
 
 
         </div>
 
-
-        <p><a class="linkA" href="{{ organism.organismLink }}">Visiter le site</a></p>
-
         <div id="clickLink">
 
-        <a href="{{ path('organisms_index') }}">Retour à la liste</a>
+            <a class="linkA"  target="_blank" href="{{ organism.organismLink }}">Visiter le site</a>
+
+            <a class="fourth-button" href="{{ path('organisms_index') }}">Retour à la liste</a>
         <br>
+
 
         {% if is_granted("ROLE_ADMIN") %}
             <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
@@ -45,6 +45,7 @@
         {% if is_granted("ROLE_ADMIN") %}
             {{ include('organisms/_delete_form.html.twig') }}
         {% endif %}
+
 
         </div>
 
