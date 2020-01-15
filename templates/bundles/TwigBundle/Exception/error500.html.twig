@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main id="404">
+        <div class="container">
+            <h1 class="primary-title">Oups, une erreur !</h1>
+            <div class="row justify-content-center">
+                <div class="col-3"></div>
+                <div class="col-3 align-self-center">
+                   <p class="text-center">Une erreur est survenue,
+                        <a href="{{ path('home') }}">retourne à la page d'accueil</a>.</p>
+                </div>
+                <div class="col-3">
+                    <a href="{{ path('home') }}">
+                        <img src="{{ asset('images/error.jpg') }}" alt="erreur" class="img center-block">
+                    </a>
+                </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
