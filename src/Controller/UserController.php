@@ -84,7 +84,7 @@ class UserController extends AbstractController
         $user->setCollect($collect);
         $em->persist($user);
         $em->flush();
-        $this->addFlash("success", "Vous avez bien été enregistré sur le lieux de la collecte.");
+        $this->addFlash("success", "Tu as bien été enregistré sur cette collecte.");
 
         return $this->redirectToRoute("home");
     }
