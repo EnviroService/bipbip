@@ -46,6 +46,17 @@ body{
     font-size : 1rem;
 }
 
+main{
+    min-height : 70vh;
+    display : flex;
+    justify-content : center;
+    align-items: center;
+    padding : 0 20px;
+    @media screen and (min-width: 740px){
+        min-height : 65vh;
+    }
+}
+
 a{
     color : black;
     cursor : pointer;
