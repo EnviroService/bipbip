@@ -8,6 +8,11 @@
 
 {% block body %}
 <main id="login">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

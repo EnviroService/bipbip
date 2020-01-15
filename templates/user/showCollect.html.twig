@@ -3,8 +3,8 @@
 {% block body %}
 
 <table class="table">
-    <thead>
-        <td class="jumbotron">Nom d'organisme</td>
+    <thead class="jumbotron">
+        <td>Nom d'organisme</td>
         <td>Adresse</td>
         <td>Date de collecte</td>
     </thead>
@@ -12,11 +12,17 @@
     <tbody>
         <td><h5>{{ collect.collector.organismName }}</h5></td>
         <td>{{ collect.collector.organismAddress }}, {{ collect.collector.organismPostcode }} {{ collect.collector.organismCity }}</td>
-        <td>{{ collect.dateCollect.date|date('d-M-Y H:i') }}</td>
-        <td><a class="btn btn-primary"  href="">Participer</a></td>
+        <td>{{ collect.dateCollect.date|date('d M Y H:i') }}</td>
+        <td><a href="{{ path('choice', {collect: collect.id }) }}" onclick="ConfirmCollect()">Participer</a></td>
     </tbody>
     {% endfor %}
 </table>
+    <script type="text/javascript">
+        function ConfirmCollect() {
+            if (confirm("Etes vous sure de vouloir participer à cette collecte ?")) {
 
+            }
+        }
+    </script>
 
 {% endblock %}
