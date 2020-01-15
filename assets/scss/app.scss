@@ -56,7 +56,7 @@ a{
     font-size : 1rem;
     font-weight: 500;
     color : $fourth-color;
-    text-align : left;
+    text-align : center;
     border-bottom : 1px $fourth-color solid;
     padding : 1%;
     width : 70%;
@@ -98,6 +98,7 @@ header{
             position : absolute;
             top : 3%;
             right : 3%;
+            cursor : pointer;
         }
 
         ul{
