@@ -41,9 +41,9 @@ for (let number = 0; number < collecters.length; number++) {
 // searchBarTest
 
 $(document).ready(function () {
-    $('#search-user').keyup(function () {
+    $('#searchUser').keyup(function () {
         // rafaraichir pour avoir un blanc lors de la frappe
-        $('#users').html('');
+        $('#resultSearch').html('');
         // recuperation des données
         let users = $(this).val();
         // eslint-disable-next-line eqeqeq

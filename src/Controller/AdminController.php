@@ -29,27 +29,24 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin", name="searchBar")
-     * @param Request $request
      * @param EntityManagerInterface $em
+     * @param Request $request
      * @param UserRepository $userRepository
      * @return Response
      */
-    public function searchBar(Request $request, EntityManagerInterface $em, userRepository $userRepository): Response
+    public function searchBar(EntityManagerInterface $em, Request $request, userRepository $userRepository): Response
     {
-            $users= $em->getRepository(User::class)->findAll();
-            $result = [];
-        foreach ($users as $user) {
-            array_push($result, $user->getLastname());
-        }
+        $search=$em->getRepository(User::class)->findBy(['lastname','users']);
+        $em = $this->getDoctrine()->getManager();
 
         if ($request->isXmlHttpRequest()) {
             $result = $request->request->all();
-            dd($result);
             return new JsonResponse($result);
         }
+
             return $this-> render(
                 'admin/index.html.twig',
-                ["lastname"=>$result]
+                ["lastname"=>$search]
             );
 
         //1return new JsonResponse(['resultSearch'=>$resultSearch]);
