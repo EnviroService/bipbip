@@ -1,0 +1,13 @@
+@import "vars";
+@import "~bootstrap/scss/bootstrap";
+
+#canvas {
+    width: 600px;
+    height: 300px;
+}
+
+#capture {
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+}

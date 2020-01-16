@@ -8,6 +8,7 @@ use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +25,12 @@ class BdcController extends AbstractController
 {
     /**
      * @Route("/", name="bdc_index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index()
     {
         // list all pdf in public/uploads/BDC/
         $files = scandir('uploads/BDC/');
-
         return $this->render('bdc/index.html.twig', [
             'files' => $files
         ]);
@@ -55,6 +56,19 @@ class BdcController extends AbstractController
         return $this->render('estimations/edit.html.twig', [
             'estimation' => $estimation,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/signature/{id}", name="signatureAdd")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to generate a signature for PDF from estimation
+    public function addSignature(Estimations $estimation)
+    {
+        return $this->render('bdc/signature.html.twig', [
+            'estimation' => $estimation
         ]);
     }
 
@@ -114,10 +128,18 @@ class BdcController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
-        return $this->render('bdc/show.html.twig', [
-            'IMEI' => "355 402 092 374 478",
-            'estimation' => $estimation,
-        ]);
+        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
+                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+                return $this->render('bdc/show.html.twig', [
+                    'IMEI' => "355 402 092 374 478",
+                    'estimation' => $estimation,
+                ]);
+            }
+        }
+        $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
+        $this->addFlash('danger', $message);
+        return $this->redirectToRoute('home');
     }
 
     /**

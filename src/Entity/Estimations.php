@@ -89,12 +89,17 @@ class Estimations
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isValidatedSignature;
+    private $isValidatedCi;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="estimations")
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="string", length=17)
+     */
+    private $imei;
 
 
     public function getId(): ?int
@@ -270,14 +275,14 @@ class Estimations
         return $this;
     }
 
-    public function getIsValidatedSignature(): ?bool
+    public function getIsValidatedCi(): ?bool
     {
-        return $this->isValidatedSignature;
+        return $this->isValidatedCi;
     }
 
-    public function setIsValidatedSignature(bool $isValidatedSignature): self
+    public function setIsValidatedCi(bool $isValidatedCi): self
     {
-        $this->isValidatedSignature = $isValidatedSignature;
+        $this->isValidatedCi = $isValidatedCi;
 
         return $this;
     }
@@ -290,6 +295,18 @@ class Estimations
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImei(): ?string
+    {
+        return $this->imei;
+    }
+
+    public function setImei(string $imei): self
+    {
+        $this->imei = $imei;
 
         return $this;
     }
