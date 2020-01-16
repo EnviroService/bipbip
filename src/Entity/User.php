@@ -55,11 +55,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $gender;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $address;
 
     /**
@@ -212,18 +208,6 @@ class User implements UserInterface
     public function setPhoneNumber(int $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
-
-        return $this;
-    }
-
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    public function setGender(string $gender): self
-    {
-        $this->gender = $gender;
 
         return $this;
     }
