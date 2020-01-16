@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +23,7 @@ class BdcController extends AbstractController
 {
     /**
      * @Route("/", name="bdc_index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index()
     {
@@ -102,10 +104,18 @@ class BdcController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
-        return $this->render('bdc/show.html.twig', [
-            'IMEI' => "355 402 092 374 478",
-            'estimation' => $estimation,
-        ]);
+        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
+                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+                return $this->render('bdc/show.html.twig', [
+                    'IMEI' => "355 402 092 374 478",
+                    'estimation' => $estimation,
+                ]);
+            }
+        }
+        $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
+        $this->addFlash('danger', $message);
+        return $this->redirectToRoute('home');
     }
 
     /**

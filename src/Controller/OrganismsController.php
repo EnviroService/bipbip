@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Collects;
 use App\Entity\Organisms;
 use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 /**
  * @Route("/organisms")
@@ -30,6 +33,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/new", name="organisms_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
@@ -67,6 +71,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @return Response
@@ -90,6 +95,7 @@ class OrganismsController extends AbstractController
 
     /**
      * @Route("/{id}", name="organisms_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @return Response
@@ -103,5 +109,32 @@ class OrganismsController extends AbstractController
         }
 
         return $this->redirectToRoute('organisms_index');
+    }
+
+    /**
+     * @Route("/{id}/addCollect", name="addCollect")
+     * @param Organisms $organisms
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws \Exception
+     */
+    public function createCollect(Organisms $organisms, EntityManagerInterface $em)
+    {
+        if (isset($_POST['date'])) {
+            $date = $_POST['date'];
+            $collect = new Collects();
+            $dateCollect = new DateTime($date);
+            $hour = substr($_POST['heure'], 0, 2);
+            $minute = substr($_POST['heure'], -2, 2);
+            $dateCollect->setTime(intval($hour), intval($minute));
+            $collect->setDateCollect($dateCollect);
+            $collect->setCollector($organisms);
+            $organisms->addCollect($collect);
+            $em->persist($collect);
+            $em->flush();
+
+            $this->addFlash("success", "Votre collecte a bien été enregistrée.");
+        }
+        return $this->render('organisms/createCollect.html.twig');
     }
 }
