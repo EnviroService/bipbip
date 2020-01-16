@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Form\UserType;
+use App\Form\RegistrationCollectorFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Exception;
@@ -45,7 +44,7 @@ class AdminController extends AbstractController
         LoginFormAuthenticator $authenticator
     ) {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationCollectorFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
