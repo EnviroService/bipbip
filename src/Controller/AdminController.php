@@ -68,7 +68,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/register_collector.html.twig', [
-            'registrationForm' => $form->createView(),
+            'registrationCollectorForm' => $form->createView(),
         ]);
     }
 }
