@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Organisms;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -22,12 +23,6 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', ChoiceType::class, [
-                'choices' => [
-                    'Monsieur' => 'Mr',
-                    'Madame' => 'Mme'
-                ]
-            ])
             ->add('firstname', TextType::class, [
                 'required' => true
             ])
@@ -51,6 +46,12 @@ class RegistrationFormType extends AbstractType
                 EntityType::class,
                 [
                 'class' => Organisms::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('o')
+                        ->where('o.organismStatus = \'Collecteur privé\'')
+                        ->orderBy('o.organismName', 'ASC')
+                       ;
+                },
                 'required' => false,
                 'choice_label' => 'organismName',
                 'expanded' => false,
