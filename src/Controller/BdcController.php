@@ -29,13 +29,26 @@ class BdcController extends AbstractController
     {
         // list all pdf in public/uploads/BDC/
         $files = scandir('uploads/BDC/');
-
         return $this->render('bdc/index.html.twig', [
             'files' => $files
         ]);
     }
 
     /**
+     * @Route("/signature/{id}", name="signatureAdd")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to generate a signature for PDF from estimation
+    public function addSignature(Estimations $estimation)
+    {
+        return $this->render('bdc/signature.html.twig', [
+            'estimation' => $estimation
+        ]);
+    }
+
+    /**
+     * @Route("/new/", name="bdc_show")
      * @Route("/capture/{id}", name="takePhoto")
      * @param Estimations $estimation
      * @param UserRepository $user
