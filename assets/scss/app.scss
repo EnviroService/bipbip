@@ -91,7 +91,7 @@ header{
         display : none;
         z-index : 9999;
         background : #FFFFFF;
-        padding : 3em 2em;
+        padding : 1em 2em;
         width : 100%;
         height : 100%;
         position: fixed;
@@ -109,7 +109,7 @@ header{
         }
 
         ul{
-            margin : 50px auto;
+            margin : 30px auto;
 
             .primary-title-menu{
                 max-width : 300px;
@@ -132,14 +132,21 @@ header{
 
             h3{
                 color : $primary-color;
+                font-size : 1.2rem;
             }
 
             a{
                 display : block;
+                width : 200px;
+                margin : 10px auto 10px auto;
+                font-size : 1rem;
             }
 
             .disconnection{
                 color : darkred;
+                margin : auto;
+                font-style: italic;
+                font-size: 0.9rem;
             }
 
             .connect{
