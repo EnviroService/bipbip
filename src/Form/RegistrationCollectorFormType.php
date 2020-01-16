@@ -18,17 +18,11 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class RegistrationCollectorFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gender', ChoiceType::class, [
-                'choices' => [
-                    'Monsieur' => 'Mr',
-                    'Madame' => 'Mme'
-                ]
-            ])
             ->add('firstname', TextType::class, [
                 'required' => true
             ])
@@ -47,25 +41,6 @@ class RegistrationFormType extends AbstractType
             ->add('phoneNumber', NumberType::class, [
                 'required' => true
             ])
-            ->add(
-                'organism',
-                EntityType::class,
-                [
-                'class' => Organisms::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('o')
-                        ->where('o.organismStatus = \'Collecteur privé\'')
-                        ->orderBy('o.organismName', 'ASC')
-                       ;
-                },
-                'required' => false,
-                'choice_label' => 'organismName',
-                'expanded' => false,
-                'multiple' => false,
-                'attr' => ['class' => 'selectpicker'],
-                'by_reference'=> false
-                ]
-            )
             ->add(
                 'organism',
                 EntityType::class,
