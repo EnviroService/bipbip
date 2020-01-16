@@ -41,6 +41,8 @@ Encore
 
     .addEntry('login', './assets/scss/login.scss')
 
+    .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

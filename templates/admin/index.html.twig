@@ -32,19 +32,23 @@
                 <a href="{{ path ('estimations_index') }}">Estimations
                 </a>
             </li>
-            <li class="collecters">
-                <a href="#">Collecteurs</a>
-                    <button type="button" class="collecterActionsLister">Lister</button>
-                    <a href="{{ path('adminregister_collector') }}" class="collecterActionsAdd">Ajouter</a>
+            <li class="organisms">
+                <a href="#">Organismes</a>
+                <a href="{{ path('organisms_index') }}" class="organismsLister">Listes des partenaires</a>
+                <a href="{{ path('adminregister_collector') }}" class="organismsActionsAdd">Ajouter un organisme</a>
+                <a href="{{ path('collects_index') }}" class="organismsListerCollector">Listes des collecteurs</a>
+                <a href="{{ path('collects_new') }}" class="organismsAddCollector">Ajouter un collecteur</a>
+
             </li>
             <li class="officialDocuments">
                 <a href="#">Documents stockés</a>
-                <a class="officialDocumentsBc" href="{{ path ('bdc_index') }}">Bons de cessions</a>
-                <a class="officialDocumentsCi" href="{{ path ('bdc_index') }}">Cartes d'identitées</a>
+                <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
+                <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
             </li>
         </ul>
     </div>
-    <div class="card-central-admin">{% block bodyAdmin %} {% endblock %}</div>
+    <div class="card-central-admin">
+        {% block bodyAdmin %} {% endblock %}</div>
 </main>
 {% endblock %}
 {% block body %}{% endblock %}
