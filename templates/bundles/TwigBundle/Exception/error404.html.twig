@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Erreur 404{% endblock %}
+{% block body %}
+<main id="404">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <h1 class="primary-title">Erreur 404 - Page inexistante</h1>
+                <img src="{{ asset('images/404.png') }}" alt="404" class="img-fluid center-block">
+                <p class="text-center">La page demandée n'a pas été trouvée, vérifie l'orthographe<br>
+                    ou <a href="{{ path('home') }}">retourne à la page d'accueil</a>.</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

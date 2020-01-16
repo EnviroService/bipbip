@@ -42,6 +42,16 @@
                 </div>
             </nav>
             <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="circle-buttons">
                 <div id="menu-burger">
                     <img src="/images/menu-burger.png" alt="menu burger" />

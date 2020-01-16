@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Organisms;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,9 +22,8 @@ class OrganismsType extends AbstractType
             ->add('organismAddress', TextType::class)
             ->add('organismCity', TextType::class)
             ->add('organismPostcode', TextType::class)
-            ->add('organismPhone', TextType::class)
+            ->add('organismPhone', TelType::class)
             ->add('organismStatus', TextType::class)
-            ->add('createNew', SubmitType::class)
         ;
     }
 
