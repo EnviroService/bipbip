@@ -38,7 +38,7 @@ Encore
     .addEntry('bdc', './assets/scss/bdc.scss')
 
     .addEntry('login', './assets/scss/login.scss')
-
+    .addEntry('show_collect', './assets/js/show_collect.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
