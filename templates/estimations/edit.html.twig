@@ -1,13 +1,19 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Edit Estimations{% endblock %}
+{% block title %}Vérification de l'estimation{% endblock %}
 
 {% block body %}
-    <h1>Edit Estimations</h1>
-
-    {{ include('estimations/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('estimations_index') }}">back to list</a>
-
-    {{ include('estimations/_delete_form.html.twig') }}
+    <main class="pay">
+        {% for error in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ success }}
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Etape 2 : vérification des informations</h1>
+            </div>
+                {{ include('estimations/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+    </main>
 {% endblock %}

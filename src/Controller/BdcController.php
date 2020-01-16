@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\User;
+use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
@@ -16,7 +19,6 @@ use Dompdf\Options;
 /**
  * @Route("admin/bdc")
  */
-
 
 class BdcController extends AbstractController
 {
@@ -30,6 +32,29 @@ class BdcController extends AbstractController
 
         return $this->render('bdc/index.html.twig', [
             'files' => $files
+        ]);
+    }
+
+    /**
+     * @Route("/verify/{id}", name="verifyEstim", methods={"GET","POST"})
+     * @param Request $request
+     * @param Estimations $estimation
+     * @return Response
+     */
+    public function verifyEstim(Request $request, Estimations $estimation): Response
+    {
+        $form = $this->createForm(EstimationsType::class, $estimation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('takePhoto');
+        }
+
+        return $this->render('estimations/edit.html.twig', [
+            'estimation' => $estimation,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -98,6 +123,7 @@ class BdcController extends AbstractController
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @param Estimations $estimation
+     * @return RedirectResponse
      */
     // route to generate a PDF from estimation
     public function showPDF(Estimations $estimation)
@@ -139,12 +165,28 @@ class BdcController extends AbstractController
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
 
-        // TODO Send some text response flash message
-        // return new Response("The PDF file has been succesfully generated !");
+        // Prepare flash message
+        $message = "Le bon de cession a été généré";
+        $this->addFlash('success', $message);
 
         // Output the generated PDF to Browser (inline view)
         $dompdf->stream($filename, [
         "Attachment" => false
+        ]);
+
+        return $this->redirectToRoute('bdc_pay');
+    }
+
+    /**
+     * @Route("/pay/{id}", name="bdc_pay")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to go to payment
+    public function pay(Estimations $estimation)
+    {
+        return $this->render('bdc/pay.html.twig', [
+            'estimation' => $estimation,
         ]);
     }
 }

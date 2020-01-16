@@ -1,0 +1,31 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+    <main class="pay">
+        {% for error in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ success }}
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Etape 6 : vers le paiement</h1>
+                <p>Coordonnées à entrer :</p>
+                <ul>
+                    <li>NOM : {{ estimation.user.lastname }}</li>
+                    <li>Prénom : {{ estimation.user.firstname }}</li>
+                    <li>Email : {{ estimation.user.email }}</li>
+                    <li>N° tél : 0{{ estimation.user.phonenumber }}</li>
+                    <li>Montant : {{ estimation.estimatedPrice }} € </li>
+                    <li>Visibilité : Privée</li>
+                    <li>Commentaire de la transaction : Paiement BipBip {{ estimation.brand }} {{ estimation.model }}</li>
+                </ul>
+                <a href="https://pumpkin-business.com/admin/3ce15931faed4cf790b17044cc7f3091/pay/mypay/72c201e1e00c4f5dac9eed172fa4ec67/pay"
+                   class="primary-button" target="_blank">Payer sur Pumpkin Business</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+
