@@ -128,7 +128,7 @@ class BdcController extends AbstractController
                 $error = 'Merci de créer un dossier uploads/CI/';
                 $this->addFlash('danger', $error);
             }
-                return $this->redirectToRoute('bdc_show', [
+                return $this->redirectToRoute('confirm_photo', [
                 'id' => $estimation->getId(),
                 ]);
         }
@@ -209,11 +209,13 @@ class BdcController extends AbstractController
         $this->addFlash('success', $message);
 
         // Output the generated PDF to Browser (inline view)
-        $dompdf->stream($filename, [
-        "Attachment" => false
-        ]);
+        //$dompdf->stream($filename, [
+        //"Attachment" => false
+        //]);
 
-        return $this->redirectToRoute('bdc_pay');
+        return $this->redirectToRoute('bdc_pay', [
+            'id' => $estimation->getId(),
+        ]);
     }
 
     /**
@@ -225,6 +227,19 @@ class BdcController extends AbstractController
     public function pay(Estimations $estimation)
     {
         return $this->render('bdc/pay.html.twig', [
+            'estimation' => $estimation,
+        ]);
+    }
+
+    /**
+     * @Route("/confirm/{id}", name="confirm_photo")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to confirm picture of identity Card
+    public function confirm(Estimations $estimation)
+    {
+        return $this->render('bdc/confirm.html.twig', [
             'estimation' => $estimation,
         ]);
     }

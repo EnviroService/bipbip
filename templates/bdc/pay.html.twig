@@ -2,9 +2,9 @@
 {% block title %}{% endblock %}
 {% block body %}
     <main class="pay">
-        {% for error in app.flashes('success') %}
+        {% for message in app.flashes('success') %}
             <div class="alert alert-success text-center">
-                {{ success }}
+                {{ message }}
             </div>
         {% endfor %}
         <div class="row">
