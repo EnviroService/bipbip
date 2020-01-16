@@ -40,17 +40,34 @@ class BdcController extends AbstractController
      * @Route("/verify/{id}", name="verifyEstim", methods={"GET","POST"})
      * @param Request $request
      * @param Estimations $estimation
+     * @param EntityManagerInterface $em
      * @return Response
      */
-    public function verifyEstim(Request $request, Estimations $estimation): Response
+    public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(EstimationsType::class, $estimation);
         $form->handleRequest($request);
+        $id = $estimation->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $data = $form-> getData();
+            $estimation = new Estimations();
+            $estimation->setBrand($data['brand']);
+            $estimation->setModel($data['model']);
+            $estimation->setCapacity($data['capacity']);
+            $estimation->setLiquidDamage($data['liquidDamage']);
+            $estimation->setScreenCracks($data['screenCracks']);
+            $estimation->setCasingCracks($data['casingCracks']);
+            $estimation->setBatteryCracks($data['batteryCracks']);
+            $estimation->setButtonCracks($data['buttonCracks']);
 
-            return $this->redirectToRoute('takePhoto');
+            $em->persist($estimation);
+            $em->flush();
+            //$this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('takePhoto', [
+                'id' => $id,
+            ]);
         }
 
         return $this->render('estimations/edit.html.twig', [
@@ -164,7 +181,7 @@ class BdcController extends AbstractController
         ]);
 
         // Create Filename
-        $clientId = $this->getUser();
+        $clientId = $this->getUser()->getId();
         $estimationId = $estimation->getId();
         $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 

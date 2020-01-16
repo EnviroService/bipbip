@@ -3,17 +3,81 @@
 {% block title %}Vérification de l'estimation{% endblock %}
 
 {% block body %}
-    <main class="pay">
-        {% for error in app.flashes('success') %}
-            <div class="alert alert-success text-center">
-                {{ success }}
-            </div>
-        {% endfor %}
+    {{ form_start(form) }}
+    <main class="container">
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
                 <h1 class="primary-title">Etape 2 : vérification des informations</h1>
             </div>
-                {{ include('estimations/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Marque :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.brand, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Modèle :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.model, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Capacité :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.capacity, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Liquide Dammage :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.liquidDamage, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Ecran abimé :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.screenCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Coque abimée :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.casingCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Batterie défectueuse :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.batteryCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                Bouton(s) deffectueux :
+            </div>
+            <div class="col-8 mx-auto text-center form p-4">
+                {{ form_widget(form.buttonCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <button class="btn btn-primary">{{ button_label|default('Mettre à jour') }}</button>
+            </div>
         </div>
     </main>
 {% endblock %}
