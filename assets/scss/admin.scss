@@ -98,6 +98,7 @@
     border-radius: 5px;
     box-shadow: inset 2px 0 10px rgb(223, 216, 222);
     background-color: $secondary-color;
+    z-index : 5;
 
     a{
         display: block;
