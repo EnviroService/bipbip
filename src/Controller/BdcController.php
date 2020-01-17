@@ -139,7 +139,7 @@ class BdcController extends AbstractController
         ]);
 
         // Create Filename
-        $clientId = $this->getUser();
+        $clientId = $this->getUser()->getId();
         $estimationId = $estimation->getId();
         $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 

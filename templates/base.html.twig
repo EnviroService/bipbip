@@ -34,7 +34,7 @@
                         {% if app.user.roles == 'ROLE_USER' %}
                             <a href="#" title="Page profil" class="fourth-button">Mon profil</a>
                         {% else %}
-                            <a href="#" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
+                            <a href="{{ path('adminhome_admin') }}" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
                         {% endif %}
 
                     {% else %}
