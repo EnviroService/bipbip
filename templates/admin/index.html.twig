@@ -24,8 +24,6 @@
 <div class="form-group">
         <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
     </div>
-
-<main class="cards-admin">
     <div class="menu-admin">
         <ul class="icon-menu">
             <li class="estimations">
@@ -35,9 +33,9 @@
             <li class="organisms">
                 <a href="#">Organismes</a>
                 <a href="{{ path('organisms_index') }}" class="organismsLister">Listes des partenaires</a>
-                <a href="{{ path('adminregister_collector') }}" class="organismsActionsAdd">Ajouter un organisme</a>
-                <a href="{{ path('collects_index') }}" class="organismsListerCollector">Listes des collecteurs</a>
-                <a href="{{ path('collects_new') }}" class="organismsAddCollector">Ajouter un collecteur</a>
+                <a href="{{ path('organisms_new') }}" class="organismsActionsAdd">Ajouter un organisme</a>
+                <a href="{{ path('organisms_index') }}" class="organismsListerCollector">Listes des collecteurs</a>
+                <a href="{{ path('adminregister_collector') }}" class="organismsAddCollector">Ajouter un collecteur</a>
 
             </li>
             <li class="officialDocuments">
@@ -47,9 +45,7 @@
             </li>
         </ul>
     </div>
-    <div class="card-central-admin">
-        {% block bodyAdmin %} {% endblock %}</div>
-</main>
+
 {% endblock %}
 {% block body %}{% endblock %}
 

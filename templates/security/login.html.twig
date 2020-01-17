@@ -34,7 +34,7 @@
                 </div>
                 <div class="row  justify-content-center">
                     <div class="col-8 col-sm-6 col-lg-3">
-                        <label for="inputPassword">Password</label>
+                        <label for="inputPassword">Mot de passe</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" required>
                     </div>
                 </div>
@@ -57,9 +57,13 @@
             #}
 
             <button class="fourth-button" type="submit">
-                Sign in
+                Connecte-toi
             </button>
-        {% endif %}
-    </form>
+
+        </form>
+
+        <p>Pas encore de compte ?</p>
+        <a href="{{ path('app_register') }}" class="registration">Crées-en un !</a>
+    {% endif %}
 </main>
 {% endblock %}

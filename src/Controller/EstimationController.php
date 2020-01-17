@@ -134,7 +134,8 @@ class EstimationController extends AbstractController
                        ->setColor("all")
                        ->setMaxPrice($maxPrice)
                        ->setIsValidatedPayment(false)
-                       ->setIsValidatedCi(false);
+                       ->setIsValidatedCi(false)
+                       ->setImei('0');
 
             $estimated = $maxPrice;
 
