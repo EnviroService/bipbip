@@ -26,7 +26,7 @@ class EstimationsType extends AbstractType
             ->add('maxPrice')
             ->add('estimatedPrice')
             ->add('isValidatedPayment')
-            ->add('isValidatedSignature')
+            ->add('isValidatedCi')
             ->add('user', null, ['choice_label'=>'email'])
         ;
     }

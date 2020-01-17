@@ -30,12 +30,13 @@
                 <div class="user-infos-menu">
                     {% if app.user %}
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
                         {% if app.user.roles == 'ROLE_USER' %}
                             <a href="#" title="Page profil" class="fourth-button">Mon profil</a>
                         {% else %}
-                            <a href="#" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
+                            <a href="{{ path('adminhome_admin') }}" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
                         {% endif %}
-                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
                     {% else %}
                         <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
                     {% endif %}
@@ -76,12 +77,9 @@
             <h2 class="primary-title">Plus d'infos</h2>
             <ul>
                 <li><a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">Qui sommes-nous ?</a></li>
-                <li><a href="#" title="Revendre ton tèl">Revendre ton tèl</a></li>
-                <li><a href="#" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
-                <li><a href="#" title="Collectes et évènements">Collectes et évènements</a></li>
+                <li><a href="{{ path('new_estimation') }}" title="Revendre ton tèl">Revendre ton tèl</a></li>
+                <li><a href="{{ path('add_message') }}" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
                 <li><a href="{{ path('show_faq') }}" title="FAQ">Besoin d'aide ?</a></li>
-                <li><a href="#" title="Paiement">Paiement</a></li>
-                <li><a href="#" title="Livraison">Livraison</a></li>
                 <li>Ce que l'on oublie de lire (
                     <a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
                      -

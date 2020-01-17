@@ -11,7 +11,7 @@
         {% endfor %}
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <h1 class="primary-title">Etape 1 : carte d'identité</h1>
+                <h1 class="primary-title">Etape 3 : carte d'identité</h1>
                 <p>Prendre en photo <span class="font-weight-bold">le recto de la carte d'identité</span> du client</p>
                 <form action="{{ path('takePhoto', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="upload" accept="image/*" capture>
