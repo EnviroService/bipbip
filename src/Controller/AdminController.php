@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,10 +27,21 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/home", name="home_admin")
+     * @param EntityManagerInterface $em
+     * @param Request $request
+     * @return Response
      */
-    public function show(): Response
+    public function index(EntityManagerInterface $em, Request $request): Response
     {
-        return $this->render('admin/index.html.twig');
+        $result= new Search();
+        $form = $this->createForm(SearchType::class, $result, ["mapped"=>false]);
+        $form->handleRequest($result);
+
+        return $this->render(
+            'admin/index.html.twig',
+            ["form" => $form->createView()
+            ]
+        );
     }
 
     /**
