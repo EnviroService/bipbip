@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Form\UserType;
+use App\Form\RegistrationCollectorFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,6 +31,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/collector/register", name="register_collector")
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
@@ -45,7 +46,7 @@ class AdminController extends AbstractController
         LoginFormAuthenticator $authenticator
     ) {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationCollectorFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +68,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/register_collector.html.twig', [
-            'registrationForm' => $form->createView(),
+            'registrationCollectorForm' => $form->createView(),
         ]);
     }
 }

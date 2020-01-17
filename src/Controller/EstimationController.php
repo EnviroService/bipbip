@@ -134,7 +134,8 @@ class EstimationController extends AbstractController
                        ->setColor("all")
                        ->setMaxPrice($maxPrice)
                        ->setIsValidatedPayment(false)
-                       ->setIsValidatedSignature(false);
+                       ->setIsValidatedCi(false)
+                       ->setImei('0');
 
             $estimated = $maxPrice;
 
@@ -235,9 +236,9 @@ class EstimationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+            $this->addFlash('success', 'Compte créé, félicitations à toi, connecte toi pour accéder à la collecte');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

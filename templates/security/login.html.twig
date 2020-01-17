@@ -8,6 +8,11 @@
 
 {% block body %}
 <main id="login">
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -15,7 +20,8 @@
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                <p>Tu es connecté(e) en tant que {{ app.user.email }}</p>
+                <a href="{{ path('app_logout') }}" class="disconnection">Logout</a>
             </div>
         {% else %}
             <div class="container-fluid">
@@ -28,7 +34,7 @@
                 </div>
                 <div class="row  justify-content-center">
                     <div class="col-8 col-sm-6 col-lg-3">
-                        <label for="inputPassword">Password</label>
+                        <label for="inputPassword">Mot de passe</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" required>
                     </div>
                 </div>
@@ -51,9 +57,13 @@
             #}
 
             <button class="fourth-button" type="submit">
-                Sign in
+                Connecte-toi
             </button>
-        {% endif %}
-    </form>
+
+        </form>
+
+        <p>Pas encore de compte ?</p>
+        <a href="{{ path('app_register') }}" class="registration">Crées-en un !</a>
+    {% endif %}
 </main>
 {% endblock %}

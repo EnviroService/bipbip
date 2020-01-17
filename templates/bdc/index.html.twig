@@ -1,12 +1,15 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block title %}Liste des bons de cession stockés{% endblock %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bdcVueAdmin') }}
+{% endblock %}
 {% block body %}
     <h1 class="primary-title">Liste des bons de cession stockés</h1>
-    <ul>
+    <ul class="bdcCard">
     {% for file in files %}
-        <li><a href="../uploads/BDC/{{ file }}">{{ file }}</a></li>
+        <li><a target="_blank" href="/../uploads/BDC/{{ file }}">{{ file }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

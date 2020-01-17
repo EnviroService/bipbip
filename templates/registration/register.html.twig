@@ -7,8 +7,8 @@
 
     {{ form_start(registrationForm) }}
         <p>Afin d'accéder aux points de collecte te concernant, appartiens-tu à un des organismes de la liste ci-dessous ?</p>
-        {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de Bip Bip Mobile ?' }) }}
-        {{ form_row(registrationForm.gender, { 'label': 'Genre' }) }}
+        {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de Bip Bip Mobile :' }) }}
+        <p>Tu souhaites que ton entreprise ou ton école organise une collecte ? N'hésite pas à <a href="{{ path('add_message') }}">nous envoyer un message !</a></p>
         {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
         {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
         {{ form_row(registrationForm.address, { 'label': 'Adresse' }) }}

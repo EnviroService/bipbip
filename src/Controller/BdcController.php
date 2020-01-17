@@ -4,10 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\User;
+use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
@@ -17,19 +21,71 @@ use Dompdf\Options;
  * @Route("admin/bdc")
  */
 
-
 class BdcController extends AbstractController
 {
     /**
      * @Route("/", name="bdc_index")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index()
     {
         // list all pdf in public/uploads/BDC/
         $files = scandir('uploads/BDC/');
-
         return $this->render('bdc/index.html.twig', [
             'files' => $files
+        ]);
+    }
+
+    /**
+     * @Route("/verify/{id}", name="verifyEstim", methods={"GET","POST"})
+     * @param Request $request
+     * @param Estimations $estimation
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(EstimationsType::class, $estimation);
+        $form->handleRequest($request);
+        $id = $estimation->getId();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form-> getData();
+            $estimation = new Estimations();
+            $estimation->setBrand($data['brand']);
+            $estimation->setModel($data['model']);
+            $estimation->setCapacity($data['capacity']);
+            $estimation->setLiquidDamage($data['liquidDamage']);
+            $estimation->setScreenCracks($data['screenCracks']);
+            $estimation->setCasingCracks($data['casingCracks']);
+            $estimation->setBatteryCracks($data['batteryCracks']);
+            $estimation->setButtonCracks($data['buttonCracks']);
+
+            $em->persist($estimation);
+            $em->flush();
+            //$this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('takePhoto', [
+                'id' => $id,
+            ]);
+        }
+
+        return $this->render('estimations/edit.html.twig', [
+            'estimation' => $estimation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/signature/{id}", name="signatureAdd")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to generate a signature for PDF from estimation
+    public function addSignature(Estimations $estimation)
+    {
+        return $this->render('bdc/signature.html.twig', [
+            'estimation' => $estimation
         ]);
     }
 
@@ -72,7 +128,7 @@ class BdcController extends AbstractController
                 $error = 'Merci de créer un dossier uploads/CI/';
                 $this->addFlash('danger', $error);
             }
-                return $this->redirectToRoute('bdc_show', [
+                return $this->redirectToRoute('confirm_photo', [
                 'id' => $estimation->getId(),
                 ]);
         }
@@ -89,15 +145,24 @@ class BdcController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
-        return $this->render('bdc/show.html.twig', [
-            'IMEI' => "355 402 092 374 478",
-            'estimation' => $estimation,
-        ]);
+        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
+                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+                return $this->render('bdc/show.html.twig', [
+                    'IMEI' => "355 402 092 374 478",
+                    'estimation' => $estimation,
+                ]);
+            }
+        }
+        $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
+        $this->addFlash('danger', $message);
+        return $this->redirectToRoute('home');
     }
 
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @param Estimations $estimation
+     * @return RedirectResponse
      */
     // route to generate a PDF from estimation
     public function showPDF(Estimations $estimation)
@@ -116,7 +181,7 @@ class BdcController extends AbstractController
         ]);
 
         // Create Filename
-        $clientId = $this->getUser();
+        $clientId = $this->getUser()->getId();
         $estimationId = $estimation->getId();
         $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 
@@ -139,12 +204,43 @@ class BdcController extends AbstractController
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);
 
-        // TODO Send some text response flash message
-        // return new Response("The PDF file has been succesfully generated !");
+        // Prepare flash message
+        $message = "Le bon de cession a été généré";
+        $this->addFlash('success', $message);
 
         // Output the generated PDF to Browser (inline view)
-        $dompdf->stream($filename, [
-        "Attachment" => false
+        //$dompdf->stream($filename, [
+        //"Attachment" => false
+        //]);
+
+        return $this->redirectToRoute('bdc_pay', [
+            'id' => $estimation->getId(),
+        ]);
+    }
+
+    /**
+     * @Route("/pay/{id}", name="bdc_pay")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to go to payment
+    public function pay(Estimations $estimation)
+    {
+        return $this->render('bdc/pay.html.twig', [
+            'estimation' => $estimation,
+        ]);
+    }
+
+    /**
+     * @Route("/confirm/{id}", name="confirm_photo")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to confirm picture of identity Card
+    public function confirm(Estimations $estimation)
+    {
+        return $this->render('bdc/confirm.html.twig', [
+            'estimation' => $estimation,
         ]);
     }
 }
