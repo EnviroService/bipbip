@@ -17,6 +17,8 @@ class CollectsController extends AbstractController
 {
     /**
      * @Route("/", name="collects_index", methods={"GET"})
+     * @param CollectsRepository $collectsRepository
+     * @return Response
      */
     public function index(CollectsRepository $collectsRepository): Response
     {

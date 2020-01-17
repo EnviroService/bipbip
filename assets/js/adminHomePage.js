@@ -13,16 +13,20 @@ require('../scss/admin.scss');
 // any CSS you require will output into a single css file (app.css in this case)
 require('bootstrap');
 
-const collecters = document.querySelectorAll('.collecters');
-const collecterActionsLister = document.querySelectorAll('.collecterActionsLister');
-const collecterActionsAdd = document.querySelectorAll('.collecterActionsAdd');
+const organisms = document.querySelectorAll('.organisms');
+const organismsLister = document.querySelectorAll('.organismsLister');
+const organismsActionsAdd = document.querySelectorAll('.organismsActionsAdd');
+const organismsListerCollector = document.querySelectorAll('.organismsListerCollector');
+const organismsAddCollector = document.querySelectorAll('.organismsAddCollector');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
-for (let number = 0; number < collecters.length; number++) {
-    collecters[number].addEventListener('click', () => {
-        collecterActionsLister[number].classList.toggle('displayed');
-        collecterActionsAdd[number].classList.toggle('displayed');
+for (let number = 0; number < organisms.length; number++) {
+    organisms[number].addEventListener('click', () => {
+        organismsLister[number].classList.toggle('displayed');
+        organismsActionsAdd[number].classList.toggle('displayed');
+        organismsListerCollector[number].classList.toggle('displayed');
+        organismsAddCollector[number].classList.toggle('displayed');
     });
 }
 
@@ -32,7 +36,7 @@ const officialDocumentsCi = document.querySelectorAll('.officialDocumentsCi');
 // eslint-disable-next-line no-plusplus
 
 // eslint-disable-next-line no-plusplus
-for (let number = 0; number < collecters.length; number++) {
+for (let number = 0; number < officialDocuments.length; number++) {
     officialDocuments[number].addEventListener('click', () => {
         officialDocumentsBc[number].classList.toggle('displayed');
         officialDocumentsCi[number].classList.toggle('displayed');
