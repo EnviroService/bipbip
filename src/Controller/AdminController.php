@@ -26,16 +26,15 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/home", name="home_admin")
-     * @param EntityManagerInterface $em
+     * @Route("/home", name="home_admin", methods={"GET"})
      * @param Request $request
      * @return Response
      */
-    public function index(EntityManagerInterface $em, Request $request): Response
+    public function index(Request $request): Response
     {
-        $result= new Search();
-        $form = $this->createForm(SearchType::class, $result, ["mapped"=>false]);
-        $form->handleRequest($result);
+        $search= new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
 
         return $this->render(
             'admin/index.html.twig',
