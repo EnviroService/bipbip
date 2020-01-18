@@ -23,6 +23,7 @@ class SearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Search::class,
             'method' =>'get',
+            'label'  => 'To Be Completed Before',
         ]);
     }
 }
