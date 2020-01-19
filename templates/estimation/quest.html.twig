@@ -14,8 +14,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>Votre téléphone a t-il été immergé dans l'eau ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si votre téléphone est tombé dans l'eau, cochez 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_start(form) }}
@@ -26,8 +30,12 @@
 
     <div class="container jumbotron">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>Votre écran est-il endommagé ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="une petite griffe est considérée comme endommagé"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -37,8 +45,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>La coque du téléphone est-elle endommagée ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="fissures, griffes, mauvais emboitement, cochez 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -48,8 +60,13 @@
 
     <div class="container jumbotron">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>Avez vous des problèmes de charge au niveau de votre batterie ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt=""
+                     title="Si vous avez l'impression de devoir recherger votre téléphone tout les jours, cochez 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -59,8 +76,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>Tous vos boutons sont-ils fonctionnels ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si un de vos boutons ne fonctionne plus, cochez 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
