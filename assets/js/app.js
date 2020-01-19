@@ -32,3 +32,11 @@ menuBurger.addEventListener('click', () => {
 closeButton.addEventListener('click', () => {
     menu.classList.toggle('displayed');
 });
+
+// MESSAGE FLASH
+
+const flash = document.getElementById('flash');
+
+setTimeout(function () {
+    flash.hidden;
+},5000);
