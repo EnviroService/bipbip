@@ -39,7 +39,7 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -53,7 +53,7 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -67,7 +67,7 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -81,7 +81,8 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+                {{ form_help(form.phoneNumber) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -95,7 +96,7 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.address, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.address, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -109,7 +110,8 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.postcode, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.postCode, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+                {{ form_help(form.postCode) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -123,7 +125,7 @@
                 <input type="checkbox" aria-label="Checkbox">
             </div>
             <div class="col-6 mx-auto text-center form p-4">
-                {{ form_widget(form.city, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+                {{ form_widget(form.city, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row">
@@ -131,7 +133,7 @@
                 <a href="{{ path('verifyEstim', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                <button class="btn btn-info">{{ button_label|default('Mettre à jour') }}</button>
+                {{ form_widget(form.submit, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
                 <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
             </div>
         </div>

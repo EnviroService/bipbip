@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Estimations;
+use App\Entity\Phones;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,9 +16,16 @@ class CollectEstimationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('model')
-            ->add('capacity')
-            ->add('brand')
+            ->add('brand', TextType::class, [
+                'label' => 'Marque',
+            ])
+            ->add('model', TextType::class, [
+                'label' => 'Modèle',
+            ])
+            ->add('capacity', NumberType::class, [
+                'label' => 'Capacité',
+                'help' => 'nombre uniquement',
+            ])
             ->add('liquidDamage', ChoiceType::class, [
                 'expanded' => true,
                 'choices' => [

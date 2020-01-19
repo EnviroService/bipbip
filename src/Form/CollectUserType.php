@@ -27,14 +27,16 @@ class CollectUserType extends AbstractType
         $builder->add('address', TextType::class, [
             'required' => true
         ]);
-        $builder->add('postcode', NumberType::class, [
-            'required' => true
+        $builder->add('postCode', NumberType::class, [
+            'required' => true,
+            'help' => '5 chiffres',
         ]);
         $builder->add('city', TextType::class, [
             'required' => true
         ]);
         $builder->add('phoneNumber', NumberType::class, [
-            'required' => true
+            'required' => true,
+            'help' => '10 chiffres',
         ]);
         $builder->add('email', EmailType::class, [
             'required' => true

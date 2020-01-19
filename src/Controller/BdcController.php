@@ -81,35 +81,31 @@ class BdcController extends AbstractController
      * @param Request $request
      * @param Estimations $estimation
      * @param User $user
-     * @param EntityManagerInterface $em
      * @return Response
      */
     public function verifyUser(
         Request $request,
         Estimations $estimation,
-        User $user,
-        EntityManagerInterface $em
+        User $user
     ): Response {
         $user = $estimation->getUser();
         $form = $this->createForm(CollectUserType::class, $user);
         $form->handleRequest($request);
-        $id = $estimation->getId();
 
         if ($form->isSubmitted() && $form->isValid() && $user) {
             $data = $form-> getData();
             $user->setLastname($data['lastname']);
             $user->setFirstname($data['firstname']);
             $user->setEmail($data['email']);
+            $user->setPhoneNumber($data['phoneNumber']);
             $user->setAddress($data['address']);
-            $user->setPostCode($data['postcode']);
+            $user->setPostCode($data['postCode']);
             $user->setCity($data['city']);
+            $estimation->setUser($user);
 
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('takePhoto', [
-                'id' => $id,
-            ]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($estimation);
+            $entityManager->flush();
         }
 
         return $this->render('bdc/editUser.html.twig', [
