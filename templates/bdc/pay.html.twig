@@ -1,12 +1,12 @@
 {% extends 'admin/index.html.twig' %}
 {% block title %}{% endblock %}
 {% block body %}
-    <main class="pay">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success text-center">
-                {{ message }}
+    <main class="container">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="6" aria-valuemin="0" aria-valuemax="7" style="width: 85%">
+                6 sur 7
             </div>
-        {% endfor %}
+        </div>
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
                 <h1 class="primary-title">Etape 6 : vers le paiement</h1>
@@ -20,8 +20,16 @@
                     <li>Visibilité : Privée</li>
                     <li>Commentaire de la transaction : Paiement BipBip {{ estimation.brand }} {{ estimation.model }}</li>
                 </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto text-left">
+                <a href="{{ path('bdc_show', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right">
                 <a href="https://pumpkin-business.com/admin/3ce15931faed4cf790b17044cc7f3091/pay/mypay/72c201e1e00c4f5dac9eed172fa4ec67/pay"
-                   class="primary-button" target="_blank">Payer sur Pumpkin Business</a>
+                   class="btn btn-info" target="_blank">Payer sur Pumpkin Business</a>
+                <a href="{{ path('bdc_end', { id: estimation.id}) }}" class="btn btn-success">Paiement effectué ? Valider la collecte -></a>
             </div>
         </div>
     </main>

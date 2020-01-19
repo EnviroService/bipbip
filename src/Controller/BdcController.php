@@ -166,8 +166,8 @@ class BdcController extends AbstractController
                 $error = 'Merci de créer un dossier uploads/CI/';
                 $this->addFlash('danger', $error);
             }
-                return $this->redirectToRoute('confirm_photo', [
-                'id' => $estimation->getId(),
+                return $this->redirectToRoute('bdc_show', [
+                'estimation' => $estimation,
                 ]);
         }
         return $this->render('bdc/takePhoto.html.twig', [
@@ -194,7 +194,7 @@ class BdcController extends AbstractController
         }
         $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
         $this->addFlash('danger', $message);
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('adminIndex');
     }
 
     /**
@@ -278,6 +278,19 @@ class BdcController extends AbstractController
     public function confirm(Estimations $estimation)
     {
         return $this->render('bdc/confirm.html.twig', [
+            'estimation' => $estimation,
+        ]);
+    }
+
+    /**
+     * @Route("/end/{id}", name="bdc_end")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to confirm picture of identity Card
+    public function end(Estimations $estimation)
+    {
+        return $this->render('bdc/end.html.twig', [
             'estimation' => $estimation,
         ]);
     }
