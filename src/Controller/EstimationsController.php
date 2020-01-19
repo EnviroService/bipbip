@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Estimations;
 use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,47 @@ class EstimationsController extends AbstractController
     {
         return $this->render('estimations/index.html.twig', [
             'estimations' => $eRepo->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexUncollected(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByUncollected();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+        ]);
+    }
+
+    /**
+     * @Route("/collected", name="estimations_collected_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexCollected(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByCollected();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+        ]);
+    }
+
+    /**
+     * @Route("/unfinished", name="estimations_unfinished_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexUnfinished(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByUnfinished();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
         ]);
     }
 
