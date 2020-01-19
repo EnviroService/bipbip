@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\User;
+use App\Form\CollectEstimationType;
+use App\Form\CollectUserType;
 use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
@@ -45,7 +47,7 @@ class BdcController extends AbstractController
      */
     public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(EstimationsType::class, $estimation);
+        $form = $this->createForm(CollectEstimationType::class, $estimation);
         $form->handleRequest($request);
         $id = $estimation->getId();
 
@@ -68,7 +70,49 @@ class BdcController extends AbstractController
             ]);
         }
 
-        return $this->render('estimations/edit.html.twig', [
+        return $this->render('estimations/editEstim.html.twig', [
+            'estimation' => $estimation,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="verifyUser", methods={"GET","POST"})
+     * @param Request $request
+     * @param Estimations $estimation
+     * @param User $user
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function verifyUser(
+        Request $request,
+        Estimations $estimation,
+        User $user,
+        EntityManagerInterface $em
+    ): Response {
+        $user = $estimation->getUser();
+        $form = $this->createForm(CollectUserType::class, $user);
+        $form->handleRequest($request);
+        $id = $estimation->getId();
+
+        if ($form->isSubmitted() && $form->isValid() && $user) {
+            $data = $form-> getData();
+            $user->setLastname($data['lastname']);
+            $user->setFirstname($data['firstname']);
+            $user->setEmail($data['email']);
+            $user->setAddress($data['address']);
+            $user->setPostCode($data['postcode']);
+            $user->setCity($data['city']);
+
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('takePhoto', [
+                'id' => $id,
+            ]);
+        }
+
+        return $this->render('bdc/editUser.html.twig', [
             'estimation' => $estimation,
             'form' => $form->createView(),
         ]);

@@ -1,0 +1,173 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Vérification de l'estimation{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <main class="container">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="6" style="width: 33%">
+                2 sur 6
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Etape 2 : vérification des informations</h1>
+            </div>
+        </div>
+        <div class="row bg-info align-items-center">
+            <div class="col-3 text-right">
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                Informations fournies
+            </div>
+            <div class="col-1 text-center ">
+                Cocher si valide
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
+                Modification (si nécessaire)
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Marque :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.brand }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
+                {{ form_widget(form.brand, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Modèle :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.model }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
+                {{ form_widget(form.model, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Capacité :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.capacity }} Go
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
+                {{ form_widget(form.capacity, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Dommages par un liquide :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+               {% if estimation.liquidDamage > 0 %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+            </div>
+            <div class="col-1 text-center">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-left form p-4">
+                {{ form_widget(form.liquidDamage, {'attr': {'class': 'form-check mt-3', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Ecran abimé :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {% if estimation.screenCracks > 0 %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-left form p-4">
+                {{ form_widget(form.screenCracks, {'attr': {'class': 'form-check mt-3', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Coque abimée :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {% if estimation.casingCracks > 0 %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-left form p-4">
+                {{ form_widget(form.casingCracks, {'attr': {'class': 'form-check mt-3', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Batterie défectueuse :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {% if estimation.batteryCracks > 0 %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-left form p-4">
+                {{ form_widget(form.batteryCracks, {'attr': {'class': 'form-check mt-3', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Bouton(s) défectueux :
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                {% if estimation.buttonCracks > 0 %}
+                    OUI
+                {% else %}
+                    NON
+                {% endif %}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-left form p-4">
+                {{ form_widget(form.buttonCracks, {'attr': {'class': 'form-check mt-3', 'required': true}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('estimations_index') }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4">
+                <button class="btn btn-info">{{ button_label|default('Mettre à jour') }}</button>
+                <a href="{{ path('verifyUser', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
