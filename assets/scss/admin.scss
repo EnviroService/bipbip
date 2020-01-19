@@ -2,274 +2,254 @@
 @import "~bootstrap/scss/bootstrap";
 
 // En tête
-.card-id{
-    display: flex;
-    flex-direction : row;
-    width: 100%;
-    margin-bottom: 5%;
-    border-radius: 5px;
-    font-family: 'co-headline', Arial sans-serif;
-    box-shadow: inset 5px 0 10px rgb(135,151,151);
-
-    ul{
-        width: 25%;
-        box-shadow: inset 2px 0 5px rgb(135,151,151);
-        color : White;
-        margin-right: 10px;
-        margin-bottom: 0px;
-        font-size: 1.3rem;
-        font-style: italic;
-        padding: 5px;
+header{
+    .card-id{
+        display: flex;
+        flex-direction : row;
         border-radius: 5px;
-        font-weight: bold;
-        background-color: $secondary-color;
-        opacity: 70%;
+        font-family: 'co-headline', Arial sans-serif;
+        box-shadow: 5px 0 10px rgb(135,151,151);
 
-        li{
-            margin-left: 10px;
+        ul{
+            width: 25%;
+            color : White;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            font-size: 1.1rem;
+            font-style: italic;
+            text-align : center;
+            padding: 15px;
+            font-weight: 600;
+            background-color: $secondary-color;
+            opacity: 70%;
+
+            li{
+                margin-left: 10px;
+
+                span{
+                    font-weight : 400;
+                    font-size: 1rem;
+                }
+
+                a{
+                    color : white;
+                    font-size : 0.9rem;
+                    font-weight: 300;
+                    border-bottom : white 1px solid;
+                }
+            }
+
+            .date{
+                font-size : 1rem;
+                font-weight : 400;
+            }
         }
-    }
 
-    h1{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 75%;
-        font-size: 1.8rem;
-        font-style: italic;
-        color: $secondary-color;
-        margin-right: 10px;
-    }
-}
-
-// Card genérale
-.cards-admin{
-    width: 100%;
-    height: 80%;
-}
-
-// Menu gauche
-.menu-admin{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-right: 5px;
-    font-size: 1.4rem;
-    color: white;
-    text-decoration: none;
-
-    .icon-menu{
-        display: flex;
-        flex-direction: row;
-        list-style-type: none;
-        margin-top: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .estimations{
-        width: 100%;
-        height: 70px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        background-color: $secondary-color;
-
-        a{
+        h1{
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 70px;
-            text-decoration: none;
-            color: $white;
-            font-weight: bold;
-             }
-        }
-    }
-
-.organisms{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 70px;
-    position: relative;
-    border-radius: 5px;
-    box-shadow: inset 2px 0 10px rgb(223, 216, 222);
-    background-color: $secondary-color;
-    z-index : 5;
-
-    a{
-        display: block;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
+            width: 75%;
+            padding : 15px;
+            margin : 0;
+            font-size: 1.8rem;
+            font-style: italic;
+            color: $secondary-color;
         }
 
-    .organismsLister{
-        display : none;
-        position: absolute;
-        bottom : -72%;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
+        a{
+            div{
+                display : flex;
+                flex-direction: column;
+                justify-content: center;
+                width : 220px;
+                height : 100px;
+                padding : 10px 50px 0 10px;
+
+                img{
+                    width : 80%;
+                    margin : auto;
+                }
+
+                p{
+                    color : $secondary-color;
+                    font-size: 0.8rem;
+                    text-align: center;
+                    font-style: italic;
+                }
+            }
         }
-
-    .organismsLister.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
-        }
-
-    .organismsActionsAdd{
-        display : none;
-        position: absolute;
-        bottom: -143%;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        }
-
-    .organismsActionsAdd.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
-        }
-
-    .organismsListerCollector{
-        display : none;
-        position: absolute;
-        bottom: -214%;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-    }
-
-    .organismsListerCollector.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
-    }
-
-    .organismsAddCollector{
-        display : none;
-        position: absolute;
-        bottom: -286%;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-    }
-
-    .organismsAddCollector.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
     }
 }
 
-.officialDocuments{
-    display: flex;
-    justify-content: center;
+
+// SearchBar
+#search-bar{
+    width : 50%;
+    margin : 30px auto;
+    display : flex;
     align-items: center;
-    position: relative;
+
+    input{
+        width : 100%;
+    }
+}
+
+// Menu gauche
+.menu-admin {
     width: 100%;
-    height: 70px;
-    border-radius: 5px;
-    box-shadow: inset 2px 0 10px rgb(223,216,222);
-    background-color: $secondary-color;
+    color: white;
+    text-decoration: none;
+    height: 50px;
+    z-index : 999;
 
-    a {
-        display: block;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
+    .icon-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        width: 100%;
+        box-shadow: 5px 3px 10px rgb(135, 151, 151);
+        border-radius: 5px;
+        background-color: $secondary-color;
+
+        .estimations {
+            box-shadow: -1px 0 5px white, 1px 0 5px white;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 50px;
+                text-decoration: none;
+                color: $white;
+                font-weight: 500;
+                font-size: 1.1rem;
+                margin: 0;
+                z-index: 100;
+            }
+
+            .block {
+                display: none;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 2px 0 10px rgb(223,216,222);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    a {
+                        color: $secondary-color;
+                        padding: 5px;
+                        border : rgb(223,216,222) 1px solid;
+                        width : 100%;
+                        text-align : center;
+                    }
+                }
+            }
+
+            .block.displayed {
+                display: block;
+            }
         }
 
-    .officialDocumentsBc{
-        display : none;
-        position: absolute;
-        width: 100%;
-        height: 50px;
-        bottom: -72%;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: white;
+        .management {
+            box-shadow: -1px 0 5px white, 1px 0 5px white;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 50px;
+                text-decoration: none;
+                color: $white;
+                font-weight: 500;
+                font-size: 1.1rem;
+                margin: 0;
+            }
+
+            .block {
+                display: none;
+                border-radius: 5px;
+                box-shadow: 2px 0 10px rgb(223,216,222);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: white;
+
+                    a {
+                        color: $secondary-color;
+                        padding: 5px;
+                        border : rgb(223,216,222) 1px solid;
+                        width : 100%;
+                        text-align : center;
+                    }
+                }
+            }
+
+            .block.displayed {
+                display: block;
+            }
         }
 
-    .officialDocumentsBc.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
-        }
+        .officialDocuments {
+            box-shadow: -1px 0 5px white, 1px 0 5px white;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
 
-    .officialDocumentsCi{
-        display : none;
-        position: absolute;
-        width: 100%;
-        height: 50px;
-        bottom: -143%;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        }
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 50px;
+                text-decoration: none;
+                color: $white;
+                font-weight: 500;
+                font-size: 1.1rem;
+                margin: 0;
+            }
 
-    .officialDocumentsCi.displayed{
-        display: block;
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        box-shadow: inset 2px 0 10px rgb(223,216,222);
-        color: $secondary-color;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 10px;
+            .block {
+                display: none;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 2px 0 10px rgb(223,216,222);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    a {
+                        color: $secondary-color;
+                        padding: 5px;
+                        border : rgb(223,216,222) 1px solid;
+                        width : 100%;
+                        text-align : center;
+                    }
+                }
+            }
+
+            .block.displayed {
+                display: block;
+            }
         }
     }
-
-
-// Card centrale
-.card-central-admin{
-    width: 100%;
-    box-shadow: inset 2px 0 10px rgb(223,216,222);
-    border-radius: 5px;
-    margin-right: 5px;
 }
