@@ -51,7 +51,6 @@ class BdcController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form-> getData();
-            $estimation = new Estimations();
             $estimation->setBrand($data['brand']);
             $estimation->setModel($data['model']);
             $estimation->setCapacity($data['capacity']);
@@ -63,7 +62,6 @@ class BdcController extends AbstractController
 
             $em->persist($estimation);
             $em->flush();
-            //$this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('takePhoto', [
                 'id' => $id,

@@ -10,73 +10,134 @@
                 <h1 class="primary-title">Etape 2 : vérification des informations</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-info align-items-center">
+            <div class="col-3 text-right">
+            </div>
+            <div class="col-2 text-center font-weight-bold">
+                Informations fournies
+            </div>
+            <div class="col-1 text-center ">
+                Cocher si valide
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
+                Modification (si nécessaire)
+            </div>
+        </div>
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Marque :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.brand }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.brand, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Modèle :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.model }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.model, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Capacité :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.capacity }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.capacity, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
-                Liquide Dammage :
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Dommages par un liquide :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.liquidDamage }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.liquidDamage, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Ecran abimé :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.screenCracks }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Coque abimée :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.casingCracks }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.casingCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
                 Batterie défectueuse :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.batteryCracks }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.batteryCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-4 text-right">
-                Bouton(s) deffectueux :
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-right">
+                Bouton(s) défectueux :
             </div>
-            <div class="col-8 mx-auto text-center form p-4">
+            <div class="col-2 text-center font-weight-bold">
+                {{ estimation.buttonCracks }}
+            </div>
+            <div class="col-1 text-center ">
+                <input type="checkbox" aria-label="Checkbox">
+            </div>
+            <div class="col-6 mx-auto text-center form p-4">
                 {{ form_widget(form.buttonCracks, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             </div>
         </div>
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <button class="btn btn-primary">{{ button_label|default('Mettre à jour') }}</button>
+                <button class="btn btn-info">{{ button_label|default('Mettre à jour') }}</button>
             </div>
         </div>
     </main>
