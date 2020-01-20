@@ -21,8 +21,7 @@
                     {% endfor %}
                 </span>
             </li>
-            <li class="date">{{"now"|date('d/m/Y')}}</li>
-            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+            <li class="date">{{"now"|date('d/m/Y')}} - <a href="{{ path('app_logout') }}">Déconnexion</a></li>
         </ul>
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
         <a href="{{ path('home') }}">
