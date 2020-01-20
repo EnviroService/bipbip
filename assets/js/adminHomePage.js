@@ -17,7 +17,7 @@ require('bootstrap');
 const categories = document.querySelectorAll('h2.title');
 const subCategories = document.querySelectorAll('div.block');
 
-for (let i = 0; i < categories.length; categories[i++]) {
+for (let i = 0; i < categories.length; categories[i += 1]) {
     categories[i].addEventListener('click', () => {
         subCategories[i].classList.toggle('displayed');
     });
