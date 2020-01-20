@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Administration {% endblock %}
     {% block stylesheets %}
-        {{ encore_entry_link_tags('admin') }}
+        {{ encore_entry_link_tags('adminHomePage') }}
     {% endblock %}
 {% block header %}
 <header>
@@ -56,14 +56,11 @@
 </main>
 {% endblock %}
 {% block body %}
-{% if value %}
-    {{ value }}
-{% endif %}
 {% endblock %}
 
 {% block footer %}{% endblock %}
 
 {%  block javascripts %}
-    {{ encore_entry_script_tags('admin') }}
+    {{ encore_entry_script_tags('adminHomePage') }}
 {% endblock %}
 

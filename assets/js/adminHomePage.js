@@ -42,3 +42,32 @@ for (let number = 0; number < officialDocuments.length; number++) {
         officialDocumentsCi[number].classList.toggle('displayed');
     });
 }
+$(document).ready(function () {
+    $('#searchUser').keyup(function () {
+        // rafaraichir pour avoir un blanc lors de la frappe
+        $('#resultSearch').html('');
+        // recuperation des données
+        let users = $(this).val();
+        // eslint-disable-next-line eqeqeq
+        if (users !== "") {
+            // animation et recuperation des données // rafraichir un bout de page
+            $.ajax({
+                type: 'GET',
+                // url pour raffraichir les données
+                url: "admin",
+                //encoder la variable pour quelle ne soit pas en claire(secu)
+                data: 'users=' + encodeURIComponent(users),
+                // data valeur par def d'ajax données recup du resultat erreor ou succes.
+                success: function (data) {
+                    if (data !== "") {
+                        // afficher les données $data
+                        $('#resultSearch').append(data)
+                    } else {
+                        //meme chose pour recup un element d'un id
+                        document.getElementById('resultSearch').innerHTML="<div>Aucunes recherches trouvées</div>"
+                    }
+                }
+            });
+        }
+    })
+});

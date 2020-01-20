@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,18 +41,22 @@ class AdminController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->isXmlHttpRequest()) {
             $data = $form->getData()->getnameSearch();
-            $result = $userRepository->findBy([
-                'lastname' => $data
-            ]);
-            return $result;
+            $result = $userRepository->findSearch($data);
+            $json =[];
+            foreach ($result as $name) {
+                $lastname = $name->getLastname();
+                $json[]= ['lastname'=>$lastname];
+            }
+            $json =json_encode($json);
+
+            return new JsonResponse($json, 200, [], true);
         }
-        return $this->render('admin/index.html.twig', [
-            "form" => $form->createView()
+            return $this->render('admin/index.html.twig', [
+                "form" => $form->createView()
             ]);
     }
-
     /**
      * @Route("/collector/register", name="register_collector")
      * @IsGranted("ROLE_ADMIN")
