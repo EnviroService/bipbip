@@ -16,9 +16,13 @@
     </div>
 
     <div class="container">
-        <div class="row quest">
-            <div class="col-12">
-                <h4>Votre téléphone a t-il été immergé dans l'eau ?</h4>
+        <div class="row">
+            <div class="col-11">
+                <h4>Ton téléphone a t-il été immergé dans l'eau ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si ton téléphone est tombé dans l'eau, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_start(form) }}
@@ -26,11 +30,15 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="row quest">
-            <div class="col-12">
-                <h4>Votre écran est-il endommagé ?</h4>
+    
+    <div class="container jumbotron">
+        <div class="row">
+            <div class="col-11">
+                <h4>Ton écran est-il endommagé ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -39,9 +47,13 @@
     </div>
 
     <div class="container">
-        <div class="row quest">
-            <div class="col-12">
+        <div class="row">
+            <div class="col-11">
                 <h4>La coque du téléphone est-elle endommagée ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Fissures, griffes, mauvais emboîtement, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -49,10 +61,15 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row quest">
-            <div class="col-12">
-                <h4>Avez vous des problèmes de charge au niveau de votre batterie ?</h4>
+    <div class="container jumbotron">
+        <div class="row">
+            <div class="col-11">
+                <h4>As-tu des problèmes de charge au niveau de la batterie ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt=""
+                     title="Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -61,9 +78,13 @@
     </div>
 
     <div class="container">
-        <div class="row quest">
-            <div class="col-12">
-                <h4>Tous vos boutons sont-ils fonctionnels ?</h4>
+        <div class="row">
+            <div class="col-11">
+                <h4>Tous les boutons sont-ils fonctionnels ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si un de tes boutons ne fonctionne plus, coche 'non'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -87,3 +108,4 @@
     </div>
 </main>
 {% endblock %}
+
