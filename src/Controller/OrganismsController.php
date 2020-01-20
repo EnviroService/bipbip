@@ -46,9 +46,10 @@ class OrganismsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $organism->getLogo();
+            $file = $form->get('logo')->getData();
             $fileName = md5(uniqid()). '.' . $file->guessExtension();
             $file->move($this->getParameter('upload_directory'), $fileName);
+
             $organism->setLogo($fileName);
 
             $entityManager->persist($organism);
@@ -76,33 +77,6 @@ class OrganismsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     * @param Request $request
-     * @param Organisms $organism
-     * @return Response
-     */
-    public function edit(Request $request, Organisms $organism): Response
-    {
-        $form = $this->createForm(OrganismsType::class, $organism);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $organism->setLogo(
-                $this->getParameter('upload_directory'). '/'.$organism->getLogo()
-            );
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('organisms_index');
-        }
-
-        return $this->render('organisms/edit.html.twig', [
-            'organism' => $organism,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="organisms_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
@@ -117,7 +91,7 @@ class OrganismsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('organisms_index');
+        return $this->redirectToRoute('admin_organisms_index');
     }
 
     /**

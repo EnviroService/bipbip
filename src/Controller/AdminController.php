@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Organisms;
 use App\Entity\User;
+use App\Form\OrganismsType;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
 use App\Repository\OrganismsRepository;
@@ -12,6 +13,7 @@ use DateTime;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +21,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
- * @Route("/admin", name="admin")
+ * @Route("/admin")
  */
 
 class AdminController extends AbstractController
@@ -76,19 +78,20 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/organism", name="organisms_index", methods={"GET"})
+     * @Route("/organisms", name="admin_organisms_index", methods={"GET"})
      * @param OrganismsRepository $organismsRepository
      * @return Response
      */
     public function index(OrganismsRepository $organismsRepository): Response
     {
+        $organisms = $organismsRepository->findAll();
         return $this->render('admin/index_organism.html.twig', [
-            'organisms' => $organismsRepository->findAll(),
+            'organisms' => $organisms,
         ]);
     }
 
     /**
-     * @Route("/organism/{id}", name="organisms_show", methods={"GET"})
+     * @Route("/organism/{id}", name="admin_organism_show", methods={"GET"})
      * @param Organisms $organism
      * @return Response
      */
@@ -96,6 +99,40 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/show_organism.html.twig', [
             'organism' => $organism,
+        ]);
+    }
+
+    /**
+     * @Route("/organism/edit/{id}", name="admin_organism_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param Request $request
+     * @param Organisms $organism
+     * @return Response
+     */
+    public function edit(Request $request, Organisms $organism): Response
+    {
+        $form = $this->createForm(OrganismsType::class, $organism);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form['logo']->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move($this->getParameter('upload_directory'), $fileName);
+                $organism->setLogo(
+                    new File($this->getParameter('upload_directory') . '/' . $organism->getLogo())
+                );
+                dd($file);
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_organisms_index');
+        }
+
+        return $this->render('admin/edit.html.twig', [
+            'organism' => $organism,
+            'form' => $form->createView(),
         ]);
     }
 }

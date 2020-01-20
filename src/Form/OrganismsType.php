@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class OrganismsType extends AbstractType
 {
@@ -23,7 +24,8 @@ class OrganismsType extends AbstractType
             ->add('organismLink', TextType::class)
             ->add('logo', FileType::class, [
                 'required' => false,
-                'data_class' => null,
+                'mapped' => false,
+                'data_class' => null
             ])
             ->add('organismAddress', TextType::class)
             ->add('organismCity', TextType::class)
