@@ -1,53 +1,91 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Administration {% endblock %}
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('admin') }}
-    {% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
 {% block header %}
 <header>
     <div class="card-id">
         <ul>
-            <li>{{ app.user.firstname }} {{ app.user.lastname }}</li>
-            <li>{% for role in app.user.roles|slice(0,1) %}
-                {% if role == 'ROLE_ADMIN' %}
-                Administrateur
-                {% else %}
-                Collecteur
-                {% endif %}
-            {% endfor %}</li>
-            <li>{{"now"|date('d/m/Y')}}</li>
+            <li>{{ app.user.firstname }} {{ app.user.lastname }} -
+                <span>
+                    {% for role in app.user.roles|slice(0,1) %}
+                        {% if role == 'ROLE_ADMIN' %}
+                        Administrateur
+                        {% else %}
+                        Collecteur
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            </li>
+            <li class="date">{{"now"|date('d/m/Y')}} - <a href="{{ path('app_logout') }}">Déconnexion</a></li>
         </ul>
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
+        <a href="{{ path('home') }}">
+            <div>
+                <img src="/images/logo-bipbip.png">
+                <p>Retour sur le site Bip Bip</p>
+            </div>
+        </a>
     </div>
 </header>
 
-<div class="form-group">
-        <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center">
+        {{ message }}
     </div>
-    <div class="menu-admin">
-        <ul class="icon-menu">
-            <li class="estimations">
-                <a href="{{ path ('estimations_index') }}">Estimations
-                </a>
-            </li>
-            <li class="organisms">
-                <a href="#">Organismes</a>
-                <a href="{{ path('organisms_index') }}" class="organismsLister">Listes des partenaires</a>
-                <a href="{{ path('organisms_new') }}" class="organismsActionsAdd">Ajouter un organisme</a>
-                <a href="{{ path('organisms_index') }}" class="organismsListerCollector">Listes des collecteurs</a>
-                <a href="{{ path('adminregister_collector') }}" class="organismsAddCollector">Ajouter un collecteur</a>
-
-            </li>
-            <li class="officialDocuments">
-                <a href="#">Documents stockés</a>
-                <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
-                <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
-            </li>
-        </ul>
+{% endfor %}
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger text-center">
+        {{ message }}
     </div>
+{% endfor %}
 
+<div class="form-group" id="search-bar">
+    <label for="search-user"></label>
+    <input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
+</div>
+
+<nav class="menu-admin">
+    <ul class="icon-menu">
+        <li class="estimations">
+            <h2 class="title">Estimations</h2>
+            <div class="block">
+                <div>
+                    <a href="{{ path ('estimations_uncollected_index') }}">Non collectées</a>
+                    <a href="{{ path('estimations_collected_index') }}">Collectées</a>
+                    <a href="{{ path('estimations_unfinished_index') }}">Inachevées</a>
+                </div>
+            </div>
+        </li>
+        <li class="management">
+            <h2 class="title">Gestion</h2>
+            <div class="block">
+                <div>
+                    <a href="{{ path('organisms_index') }}">Partenaires</a>
+                    <a href="{{ path('organisms_new') }}">Collecteurs</a>
+                    <a href="{{ path('organisms_index') }}">Collectes</a>
+                    <a href="{{ path('adminregister_collector') }}">Matrice</a>
+                    <a href="{{ path('adminregister_collector') }}">FAQ</a>
+                </div>
+            </div>
+        </li>
+        <li class="officialDocuments">
+            <h2 class="title">Documents</h2>
+            <div class="block">
+                <div>
+                    <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
+                    <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
 {% endblock %}
-{% block body %}{% endblock %}
+
 
 {% block footer %}{% endblock %}
 
