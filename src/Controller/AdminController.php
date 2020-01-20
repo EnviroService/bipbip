@@ -6,8 +6,10 @@ use App\Entity\Search;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\SearchType;
+use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,19 +28,28 @@ class AdminController extends AbstractController
     /**
      * @Route("/home", name="home_admin", methods={"GET"})
      * @param Request $request
-     * @return Response
+     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $em
      */
-    public function index(Request $request): Response
-    {
-        $search= new Search();
+    public function index(
+        Request $request,
+        UserRepository $userRepository,
+        EntityManagerInterface $em
+    ) {
+        $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        return $this->render(
-            'admin/index.html.twig',
-            ['form'=> $form->createView()
-            ]
-        );
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData()->getnameSearch();
+            $result = $userRepository->findBy([
+                'lastname' => $data
+            ]);
+            return $result;
+        }
+        return $this->render('admin/index.html.twig', [
+            "form" => $form->createView()
+            ]);
     }
 
     /**

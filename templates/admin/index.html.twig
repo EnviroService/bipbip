@@ -25,6 +25,7 @@
         {{ form_start(form) }}
         <input class="fourth-button" type="submit" placeholder="Go!">
         {{ form_end(form) }}
+
     </div>
 </div>
 
@@ -54,7 +55,11 @@
         {% block bodyAdmin %} {% endblock %}</div>
 </main>
 {% endblock %}
-{% block body %}{% endblock %}
+{% block body %}
+{% if value %}
+    {{ value }}
+{% endif %}
+{% endblock %}
 
 {% block footer %}{% endblock %}
 
