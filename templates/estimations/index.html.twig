@@ -6,7 +6,7 @@
      {{ encore_entry_link_tags('estimationAdmin') }}
  {% endblock %}
 {% block body %}
-    <h1 class="primary-title">Estimations</h1>
+    <h2 class="primary-title">Estimations</h2>
 
     <table class="table">
         <thead>
@@ -21,12 +21,14 @@
         <tbody>
         {% for estimation in estimations %}
             <tr>
-                <td class="infoUser">
-                    {% if estimation.user is not null%}
+                {% if estimation.user is not null%}
+                    <td class="infoUser">
                         {{ estimation.user.lastname }}
                         {{ estimation.user.firstname }}
-                </td>
-                    {% endif %}
+                    </td>
+                {% else %}
+                    <td colspan="17">Utilisateur Anonyme</td>
+                {% endif %}
 
                 <td class="fourth-button info">
                     <a href="{{ path('estimations_show', {'id': estimation.id}) }}">Plus d'infos</a></td>
@@ -34,10 +36,6 @@
                      <a href="{{ path('estimations_edit', {'id': estimation.id}) }}">Edition</a></td>
                 <td class="fourth-button buttonsCollecters">
                     <a href="#">Collecter</a></td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="17">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -6,6 +6,8 @@ use App\Entity\Estimations;
 use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
+use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,6 +49,47 @@ class EstimationsController extends AbstractController
     }
 
     /**
+     * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexUncollected(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByUncollected();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+        ]);
+    }
+
+    /**
+     * @Route("/collected", name="estimations_collected_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexCollected(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByCollected();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+        ]);
+    }
+
+    /**
+     * @Route("/unfinished", name="estimations_unfinished_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexUnfinished(EstimationsRepository $eRepo): Response
+    {
+        $estimations = $eRepo->findByUnfinished();
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+        ]);
+    }
+
+    /**
      * @Route("/new", name="estimations_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
@@ -78,9 +121,18 @@ class EstimationsController extends AbstractController
      */
     public function show(Estimations $estimation): Response
     {
-        return $this->render('estimations/show.html.twig', [
-            'estimation' => $estimation,
-        ]);
+        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
+                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+                return $this->render('estimations/show.html.twig', [
+                    'estimation' => $estimation,
+                ]);
+            }
+        }
+
+        $message = "Cette estimation ne vous est pas accessible";
+        $this->addFlash('danger', $message);
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -91,23 +143,33 @@ class EstimationsController extends AbstractController
      */
     public function edit(Request $request, Estimations $estimation): Response
     {
-        $form = $this->createForm(EstimationsType::class, $estimation);
-        $form->handleRequest($request);
+        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
+                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+                $form = $this->createForm(EstimationsType::class, $estimation);
+                $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('estimations_index');
+                    return $this->redirectToRoute('estimations_index');
+                }
+
+                return $this->render('estimations/edit.html.twig', [
+                    'estimation' => $estimation,
+                    'form' => $form->createView(),
+                ]);
+            }
         }
 
-        return $this->render('estimations/edit.html.twig', [
-            'estimation' => $estimation,
-            'form' => $form->createView(),
-        ]);
+        $message = "Cette estimation ne vous est pas accessible";
+        $this->addFlash('danger', $message);
+        return $this->redirectToRoute('home');
     }
 
     /**
      * @Route("/{id}", name="estimations_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Estimations $estimation
      * @return Response

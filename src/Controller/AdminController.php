@@ -8,6 +8,7 @@ use App\Form\OrganismsType;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
 use App\Repository\OrganismsRepository;
+use App\Form\RegistrationCollectorFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Exception;
@@ -51,7 +52,7 @@ class AdminController extends AbstractController
         LoginFormAuthenticator $authenticator
     ) {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationCollectorFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -73,7 +74,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/register_collector.html.twig', [
-            'registrationForm' => $form->createView(),
+            'registrationCollectorForm' => $form->createView(),
         ]);
     }
 
