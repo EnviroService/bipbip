@@ -34,10 +34,10 @@
     }
 
     /* CAROUSEL */
-    .carousel-inner{
-        @media screen and (min-width: 740px){
-            width : 60%;
-            height : 60%;
+    #carouselExampleFade {
+        @media screen and (min-width: 740px) {
+            width : 50%;
+            height : 50%;
             margin : auto;
         }
     }
