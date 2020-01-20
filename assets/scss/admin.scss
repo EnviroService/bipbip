@@ -3,22 +3,29 @@
 
 // En tête
 header{
+    height : 80px;
+
     .card-id{
         display: flex;
         flex-direction : row;
         border-radius: 5px;
+        height : 80px;
         font-family: 'co-headline', Arial sans-serif;
         box-shadow: 5px 0 10px rgb(135,151,151);
 
         ul{
+            display : flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             width: 25%;
+            height : 80px;
             color : White;
-            margin-right: 10px;
-            margin-bottom: 0px;
-            font-size: 1.1rem;
+            margin : auto;
+            font-size: 1rem;
             font-style: italic;
             text-align : center;
-            padding: 15px;
+            padding: 5px;
             font-weight: 600;
             background-color: $secondary-color;
             opacity: 70%;
@@ -33,14 +40,14 @@ header{
 
                 a{
                     color : white;
-                    font-size : 0.9rem;
+                    font-size : 0.8rem;
                     font-weight: 300;
                     border-bottom : white 1px solid;
                 }
             }
 
             .date{
-                font-size : 1rem;
+                font-size : 0.9rem;
                 font-weight : 400;
             }
         }
@@ -50,30 +57,34 @@ header{
             justify-content: center;
             align-items: center;
             width: 75%;
-            padding : 15px;
-            margin : 0;
-            font-size: 1.8rem;
+            height : 50px;
+            padding : 5px;
+            margin : auto;
+            font-size: 1.6rem;
             font-style: italic;
             color: $secondary-color;
         }
 
         a{
+            height : 80px;
+
             div{
                 display : flex;
                 flex-direction: column;
                 justify-content: center;
                 width : 220px;
-                height : 100px;
-                padding : 10px 50px 0 10px;
+                height : 80px;
+                padding : 5px 50px 5px 10px;
 
                 img{
-                    width : 80%;
-                    margin : auto;
+                    width : 50%;
+                    margin : 0 auto;
                 }
 
                 p{
                     color : $secondary-color;
                     font-size: 0.8rem;
+                    margin : 0;
                     text-align: center;
                     font-style: italic;
                 }
@@ -131,6 +142,7 @@ header{
                 font-size: 1.1rem;
                 margin: 0;
                 z-index: 100;
+                cursor : pointer;
             }
 
             .block {
@@ -177,6 +189,7 @@ header{
                 font-weight: 500;
                 font-size: 1.1rem;
                 margin: 0;
+                cursor : pointer;
             }
 
             .block {
@@ -223,6 +236,7 @@ header{
                 font-weight: 500;
                 font-size: 1.1rem;
                 margin: 0;
+                cursor : pointer;
             }
 
             .block {
