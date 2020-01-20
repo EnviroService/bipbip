@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Organisms;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
+use App\Repository\OrganismsRepository;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Exception;
@@ -70,6 +72,30 @@ class AdminController extends AbstractController
 
         return $this->render('admin/register_collector.html.twig', [
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/organism", name="organisms_index", methods={"GET"})
+     * @param OrganismsRepository $organismsRepository
+     * @return Response
+     */
+    public function index(OrganismsRepository $organismsRepository): Response
+    {
+        return $this->render('admin/index_organism.html.twig', [
+            'organisms' => $organismsRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/organism/{id}", name="organisms_show", methods={"GET"})
+     * @param Organisms $organism
+     * @return Response
+     */
+    public function showOrganism(Organisms $organism): Response
+    {
+        return $this->render('admin/show_organism.html.twig', [
+            'organism' => $organism,
         ]);
     }
 }

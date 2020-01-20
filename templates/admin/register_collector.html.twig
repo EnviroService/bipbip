@@ -8,7 +8,6 @@
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.organism, { 'label': 'Organisme Collecteur associé' }) }}
         <a href="{{ path('organisms_new') }}" class="fourth-button">Ajouter un organisme collecteur</a>
-        {{ form_row(registrationForm.gender, { 'label': 'Genre' }) }}
         {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
         {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
         {{ form_row(registrationForm.address, { 'label': 'Adresse' }) }}

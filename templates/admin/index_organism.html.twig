@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
 {% block title %}Partenaires{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('partnerList') }}
+    {{ encore_entry_link_tags('admin') }}
 {% endblock %}
 
 {% block body %}
@@ -14,11 +14,11 @@
         <section>
             {% for organism in organisms %}
 
-            <article>
-                <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
-                    <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
+                <article>
+                    <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
+                        <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
 
-            </article>
+                </article>
 
                 {#
                 <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>

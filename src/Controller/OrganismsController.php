@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\File;
 use DateTime;
 
 /**
@@ -45,6 +46,11 @@ class OrganismsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $organism->getLogo();
+            $fileName = md5(uniqid()). '.' . $file->guessExtension();
+            $file->move($this->getParameter('upload_directory'), $fileName);
+            $organism->setLogo($fileName);
+
             $entityManager->persist($organism);
             $entityManager->flush();
 
@@ -64,9 +70,9 @@ class OrganismsController extends AbstractController
      */
     public function show(Organisms $organism): Response
     {
-        return $this->render('organisms/show.html.twig', [
-            'organism' => $organism,
-        ]);
+            return $this->render('organisms/show.html.twig', [
+                'organism' => $organism,
+            ]);
     }
 
     /**
@@ -82,6 +88,9 @@ class OrganismsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $organism->setLogo(
+                $this->getParameter('upload_directory'). '/'.$organism->getLogo()
+            );
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('organisms_index');
