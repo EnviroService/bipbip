@@ -60,6 +60,10 @@ class SecurityController extends AbstractController
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator
     ) {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

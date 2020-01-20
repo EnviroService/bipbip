@@ -1,0 +1,18 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+    <main class="pay">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Etape 4 : confirmation</h1>
+                ici la photo de la CI
+                <a href="{{ path('bdc_show', {'id': estimation.id}) }}">Afficher le bon de cession</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

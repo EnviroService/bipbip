@@ -190,6 +190,8 @@
 
     /* BAIL BIPBIP */
     .bail-bipbip{
+        margin : 80px auto;
+
         a{
             display : block;
             text-align : center;
@@ -208,6 +210,8 @@
 
     /* PARTNERS */
     .home-partner{
+        margin : 80px auto;
+
         h3{
             font-size : 1.5rem;
             color : $primary-color;
@@ -244,11 +248,11 @@
 
     /* CONTACT */
     .contact{
-        a{
-            display : block;
-            text-align : center;
-            margin : 5%;
-            text-decoration: underline;
+        margin : 80px auto;
+
+        .fourth-button{
+            font-size : 1rem;
+            width : 150px;
         }
     }
 }
