@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\FAQ;
 use App\Form\FAQType;
 use App\Repository\FAQRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,16 +35,16 @@ class FAQController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="faq_new", methods={"GET","POST"})
      * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $fAQ = new FAQ();
         $form = $this->createForm(FAQType::class, $fAQ);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($fAQ);
             $entityManager->flush();
 
