@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Estimations;
 use App\Form\EstimationsType;
 use App\Repository\EstimationsRepository;
+use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,9 +25,27 @@ class EstimationsController extends AbstractController
      */
     public function index(EstimationsRepository $eRepo): Response
     {
-        return $this->render('estimations/index.html.twig', [
-            'estimations' => $eRepo->findAll(),
-        ]);
+        if ($this->getUser()->getRoles()[0] == 'ROLE_COLLECTOR') {
+            $organismUsers = $this->getUser()->getOrganism()->getUsers()->getValues();
+            $estimationIds = [];
+            foreach ($organismUsers as $user) {
+                $estimationUser = $user->getEstimations()->getValues();
+                foreach ($estimationUser as $estimation) {
+                    $estimationId = $estimation->getId();
+                    $collected = $estimation->getIsCollected();
+                    array_push($estimationIds, $estimationId, $collected);
+                }
+            }
+            return $this->render('estimations/index.html.twig', [
+                'estimations' => $eRepo->findBy(
+                    ['id' => $estimationIds,
+                     'isCollected' => 0]
+                )]);
+        } else {
+            return $this->render('estimations/index.html.twig', [
+            'estimations' => $eRepo->findAll()
+            ]);
+        }
     }
 
     /**
