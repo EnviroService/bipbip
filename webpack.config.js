@@ -19,7 +19,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('signup', './assets/scss/signup.scss')
-    .addEntry('estimationAdmin', './assets/scss/estimationAdmin.scss')
+    .addEntry('admin-tables', './assets/scss/admin-tables.scss')
     .addEntry('showEstimationAdmin', './assets/scss/showEstimationAdmin.scss')
     .addEntry('home', './assets/js/home.js')
     .addEntry('faq', './assets/js/faq.js')
