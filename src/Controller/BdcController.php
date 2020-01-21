@@ -143,7 +143,6 @@ class BdcController extends AbstractController
             }
             $extension = pathinfo($_FILES['upload']['name'], PATHINFO_EXTENSION);
             $filename = 'E' . $estimation->getId() . '-' . $lastname . '-' . $firstname . '.' . $extension;
-            var_dump($filename);
             $filePath = "uploads/CI/$filename";
 
             if (move_uploaded_file($tmpFilePath, $filePath)) {
