@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Administration {% endblock %}
     {% block stylesheets %}
-        {{ encore_entry_link_tags('admin') }}
+        {{ encore_entry_link_tags('adminHomePage') }}
     {% endblock %}
 {% block header %}
 <header>
@@ -21,9 +21,15 @@
     </div>
 </header>
 
-<div class="form-group">
-        <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
+<div class="jumbotron">
+    <div id="nameSearch">
+        <input type="text" id="search_nameSearch">
     </div>
+    <div>
+        <p class="resultSearch">
+        </p>
+    </div>
+
     <div class="menu-admin">
         <ul class="icon-menu">
             <li class="estimations">
@@ -52,6 +58,6 @@
 {% block footer %}{% endblock %}
 
 {%  block javascripts %}
-    {{ encore_entry_script_tags('admin') }}
+    {{ encore_entry_script_tags('adminHomePage') }}
 {% endblock %}
 

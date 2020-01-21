@@ -4,11 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationCollectorFormType;
+use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +25,36 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/home", name="home_admin")
+     * @Route("/", name="home_admin")
      */
     public function show(): Response
     {
+        return $this->render('admin/index.html.twig');
+    }
+
+    /**
+     * @Route("/home", name="home_admin", methods={"GET"})
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $em
+     */
+    public function searchBar(
+        Request $request,
+        UserRepository $userRepository,
+        EntityManagerInterface $em
+    ) {
+        if ($request->isXmlHttpRequest()) {
+            $data = $_GET['users'];
+            $result = $userRepository->findSearch($data);
+            $json =[];
+            foreach ($result as $name) {
+                $lastname = $name->getLastname();
+                $json[]= ['lastname'=>$lastname];
+            }
+            $json =json_encode($json);
+            //envoi des données JSON en front
+            return new JsonResponse($json, 200, [], true);
+        }
         return $this->render('admin/index.html.twig');
     }
 
