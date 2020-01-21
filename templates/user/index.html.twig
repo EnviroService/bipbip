@@ -3,14 +3,14 @@
 {% block title %}Collecteurs{% endblock %}
 
 {% block body %}
-    <h1>Liste des collecteurs</h1>
+    <h2 class="primary-title">Liste des collecteurs</h2>
 
     <table class="table">
         <thead>
         <tr>
             <th>Nom - Prénom</th>
             <th>Organisme</th>
-            <th><a href="{{ path('adminregister_collector') }}" class="fourth-button">Ajouter</a></th>
+            <th><a href="{{ path('register_collector') }}" class="fourth-button">Ajouter</a></th>
         </tr>
         </thead>
         <tbody>
@@ -20,7 +20,11 @@
                     <a href="{{ path('collectors_show', {'id' : collector.id}) }}">{{ collector.lastname }} {{ collector.firstname }}</a>
                 </td>
                 <td>
-                    {{ collector.organism.organismName }}
+                    {% if collector.organism is null %}
+                        Pas d'organisme associé
+                    {% else %}
+                        {{ collector.organism.organismName }}
+                    {% endif %}
                 </td>
                 <td class="fourth-button">
                     <a href="{{ path('collectors_edit', {'id': collector.id}) }}">Editer</a>
