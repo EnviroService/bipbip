@@ -1,0 +1,39 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Collecteurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des collecteurs</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom - Prénom</th>
+            <th>Organisme</th>
+            <th><a href="{{ path('adminregister_collector') }}" class="fourth-button">Ajouter</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for collector in collectors %}
+            <tr>
+                <td>
+                    <a href="{{ path('collectors_show', {'id' : collector.id}) }}">{{ collector.lastname }} {{ collector.firstname }}</a>
+                </td>
+                <td>
+                    {{ collector.organism.organismName }}
+                </td>
+                <td class="fourth-button">
+                    <a href="{{ path('collectors_edit', {'id': collector.id}) }}">Editer</a>
+                </td>
+                <td class="fourth-button">
+                    {{ include('user/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
