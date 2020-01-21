@@ -1,14 +1,28 @@
 @import "app";
 
-#estimations-index{
+.estimations-index{
     h2{
         margin-top : 5px;
+        margin-bottom: 5px;
+        z-index : -1;
     }
 
     .table-head{
         background-color: $secondary-color;
         color : white;
         padding : 10px;
+    }
+
+    .fourth-button{
+        margin : 10px auto;
+        height : 40px;
+        display : flex;
+        justify-content : center;
+        align-items: center;
+
+        a{
+            color : white;
+        }
     }
 }
 
