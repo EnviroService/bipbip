@@ -47,9 +47,11 @@ class AdminController extends AbstractController
             $result = $userRepository->findSearch($data);
             $json =[];
 
-            foreach ($result as $name) {
-                $lastname = $name->getLastname();
-                $json[]= ['lastname'=>$lastname];
+            foreach ($result as $user) {
+                $lastname = $user->getLastname();
+                $firstname = $user->getFirstname();
+                $id = $user->getId();
+                $json[]= ['lastname'=>$lastname,'firstname'=>$firstname, 'id' =>$id];
             }
             $json =json_encode($json);
             //envoi des données JSON en front
@@ -156,6 +158,18 @@ class AdminController extends AbstractController
         return $this->render('admin/edit.html.twig', [
             'organism' => $organism,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}/documents", name="user_documents")
+     * @param User $user
+     * @return Response
+     */
+    public function userDocuments(User $user)
+    {
+        return $this->render('admin/user_documents.html.twig', [
+            'user' =>$user,
         ]);
     }
 }

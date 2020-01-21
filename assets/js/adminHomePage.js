@@ -41,14 +41,22 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data !== "") {
                         // afficher les données $data
-                        $('.resultSearch').innerHTML = data;
-                        console.log(data);
+                        let names = "";
+                        for (i = 0; i < data.length; i ++) {
+                            names += `<a style="display : block; margin-bottom: 15px;" href="user/${data[i]['id']}/documents">${data[i]['lastname']} ${data[i]['firstname']}</a>`;
+                        };
+                        //const names = JSON.parse(data);
+
+                        //for(){
+                        document.querySelector('.resultSearch').innerHTML += names + ' ';
+                        //}
                     } else {
                         //meme chose pour recup un element d'un id
-                        document.getElementsByClassName('resultSearch').innerHTML ="<div>Aucunes recherches trouvées</div>"
+                        document.querySelector('.resultSearch').innerHTML +="Aucunes recherches trouvées"
                     }
                 }
             });
         }
     })
+
 });

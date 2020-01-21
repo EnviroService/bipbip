@@ -32,21 +32,9 @@
         </a>
     </div>
 </header>
-    <div class="jumbotron">
         <div id="nameSearch">
-
             <input type="text" id="search_nameSearch">
         </div>
-        <div>
-
-            <p class="resultSearch">
-
-            </p>
-
-
-
-        </div>
-
 {% for message in app.flashes('success') %}
     <div class="alert alert-success text-center">
         {{ message }}
@@ -94,6 +82,11 @@
         </li>
     </ul>
 </nav>
+
+
+<div>
+    <section class="resultSearch"></section>
+</div>
 {% endblock %}
 
 {% block body %}

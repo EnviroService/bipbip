@@ -92,19 +92,19 @@ header{
         }
     }
 }
-
-
 // SearchBar
-#search-bar{
-    width : 50%;
-    margin : 30px auto;
-    display : flex;
-    align-items: center;
+#nameSearch{
+    margin-top: 25px;
+    margin-bottom: 20px;
+    margin-left: 20px;
 
-    input{
-        width : 100%;
+    #search_nameSearch{
+        width: 30%;
+        height: 40%;
+        border-radius: 5px;
     }
 }
+
 
 // Menu gauche
 .menu-admin {
@@ -266,4 +266,5 @@ header{
             }
         }
     }
+
 }
