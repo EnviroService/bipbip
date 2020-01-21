@@ -53,8 +53,9 @@ class BdcController extends AbstractController
                 array_push($estimationIds, $estimationId);
             }
         } elseif (is_bool($files)) {
-            $dates = "NR";
-            $estimationIds = "NR";
+            // if no file in dir, files is false
+            $dates = "Aucun fichier";
+            $estimationIds = "";
         } else {
             // if only one file in dir, search date and estimationId
             $year = substr($files, 0, 4);
