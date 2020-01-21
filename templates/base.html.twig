@@ -15,14 +15,13 @@
             <nav id="menu">
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Description Bip Bip">Bip Bip, qu'est ce que c'est ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Estimer son téléphone">Estimer mon tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estimer mon tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="#" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="#" title="Les points de collecte">Les points de collecte</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Organiser une collecte">Organiser une collecte</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Les bons plans">Les bons plans</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Foire aux questions">FAQ</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Contacte-nous">Contacte-nous</a></li>>>>>>>> dev
+                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('show_faq') }}" title="Foire aux questions">FAQ</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
                 </ul>
                 <div class="user-infos-menu">
                     {% if app.user %}
@@ -74,20 +73,20 @@
             <h2 class="primary-title">Plus d'infos</h2>
             <ul>
                 <li><a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">Qui sommes-nous ?</a></li>
-                <li><a href="{{ path('new_estimation') }}" title="Revendre ton tèl">Revendre ton tèl</a></li>
+                <li><a href="{{ path('new_estimation') }}" title="Revendre ton tèl">Revendre ton tél</a></li>
                 <li><a href="{{ path('add_message') }}" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
                 <li><a href="{{ path('show_faq') }}" title="FAQ">Besoin d'aide ?</a></li>
-                <li>Ce que l'on oublie de lire (
-                    <a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
+                <li><a href="{{ path('add_message') }}" title="Contact">Contacte-nous</a></li>
+                <li>Ce que l'on oublie de lire
+                     (<a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
                      -
-                    <a href="#" title="Conditions Générales d'Utilisation">CGU</a>
+                    <a href="{{ path('cgu') }}" title="Conditions Générales d'Utilisation">CGU</a>
                      -
                     <a href="#" title="Protection des données">Protections des données</a>
                      -
                     <a href="#" title="Cookies">Cookies</a>
                      -
-                    <a href="#" title="Mentions Légales">Mentions Légales</a>
-                    )
+                    <a href="#" title="Mentions Légales">Mentions Légales</a>)
                 </li>
             </ul>
             <div class="social-networks">
