@@ -19,22 +19,40 @@ class EstimationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Estimations::class);
     }
 
-    // /**
-    //  * @return Estimations[] Returns an array of Estimations objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findByUncollected()
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.isCollected = 0')
+            ->andWhere('e.user is not null')
+            ->orderBy('e.id', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
-    */
+
+    public function findByCollected()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.isCollected = 1')
+            ->orderBy('e.id', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+    public function findByUnfinished()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.user is null')
+            ->orderBy('e.id', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Estimations

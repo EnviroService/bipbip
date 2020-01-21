@@ -1,6 +1,6 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}New Organisms{% endblock %}
+{% block title %}Nouveau partenaire{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('admin') }}
@@ -11,6 +11,8 @@
     <h1 class="addTitle">Ajouter un partenaire</h1>
 
     {{ include('organisms/_form.html.twig') }}
+    <button class="secondary-button">Ajouter</button>
+    {{ form_end(form) }}
 
     <a class="secondary-button" id="newLink" href="{{ path('organisms_index') }}">Retour à la liste</a>
 {% endblock %}

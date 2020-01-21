@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\File;
 use DateTime;
 
 /**
@@ -45,6 +46,12 @@ class OrganismsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('logo')->getData();
+            $fileName = md5(uniqid()). '.' . $file->guessExtension();
+            $file->move($this->getParameter('upload_directory'), $fileName);
+
+            $organism->setLogo($fileName);
+
             $entityManager->persist($organism);
             $entityManager->flush();
 
@@ -64,33 +71,9 @@ class OrganismsController extends AbstractController
      */
     public function show(Organisms $organism): Response
     {
-        return $this->render('organisms/show.html.twig', [
-            'organism' => $organism,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="organisms_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
-     * @param Request $request
-     * @param Organisms $organism
-     * @return Response
-     */
-    public function edit(Request $request, Organisms $organism): Response
-    {
-        $form = $this->createForm(OrganismsType::class, $organism);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('organisms_index');
-        }
-
-        return $this->render('organisms/edit.html.twig', [
-            'organism' => $organism,
-            'form' => $form->createView(),
-        ]);
+            return $this->render('organisms/show.html.twig', [
+                'organism' => $organism,
+            ]);
     }
 
     /**
@@ -108,7 +91,7 @@ class OrganismsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('organisms_index');
+        return $this->redirectToRoute('admin_organisms_index');
     }
 
     /**

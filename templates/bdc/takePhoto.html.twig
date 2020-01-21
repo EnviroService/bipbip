@@ -9,15 +9,26 @@
                 {{ error }}
             </div>
         {% endfor %}
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="7" style="width: 57%">
+                4 sur 7
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <h1 class="primary-title">Etape 1 : carte d'identité</h1>
+                <h1 class="primary-title">Etape 4 : carte d'identité</h1>
                 <p>Prendre en photo <span class="font-weight-bold">le recto de la carte d'identité</span> du client</p>
                 <form action="{{ path('takePhoto', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
                     <input type="file" name="upload" accept="image/*" capture>
-                    <input type="submit" name="submit" class="primary-button" value="Envoyer la photo">
+                    <input type="submit" name="submit" class="btn btn-info" value="Envoyer la photo">
                 </form>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('verifyUser', {id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4"></div>
         </div>
     </main>
 {% endblock %}

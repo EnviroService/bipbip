@@ -60,6 +60,10 @@ class SecurityController extends AbstractController
         GuardAuthenticatorHandler $guardHandler,
         LoginFormAuthenticator $authenticator
     ) {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -79,14 +83,9 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte créé !');
+            $this->addFlash('success', 'Compte créé, connecte toi !');
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

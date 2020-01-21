@@ -13,39 +13,19 @@ require('../scss/admin.scss');
 // any CSS you require will output into a single css file (app.css in this case)
 require('bootstrap');
 
-const organisms = document.querySelectorAll('.organisms');
-const organismsLister = document.querySelectorAll('.organismsLister');
-const organismsActionsAdd = document.querySelectorAll('.organismsActionsAdd');
-const organismsListerCollector = document.querySelectorAll('.organismsListerCollector');
-const organismsAddCollector = document.querySelectorAll('.organismsAddCollector');
-// eslint-disable-next-line no-plusplus
 
-// eslint-disable-next-line no-plusplus
-for (let number = 0; number < organisms.length; number++) {
-    organisms[number].addEventListener('click', () => {
-        organismsLister[number].classList.toggle('displayed');
-        organismsActionsAdd[number].classList.toggle('displayed');
-        organismsListerCollector[number].classList.toggle('displayed');
-        organismsAddCollector[number].classList.toggle('displayed');
-    });
-}
+const categories = document.querySelectorAll('h2.title');
+const subCategories = document.querySelectorAll('div.block');
 
-const officialDocuments = document.querySelectorAll('.officialDocuments');
-const officialDocumentsBc = document.querySelectorAll('.officialDocumentsBc');
-const officialDocumentsCi = document.querySelectorAll('.officialDocumentsCi');
-// eslint-disable-next-line no-plusplus
-
-// eslint-disable-next-line no-plusplus
-for (let number = 0; number < officialDocuments.length; number++) {
-    officialDocuments[number].addEventListener('click', () => {
-        officialDocumentsBc[number].classList.toggle('displayed');
-        officialDocumentsCi[number].classList.toggle('displayed');
+for (let i = 0; i < categories.length; categories[i += 1]) {
+    categories[i].addEventListener('click', () => {
+        subCategories[i].classList.toggle('displayed');
     });
 }
 $(document).ready(function () {
-    $('#nameSearch').keyup(function () {
+    $('#search_nameSearch').keyup(function () {
         // rafaraichir pour avoir un blanc lors de la frappe
-        $('#resultSearch').html('');
+        $('.resultSearch').html('');
         // recuperation des données
         let users = $(this).val();
         // eslint-disable-next-line eqeqeq
@@ -54,17 +34,18 @@ $(document).ready(function () {
             $.ajax({
                 type: 'GET',
                 // url pour raffraichir les données
-                url: "admin",
+                url: "home",
                 //encoder la variable pour quelle ne soit pas en claire(secu)
                 data: 'users=' + encodeURIComponent(users),
                 // data valeur par def d'ajax données recup du resultat erreor ou succes.
                 success: function (data) {
                     if (data !== "") {
                         // afficher les données $data
-                        $('#resultSearch').append(data)
+                        $('.resultSearch').innerHTML = data;
+                        console.log(data);
                     } else {
                         //meme chose pour recup un element d'un id
-                        document.getElementById('resultSearch').innerHTML="<div>Aucunes recherches trouvées</div>"
+                        document.getElementsByClassName('resultSearch').innerHTML ="<div>Aucunes recherches trouvées</div>"
                     }
                 }
             });

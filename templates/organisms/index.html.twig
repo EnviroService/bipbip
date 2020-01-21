@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Organisms index{% endblock %}
+{% block title %}Partenaires{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('partnerList') }}
@@ -16,7 +16,7 @@
 
             <article>
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
-                    <img title="{{ organism.organismName }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
+                    <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
 
             </article>
 
@@ -39,7 +39,7 @@
 
 
         {% if is_granted("ROLE_ADMIN") %}
-            <br><a class="aLink" href="{{ path('organisms_new') }}">Ajouter</a>
+            <br><a class="aLink secondary-button" href="{{ path('organisms_new') }}">Ajouter</a>
         {% endif %}
 
 
