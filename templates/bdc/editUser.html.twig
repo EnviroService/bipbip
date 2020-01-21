@@ -109,7 +109,7 @@
                 <a href="{{ path('verifyEstim', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                {{ form_widget(form.submit, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
+                {{ form_widget(form.save, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
                 <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
             </div>
         </div>

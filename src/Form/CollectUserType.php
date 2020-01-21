@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Estimations;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,9 +16,10 @@ class CollectUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstname', TextType::class, [
+        $builder
+            ->add('firstname', TextType::class, [
             'required' => true
-        ])
+            ])
             ->add('lastname', TextType::class, [
             'required' => true,
             ])
@@ -38,7 +40,7 @@ class CollectUserType extends AbstractType
             ->add('email', EmailType::class, [
             'required' => true,
             ])
-            ->add('submit', SubmitType::class);
+            ->add('save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

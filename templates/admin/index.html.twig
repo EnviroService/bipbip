@@ -33,17 +33,6 @@
     </div>
 </header>
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success text-center">
-        {{ message }}
-    </div>
-{% endfor %}
-{% for message in app.flashes('danger') %}
-    <div class="alert alert-danger text-center">
-        {{ message }}
-    </div>
-{% endfor %}
-
 <div class="form-group" id="search-bar">
     <label for="search-user"></label>
     <input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
@@ -56,7 +45,7 @@
             <div class="block">
                 <div>
                     <a href="{{ path ('estimations_index') }}">Toutes</a>
-                    <a href="{{ path ('estimations_uncollected_index') }}">Non collectées</a>
+                    <a href="{{ path ('estimations_uncollected_index') }}">A collecter</a>
                     <a href="{{ path('estimations_collected_index') }}">Collectées</a>
                     <a href="{{ path('estimations_unfinished_index') }}">Inachevées</a>
                 </div>
@@ -85,6 +74,16 @@
         </li>
     </ul>
 </nav>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
 {% endblock %}
 
 
