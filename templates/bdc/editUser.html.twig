@@ -18,113 +18,89 @@
         <div class="row bg-info align-items-center">
             <div class="col-3 text-right">
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 Informations fournies
             </div>
-            <div class="col-1 text-center ">
-                Cocher si valide
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form p-4 font-weight-bold">
                 Modification (si nécessaire)
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Prénom :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.firstname }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Nom :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.lastname }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Adresse mail :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.email }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Numéro de téléphone :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 0{{ estimation.user.phoneNumber }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
                 {{ form_help(form.phoneNumber) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Adresse :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.address }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.address, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Code postal :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.postCode }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.postCode, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
                 {{ form_help(form.postCode) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right">
+            <div class="col-3 text-right p-3">
                 Ville :
             </div>
-            <div class="col-2 text-center font-weight-bold">
+            <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.city }}
             </div>
-            <div class="col-1 text-center ">
-                <input type="checkbox" aria-label="Checkbox">
-            </div>
-            <div class="col-6 mx-auto text-center form p-4">
+            <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.city, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
