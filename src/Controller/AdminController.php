@@ -64,10 +64,10 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('adminhome_admin');
+            return $this->redirectToRoute('collectors_index');
         }
 
-        return $this->render('admin/register_collector.html.twig', [
+        return $this->render('admin/collectors/register_collector.html.twig', [
             'registrationCollectorForm' => $form->createView(),
         ]);
     }
