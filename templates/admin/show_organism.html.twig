@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
 {% block title %}Organisms{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('partnerPage') }}
+    {{ encore_entry_link_tags('admin') }}
 {% endblock %}
 
 {% block body %}
@@ -35,16 +35,16 @@
             <a class="linkA"  target="_blank" href="{{ organism.organismLink }}">Visiter le site</a>
 
             <a class="secondary-button" href="{{ path('organisms_index') }}">Retour à la liste</a>
-        <br>
+            <br>
 
 
-        {% if is_granted("ROLE_ADMIN") %}
-            <a class="secondary-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
-        {% endif %}
+            {% if is_granted("ROLE_ADMIN") %}
+                <a class="secondary-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
+            {% endif %}
 
-        {% if is_granted("ROLE_ADMIN") %}
-            {{ include('organisms/_delete_form.html.twig') }}
-        {% endif %}
+            {% if is_granted("ROLE_ADMIN") %}
+                {{ include('organisms/_delete_form.html.twig') }}
+            {% endif %}
 
 
         </div>
