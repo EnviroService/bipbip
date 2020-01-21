@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('final_estimation') }}
+{% endblock %}
 {% block body %}
-
-    <div class="container jumbotron">
+<main id="final_estimation">
+    <div class="container jumbotron p-3">
         <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
+            <div class="col-12 text-center">
                 <h1 class="primary-title">Dernière étape</h1>
                 <h2 class="text-dark">{{ brand }}</h2>
                 <h3 class="text-dark">{{ model }}</h3>
@@ -14,8 +17,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h4>Votre téléphone a t-il été immergé dans l'eau ?</h4>
+            <div class="col-11">
+                <h4>Ton téléphone a t-il été immergé dans l'eau ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si ton téléphone est tombé dans l'eau, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_start(form) }}
@@ -23,11 +30,15 @@
             </div>
         </div>
     </div>
-
+    
     <div class="container jumbotron">
         <div class="row">
-            <div class="col-12">
-                <h4>Votre écran est-il endommagé ?</h4>
+            <div class="col-11">
+                <h4>Ton écran est-il endommagé ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -37,8 +48,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <h4>La coque du téléphone est-elle endommagée ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Fissures, griffes, mauvais emboîtement, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -48,8 +63,13 @@
 
     <div class="container jumbotron">
         <div class="row">
-            <div class="col-12">
-                <h4>Avez vous des problèmes de charge au niveau de votre batterie ?</h4>
+            <div class="col-11">
+                <h4>As-tu des problèmes de charge au niveau de la batterie ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt=""
+                     title="Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -59,8 +79,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h4>Tous vos boutons sont-ils fonctionnels ?</h4>
+            <div class="col-11">
+                <h4>Tous les boutons sont-ils fonctionnels ?</h4>
+            </div>
+            <div class="col-1">
+                <img src="/images/info.png" alt="" title="Si un de tes boutons ne fonctionne plus, coche 'non'"
+                     class="w-50 h-50 d-inline">
             </div>
             <div class="col-4">
                 {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
@@ -70,7 +94,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 text-center">
                 {{ form_row(form.submit, {'label': 'Valider', 'class': 'btn btn-primary'}) }}
                 {{ form_end(form) }}
             </div>
@@ -78,10 +102,10 @@
     </div>
 
     <div class="row">
-        <div class="col-5 text-center"></div>
-        <div class="col-4">
+        <div class="col-12 text-center">
             <a class="btn btn-info" href="{{ path("home") }}">Retour à l'accueil</a>
         </div>
     </div>
-
+</main>
 {% endblock %}
+

@@ -4,9 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\User;
-use App\Form\EstimationsType;
-use App\Repository\EstimationsRepository;
-use App\Repository\UserRepository;
+use App\Form\CollectEstimationType;
+use App\Form\CollectUserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,13 +44,12 @@ class BdcController extends AbstractController
      */
     public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(EstimationsType::class, $estimation);
+        $form = $this->createForm(CollectEstimationType::class, $estimation);
         $form->handleRequest($request);
         $id = $estimation->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form-> getData();
-            $estimation = new Estimations();
             $estimation->setBrand($data['brand']);
             $estimation->setModel($data['model']);
             $estimation->setCapacity($data['capacity']);
@@ -63,45 +61,65 @@ class BdcController extends AbstractController
 
             $em->persist($estimation);
             $em->flush();
-            //$this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('takePhoto', [
                 'id' => $id,
             ]);
         }
 
-        return $this->render('estimations/edit.html.twig', [
+        return $this->render('estimations/editEstim.html.twig', [
             'estimation' => $estimation,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/signature/{id}", name="signatureAdd")
+     * @Route("/user/{id}", name="verifyUser", methods={"GET","POST"})
+     * @param Request $request
      * @param Estimations $estimation
+     * @param EntityManagerInterface $em
      * @return Response
      */
-    // route to generate a signature for PDF from estimation
-    public function addSignature(Estimations $estimation)
-    {
-        return $this->render('bdc/signature.html.twig', [
-            'estimation' => $estimation
+    public function verifyUser(
+        Request $request,
+        Estimations $estimation,
+        EntityManagerInterface $em
+    ): Response {
+        $user = $estimation->getUser();
+        $form = $this->createForm(CollectUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $user) {
+            $data = $form-> getData();
+            $user->setLastname($data['lastname'])
+                ->setFirstname($data['firstname'])
+                ->setEmail($data['email'])
+                ->setPhoneNumber($data['phoneNumber'])
+                ->setAddress($data['address'])
+                ->setPostCode($data['postCode'])
+                ->setCity($data['city']);
+
+            $em->persist($user);
+            $em->flush();
+        }
+
+        return $this->render('bdc/editUser.html.twig', [
+            'estimation' => $estimation,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/capture/{id}", name="takePhoto")
      * @param Estimations $estimation
-     * @param UserRepository $user
+     * @param EntityManagerInterface $em
      * @return Response
      */
     // route to take a photo of the Identity Card
-    public function takePhoto(Estimations $estimation, UserRepository $user)
+    public function takePhoto(Estimations $estimation, EntityManagerInterface $em)
     {
         if (isset($_POST['submit'])) {
-            if ($estimation->getUser()) {
-                $user = $this->getUser();
-            } else {
+            if (!$estimation->getUser()) {
                 $message = "Cette estimation n'est pas liée à un utilisateur";
                 $this->addFlash('danger', $message);
                 return $this->redirectToRoute('home');
@@ -116,9 +134,15 @@ class BdcController extends AbstractController
                     ]);
             }
             //save the url and the file
+            if (!empty($estimation->getUser())) {
+                $lastname = $estimation->getUser()->getLastname();
+                $firstname = $estimation->getUser()->getFirstname();
+            } else {
+                $lastname = "anonyme";
+                $firstname = "anonyme";
+            }
             $extension = pathinfo($_FILES['upload']['name'], PATHINFO_EXTENSION);
-            $filename = 'E' . $estimation->getId() . '-' . $user->getLastname() . '-' . $user->getFirstname()
-                        . '.' . $extension;
+            $filename = 'E' . $estimation->getId() . '-' . $lastname . '-' . $firstname . '.' . $extension;
             $filePath = "uploads/CI/$filename";
 
             if (move_uploaded_file($tmpFilePath, $filePath)) {
@@ -128,7 +152,12 @@ class BdcController extends AbstractController
                 $error = 'Merci de créer un dossier uploads/CI/';
                 $this->addFlash('danger', $error);
             }
-                return $this->redirectToRoute('confirm_photo', [
+            // Validation of isValidatedCi in DB
+            $estimation->setIsValidatedCi(true);
+            $em->persist($estimation);
+            $em->flush();
+            return $this->redirectToRoute('bdc_show', [
+                'estimation' => $estimation,
                 'id' => $estimation->getId(),
                 ]);
         }
@@ -156,7 +185,7 @@ class BdcController extends AbstractController
         }
         $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
         $this->addFlash('danger', $message);
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('adminIndex');
     }
 
     /**
@@ -240,6 +269,24 @@ class BdcController extends AbstractController
     public function confirm(Estimations $estimation)
     {
         return $this->render('bdc/confirm.html.twig', [
+            'estimation' => $estimation,
+        ]);
+    }
+
+    /**
+     * @Route("/end/{id}", name="bdc_end")
+     * @param Estimations $estimation
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    // route to confirm picture of identity Card
+    public function end(Estimations $estimation, EntityManagerInterface $em)
+    {
+        // Validation of estimation and payment
+        $estimation->setIsValidatedPayment(true)->setIsCollected(true);
+        $em->persist($estimation);
+        $em->flush();
+        return $this->render('bdc/end.html.twig', [
             'estimation' => $estimation,
         ]);
     }

@@ -1,0 +1,51 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Partenaires{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block body %}
+
+    <main class="partnersList">
+        <h1 class="primary-title">Les partenaires</h1>
+
+        <section>
+            {% for organism in organisms %}
+
+                <article>
+                    <a class="logo" href="{{ path('admin_organism_show', {'id' : organism.id}) }}">
+                        <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
+
+                </article>
+
+                {#
+                <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>
+                <a href="{{ path('organisms_show', {'id': organism.id}) }}">show</a>
+                #}
+
+
+
+
+            {% else %}
+
+                <td colspan="11">no records found</td>
+
+            {% endfor %}
+
+        </section>
+
+
+
+        {% if is_granted("ROLE_ADMIN") %}
+            <br><a class="aLink secondary-button" href="{{ path('organisms_new') }}">Ajouter</a>
+        {% endif %}
+
+
+
+    </main>
+
+
+
+{% endblock %}

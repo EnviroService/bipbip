@@ -11,7 +11,7 @@
     <main class="partnerPage">
 
 
-        <img title="{{organism.organismName }} {{ organism.organismStatus }}" src="{{ organism.logo }}" alt="{{ organism.organismName }}">
+        <img title="{{organism.organismName }} {{ organism.organismStatus }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}">
 
 
         <div class="partnerInfo">
@@ -34,12 +34,12 @@
 
             <a class="linkA"  target="_blank" href="{{ organism.organismLink }}">Visiter le site</a>
 
-            <a class="fourth-button" href="{{ path('organisms_index') }}">Retour à la liste</a>
+            <a class="secondary-button" href="{{ path('organisms_index') }}">Retour à la liste</a>
         <br>
 
 
         {% if is_granted("ROLE_ADMIN") %}
-            <a href="{{ path('organisms_edit', {'id': organism.id}) }}">Modifier</a>
+            <a class="secondary-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
         {% endif %}
 
         {% if is_granted("ROLE_ADMIN") %}
