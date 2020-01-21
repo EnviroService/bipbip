@@ -48,7 +48,7 @@ class OrganismsController extends AbstractController
             $entityManager->persist($organism);
             $entityManager->flush();
 
-            return $this->redirectToRoute('organisms_index');
+            return $this->redirectToRoute('adminadmin_organisms_index');
         }
 
         return $this->render('organisms/new.html.twig', [
