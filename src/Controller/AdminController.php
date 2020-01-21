@@ -50,7 +50,7 @@ class AdminController extends AbstractController
                 $json[]= ['lastname'=>$lastname];
             }
             $json =json_encode($json);
-
+            //envoi des données JSON en front
             return new JsonResponse($json, 200, [], true);
         }
             return $this->render('admin/index.html.twig', [

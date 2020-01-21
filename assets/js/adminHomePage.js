@@ -43,7 +43,7 @@ for (let number = 0; number < officialDocuments.length; number++) {
     });
 }
 $(document).ready(function () {
-    $('#searchUser').keyup(function () {
+    $('#nameSearch').keyup(function () {
         // rafaraichir pour avoir un blanc lors de la frappe
         $('#resultSearch').html('');
         // recuperation des données
