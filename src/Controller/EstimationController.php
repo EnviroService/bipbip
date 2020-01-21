@@ -236,9 +236,14 @@ class EstimationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte créé, félicitations à toi, connecte toi pour accéder à la collecte');
+            $this->addFlash('success', 'Compte créé, choisis ta collecte');
 
-            return $this->redirectToRoute('app_login');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
         }
 
         return $this->render('registration/register.html.twig', [

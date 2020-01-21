@@ -31,6 +31,7 @@ Encore
     .addEntry('editPartner', './assets/scss/editPartner.scss')
     .addEntry('bdc', './assets/scss/bdc.scss')
     .addEntry('login', './assets/scss/login.scss')
+    .addEntry('final_estimation', './assets/scss/final_estimation.scss')
     .addEntry('show_collect', './assets/js/show_collect.js')
     .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

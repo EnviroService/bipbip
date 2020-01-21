@@ -22,6 +22,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * @Route("/showCollects", name="show_collect")
+     * @param CollectsRepository $collectsRepository
+     * @return Response
+     */
+    public function searchCollect(CollectsRepository $collectsRepository)
+    {
+        $repo = $collectsRepository->findAll();
+
+        return $this->render('user/showCollect.html.twig', [
+            'collects' => $repo
+        ]);
+    }
+
+    /**
      * @Route("/choice/{collect}", name="choice")
      * @ParamConverter("collect" , class="App\Entity\Collects", options={"id"="collect"})
      * @param EntityManagerInterface $em
@@ -90,7 +104,7 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ]);
+            ]);
     }
 
     /**

@@ -10,11 +10,12 @@
         width : 80%;
         @media screen and (min-width: 740px) {
             width : 50%;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            margin-top : 0;
         }
         @media screen and (min-width: 1025px) {
             width : 50%;
-            font-size: 1.7rem;
+            font-size: 1.3rem;
         }
 
         .orange-font{
@@ -32,6 +33,15 @@
         }
     }
 
+    /* CAROUSEL */
+    #carouselExampleFade {
+        @media screen and (min-width: 740px) {
+            width : 50%;
+            height : 50%;
+            margin : auto;
+        }
+    }
+
     /* STEPS */
     .steps {
         display : flex;
@@ -43,7 +53,7 @@
             flex-direction : row;
             justify-content:  space-around;
             align-items: flex-start;
-            width : 80%;
+            width : 60%;
             margin : auto;
         }
 
@@ -69,8 +79,8 @@
                     height : 250px;
                 }
                 @media screen and (min-width: 1025px){
-                    width : 350px;
-                    height : 350px;
+                    width : 270px;
+                    height : 270px;
                 }
 
                 .background-pic{
@@ -213,7 +223,7 @@
         margin : 80px auto;
 
         h3{
-            font-size : 1.5rem;
+            font-size : 1.3rem;
             color : $primary-color;
             text-align: center;
             font-weight: bold;
@@ -222,7 +232,7 @@
 
         article{
             display : flex;
-            justify-content: space-around;
+            justify-content: center;
             flex-wrap : wrap;
             margin-bottom : 6%;
             margin-top : 6%;
@@ -233,8 +243,8 @@
 
             a {
                 display : block;
-                width : 15%;
-                margin: 5%;
+                width : 12%;
+                margin: 4%;
 
                 img {
                     width: 100%;
