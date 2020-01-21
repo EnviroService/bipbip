@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Phones;
 use App\Entity\User;
+use App\Form\MatriceType;
 use App\Form\RegistrationCollectorFormType;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,5 +74,65 @@ class AdminController extends AbstractController
         return $this->render('admin/register_collector.html.twig', [
             'registrationCollectorForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/matrice", name="matrice_upload")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function newMatrice(Request $request, EntityManagerInterface $em): Response
+    {
+
+        $form = $this->createForm(MatriceType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $matrice */
+            $matrice = $form['matrice_field']->getData();
+            $csv = $matrice->openFile("r");
+            $classMeta = $em->getClassMetadata(Phones::class);
+            $connection = $em->getConnection();
+            $dbPlatform = $connection->getDatabasePlatform();
+            $query = $dbPlatform->getTruncateTableSql($classMeta->getTableName());
+            $connection->executeUpdate($query);
+
+            foreach ($csv as $key => $value) {
+                var_dump($value);
+                if ($key != 0) {
+                    $value = strval($value);
+                    $row = str_getcsv($value, ";");
+                    if ($value == null) {
+                        break;
+                    }
+                    $phone = new Phones();
+                    $phone->setBrand($row[1])
+                        ->setModel($row[2])
+                        ->setCapacity($row[3])
+                        ->setColor($row[4])
+                        ->setPriceLiquidDamage($row[5])
+                        ->setPriceScreenCracks($row[6])
+                        ->setPriceCasingCracks($row[7])
+                        ->setPriceBattery($row[8])
+                        ->setPriceButtons($row[9])
+                        ->setPriceBlacklisted($row[10])
+                        ->setPriceRooted($row[11])
+                        ->setMaxPrice($row[12])
+                        ->setValidityPeriod(13);
+                    $em->persist($phone);
+                    $em->flush();
+                }
+            }
+
+            $this->addFlash('success', 'mise à jour effectuée');
+
+            return $this->redirectToRoute("adminhome_admin");
+        }
+
+            return $this->render('admin/edit.html.twig', [
+                'form' => $form->createView()
+            ]);
     }
 }

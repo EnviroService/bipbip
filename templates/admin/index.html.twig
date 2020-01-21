@@ -20,6 +20,12 @@
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
     </div>
 </header>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <a href="{{ path('adminmatrice_upload') }}">Mettre a jour la matrice</a>
 
 <div class="form-group">
         <label for="search-user"></label><input class="form-control" type="text" id="search-user" value="" placeholder="Rechercher"/>
