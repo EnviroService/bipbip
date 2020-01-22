@@ -31,7 +31,6 @@ class UserType extends AbstractType
                     'expanded' => false,
                     'multiple' => false,
                     'attr' => ['class' => 'selectpicker'],
-                    'by_reference'=> false
                 ]
             )
         ;
