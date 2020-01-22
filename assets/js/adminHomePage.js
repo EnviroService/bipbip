@@ -34,15 +34,15 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data !== '') {
                         let names = '';
-                        for (number = 0; number < data.length; number += 1) {
-                            names += `<a href="user/${data[number]['id']}/documents">${data[number]['lastname']} ${data[number]['firstname']}</a>`;
+                        for (let i = 0; i < data.length; i += 1) {
+                            names += `<a href="user/${data[i]["id"]}/documents">${data[i]["lastname"]} ${data[i]["firstname"]}</a>`;
                         };
                         document.querySelector('.resultSearch').innerHTML += names + ' ';
                     } else {
-                        document.querySelector('.resultSearch').innerHTML +='Aucunes recherches trouvées'
+                        document.querySelector('.resultSearch').innerHTML +='Aucunes recherches trouvées';
                     }
-                }
+                },
             });
         }
-    })
+    });
 });
