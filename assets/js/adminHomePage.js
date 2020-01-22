@@ -25,21 +25,21 @@ for (let i = 0; i < categories.length; categories[i += 1]) {
 $(document).ready(function () {
     $('#search_nameSearch').keyup(function () {
         $('.resultSearch').html('');
-        let users = $(this).val();
-        if (users !== "") {
+        const users = $(this).val();
+        if (users !== '') {
             $.ajax({
                 type: 'GET',
-                url: "home",
+                url: 'home',
                 data: 'users=' + encodeURIComponent(users),
                 success: function (data) {
-                    if (data !== "") {
-                        let names = "";
-                        for (i = 0; i < data.length; i ++) {
-                            names += `<a href="user/${data[i]['id']}/documents">${data[i]['lastname']} ${data[i]['firstname']}</a>`;
+                    if (data !== '') {
+                        let names = '';
+                        for (number = 0; number < data.length; number += 1) {
+                            names += `<a href="user/${data[number]['id']}/documents">${data[number]['lastname']} ${data[number]['firstname']}</a>`;
                         };
                         document.querySelector('.resultSearch').innerHTML += names + ' ';
                     } else {
-                        document.querySelector('.resultSearch').innerHTML +="Aucunes recherches trouvées"
+                        document.querySelector('.resultSearch').innerHTML +='Aucunes recherches trouvées'
                     }
                 }
             });
