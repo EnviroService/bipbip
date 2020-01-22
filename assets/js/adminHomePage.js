@@ -43,7 +43,7 @@ $(document).ready(function () {
                         // afficher les données $data
                         let names = "";
                         for (i = 0; i < data.length; i ++) {
-                            names += `<a style="display : block; margin-bottom: 15px;" href="user/${data[i]['id']}/documents">${data[i]['lastname']} ${data[i]['firstname']}</a>`;
+                            names += `<a href="user/${data[i]['id']}/documents">${data[i]['lastname']} ${data[i]['firstname']}</a>`;
                         };
                         //const names = JSON.parse(data);
 
@@ -58,5 +58,4 @@ $(document).ready(function () {
             });
         }
     })
-
 });

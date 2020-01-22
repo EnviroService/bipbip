@@ -14,8 +14,9 @@
             {% for estimation in user.estimations %}
             <li>Model : {{ estimation.model }}</li>
             <li>Prix estimé : {{ estimation.estimatedPrice }}</li>
+            <li>Est-il collecté : {{ estimation.isCollected }}</li>
+            <li>Payement validée : {{ estimation.isValidatedPayment }}</li>
         </ul>
-
     {% endfor %}
     </main>
 
