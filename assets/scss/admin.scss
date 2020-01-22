@@ -114,6 +114,20 @@ header{
     height: 50px;
     z-index : 999;
 
+    .icon-menu-collector {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        width: 80%;
+        margin : auto;
+        border-radius: 5px;
+
+        .secondary-button{
+            width : 200px;
+        }
+    }
+
     .icon-menu {
         display: flex;
         flex-direction: row;
