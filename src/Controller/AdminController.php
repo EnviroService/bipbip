@@ -127,8 +127,12 @@ class AdminController extends AbstractController
                     $em->flush();
                 }
             }
+
+            $this->addFlash('success', 'mise à jour effectuée');
+
+            return $this->redirectToRoute('home_admin');
         }
-        return $this->render('admin/edit.html.twig', [
+        return $this->render('admin/matrice.html.twig', [
             'form' => $form->createView()
         ]);
     }
