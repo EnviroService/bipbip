@@ -2,31 +2,101 @@
 
 {% block title %}Partenaires{% endblock %}
 
-{% block stylesheets %}
-    {{ encore_entry_link_tags('admin') }}
-{% endblock %}
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
 
 {% block body %}
 
-    <main class="partnersList">
-        <h1 class="primary-title">Les partenaires</h1>
+    <main>
+        <h1 class="adminTitle">Les partenaires</h1>
 
-        <section>
+        <table class="adminPartners">
+            <thead class="jumbotron" id="table-head">
+            <tr>
+                <td>Partenaire</td>
+                <td>Ville</td>
+                <td>Statut</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
             {% for organism in organisms %}
+            <tbody >
+            <tr >
+                <td class="tableContain"><a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a></td>
+                <td class="tableContain">{{ organism.organismCity }}</td>
+                <td class="tableContain">{{ organism.organismStatus }}</td>
+                <td class="tableContain"><a class="fourth-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a></td>
+                <td class="tableContain"> {{ include('organisms/_delete_form.html.twig') }}</td>
+            </tr>
 
-                <article>
-                    <a class="logo" href="{{ path('admin_organism_show', {'id' : organism.id}) }}">
-                        <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
+            {% else %}
 
-                </article>
+                <td colspan="11">no records found</td>
 
-                {#
-                <a href="{{ path('organisms_edit', {'id': organism.id}) }}">edit</a>
-                <a href="{{ path('organisms_show', {'id': organism.id}) }}">show</a>
-                #}
+            {% endfor %}
+            </tbody>
+        </table>
+{#
+    <main class="container estimations-index">
+
+        <div class="row">
+
+            <div class="col-12 mx-auto text-center form p-4">
+                <h2 class="primary-title">Partenaires</h2>
+            </div>
+        </div>
+
+
+        <div class="row align-items-center table-head rounded-top">
+
+            <div class="col-md-3 mx-auto text-center">
+                Partenaires
+            </div>
+
+            <div class="col-md-3 mx-auto text-center">
+                Ville
+            </div>
+
+            <div class="col-md-3 mx-auto text-center ">
+                Statut
+            </div>
+
+            <div class="col-md-1 mx-auto text-center" >
+            </div>
+
+            <div class="col-md-2 mx-auto text-center">
+            </div>
+
+        </div>
 
 
 
+        {% for organism in organisms %}
+
+        <div class="row align-items-center border-bottom">
+
+            <div class="col-md-3 text-center">
+                <a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a>
+            </div>
+
+            <div class="col-md-3 text-center">
+                {{ organism.organismCity }}
+            </div>
+
+            <div class="col-md-3 text-center ">
+                {{ organism.organismStatus }}
+            </div>
+
+            <div class="col-md-1 fourth-button">
+                <a href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
+            </div>
+
+            <div class="col-md-2 text-center">
+                {{ include('organisms/_delete_form.html.twig') }}
+            </div>
 
             {% else %}
 
@@ -34,13 +104,9 @@
 
             {% endfor %}
 
-        </section>
+        </div>
+#}
 
-
-
-        {% if is_granted("ROLE_ADMIN") %}
-            <br><a class="aLink secondary-button" href="{{ path('organisms_new') }}">Ajouter</a>
-        {% endif %}
 
 
 

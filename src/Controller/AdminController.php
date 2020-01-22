@@ -123,7 +123,6 @@ class AdminController extends AbstractController
                 $organism->setLogo(
                     new File($this->getParameter('upload_directory') . '/' . $organism->getLogo())
                 );
-                dd($file);
             }
 
             $this->getDoctrine()->getManager()->flush();
