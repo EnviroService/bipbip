@@ -11,6 +11,11 @@
             {{ message }}
         </div>
     {% endfor %}
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="7" style="width: 71%">
+            5 sur 7
+        </div>
+    </div>
     <h1 class="primary-title">Etape 5 : signature du client</h1>
     <div class="row">
             <div class="col-3">
@@ -25,114 +30,117 @@
             </div>
     </div>
             
-        <div class="row">
-            <div class="col-7">
-                <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
-                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
-                <p>IMEI : {{ IMEI }}</p>
-                <p class="barcode">*{{ IMEI }}*</p>
-            </div>
-            <div class="col-5">
-                <p>ENVIRO SERVICES FRANCE<br>
-                391 avenue Clément Ader<br>
-                59118 WAMBRECHIES<br>
-                Téléphone : 03 20 00 00 00</p>
-            </div>
+    <div class="row">
+        <div class="col-7">
+            <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
+            Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
+            <p>IMEI : {{ IMEI }}</p>
+            <p class="barcode">*{{ IMEI }}*</p>
         </div>
+        <div class="col-5">
+            <p>ENVIRO SERVICES FRANCE<br>
+            391 avenue Clément Ader<br>
+            59118 WAMBRECHIES<br>
+            Téléphone : 03 20 00 00 00</p>
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col-3 font-weight-bold">
-                N° Client :<br>
-                Type d'appareil :<br>
-                Marque :<br>
-                Modèle :<br>
-                Montant de la reprise :<br>
-                Paiement immédiat :
-            </div>
-            <div class="col-9">
-                {{ estimation.user.id }}<br>
-                MOBILE<br>
-                {{estimation.brand}}<br>
-                {{ estimation.model }} {{ estimation.capacity }} Go<br>
-                {{ estimation.estimatedPrice }} €<br>
-                Oui
-            </div>
+    <div class="row">
+        <div class="col-3 font-weight-bold">
+            N° Client :<br>
+            Type d'appareil :<br>
+            Marque :<br>
+            Modèle :<br>
+            Montant de la reprise :<br>
+            Paiement immédiat :
         </div>
-    <p></p>
-        <div class="row">
-            <div class="col-3 font-weight-bold">
-                Diagnostic :
-            </div>
-            <div class="col-9">
-                Votre téléphone a-t-il été immergé dans l'eau ?
-                {% if estimation.liquidDamage > 0 %}
-                OUI
-                {% else %}
-                NON
-                {%  endif %}
-                <br>
-                Votre écran est-il endommagé ?
-                {% if estimation.screenCracks > 0 %}
-                OUI
-            {% else %}
-                NON
-                {%  endif %}
-                <br>
-                La coque du téléphone est-elle endommagée ?
-                {% if estimation.casingCracks > 0 %}
-                OUI
-            {% else %}
-                NON
-                {%  endif %}
-                <br>
-                Avez-vous des problèmes de charge au niveau de votre batterie ?
-                {% if estimation.batteryCracks > 0 %}
-                OUI
-            {% else %}
-                NON
-                {%  endif %}
-                <br>
-                Tous vos boutons sont-ils fonctionnels ?
-                {% if estimation.buttonCracks > 0 %}
-                    NON
-                {% else %}
-                    OUI
-                {%  endif %}
-            </div>
+        <div class="col-9">
+            {{ estimation.user.id }}<br>
+            MOBILE<br>
+            {{estimation.brand}}<br>
+            {{ estimation.model }} {{ estimation.capacity }} Go<br>
+            {{ estimation.estimatedPrice }} €<br>
+            Oui
         </div>
+    </div>
     <p></p>
-        <div class="row">
-            <div class="col-2 font-weight-bold">
-                Nom :<br>
-                Prénom :<br>
-                Numéro de tél :<br>
-                Email :<br>
-            </div>
-            <div class="col-4">
-                {{ estimation.user.lastname }}<br>
-                {{ estimation.user.firstname }}<br>
-                0{{ estimation.user.phoneNumber }}<br>
-                {{ estimation.user.email }}
-            </div>
-            <div class="col-2 font-weight-bold">
-                Adresse :<br>
-                Code Postal :<br>
-                Ville :<br>
-                Pays :
-            </div>
-            <div class="col-4">
-                {{ estimation.user.address }}<br>
-                {{ estimation.user.postCode }}<br>
-                {{ estimation.user.city }}<br>
-                France
-            </div>
+    <div class="row">
+        <div class="col-3 font-weight-bold">
+            Diagnostic :
         </div>
+        <div class="col-9">
+            Votre téléphone a-t-il été immergé dans l'eau ?
+            {% if estimation.liquidDamage > 0 %}
+            OUI
+            {% else %}
+            NON
+            {%  endif %}
+            <br>
+            Votre écran est-il endommagé ?
+            {% if estimation.screenCracks > 0 %}
+            OUI
+        {% else %}
+            NON
+            {%  endif %}
+            <br>
+            La coque du téléphone est-elle endommagée ?
+            {% if estimation.casingCracks > 0 %}
+            OUI
+        {% else %}
+            NON
+            {%  endif %}
+            <br>
+            Avez-vous des problèmes de charge au niveau de votre batterie ?
+            {% if estimation.batteryCracks > 0 %}
+            OUI
+        {% else %}
+            NON
+            {%  endif %}
+            <br>
+            Tous vos boutons sont-ils fonctionnels ?
+            {% if estimation.buttonCracks > 0 %}
+                NON
+            {% else %}
+                OUI
+            {%  endif %}
+        </div>
+    </div>
     <p></p>
-    <p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
+    <div class="row">
+        <div class="col-2 font-weight-bold">
+            Nom :<br>
+            Prénom :<br>
+            Numéro de tél :<br>
+            Email :<br>
+        </div>
+        <div class="col-4">
+            {{ estimation.user.lastname }}<br>
+            {{ estimation.user.firstname }}<br>
+            0{{ estimation.user.phoneNumber }}<br>
+            {{ estimation.user.email }}
+        </div>
+        <div class="col-2 font-weight-bold">
+            Adresse :<br>
+            Code Postal :<br>
+            Ville :<br>
+            Pays :
+        </div>
+        <div class="col-4">
+            {{ estimation.user.address }}<br>
+            {{ estimation.user.postCode }}<br>
+            {{ estimation.user.city }}<br>
+            France
+        </div>
+    </div>
+    <p></p>
+    <div class="row">
+        * J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
         de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
         * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.<br>
-        * Je confirme que le téléphone n'a pas été rooté, et n'est pas bloqué (mot de passe, empreinte digitale...).</p>
-        <div class="row">
+        * Je confirme que le téléphone n'a pas été rooté, et n'est pas bloqué (mot de passe, empreinte digitale...).
+    </div>
+    <p></p>
+    <div class="row">
             <div class="col-2 font-weight-bold">
                 Lieu de collecte :<br>
                 Code Collecte :<br>
@@ -148,20 +156,26 @@
         </div>
 
         <div class="row">
-            <div class="col-6">
-                <img width="100px; margin-top:30px;" src="/images/cachet.png" alt="BipBip Mobile">
-            </div>
-            <div class="col-6">
-                <p>lu et approuvé</p>
+            <div class="col-12 mx-auto text-center form p-4">
+                <p>Signer ici</p>
+                <canvas id="canvas" class="border border-success border-5"></canvas>
+                <p>(<span id="bt-clear">effacer</span>)</p>
+                <a href="{{ path('bdc_pdf', { 'id': estimation.id}) }}" title="Envoyer la signature" class="primary-button">Valider la signature</a>
             </div>
         </div>
-    <div class="row">
-        <div class="col-12 mx-auto text-center form p-4">
-            <p>Passer à l'étape suivante <span class="font-weight-bold">après avoir fait signer le client</span></p>
-            <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
-                <input type="submit" name="submit" class="primary-button" value="Générer le bon de cession">
-            </form>
+
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4">
+                <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="submit" class="btn btn-success" value="Générer le bon de cession ->">
+                </form>
+            </div>
         </div>
-    </div>
 </main>
 {%  endblock %}
+{%  block javascripts %}
+    {{ encore_entry_script_tags('signature') }}
+{% endblock %}

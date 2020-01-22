@@ -5,6 +5,11 @@
         display: flex;
         justify-content : space-around;
         flex-wrap: wrap;
+        @media screen and (min-width: 740px){
+            width: 70%;
+            max-width: 70%;
+            margin: auto 20%;
+        }
 
         article {
             display: block;

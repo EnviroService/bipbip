@@ -1,0 +1,22 @@
+@import "~bootstrap/scss/bootstrap";
+@import "vars";
+
+#final_estimation {
+    .form-check {
+        font-size: 20px;
+        font-style: italic;
+        font-family: monospace;
+    }
+
+    .form-check-input {
+        align-content: center;
+        position: relative;
+    }
+
+    .quest {
+        font-size: 10px;
+        box-shadow: 0 0 100px -15px lightgrey;
+        margin-bottom: 32px;
+    }
+
+}

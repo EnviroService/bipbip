@@ -6,14 +6,13 @@
      {{ encore_entry_link_tags('estimationAdmin') }}
  {% endblock %}
 {% block body %}
-    <h1 class="primary-title">Estimations</h1>
+    <h2 class="primary-title">Estimations</h2>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Nom Prénom</th>
-                <th>Plus d'infos</th>
-                <th>Edition</th>
+                <th>Téléphone</th>
                 <th>Collecter</th>
 
             </tr>
@@ -21,27 +20,23 @@
         <tbody>
         {% for estimation in estimations %}
             <tr>
-                <td class="infoUser">
-                    {% if estimation.user is not null%}
+                {% if estimation.user is not null%}
+                    <td class="infoUser row bg-light align-items-center">
                         {{ estimation.user.lastname }}
                         {{ estimation.user.firstname }}
-                </td>
-                    {% endif %}
+                    </td>
+                {% else %}
+                    <td colspan="17" class="row bg-light align-items-center">Utilisateur Anonyme</td>
+                {% endif %}
 
-                <td class="fourth-button info">
-                    <a href="{{ path('estimations_show', {'id': estimation.id}) }}">Plus d'infos</a></td>
-                 <td class="fourth-button editEstim">
-                     <a href="{{ path('estimations_edit', {'id': estimation.id}) }}">Edition</a></td>
-                <td class="fourth-button buttonsCollecters">
-                    <a href="#">Collecter</a></td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="17">no records found</td>
+                <td class="row bg-light align-items-center">
+                    {{ estimation.brand }} {{ estimation.model }}
+                </td>
+                <td>
+                    <a href="{{ path('verifyEstim', {id: estimation.id}) }}" class="fourth-button buttonsCollecters">Procéder à la collecte</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('estimations_new') }}">Create new</a>
 {% endblock %}
