@@ -88,15 +88,16 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param User $user
+     * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->flush();
 
             return $this->redirectToRoute('collectors_index');
         }
