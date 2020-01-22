@@ -39,8 +39,10 @@ $(document).ready(function () {
                         };
                         document.querySelector('.resultSearch').innerHTML += names + ' ';
                     } else {
-                        document.querySelector('.resultSearch').innerHTML +='Aucunes recherches trouvées';
+                        document.querySelector('.resultSearch').innerHTML += 'Aucunes recherches trouvées';
                     }
                 },
             });
         }
+    })
+})
