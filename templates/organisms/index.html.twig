@@ -12,7 +12,7 @@
         <h1 class="primary-title">Les partenaires</h1>
 
         <section>
-            {% for organism in organisms %}
+            {% for organism in organisms|sortByField('organismName') %}
 
             <article>
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
