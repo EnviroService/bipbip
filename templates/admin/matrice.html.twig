@@ -1,0 +1,9 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {{ include ('admin/_form.html.twig') }}
+{% endblock %}
