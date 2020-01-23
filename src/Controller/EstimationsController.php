@@ -39,11 +39,11 @@ class EstimationsController extends AbstractController
             return $this->render('estimations/index.html.twig', [
                 'estimations' => $eRepo->findBy(
                     ['id' => $estimationIds,
-                     'isCollected' => 0]
+                    'isCollected' => 0 ]
                 )]);
         } else {
             return $this->render('estimations/index.html.twig', [
-            'estimations' => $eRepo->findAll()
+            'estimations' => $eRepo->findBy([], ['id' => "ASC"])
             ]);
         }
     }

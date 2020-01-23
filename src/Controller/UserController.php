@@ -66,12 +66,13 @@ class UserController extends AbstractController
         if ($organism !== null) {
             $repo = $collectsRepository->findBy(['collector' => $organism->getId()]);
         } else {
-            $repo = $collectsRepository->findAll();
+            $repo = $collectsRepository->findBy([], ["collector" => "ASC"]);
         }
 
 
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
+            'collector' => $organism
         ]);
     }
 

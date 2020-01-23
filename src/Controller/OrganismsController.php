@@ -28,8 +28,7 @@ class OrganismsController extends AbstractController
     public function index(OrganismsRepository $organismsRepository): Response
     {
         return $this->render('organisms/index.html.twig', [
-            'organisms' => $organismsRepository->findAll(),
-        ]);
+            'organisms' => $organismsRepository->findBy([], ["organismName" => "ASC"])]);
     }
 
     /**
