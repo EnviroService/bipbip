@@ -1,11 +1,6 @@
 @import "vars";
 @import '~bootstrap/scss/bootstrap';
 
-$custom-file-text: (
-        en: "Browse",
-        fr: "Parcourir"
-);
-
 /* Boutons */
 
 @mixin button($color){
