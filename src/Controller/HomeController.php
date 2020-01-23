@@ -18,13 +18,18 @@ class HomeController extends AbstractController
     {
         $organisms = $organismsRepository->findAll();
 
-        $randomIDOrganisms = array_rand($organisms, 3);
 
-        $randomOrganisms = [];
-        $randIDOrgLength = count($randomIDOrganisms);
-        for ($i = 0; $i < $randIDOrgLength; $i++) {
-            $randomOrganisms[] = $organisms[$randomIDOrganisms[$i]];
+        $randomIDOrganisms = array_rand($organisms, 3);
+        if (is_array($randomIDOrganisms)) {
+            $randomOrganisms = [];
+            $randIDOrgLength = \count($randomIDOrganisms);
+            for ($i = 0; $i < $randIDOrgLength; $i++) {
+                $randomOrganisms[] = $organisms[$randomIDOrganisms[$i]];
+            }
+        } else {
+            $randomOrganisms = $organisms;
         }
+
 
 
         return $this->render('home/index.html.twig', [
