@@ -189,8 +189,11 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_organisms_index');
         }
 
+        $organismPhone = "0".$organism->getOrganismPhone();
+
         return $this->render('admin/edit.html.twig', [
             'organism' => $organism,
+            'organismPhone' => $organismPhone,
             'form' => $form->createView(),
         ]);
     }
