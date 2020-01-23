@@ -32,6 +32,11 @@
         </a>
     </div>
 </header>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
 
 {% for message in app.flashes('success') %}
     <div class="alert alert-success text-center">
@@ -70,7 +75,7 @@
                         <a href="{{ path('organisms_index') }}">Partenaires</a>
                         <a href="{{ path('organisms_new') }}">Collecteurs</a>
                         <a href="{{ path('organisms_index') }}">Collectes</a>
-                        <a href="#">Matrice</a>
+                        <a href="{{ path('matrice_upload') }}">Matrice</a>
                         <a href="{{ path('register_collector') }}">FAQ</a>
                     </div>
                 </div>
