@@ -50,16 +50,7 @@
 </div>
 
 <nav class="menu-admin">
-        {% if app.user.roles[0] == "ROLE_COLLECTOR" %}
-        <ul class="icon-menu-collector">
-            <li>
-                <a href="{{ path('estimations_index') }}" class="secondary-button">Collecter</a>
-            </li>
-            <li>
-                <a href="{{ path('collects_index') }}" class="secondary-button">Ajouter une collecte</a>
-            </li>
-        </ul>
-        {% else %}
+    {% if app.user.roles[0] == "ROLE_ADMIN" %}
         <ul class="icon-menu">
             <li class="estimations">
                 <h2 class="title">Estimations</h2>
@@ -94,8 +85,7 @@
                 </div>
             </li>
         </ul>
-        {% endif %}
-    </ul>
+    {% endif %}
 </nav>
 {% endblock %}
 
