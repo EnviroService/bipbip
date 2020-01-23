@@ -23,46 +23,30 @@ class BdcController extends AbstractController
     public function index()
     {
         // list all pdf in public/uploads/BDC/
+        $dates = [];
+        $estimationIds = [];
+        $end = '.';
+        $start = 'P';
         $files = scandir('uploads/BDC/');
         if (is_array($files)) {
-            // If several files in dir
-            $files = array_slice($files, 2);
-            // search date and estimation from file name
-            $dates = [];
-            $estimationIds = [];
+            $files = array_slice($files, 3);
             foreach ($files as $file) {
                 $year = substr($file, 0, 4);
                 $month = substr($file, 4, 2);
                 $day = substr($file, 6, 2);
                 $date = "$day/$month/$year";
                 array_push($dates, $date);
+
                 $file = ' ' . $file;
-                $ini = strpos($file, "P");
+                $ini = strpos($file, $start);
                 if ($ini == 0) {
-                    return '';
+                    $estimationId = '';
                 }
-                $ini += strlen("P");
-                $len = strpos($file, ".", $ini) - $ini;
+                $ini += strlen($start);
+                $len = strpos($file, $end, $ini) - $ini;
                 $estimationId = substr($file, $ini, $len);
                 array_push($estimationIds, $estimationId);
             }
-        } elseif (is_bool($files)) {
-            // if no file in dir, files is false
-            $dates = "Aucun fichier";
-            $estimationIds = "";
-        } else {
-            // if only one file in dir, search date and estimationId
-            $year = substr($files, 0, 4);
-            $month = substr($files, 4, 2);
-            $day = substr($files, 6, 2);
-            $dates = "$day/$month/$year";
-            $ini = strpos($files, "P");
-            if ($ini == 0) {
-                return '';
-            }
-            $ini += strlen("P");
-            $len = strpos($files, ".", $ini) - $ini;
-            $estimationIds = substr($files, $ini, $len);
         }
 
         return $this->render('bdc/index.html.twig', [
