@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,7 +70,6 @@ class UserController extends AbstractController
             $repo = $collectsRepository->findAll();
         }
 
-
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
         ]);
@@ -81,7 +81,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $em
      * @param CollectsRepository $repository
      * @param Collects $collect
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function choiceCollect(EntityManagerInterface $em, CollectsRepository $repository, Collects $collect)
     {
@@ -90,8 +90,20 @@ class UserController extends AbstractController
         $user->setCollect($collect);
         $em->persist($user);
         $em->flush();
-        $this->addFlash("success", "Tu as bien été enregistré sur cette collecte.");
 
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute("collect_confirm");
+    }
+
+    /**
+     * @Route("/confirm/collect/", name="collect_confirm")
+     * @return Response
+     */
+    public function collectConfirm()
+    {
+        $user = $this->getUser();
+
+        return $this->render('user/confirmCollect.html.twig', [
+            'user' => $user,
+        ]);
     }
 }
