@@ -30,8 +30,6 @@ class HomeController extends AbstractController
             $randomOrganisms = $organisms;
         }
 
-
-
         return $this->render('home/index.html.twig', [
             'organisms' => $randomOrganisms
         ]);
@@ -91,22 +89,5 @@ class HomeController extends AbstractController
     public function autres()
     {
         return $this->render('estimation/autres.html.twig');
-    }
-
-    /**
-     * @Route("/randomPartners", name="random", methods={"GET"})
-     * @param OrganismsRepository $organismsRepository
-     * @return Response
-     */
-
-    public function randomPartners(OrganismsRepository $organismsRepository): Response
-    {
-        $organisms = $organismsRepository->findAll();
-        $randonmOrganisms = shuffle($organisms);
-        $randOrganism = array_slice((array)$randonmOrganisms, 0, 3);
-
-        return $this->render('home/index.html.twig', [
-            'organisms' => $randOrganism,
-        ]);
     }
 }
