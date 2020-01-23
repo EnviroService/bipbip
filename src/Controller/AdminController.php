@@ -29,7 +29,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 /**
- * @Route("/admingit ")
+ * @Route("/admin")
  */
 
 class AdminController extends AbstractController
