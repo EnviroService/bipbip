@@ -64,7 +64,7 @@ class AdminController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
@@ -72,7 +72,7 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('adminhome_admin');
+            return $this->redirectToRoute('home_admin');
         }
 
         return $this->render('admin/register_collector.html.twig', [
