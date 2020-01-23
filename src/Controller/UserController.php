@@ -8,6 +8,7 @@ use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\CollectsRepository;
+use App\Repository\OrganismsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -58,17 +59,24 @@ class UserController extends AbstractController
     /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
+     * @param OrganismsRepository $organismsRepository
      * @return Response
      */
-    public function searchCollect(CollectsRepository $collectsRepository)
+    public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
         $organism = $this->getUser()->getOrganism();
         if ($organism !== null) {
             $repo = $collectsRepository->findBy(['collector' => $organism->getId()]);
         } else {
-            $repo = $collectsRepository->findAll();
-        }
+            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+            $publicOrganismsId = [];
 
+            foreach ($publicOrganisms as $publicOrganism) {
+                $publicOrganismsId [] = $publicOrganism->getId();
+            }
+
+            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId]);
+        }
 
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
