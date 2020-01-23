@@ -22,8 +22,8 @@ for (let i = 0; i < categories.length; categories[i += 1]) {
         subCategories[i].classList.toggle('displayed');
     });
 }
-$(document).ready(function () {
-    $('#search_nameSearch').keyup(function () {
+$(document).ready( () => {
+    $('#search_nameSearch').keyup( () => {
         $('.resultSearch').html('');
         const users = $(this).val();
         if (users !== '') {
@@ -35,13 +35,13 @@ $(document).ready(function () {
                     if (data !== '') {
                         let names = '';
                         for (let i = 0; i < data.length; i += 1) {
-                            names += `<a href="user/${data[i]['id']}/documents">${data[i]['lastname']} ${data[i]['firstname']}</a>`;
-                        }
+                            names += `<a href="user/${data[i].id}/documents">${data[i].lastname}${data[i].firstname}</a>`;
+                        };
                         document.querySelector('.resultSearch').innerHTML += names + ' ';
                     } else {
                         document.querySelector('.resultSearch').innerHTML += 'Aucunes recherches trouvées';
                     }
-                },
+                }
             });
         }
     });
