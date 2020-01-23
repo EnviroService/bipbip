@@ -3,16 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Organisms;
+use App\Entity\Phones;
 use App\Entity\User;
+use App\Form\EstimationType;
 use App\Form\OrganismsType;
 use App\Form\RegistrationFormType;
 use App\Form\UserType;
+use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
+use App\Repository\PhonesRepository;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -134,6 +140,192 @@ class AdminController extends AbstractController
         return $this->render('admin/edit.html.twig', [
             'organism' => $organism,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/remove/{id}", name="remove_estimationBrand")
+     * @param EntityManagerInterface $em
+     * @param int $id
+     * @return Response
+     */
+    public function removeEstimationBrand(
+        EntityManagerInterface $em,
+        int $id
+    ) {
+        $queryBuilder = $em->getRepository(Phones::class)->findAll();
+        $brands = [];
+        foreach ($queryBuilder as $phone) {
+            array_push($brands, $phone->getBrand());
+        }
+        $brands = array_unique($brands);
+
+        return $this->render("admin/removeEstimation.html.twig", [
+            'brands' => $brands,
+            'id' => $id
+        ]);
+    }
+
+    /**
+     * @Route("/remove/{id}/{brand}", name="remove_estimationModel")
+     * @param int $id
+     * @param string $brand
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function removeEstimationModel(EntityManagerInterface $em, int $id, string $brand)
+    {
+        $queryBuilder = $em->getRepository(Phones::class)->findByBrand($brand);
+        $models = [];
+        foreach ($queryBuilder as $brand) {
+            array_push($models, $brand->getModel());
+        }
+        $models = array_unique($models);
+
+
+        return $this->render("admin/removeEstimationModel.html.twig", [
+            "models" => $models,
+            "brand" => $brand,
+            "id" => $id
+        ]);
+    }
+
+    /**
+     * @Route("/remove/{id}/{brand}/{model}", name="remove_estimation_capacity")
+     * @param string $brand
+     * @param int $id
+     * @param string $model
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function removeEstimationCapacity(
+        string $brand,
+        string $model,
+        int $id,
+        EntityManagerInterface $em
+    ): Response {
+        $queryBuilder = $em->getRepository(Phones::class)->findByModel($model);
+        $capacities = [];
+        foreach ($queryBuilder as $model) {
+            array_push($capacities, $model->getCapacity());
+        }
+
+        return $this->render("admin/removeEstimationCapacity.html.twig", [
+            "model" => $model,
+            "brand" => $brand,
+            "capacities" => $capacities,
+            "id" => $id
+        ]);
+    }
+
+    /**
+     * @Route("/admin/remove/{id}/{brand}/{model}/{capacity}/quest", name="remove_estimation_quest")
+     * @param Request $request
+     * @param string $brand
+     * @param string $model
+     * @param int $capacity
+     * @param int $id
+     * @param PhonesRepository $phone
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws \Exception
+     */
+    public function removeEstimationQuest(
+        Request $request,
+        string $brand,
+        string $model,
+        int $capacity,
+        int $id,
+        PhonesRepository $phone,
+        EntityManagerInterface $em,
+        EstimationsRepository $estimationsRepo
+    ): Response {
+        $phone = $phone->findOneBy(['model' => $model,
+            'capacity' => $capacity
+        ]);
+        $maxPrice = $phone->getMaxPrice();
+        $liquidDamage = $phone->getPriceLiquidDamage();
+        $screenCracks = $phone->getPriceScreenCracks();
+        $casingCracks = $phone->getPriceCasingCracks();
+        $bateryPrice = $phone->getPriceBattery();
+        $buttonPrice = $phone->getPriceButtons();
+
+        $estimation = $estimationsRepo->findOneBy(['id' => $id]);
+        $form = $this->createForm(EstimationType::class, $estimation, ['method' => Request::METHOD_POST]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $estimation->setEstimationDate(new DateTime('now'))
+                ->setIsCollected(false)
+                ->setBrand($brand)
+                ->setModel($model)
+                ->setCapacity($capacity)
+                ->setColor("all")
+                ->setMaxPrice($maxPrice)
+                ->setIsValidatedPayment(false)
+                ->setIsValidatedCi(false)
+                ->setImei('0');
+
+            $estimated = $maxPrice;
+
+            if ($form['liquid_damage']->getData() === "1") {
+                $estimation->setLiquidDamage($liquidDamage);
+                $estimated -= $liquidDamage;
+            } else {
+                $estimation->setLiquidDamage(0);
+            }
+
+            if ($form['screenCracks']->getData() === "1") {
+                $estimation->setScreenCracks($screenCracks);
+                $estimated -= $screenCracks;
+            } else {
+                $estimation->setScreenCracks(0);
+            }
+
+            if ($form['casingCracks']->getData() === "1") {
+                $estimation->setCasingCracks($casingCracks);
+                $estimated -= $casingCracks;
+            } else {
+                $estimation->setCasingCracks(0);
+            }
+
+            if ($form['batteryCracks']->getData() === "1") {
+                $estimation->setBatteryCracks($bateryPrice);
+                $estimated -= $bateryPrice;
+            } else {
+                $estimation->setBatteryCracks(0);
+            }
+
+            if ($form['buttonCracks']->getData() === "1") {
+                $estimation->setButtonCracks($buttonPrice);
+                $estimated -= $buttonPrice;
+            } else {
+                $estimation->setButtonCracks(0);
+            }
+            $message = "";
+            if ($estimated < 1) {
+                $estimated = 1;
+                $message = "Votre téléphone a perdu trop de valeur, 
+                mais nous pouvons vous le reprendre $estimated euros symbolique";
+            }
+            $estimation->setEstimatedPrice($estimated);
+            $em->persist($estimation);
+            $em->flush();
+
+            return $this->render('admin/final_remove_price.html.twig', [
+                'estimation' => $estimation,
+                'phone' => $phone,
+                'message' => $message,
+                'id' => $id
+            ]);
+        }
+
+        return $this->render("admin/removeEstimationQuest.html.twig", [
+            "model" => $model,
+            "brand" => $brand,
+            "capacity" => $capacity,
+            "phone" => $phone,
+            "form" => $form->createView()
         ]);
     }
 }

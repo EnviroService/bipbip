@@ -6,6 +6,7 @@ use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\CollectEstimationType;
 use App\Form\CollectUserType;
+use App\Repository\PhonesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,31 +41,76 @@ class BdcController extends AbstractController
      * @param Request $request
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
+     * @param PhonesRepository $phonesRepository
      * @return Response
      */
-    public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
-    {
+    public function verifyEstim(
+        Request $request,
+        Estimations $estimation,
+        EntityManagerInterface $em,
+        PhonesRepository $phonesRepository
+    ): Response {
         $form = $this->createForm(CollectEstimationType::class, $estimation);
         $form->handleRequest($request);
-        $id = $estimation->getId();
+        $brand = $estimation->getBrand();
+        $model = $estimation->getModel();
+        $capacity = $estimation->getCapacity();
+
+        $phone = $phonesRepository->findOneBy([
+            'brand' => $brand,
+            'model' => $model,
+            'capacity' => $capacity
+        ]);
+        $maxPrice = $phone->getMaxPrice();
+        $liquidDamage = $phone->getPriceLiquidDamage();
+        $screenCracks = $phone->getPriceScreenCracks();
+        $casingCracks = $phone->getPriceCasingCracks();
+        $bateryPrice = $phone->getPriceBattery();
+        $buttonPrice = $phone->getPriceButtons();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form-> getData();
-            $estimation->setBrand($data['brand']);
-            $estimation->setModel($data['model']);
-            $estimation->setCapacity($data['capacity']);
-            $estimation->setLiquidDamage($data['liquidDamage']);
-            $estimation->setScreenCracks($data['screenCracks']);
-            $estimation->setCasingCracks($data['casingCracks']);
-            $estimation->setBatteryCracks($data['batteryCracks']);
-            $estimation->setButtonCracks($data['buttonCracks']);
+            $estimated = $maxPrice;
 
+            if ($form['liquidDamage']->getData() === "1") {
+                $estimation->setLiquidDamage($liquidDamage);
+                $estimated -= $liquidDamage;
+            } else {
+                $estimation->setLiquidDamage(0);
+            }
+
+            if ($form['screenCracks']->getData() === "1") {
+                $estimation->setScreenCracks($screenCracks);
+                $estimated -= $screenCracks;
+            } else {
+                $estimation->setScreenCracks(0);
+            }
+
+            if ($form['casingCracks']->getData() === "1") {
+                $estimation->setCasingCracks($casingCracks);
+                $estimated -= $casingCracks;
+            } else {
+                $estimation->setCasingCracks(0);
+            }
+
+            if ($form['batteryCracks']->getData() === "1") {
+                $estimation->setBatteryCracks($bateryPrice);
+                $estimated -= $bateryPrice;
+            } else {
+                $estimation->setBatteryCracks(0);
+            }
+
+            if ($form['buttonCracks']->getData() === "1") {
+                $estimation->setButtonCracks($buttonPrice);
+                $estimated -= $buttonPrice;
+            } else {
+                $estimation->setButtonCracks(0);
+            }
+            if ($estimated < 1) {
+                $estimated = 1;
+            }
+            $estimation->setEstimatedPrice($estimated);
             $em->persist($estimation);
             $em->flush();
-
-            return $this->redirectToRoute('takePhoto', [
-                'id' => $id,
-            ]);
         }
 
         return $this->render('estimations/editEstim.html.twig', [
