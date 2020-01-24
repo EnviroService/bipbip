@@ -32,11 +32,9 @@ class UserController extends AbstractController
         Estimations $estimation,
         EntityManagerInterface $em
     ): Response {
-
         $user = new User();
         $form = $this->createForm(UserType::class, $user, ['method' => Request::METHOD_POST]);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
