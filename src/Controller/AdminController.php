@@ -8,6 +8,8 @@ use App\Entity\User;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
 use App\Repository\EstimationsRepository;
+use App\Form\MatriceType;
+use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
 use App\Repository\PhonesRepository;
@@ -17,6 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,10 +85,66 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/organisms", name="admin_organisms_index", methods={"GET"})
-     * @param OrganismsRepository $organismsRepository
+     * @Route("/matrice", name="matrice_upload")
+     * @param Request $request
+     * @param EntityManagerInterface $em
      * @return Response
+     * @throws \Doctrine\DBAL\DBALException
      */
+    public function newMatrice(Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(MatriceType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $matrice */
+            $matrice = $form['matrice_field']->getData();
+            $csv = $matrice->openFile("r");
+            $classMeta = $em->getClassMetadata(Phones::class);
+            $connection = $em->getConnection();
+            $dbPlatform = $connection->getDatabasePlatform();
+            $query = $dbPlatform->getTruncateTableSql($classMeta->getTableName());
+            $connection->executeUpdate($query);
+
+            foreach ($csv as $key => $value) {
+                if ($key != 0) {
+                    $value = strval($value);
+                    $row = str_getcsv($value, ";");
+                    if ($value == null) {
+                        break;
+                    }
+                    $phone = new Phones();
+                    $phone->setBrand($row[1])
+                        ->setModel($row[2])
+                        ->setCapacity($row[3])
+                        ->setColor($row[4])
+                        ->setPriceLiquidDamage($row[5])
+                        ->setPriceScreenCracks($row[6])
+                        ->setPriceCasingCracks($row[7])
+                        ->setPriceBattery($row[8])
+                        ->setPriceButtons($row[9])
+                        ->setPriceBlacklisted($row[10])
+                        ->setPriceRooted($row[11])
+                        ->setMaxPrice($row[12])
+                        ->setValidityPeriod(13);
+                    $em->persist($phone);
+                    $em->flush();
+                }
+            }
+
+            $this->addFlash('success', 'mise à jour effectuée');
+
+            return $this->redirectToRoute('home_admin');
+        }
+        return $this->render('admin/matrice.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+     /** @Route("/organisms", name="admin_organisms_index", methods={"GET"})
+      *  @param OrganismsRepository $organismsRepository
+      *  @return Response
+      */
     public function index(OrganismsRepository $organismsRepository): Response
     {
         $organisms = $organismsRepository->findAll();
