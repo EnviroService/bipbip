@@ -28,18 +28,18 @@ class UserController extends AbstractController
      * @param OrganismsRepository $organismsRepository
      * @return Response
      */
-  public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
+    public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
         $organism = $this->getUser()->getOrganism();
         if ($organism !== null) {
-            $repo = $collectsRepository->findBy(['collector' => $organism->getId()],["collector" => "ASC"]);
+            $repo = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
         } else {
             $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
             $publicOrganismsId = [];
             foreach ($publicOrganisms as $publicOrganism) {
                 $publicOrganismsId [] = $publicOrganism->getId();
             }
-            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId],["collector" => "ASC"]);
+            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
         }
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
