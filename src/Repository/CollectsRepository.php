@@ -19,6 +19,17 @@ class CollectsRepository extends ServiceEntityRepository
         parent::__construct($registry, Collects::class);
     }
 
+    public function findByDateValid()
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.dateCollect > current_date()')
+            ->orderBy('c.dateCollect', 'DESC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
     // /**
     //  * @return Collects[] Returns an array of Collects objects
     //  */
