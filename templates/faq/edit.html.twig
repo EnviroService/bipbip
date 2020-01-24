@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
 {% block title %}Modification{% endblock %}
 
 {% block body %}
-    <h1>Modifier</h1>
+    <h1 class="primary-title">Modifier</h1>
 
     {{ include('faq/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
