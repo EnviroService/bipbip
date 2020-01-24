@@ -7,8 +7,6 @@ use App\Entity\Phones;
 use App\Entity\User;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
-use App\Form\RegistrationFormType;
-use App\Form\UserType;
 use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
@@ -18,7 +16,6 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -227,8 +224,9 @@ class AdminController extends AbstractController
      * @param int $id
      * @param PhonesRepository $phone
      * @param EntityManagerInterface $em
+     * @param EstimationsRepository $estimationsRepo
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function removeEstimationQuest(
         Request $request,
