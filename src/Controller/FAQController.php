@@ -23,7 +23,6 @@ class FAQController extends AbstractController
      * @return Response
      * @Route("/", name="faq_index")
      */
-
     public function index(FAQRepository $faqRepo): Response
     {
         $faqContent = $faqRepo->findAll();

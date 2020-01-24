@@ -141,8 +141,8 @@ class BdcController extends AbstractController
                 ->setAddress($data['address'])
                 ->setPostCode($data['postCode'])
                 ->setCity($data['city']);
-
-            $em->persist($user);
+            $estimation->setUser($user);
+            $em->persist($estimation);
             $em->flush();
         }
 

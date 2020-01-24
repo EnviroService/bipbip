@@ -43,11 +43,11 @@ class ContactController extends AbstractController
 
             // send a copie to sender
             $emailExp = (new Email())
-                ->from(new Address('nepasrepondre@bipbipmobile', 'BipBip Mobile'))
+                ->from(new Address('nepasrepondre@bipbipmobile.com', 'BipBip Mobile'))
                 ->to(new Address($contactFormData->getEmail(), $contactFormData
                         ->getFirstname() . ' ' . $contactFormData->getLastname()))
-                ->replyTo('nepasrepondre@bipbipmobile')
-                ->subject('Nouveau message reçu depuis l\'application BipBip Mobile')
+                ->replyTo('nepasrepondre@bipbipmobile.com')
+                ->subject('Votre message envoyé à BipBip Mobile')
                 ->html($this->renderView(
                     'contact/sentmailexp.html.twig',
                     array('form' => $contactFormData)
