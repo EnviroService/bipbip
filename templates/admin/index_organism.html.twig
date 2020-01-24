@@ -10,16 +10,17 @@
 {% block body %}
 
     <main>
-        <h1 class="adminTitle">Les partenaires</h1>
+        <h1 class="adminTitle primary-title">Les partenaires</h1>
 
         <table class="adminPartners">
-            <thead class="jumbotron" id="table-head">
+            <thead id="table-head">
             <tr>
                 <td>Partenaire</td>
                 <td>Ville</td>
                 <td>Statut</td>
                 <td></td>
-                <td></td>
+                <td id="rowFour"></td>
+
             </tr>
             </thead>
             {% for organism in organisms %}

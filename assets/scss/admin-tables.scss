@@ -45,21 +45,17 @@
         color: white;
         padding: 10px;
         height: 80px;
-
-        tr {
-            border: none;
-            border-radius: 20px;
-        }
     }
 
     td{
-        padding: 10px 18px;
+        padding: 10px 10px 10px 55px;
     }
 
     .tbody {
 
         .tableContain {
             border-bottom: black 5px solid;
+            width: 50%;
         }
     }
 
