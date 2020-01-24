@@ -34,8 +34,8 @@ $(document).ready(() => {
                 success(data) {
                     if (data !== '') {
                         let names = '';
-                        for (i = 0; i < data.length; i++) {
-                            names += `<a href="user/${data[i].id}/documents">${data[i].lastname} ${data[i].firstname}</a>`;
+                        for (let number = 0; number < data.length; number += 1) {
+                            names += `<a href="user/${data[number].id}/documents">${data[number].lastname} ${data[number].firstname}</a>`;
                         }
                         document.querySelector('.resultSearch').innerHTML += `${names} `;
                     } else {
