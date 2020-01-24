@@ -30,21 +30,25 @@ class UserController extends AbstractController
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
-        $organism = $this->getUser()->getOrganism();
-        if ($organism !== null) {
-            $repo = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" | $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
+            return $this->redirectToRoute('estimations_index');
         } else {
-            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-            $publicOrganismsId = [];
-            foreach ($publicOrganisms as $publicOrganism) {
-                $publicOrganismsId [] = $publicOrganism->getId();
+            $organism = $this->getUser()->getOrganism();
+            if ($organism !== null) {
+                $repo = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+            } else {
+                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+                $publicOrganismsId = [];
+                foreach ($publicOrganisms as $publicOrganism) {
+                    $publicOrganismsId [] = $publicOrganism->getId();
+                }
+                $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
             }
-            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+            return $this->render('user/showCollect.html.twig', [
+                'collects' => $repo,
+                'collector' => $organism
+            ]);
         }
-        return $this->render('user/showCollect.html.twig', [
-            'collects' => $repo,
-            'collector' => $organism
-        ]);
     }
 
     /**
