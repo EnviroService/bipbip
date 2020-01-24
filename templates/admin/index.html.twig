@@ -32,11 +32,6 @@
         </a>
     </div>
 </header>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center">
-            {{ message }}
-        </div>
-    {% endfor %}
 
 <div class="form-group" id="search-bar">
     <label for="search-user"></label>
@@ -73,7 +68,6 @@
             <div class="block">
                 <div>
                     <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
-                    <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
                 </div>
             </div>
         </li>
