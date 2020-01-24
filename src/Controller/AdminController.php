@@ -198,12 +198,12 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/remove/{id}", name="remove_estimationBrand")
+     * @Route("/modify/{id}", name="modify_estimationBrand")
      * @param EntityManagerInterface $em
      * @param int $id
      * @return Response
      */
-    public function removeEstimationBrand(
+    public function modifyEstimationBrand(
         EntityManagerInterface $em,
         int $id
     ) {
@@ -214,20 +214,20 @@ class AdminController extends AbstractController
         }
         $brands = array_unique($brands);
 
-        return $this->render("admin/removeEstimation.html.twig", [
+        return $this->render("admin/modifyEstimation.html.twig", [
             'brands' => $brands,
             'id' => $id
         ]);
     }
 
     /**
-     * @Route("/remove/{id}/{brand}", name="remove_estimationModel")
+     * @Route("/modify/{id}/{brand}", name="modify_estimationModel")
      * @param int $id
      * @param string $brand
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function removeEstimationModel(EntityManagerInterface $em, int $id, string $brand)
+    public function modifyEstimationModel(EntityManagerInterface $em, int $id, string $brand)
     {
         $queryBuilder = $em->getRepository(Phones::class)->findByBrand($brand);
         $models = [];
@@ -237,7 +237,7 @@ class AdminController extends AbstractController
         $models = array_unique($models);
 
 
-        return $this->render("admin/removeEstimationModel.html.twig", [
+        return $this->render("admin/modifyEstimationModel.html.twig", [
             "models" => $models,
             "brand" => $brand,
             "id" => $id
@@ -245,14 +245,14 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/remove/{id}/{brand}/{model}", name="remove_estimation_capacity")
+     * @Route("/modify/{id}/{brand}/{model}", name="modify_estimation_capacity")
      * @param string $brand
      * @param int $id
      * @param string $model
      * @param EntityManagerInterface $em
      * @return Response
      */
-    public function removeEstimationCapacity(
+    public function modifyEstimationCapacity(
         string $brand,
         string $model,
         int $id,
@@ -264,7 +264,7 @@ class AdminController extends AbstractController
             array_push($capacities, $model->getCapacity());
         }
 
-        return $this->render("admin/removeEstimationCapacity.html.twig", [
+        return $this->render("admin/modifyEstimationCapacity.html.twig", [
             "model" => $model,
             "brand" => $brand,
             "capacities" => $capacities,
@@ -273,7 +273,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/remove/{id}/{brand}/{model}/{capacity}/quest", name="remove_estimation_quest")
+     * @Route("/admin/modify/{id}/{brand}/{model}/{capacity}/quest", name="modify_estimation_quest")
      * @param Request $request
      * @param string $brand
      * @param string $model
@@ -285,7 +285,7 @@ class AdminController extends AbstractController
      * @return Response
      * @throws Exception
      */
-    public function removeEstimationQuest(
+    public function modifyEstimationQuest(
         Request $request,
         string $brand,
         string $model,
@@ -367,7 +367,7 @@ class AdminController extends AbstractController
             $em->persist($estimation);
             $em->flush();
 
-            return $this->render('admin/final_remove_price.html.twig', [
+            return $this->render('admin/final_modify_price.html.twig', [
                 'estimation' => $estimation,
                 'phone' => $phone,
                 'message' => $message,
@@ -375,7 +375,7 @@ class AdminController extends AbstractController
             ]);
         }
 
-        return $this->render("admin/removeEstimationQuest.html.twig", [
+        return $this->render("admin/modifyEstimationQuest.html.twig", [
             "model" => $model,
             "brand" => $brand,
             "capacity" => $capacity,
