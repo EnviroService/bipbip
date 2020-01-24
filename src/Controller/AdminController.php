@@ -360,8 +360,8 @@ class AdminController extends AbstractController
             $message = "";
             if ($estimated < 1) {
                 $estimated = 1;
-                $message = "Votre téléphone a perdu trop de valeur, 
-                mais nous pouvons vous le reprendre $estimated euros symbolique";
+                $message = "Ton téléphone a perdu trop de valeur, 
+                mais nous pouvons te le reprendre $estimated euros symbolique";
             }
             $estimation->setEstimatedPrice($estimated);
             $em->persist($estimation);
