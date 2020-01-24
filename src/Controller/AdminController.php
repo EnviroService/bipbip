@@ -9,7 +9,6 @@ use App\Form\EstimationType;
 use App\Form\OrganismsType;
 use App\Repository\EstimationsRepository;
 use App\Form\MatriceType;
-use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
 use App\Repository\PhonesRepository;
@@ -185,7 +184,6 @@ class AdminController extends AbstractController
                 $organism->setLogo(
                     new File($this->getParameter('upload_directory') . '/' . $organism->getLogo())
                 );
-                dd($file);
             }
 
             $this->getDoctrine()->getManager()->flush();
