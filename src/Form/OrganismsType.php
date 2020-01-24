@@ -36,7 +36,8 @@ class OrganismsType extends AbstractType
                     'Collecteur privé' => 'Partenaire privé',
                     'Collecteur public' => 'Partenaire public',
                     'Partenaire économique' => 'Partenaire économique'
-                ]
+                ],
+                'help' => 'Type de collecteur',
             ])
         ;
     }
