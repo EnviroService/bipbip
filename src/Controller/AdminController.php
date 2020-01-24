@@ -64,7 +64,7 @@ class AdminController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
@@ -72,10 +72,10 @@ class AdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('adminhome_admin');
+            return $this->redirectToRoute('collectors_index');
         }
 
-        return $this->render('admin/register_collector.html.twig', [
+        return $this->render('admin/collectors/register_collector.html.twig', [
             'registrationCollectorForm' => $form->createView(),
         ]);
     }
@@ -178,9 +178,7 @@ class AdminController extends AbstractController
             if ($file) {
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $fileName);
-                $organism->setLogo(
-                    new File($this->getParameter('upload_directory') . '/' . $organism->getLogo())
-                );
+                $organism->setLogo($fileName);
             }
 
             $this->getDoctrine()->getManager()->flush();
@@ -188,8 +186,11 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_organisms_index');
         }
 
+        $organismPhone = "0".$organism->getOrganismPhone();
+
         return $this->render('admin/edit.html.twig', [
             'organism' => $organism,
+            'organismPhone' => $organismPhone,
             'form' => $form->createView(),
         ]);
     }

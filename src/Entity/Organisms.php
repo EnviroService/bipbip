@@ -35,14 +35,6 @@ class Organisms
     private $organismLink;
 
     /**
-     * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400,
-     *     allowLandscape= false,
-     *     allowPortrait= false
-     * )
      * @ORM\Column(type="string", length=255)
      */
     private $logo;
