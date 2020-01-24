@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Collects;
 use App\Form\CollectsType;
 use App\Repository\CollectsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ class CollectsController extends AbstractController
 {
     /**
      * @Route("/", name="collects_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      * @param CollectsRepository $collectsRepository
      * @return Response
      */
@@ -31,6 +33,7 @@ class CollectsController extends AbstractController
      * @Route("/new", name="collects_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -66,6 +69,7 @@ class CollectsController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="collects_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Collects $collect): Response
     {
@@ -86,6 +90,7 @@ class CollectsController extends AbstractController
 
     /**
      * @Route("/{id}", name="collects_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Collects $collect): Response
     {
