@@ -22,27 +22,27 @@ for (let i = 0; i < categories.length; categories[i += 1]) {
         subCategories[i].classList.toggle('displayed');
     });
 }
-$(document).ready( () => {
-    $('#search_nameSearch').keyup( () => {
+$(document).ready(()=> {
+    $('#search_nameSearch').keyup(()=> {
         $('.resultSearch').html('');
         const users = $(this).val();
         if (users !== '') {
             $.ajax({
                 type: 'GET',
                 url: 'home',
-                data: 'users=' + encodeURIComponent(users),
-                success: function (data) {
-                    if (data !== '') {
-                        let names = '';
-                        for (let i = 0; i < data.length; i += 1) {
-                            names += `<a href="user/${data[i].id}/documents">${data[i].lastname}${data[i].firstname}</a>`;
-                        };
-                        document.querySelector('.resultSearch').innerHTML += names + ' ';
-                    } else {
-                        document.querySelector('.resultSearch').innerHTML += 'Aucunes recherches trouvées';
+                data: 'users='+encodeURIComponent(users),
+                success: =>(data) {
+                if (data !== '') {
+                    let names = '';
+                    for (let i = 0; i < data.length; i += 1) {
+                        names += <a href="user/${data[i].id}/documents">${data[i].lastname}${data[i].firstname}</a>
                     }
+                    document.querySelector('.resultSearch').innerHTML += names + ' ';
+                } else {
+                    document.querySelector('.resultSearch').innerHTML += 'Aucunes recherches trouvées';
                 }
-            });
+            },
+        });
         }
     });
 });
