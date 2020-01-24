@@ -110,10 +110,11 @@ header{
 // Menu gauche
 .menu-admin {
     width: 100%;
+    position : relative;
+    z-index : 999;
     color: white;
     text-decoration: none;
     height: 50px;
-    z-index : 999;
 
     .icon-menu {
         display: flex;
