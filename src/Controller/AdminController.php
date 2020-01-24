@@ -178,10 +178,7 @@ class AdminController extends AbstractController
             if ($file) {
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $fileName);
-                $organism->setLogo(
-                    new File($this->getParameter('upload_directory') . '/' . $organism->getLogo())
-                );
-                dd($file);
+                $organism->setLogo($fileName);
             }
 
             $this->getDoctrine()->getManager()->flush();

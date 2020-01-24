@@ -2,17 +2,37 @@
 
 namespace App\Controller;
 
+use App\Repository\OrganismsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @param OrganismsRepository $organismsRepository
+     * @return Response
      */
-    public function index()
+    public function index(OrganismsRepository $organismsRepository)
     {
-        return $this->render('home/index.html.twig');
+        $organisms = $organismsRepository->findAll();
+
+
+        $randomIDOrganisms = array_rand($organisms, 3);
+        if (is_array($randomIDOrganisms)) {
+            $randomOrganisms = [];
+            $randIDOrgLength = \count($randomIDOrganisms);
+            for ($i = 0; $i < $randIDOrgLength; $i++) {
+                $randomOrganisms[] = $organisms[$randomIDOrganisms[$i]];
+            }
+        } else {
+            $randomOrganisms = $organisms;
+        }
+
+        return $this->render('home/index.html.twig', [
+            'organisms' => $randomOrganisms
+        ]);
     }
 
     /**
