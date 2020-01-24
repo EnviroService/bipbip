@@ -77,11 +77,17 @@
         <section class="home-partner">
             <h2 class="primary-title">Ils nous font confiance</h2>
             <h3>+ de 15 partenaires nous font confiance</h3>
+
+
+
             <article>
-                <a><img src="/images/ilevia-logo.png" alt=""/></a>
-                <a><img src="/images/jules-logo.png" alt=""/></a>
-                <a><img src="/images/yuka-logo.png" alt=""/></a>
+                {% for organism in organisms %}
+                <a href="{{ path('organisms_show', {'id' : organism.id}) }}">
+                    <img src="{{asset('uploads/logos/')}}{{organism.logo}}" alt="{{organism.organismName}}"></a>
+                {% endfor %}
+
             </article>
+
             <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
         </section>
 
