@@ -25,7 +25,8 @@ class OrganismsType extends AbstractType
             ->add('logo', FileType::class, [
                 'required' => false,
                 'mapped' => false,
-                'data_class' => null
+                'data_class' => null,
+                'help' => 'Choisis un fichier en cliquant sur Browse',
             ])
             ->add('organismAddress', TextType::class)
             ->add('organismCity', TextType::class)
@@ -36,7 +37,8 @@ class OrganismsType extends AbstractType
                     'Collecteur privé' => 'Partenaire privé',
                     'Collecteur public' => 'Partenaire public',
                     'Partenaire économique' => 'Partenaire économique'
-                ]
+                ],
+                'help' => 'Type de collecteur',
             ])
         ;
     }

@@ -24,14 +24,6 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("infos/recrute", name="recrute")
-     */
-    public function recrute()
-    {
-        return $this->render('infos/recrute.html.twig');
-    }
-
-    /**
      * @Route("admin/", name="adminIndex")
      */
     public function adminIndex()
@@ -45,22 +37,6 @@ class HomeController extends AbstractController
     public function cgu()
     {
         return $this->render('infos/cgu.html.twig');
-    }
-
-    /**
-     * @Route("admin/bdc", name="bdc")
-     */
-    public function bdc()
-    {
-        return $this->render('bdc/index.html.twig');
-    }
-
-    /**
-     * @Route("admin/bdc/{id]", name="bdcShow")
-     */
-    public function bdcShow()
-    {
-        return $this->render('bdc/bdc.html.twig');
     }
 
     /**
