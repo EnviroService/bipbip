@@ -42,6 +42,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+
     public function findSearch($value)
     {
         return $this->createQueryBuilder('u')
@@ -49,5 +50,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('val', $value .'%')
             ->getQuery()
             ->getResult();
+    }
+  
+    public function findCollectors($role)
+    {
+
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%"'.$role.'"%');
+
+        return $qb->getQuery()->getResult();
     }
 }
