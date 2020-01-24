@@ -1,8 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
-{% block title %}Edit Profil{% endblock %}
+{% block title %}Editer le collecteur{% endblock %}
 
 {% block body %}
-    <h1 class="">Edit Profil</h1>
-    {{ include('user/_form.html.twig') }}
+    <h1>Editer le collecteur</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('collectors_index') }}">Retour à la liste</a>
+
 {% endblock %}

@@ -50,6 +50,7 @@ class EstimationsController extends AbstractController
 
     /**
      * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      * @param EstimationsRepository $eRepo
      * @return Response
      */
