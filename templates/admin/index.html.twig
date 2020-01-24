@@ -32,6 +32,7 @@
         </a>
     </div>
 </header>
+
     {% for message in app.flashes('success') %}
         <div class="alert alert-success text-center">
             {{ message }}
@@ -64,11 +65,6 @@
             </li>
         </ul>
 {% endfor %}
-{% for message in app.flashes('danger') %}
-    <div class="alert alert-danger text-center">
-        {{ message }}
-    </div>
-{% endfor %}
 
 <div class="form-group" id="search-bar">
     <label for="search-user"></label>
@@ -82,7 +78,7 @@
             <div class="block">
                 <div>
                     <a href="{{ path ('estimations_index') }}">Toutes</a>
-                    <a href="{{ path ('estimations_uncollected_index') }}">Non collectées</a>
+                    <a href="{{ path ('estimations_uncollected_index') }}">A collecter</a>
                     <a href="{{ path('estimations_collected_index') }}">Collectées</a>
                     <a href="{{ path('estimations_unfinished_index') }}">Inachevées</a>
                 </div>
@@ -93,10 +89,10 @@
             <div class="block">
                 <div>
                     <a href="{{ path('organisms_index') }}">Partenaires</a>
-                    <a href="{{ path('organisms_new') }}">Collecteurs</a>
-                    <a href="{{ path('organisms_index') }}">Collectes</a>
+                    <a href="{{ path('collectors_index') }}">Collecteurs</a>
+                    <a href="{{ path('collects_index') }}">Collectes</a>
                     <a href="{{ path('matrice_upload') }}">Matrice</a>
-                    <a href="{{ path('register_collector') }}">FAQ</a>
+                    <a href="{{ path('faq_index') }}">FAQ</a>
                 </div>
             </div>
         </li>
@@ -105,15 +101,12 @@
             <div class="block">
                 <div>
                     <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
-                    <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
                 </div>
             </div>
         </li>
     </ul>
 </nav>
-{% endblock %}
-
-
+   
 {% block footer %}{% endblock %}
 
 {%  block javascripts %}
