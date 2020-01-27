@@ -1,0 +1,26 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Documents{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminHomePage') }}
+{% endblock %}
+
+{% block body %}
+
+    <main>
+        <h2>Les documents de : {{ user.lastname }} {{ user.firstname }}</h2>
+        <ul>
+            {% for estimation in user.estimations %}
+            <li>Model : {{ estimation.model }}</li>
+            <li>Prix estimé : {{ estimation.estimatedPrice }}</li>
+            <li>Est-il collecté : {{ estimation.isCollected }}</li>
+            <li>Payement validée : {{ estimation.isValidatedPayment }}</li>
+        </ul>
+    {% endfor %}
+    </main>
+
+{% endblock %}
+{%  block javascripts %}
+    {{ encore_entry_script_tags('adminHomePage') }}
+{% endblock %}

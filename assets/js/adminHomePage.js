@@ -22,3 +22,27 @@ for (let i = 0; i < categories.length; categories[i += 1]) {
         subCategories[i].classList.toggle('displayed');
     });
 }
+$(document).ready(() => {
+    $('#search_nameSearch').keyup(() => {
+        $('.resultSearch').html('');
+        const users = $(this).val();
+        if (users !== '') {
+            $.ajax({
+                type: 'GET',
+                url: 'home',
+                data: `users=${encodeURIComponent(users)}`,
+                success(data) {
+                    if (data !== '') {
+                        let names = '';
+                        for (let number = 0; number < data.length; number += 1) {
+                            names += `<a href="user/${data[number].id}/documents">${data[number].lastname} ${data[number].firstname}</a>`;
+                        }
+                        document.querySelector('.resultSearch').innerHTML += `${names} `;
+                    } else {
+                        document.querySelector('.resultSearch').innerHTML += 'Aucunes recherches trouvées';
+                    }
+                },
+            });
+        }
+    });
+});

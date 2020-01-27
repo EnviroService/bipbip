@@ -9,6 +9,10 @@ use App\Entity\User;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
 use App\Repository\FAQRepository;
+use App\Form\RegistrationFormType;
+use App\Form\SearchType;
+use App\Repository\UserRepository;
+use App\Form\UserType;
 use App\Repository\EstimationsRepository;
 use App\Form\MatriceType;
 use App\Repository\OrganismsRepository;
@@ -20,6 +24,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,11 +40,32 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/home", name="home_admin")
+     * @Route("/home", name="home_admin", methods={"GET"})
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $em
+     * @return JsonResponse|Response
      */
-    public function show(): Response
-    {
-        return $this->render('admin/index.html.twig');
+    public function searchBar(
+        Request $request,
+        UserRepository $userRepository,
+        EntityManagerInterface $em
+    ) {
+        if ($request->isXmlHttpRequest()) {
+            $data = $_GET['users'];
+            $result = $userRepository->findSearch($data);
+            $json =[];
+
+            foreach ($result as $user) {
+                $lastname = $user->getLastname();
+                $firstname = $user->getFirstname();
+                $id = $user->getId();
+                $json[]= ['lastname'=>$lastname,'firstname'=>$firstname, 'id' =>$id];
+            }
+            $json =json_encode($json);
+            return new JsonResponse($json, 200, [], true);
+        }
+            return $this->render('admin/index.html.twig');
     }
 
     /**
@@ -148,9 +174,10 @@ class AdminController extends AbstractController
       */
     public function index(OrganismsRepository $organismsRepository): Response
     {
-        $organisms = $organismsRepository->findAll();
+        $organisms = $organismsRepository->findBy([], ["organismName" => "ASC"]);
+
         return $this->render('admin/index_organism.html.twig', [
-            'organisms' => $organisms,
+            'organismName' => $organisms,
         ]);
     }
 
@@ -221,7 +248,17 @@ class AdminController extends AbstractController
     public function showFaq(FAQ $fAQ): Response
     {
         return $this->render('admin/admin_faqShow.html.twig', [
-            'f_a_q' => $fAQ
+            'f_a_q' => $fAQ ]);
+    }
+
+     * @Route("/user/{id}/documents", name="user_documents")
+     * @param User $user
+     * @return Response
+     */
+    public function userDocuments(User $user)
+    {
+        return $this->render('admin/user_documents.html.twig', [
+            'user' => $user,
         ]);
     }
 
@@ -402,7 +439,6 @@ class AdminController extends AbstractController
                 'id' => $id
             ]);
         }
-
         return $this->render("admin/modifyEstimationQuest.html.twig", [
             "model" => $model,
             "brand" => $brand,

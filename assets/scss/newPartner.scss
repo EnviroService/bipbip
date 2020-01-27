@@ -1,10 +1,26 @@
 @import "vars";
 
+.primary-title {
+    font-size: 25px;
+}
+
+
 .addTitle {
     text-align: center;
 }
+
 
 #newLink {
     display: block;
     text-align: center;
 }
+
+
+.back {
+    margin: 0 auto 20px auto;
+}
+
+
+.add {
+    margin: 5px auto 20px auto;
+ }
