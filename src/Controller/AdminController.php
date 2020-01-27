@@ -172,9 +172,10 @@ class AdminController extends AbstractController
       */
     public function index(OrganismsRepository $organismsRepository): Response
     {
-        $organisms = $organismsRepository->findAll();
+        $organisms = $organismsRepository->findBy([], ["organismName" => "ASC"]);
+
         return $this->render('admin/index_organism.html.twig', [
-            'organisms' => $organisms,
+            'organismName' => $organisms,
         ]);
     }
 
