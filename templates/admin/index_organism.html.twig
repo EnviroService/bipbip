@@ -35,81 +35,11 @@
 
             {% else %}
 
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun partenaire trouvé</td>
 
             {% endfor %}
             </tbody>
         </table>
-{#
-    <main class="container estimations-index">
-
-        <div class="row">
-
-            <div class="col-12 mx-auto text-center form p-4">
-                <h2 class="primary-title">Partenaires</h2>
-            </div>
-        </div>
-
-
-        <div class="row align-items-center table-head rounded-top">
-
-            <div class="col-md-3 mx-auto text-center">
-                Partenaires
-            </div>
-
-            <div class="col-md-3 mx-auto text-center">
-                Ville
-            </div>
-
-            <div class="col-md-3 mx-auto text-center ">
-                Statut
-            </div>
-
-            <div class="col-md-1 mx-auto text-center" >
-            </div>
-
-            <div class="col-md-2 mx-auto text-center">
-            </div>
-
-        </div>
-
-
-
-        {% for organism in organisms %}
-
-        <div class="row align-items-center border-bottom">
-
-            <div class="col-md-3 text-center">
-                <a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a>
-            </div>
-
-            <div class="col-md-3 text-center">
-                {{ organism.organismCity }}
-            </div>
-
-            <div class="col-md-3 text-center ">
-                {{ organism.organismStatus }}
-            </div>
-
-            <div class="col-md-1 fourth-button">
-                <a href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
-            </div>
-
-            <div class="col-md-2 text-center">
-                {{ include('organisms/_delete_form.html.twig') }}
-            </div>
-
-            {% else %}
-
-                <td colspan="11">no records found</td>
-
-            {% endfor %}
-
-        </div>
-#}
-
-
-
 
     </main>
 
