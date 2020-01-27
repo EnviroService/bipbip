@@ -33,17 +33,6 @@
     </div>
 </header>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success text-center">
-        {{ message }}
-    </div>
-
     <div class="menu-admin">
         <ul class="icon-menu">
             <li class="estimations">
@@ -64,7 +53,6 @@
                 <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
             </li>
         </ul>
-{% endfor %}
 
 <div class="form-group" id="search-bar">
     <label for="search-user"></label>
@@ -106,7 +94,13 @@
         </li>
     </ul>
 </nav>
-   
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success text-center">
+        {{ message }}
+    </div>
+{% endfor %}
+
 {% block footer %}{% endblock %}
 
 {%  block javascripts %}
