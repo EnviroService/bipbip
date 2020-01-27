@@ -55,7 +55,7 @@ class BdcController extends AbstractController
             'estimationIds' => $estimationIds,
         ]);
     }
-
+  
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @param Estimations $estimation
