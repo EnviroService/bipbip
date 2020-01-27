@@ -117,7 +117,7 @@ class UserController extends AbstractController
         for ($i=0; $i < $sizeRepo; $i++) {
             if ($repo[$i]->getDateCollect() < $now) {
                 unset($repo[$i]);
-            };
+            }
         }
 
         return $this->render('user/showCollect.html.twig', [
