@@ -23,9 +23,9 @@ for (let i = 0; i < categories.length; categories[i += 1]) {
     });
 }
 $(document).ready(() => {
-    $('#search_nameSearch').keyup(() => {
+    $('#search_nameSearch').keyup((event) => {
         $('.resultSearch').html('');
-        const users = $(this).val();
+        const users = $('#search_nameSearch').val();
         if (users !== '') {
             $.ajax({
                 type: 'GET',
