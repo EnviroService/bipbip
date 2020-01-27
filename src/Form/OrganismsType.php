@@ -25,8 +25,7 @@ class OrganismsType extends AbstractType
             ->add('logo', FileType::class, [
                 'required' => false,
                 'mapped' => false,
-                'data_class' => null,
-                'help' => 'Choisis un fichier en cliquant sur Browse',
+                'data_class' => null
             ])
             ->add('organismAddress', TextType::class)
             ->add('organismCity', TextType::class)
