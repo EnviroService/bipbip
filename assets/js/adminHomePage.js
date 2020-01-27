@@ -29,7 +29,7 @@ $(document).ready(() => {
         if (users !== '') {
             $.ajax({
                 type: 'GET',
-                url: 'home',
+                url: '',
                 data: `users=${encodeURIComponent(users)}`,
                 success(data) {
                     if (data !== '') {

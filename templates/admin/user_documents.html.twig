@@ -3,19 +3,32 @@
 {% block title %}Documents{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('adminHomePage') }}
+    {{ parent() }}
+    {{ encore_entry_link_tags('userDoc') }}
 {% endblock %}
 
 {% block body %}
 
     <main>
-        <h2>Les documents de : {{ user.lastname }} {{ user.firstname }}</h2>
+        <h2> {{ user.lastname }} {{ user.firstname }}</h2>
         <ul>
             {% for estimation in user.estimations %}
             <li>Model : {{ estimation.model }}</li>
-            <li>Prix estimé : {{ estimation.estimatedPrice }}</li>
-            <li>Est-il collecté : {{ estimation.isCollected }}</li>
-            <li>Payement validée : {{ estimation.isValidatedPayment }}</li>
+            <li>Prix estimé : {{ estimation.estimatedPrice }}€</li>
+            <li>Payement validé : {{ estimation.isValidatedPayment }}
+                {%  if estimation.isValidatedPayment == 1 %}
+                    <a>Payement déja effectué</a
+                {% else  %}
+                    <a>Non Payé</a>
+                {% endif %}</li>
+
+            <li>Est-il collecté : {{ estimation.isCollected }}
+            {%  if estimation.isCollected == 1 %}
+                <a>Collecte déja effectuée</a
+                {% else  %}
+                <a>A collecter</a>
+                {% endif %}
+            </li>
         </ul>
     {% endfor %}
     </main>

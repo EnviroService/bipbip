@@ -40,7 +40,7 @@ use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/home", name="home_admin", methods={"GET"})
+     * @Route("/", name="home_admin", methods={"GET"})
      * @param Request $request
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $em

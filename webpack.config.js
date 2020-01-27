@@ -27,6 +27,7 @@ Encore
     .addEntry('partnerList', './assets/scss/partnerList.scss')
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
     .addEntry('adminHomePage', './assets/js/adminHomePage.js')
+    .addEntry('userDoc', './assets/scss/userDoc.scss')
     .addEntry('newPartner', './assets/scss/newPartner.scss')
     .addEntry('editPartner', './assets/scss/editPartner.scss')
     .addEntry('bdc', './assets/scss/bdc.scss')

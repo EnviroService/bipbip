@@ -3,6 +3,7 @@
 {% block title %}Administration BipBip{% endblock %}
 
     {% block stylesheets %}
+        {{ parent() }}
         {{ encore_entry_link_tags('adminHomePage') }}
     {% endblock %}
 
@@ -79,7 +80,7 @@
 </nav>
 
 <div>
-    <section class="resultSearch"></section>
+    <br><section class="resultSearch"></section>
 </div>
 
     {% for message in app.flashes('success') %}
