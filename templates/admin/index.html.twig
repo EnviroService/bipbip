@@ -3,6 +3,7 @@
 {% block title %}Administration BipBip{% endblock %}
 
     {% block stylesheets %}
+        {{ parent() }}
         {{ encore_entry_link_tags('adminHomePage') }}
     {% endblock %}
 
@@ -56,11 +57,11 @@
                 <h2 class="title">Gestion</h2>
                 <div class="block">
                     <div>
-                        <a href="{{ path('organisms_index') }}">Partenaires</a>
+                        <a href="{{ path('admin_organisms_index') }}">Partenaires</a>
                         <a href="{{ path('organisms_new') }}">Collecteurs</a>
                         <a href="{{ path('organisms_index') }}">Collectes</a>
                         <a href="{{ path('matrice_upload') }}">Matrice</a>
-                        <a href="{{ path('register_collector') }}">FAQ</a>
+                        <a href="{{ path('admin_faq_index') }}">FAQ</a>
                     </div>
 
                 </div>
