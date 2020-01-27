@@ -3,6 +3,7 @@
 {% block title %}Partenaires{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('partnerList') }}
 {% endblock %}
 
@@ -16,7 +17,7 @@
 
             <article>
                 <a class="logo" href="{{ path('organisms_show', {'id' : organism.id}) }}">
-                    <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}"></a>
+                    <img title="{{ organism.organismName }}" src="/uploads/logos/{{ organism.logo }}" alt="{{ organism.organismName }}" ></a>
 
             </article>
 
@@ -41,11 +42,5 @@
         {% if is_granted("ROLE_ADMIN") %}
             <br><a class="aLink secondary-button" href="{{ path('organisms_new') }}">Ajouter</a>
         {% endif %}
-
-
-
     </main>
-
-
-
 {% endblock %}
