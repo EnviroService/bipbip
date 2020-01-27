@@ -1,28 +1,29 @@
 <?php
+
 namespace App\Entity;
 
 class Search
 {
     /**
-     * @var string
+     * @var string |null
      */
-    private $name;
+    private $nameSearch;
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getName()
+    public function getNameSearch(): ?string
     {
-        return $this->name;
+        return $this->nameSearch;
     }
 
     /**
-     * @param mixed $name
+     * @param string|null $nameSearch
      * @return Search
      */
-    public function setName($name)
+    public function setNameSearch(?string $nameSearch): Search
     {
-        $this->name = $name;
+        $this->nameSearch = $nameSearch;
         return $this;
     }
 }

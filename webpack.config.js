@@ -26,7 +26,7 @@ Encore
     .addEntry('signature', './assets/js/signature.js')
     .addEntry('partnerList', './assets/scss/partnerList.scss')
     .addEntry('partnerPage', './assets/scss/partnerPage.scss')
-    .addEntry('admin', './assets/js/adminHomePage.js')
+    .addEntry('adminHomePage', './assets/js/adminHomePage.js')
     .addEntry('newPartner', './assets/scss/newPartner.scss')
     .addEntry('editPartner', './assets/scss/editPartner.scss')
     .addEntry('bdc', './assets/scss/bdc.scss')
