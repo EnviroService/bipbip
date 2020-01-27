@@ -30,7 +30,7 @@ class UserController extends AbstractController
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
-        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" | $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
+        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" || $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
             return $this->redirectToRoute('estimations_index');
         } else {
             $organism = $this->getUser()->getOrganism();
