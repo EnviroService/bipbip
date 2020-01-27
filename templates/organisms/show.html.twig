@@ -39,7 +39,7 @@
 
 
         {% if is_granted("ROLE_ADMIN") %}
-            <a class="secondary-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
+            <a class="secondary-button edit" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a>
         {% endif %}
 
         {% if is_granted("ROLE_ADMIN") %}
