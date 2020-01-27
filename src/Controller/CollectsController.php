@@ -24,8 +24,9 @@ class CollectsController extends AbstractController
      */
     public function index(CollectsRepository $collectsRepository): Response
     {
+        $collectsValid = $collectsRepository->findByDateValid();
         return $this->render('collects/index.html.twig', [
-            'collects' => $collectsRepository->findAll(),
+            'collects' => $collectsValid,
         ]);
     }
 
