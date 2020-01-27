@@ -1,0 +1,30 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Question{% endblock %}
+
+{% block body %}
+    <h1>Question</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ f_a_q.id }}</td>
+        </tr>
+        <tr>
+            <th>Question</th>
+            <td>{{ f_a_q.question }}</td>
+        </tr>
+        <tr>
+            <th>Answer</th>
+            <td>{{ f_a_q.answer }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('faq_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('faq_edit', {'id': faq.id}) }}">Modifier</a>
+
+    {{ include('faq/_delete_form.html.twig') }}
+{% endblock %}

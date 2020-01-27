@@ -1,0 +1,63 @@
+@import "app";
+
+.estimations-index {
+    width : 80%;
+
+    h2 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        z-index: -1;
+    }
+
+    .table-head {
+        background-color: $secondary-color;
+        color: white;
+        padding: 10px;
+    }
+
+    .fourth-button {
+        margin: 10px auto;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            color: white;
+        }
+
+    }
+}
+
+.adminTitle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.adminPartners {
+    margin: 4% auto;
+    width: 80%;
+
+    .fourth-button {
+        width: 70%;
+    }
+
+    #table-head {
+        background-color: $secondary-color;
+        color: white;
+        padding: 10px;
+        height: 80px;
+    }
+
+    td {
+        padding: 10px 10px 10px 55px;
+    }
+
+    .tbody {
+
+        .tableContain {
+            border-bottom: black 5px solid;
+            width: 50%;
+        }
+    }
+}

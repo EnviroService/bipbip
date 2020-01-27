@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\FAQ;
 use App\Entity\Organisms;
 use App\Entity\Phones;
 use App\Entity\User;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
+use App\Repository\FAQRepository;
 use App\Form\RegistrationFormType;
 use App\Form\SearchType;
 use App\Repository\UserRepository;
@@ -172,9 +174,10 @@ class AdminController extends AbstractController
       */
     public function index(OrganismsRepository $organismsRepository): Response
     {
-        $organisms = $organismsRepository->findAll();
+        $organisms = $organismsRepository->findBy([], ["organismName" => "ASC"]);
+
         return $this->render('admin/index_organism.html.twig', [
-            'organisms' => $organisms,
+            'organismName' => $organisms,
         ]);
     }
 
@@ -222,6 +225,30 @@ class AdminController extends AbstractController
             'organismPhone' => $organismPhone,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @param FAQRepository $faqRepo
+     * @return Response
+     * @Route("/faq", name="admin_faq_index")
+     */
+
+    public function indexFaq(FAQRepository $faqRepo): Response
+    {
+        $faqContent = $faqRepo->findAll();
+        return $this->render('admin/admin_faqIndex.html.twig', [
+            'faqContent' => $faqContent]);
+    }
+
+    /**
+     * @Route("/faq/{id}", name="admin_faq_show", methods={"GET"})
+     * @param FAQ $fAQ
+     * @return Response
+     */
+    public function showFaq(FAQ $fAQ): Response
+    {
+        return $this->render('admin/admin_faqShow.html.twig', [
+            'f_a_q' => $fAQ ]);
     }
 
     /**
@@ -419,6 +446,7 @@ class AdminController extends AbstractController
             "capacity" => $capacity,
             "phone" => $phone,
             "form" => $form->createView()
+
         ]);
     }
 }

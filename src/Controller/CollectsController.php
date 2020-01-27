@@ -26,12 +26,14 @@ class CollectsController extends AbstractController
     {
         $collectsValid = $collectsRepository->findByDateValid();
         return $this->render('collects/index.html.twig', [
-            'collects' => $collectsValid,
+            'collects' => $collectsValid
         ]);
     }
 
     /**
      * @Route("/new", name="collects_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response

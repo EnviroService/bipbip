@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Collects;
+use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\CollectsRepository;
@@ -29,6 +30,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * @Route("/user/add/{estimation}", name="user_add")
+     * @param Request $request
+     * @param Estimations $estimation
+     * @param EntityManagerInterface $em
+     * @return Response
+     * @throws Exception
+     * @throws \Exception
+     */
+    public function newUser(
+        Request $request,
+        Estimations $estimation,
+        EntityManagerInterface $em
+    ): Response {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user, ['method' => Request::METHOD_POST]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setSignupDate(new DateTime('now'));
+            $user->setSigninDate(new DateTime('now'));
+            $user->addEstimation($estimation);
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash('success', 'Compte créé, félicitations à toi, rendez vous à la collecte !!');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('user/new.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
      * @param OrganismsRepository $organismsRepository
@@ -37,32 +72,42 @@ class UserController extends AbstractController
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
-        $organism = $this->getUser()->getOrganism();
-        if ($organism !== null) {
-            $privateCollects = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
-
-            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-            $publicOrganismsId = [];
-            foreach ($publicOrganisms as $publicOrganism) {
-                $publicOrganismsId [] = $publicOrganism->getId();
-            }
-            $publicCollects = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
-
-            $repo = [];
-            foreach ($privateCollects as $privateCollect) {
-                $repo[] = $privateCollect;
-            }
-
-            foreach ($publicCollects as $publicCollect) {
-                $repo[] = $publicCollect;
-            }
+        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" || $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
+            return $this->redirectToRoute('estimations_index');
         } else {
-            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-            $publicOrganismsId = [];
-            foreach ($publicOrganisms as $publicOrganism) {
-                $publicOrganismsId [] = $publicOrganism->getId();
+            $organism = $this->getUser()->getOrganism();
+            if ($organism !== null) {
+                $privateCollects = $collectsRepository->findBy(
+                    ['collector' => $organism->getId()],
+                    ["collector" => "ASC"]
+                );
+
+                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+                $publicOrganismsId = [];
+                foreach ($publicOrganisms as $publicOrganism) {
+                    $publicOrganismsId [] = $publicOrganism->getId();
+                }
+                $publicCollects = $collectsRepository->findBy(
+                    ['collector' => $publicOrganismsId],
+                    ["collector" => "ASC"]
+                );
+
+                $repo = [];
+                foreach ($privateCollects as $privateCollect) {
+                    $repo[] = $privateCollect;
+                }
+
+                foreach ($publicCollects as $publicCollect) {
+                    $repo[] = $publicCollect;
+                }
+            } else {
+                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+                $publicOrganismsId = [];
+                foreach ($publicOrganisms as $publicOrganism) {
+                    $publicOrganismsId [] = $publicOrganism->getId();
+                }
+                $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
             }
-            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
         }
 
         $now = new DateTime('now');

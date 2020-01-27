@@ -282,6 +282,63 @@ header{
             }
         }
     }
+
+
+}
+
+#mainFaq {
+
+    .primary-title {
+        margin-bottom : 5%;
+        width: 30%;
+    }
+
+    position: relative;
+
+    .secondary-button {
+        position: absolute;
+        padding: 4px 2%;
+        right: 200px;
+        bottom: 96%;
+        left: 77%;
+        text-align: center;
+        width: 150px;
+
+    }
+
+    .tableFaq {
+        width: 70%;
+        margin: 20px auto;
+
+        tr {
+            border-bottom: 1px solid black;
+            width: 10%;
+        }
+
+        .faqHead {
+            background-color: $secondary-color;
+            color: white;
+            text-align: center;
+            height: 100px;
+        }
+
+        .questionFaq {
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+            padding: 1px 40% 10px 5px;
+        }
+
+        .fourth-button {
+            margin: 20px auto;
+            width: 120%;
+        }
+
+        .editFaq {
+            padding: 4px 1%;
+        }
+
+    }
 }
 
 .resultSearch a {
