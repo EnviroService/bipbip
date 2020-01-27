@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}BipBip Mobile{% endblock %}</title>
         <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
@@ -17,7 +17,7 @@
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estimer mon tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="#" title="Acheter un téléphone">Acheter un tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="#" title="Les points de collecte">Les points de collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
@@ -27,10 +27,8 @@
                     {% if app.user %}
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
-                        {% if app.user.roles == ["ROLE_USER"] %}
-                            <a href="#" title="Page profil" class="fourth-button">Mon profil</a>
-                        {% else %}
-                            <a href="{{ path('home_admin') }}" title="Page Admin" class="fourth-button">Accéder à la plateforme d'administration</a>
+                        {% if app.user.roles == ["ROLE_COLLECTOR"] or ["ROLE_ADMIN"] %}
+                            <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
                         {% endif %}
 
                     {% else %}

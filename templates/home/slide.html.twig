@@ -1,13 +1,19 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="/images/carousel_base_D3_V1-01.png" class="d-block w-100" alt="...">
+            <a href="{{ path('new_estimation') }}" title="Vends ton tél, Cah et Rapide">
+                <img src="{{ asset('images/selfie1c.png') }}" class="d-block w-100" alt="Estime ton téléphone !">
+            </a>
         </div>
         <div class="carousel-item">
-            <img src="/images/carousel_base_D3_V1-03.png" class="d-block w-100" alt="...">
+            <a href="{{ path('add_message') }}" title="Organise une collecte">
+                <img src="{{ asset('images/selfie2c.png') }}" class="d-block w-100" alt="Organise une collecte">
+            </a>
         </div>
         <div class="carousel-item">
-            <img src="/images/carousel_base_D3_V1_Plan de travail 1.png" class="d-block w-100" alt="...">
+            <a href="{{ path('organisms_index') }}" title="Découvre les partenaires">
+                <img src="{{ asset('images/selfie3c.png') }}" class="d-block w-100" alt="Découvre nos partenaires !">
+            </a>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">

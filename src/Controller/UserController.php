@@ -8,7 +8,9 @@ use App\Form\UserType;
 use App\Repository\CollectsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,12 +33,29 @@ class UserController extends AbstractController
      * @param CollectsRepository $collectsRepository
      * @param OrganismsRepository $organismsRepository
      * @return Response
+     * @throws Exception
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
         $organism = $this->getUser()->getOrganism();
         if ($organism !== null) {
-            $repo = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+            $privateCollects = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+
+            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+            $publicOrganismsId = [];
+            foreach ($publicOrganisms as $publicOrganism) {
+                $publicOrganismsId [] = $publicOrganism->getId();
+            }
+            $publicCollects = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+
+            $repo = [];
+            foreach ($privateCollects as $privateCollect) {
+                $repo[] = $privateCollect;
+            }
+
+            foreach ($publicCollects as $publicCollect) {
+                $repo[] = $publicCollect;
+            }
         } else {
             $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
             $publicOrganismsId = [];
@@ -44,6 +63,16 @@ class UserController extends AbstractController
                 $publicOrganismsId [] = $publicOrganism->getId();
             }
             $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+        }
+
+        $now = new DateTime('now');
+
+        $sizeRepo = count($repo);
+
+        for ($i=0; $i < $sizeRepo; $i++) {
+            if ($repo[$i]->getDateCollect() < $now) {
+                unset($repo[$i]);
+            };
         }
 
         return $this->render('user/showCollect.html.twig', [
