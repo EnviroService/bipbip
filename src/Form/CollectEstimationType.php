@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Estimations;
 use App\Entity\Phones;
+use App\Repository\PhonesRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
@@ -16,11 +18,19 @@ class CollectEstimationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('brand', TextType::class, [
+            ->add('brand', EntityType::class, [
                 'label' => 'Marque',
+                'class' => Phones::class,
+                'choice_label' => 'brand',
+                'query_builder' => function (PhonesRepository $phonesRepository) {
+                    return $phonesRepository->createQueryBuilder('u')->orderBy('u.brand', 'ASC')->distinct();
+                }
             ])
-            ->add('model', TextType::class, [
+            ->add('model', EntityType::class, [
                 'label' => 'Modèle',
+                'class' => Phones::class,
+                'choice_label' => 'model',
+
             ])
             ->add('capacity', NumberType::class, [
                 'label' => 'Capacité',

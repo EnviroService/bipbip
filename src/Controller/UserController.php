@@ -8,13 +8,19 @@ use App\Form\UserType;
 use App\Repository\CollectsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -27,6 +33,7 @@ class UserController extends AbstractController
      * @param CollectsRepository $collectsRepository
      * @param OrganismsRepository $organismsRepository
      * @return Response
+     * @throws Exception
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
@@ -35,7 +42,23 @@ class UserController extends AbstractController
         } else {
             $organism = $this->getUser()->getOrganism();
             if ($organism !== null) {
-                $repo = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+                $privateCollects = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+
+                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+                $publicOrganismsId = [];
+                foreach ($publicOrganisms as $publicOrganism) {
+                    $publicOrganismsId [] = $publicOrganism->getId();
+                }
+                $publicCollects = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+
+                $repo = [];
+                foreach ($privateCollects as $privateCollect) {
+                    $repo[] = $privateCollect;
+                }
+
+                foreach ($publicCollects as $publicCollect) {
+                    $repo[] = $publicCollect;
+                }
             } else {
                 $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
                 $publicOrganismsId = [];
@@ -44,11 +67,22 @@ class UserController extends AbstractController
                 }
                 $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
             }
-            return $this->render('user/showCollect.html.twig', [
-                'collects' => $repo,
-                'collector' => $organism
-            ]);
         }
+
+        $now = new DateTime('now');
+
+        $sizeRepo = count($repo);
+
+        for ($i=0; $i < $sizeRepo; $i++) {
+            if ($repo[$i]->getDateCollect() < $now) {
+                unset($repo[$i]);
+            };
+        }
+
+        return $this->render('user/showCollect.html.twig', [
+            'collects' => $repo,
+            'collector' => $organism
+        ]);
     }
 
     /**
@@ -57,18 +91,58 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $em
      * @param CollectsRepository $repository
      * @param Collects $collect
+     * @param MailerInterface $mailer
      * @return RedirectResponse
+     * @throws TransportExceptionInterface
      */
-    public function choiceCollect(EntityManagerInterface $em, CollectsRepository $repository, Collects $collect)
-    {
+    public function choiceCollect(
+        EntityManagerInterface $em,
+        CollectsRepository $repository,
+        Collects $collect,
+        MailerInterface $mailer
+    ) {
         $user = $this->getUser();
         $collect = $repository->findOneBy(['id' => $collect]);
+        $organism = $collect->getCollector();
         $user->setCollect($collect);
         $em->persist($user);
         $em->flush();
-        $this->addFlash("success", "Tu as bien été enregistré sur cette collecte.");
 
-        return $this->redirectToRoute("home");
+        // mail for user
+        $day = $collect->getDateCollect()->format("d/m/y");
+        $hour = $collect->getDateCollect()->format("h:i");
+        $emailExp = (new Email())
+            ->from(new Address('contact@bipbipmobile.com', 'BipBip Mobile'))
+            ->to(new Address($user->getEmail(), $user
+                    ->getFirstname() . ' ' . $user->getLastname()))
+            ->replyTo('contact@bipbipmobile.com')
+            ->subject('Tu es inscrit à une collecte !')
+            ->html($this->renderView(
+                'contact/confirmCollect.html.twig',
+                [
+                    'day' => $day,
+                    'hour' => $hour,
+                    'user' => $user,
+                    'organism' => $organism,
+                ]
+            ));
+
+        $mailer->send($emailExp);
+
+        return $this->redirectToRoute("collect_confirm");
+    }
+
+    /**
+     * @Route("/confirm/collect/", name="collect_confirm")
+     * @return Response
+     */
+    public function collectConfirm()
+    {
+        $user = $this->getUser();
+
+        return $this->render('user/confirmCollect.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     /**

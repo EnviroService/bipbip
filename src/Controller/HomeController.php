@@ -66,4 +66,12 @@ class HomeController extends AbstractController
     {
         return $this->render('estimation/autres.html.twig');
     }
+
+    /**
+     * @Route("boutique", name="boutique")
+     */
+    public function boutique()
+    {
+        return $this->render('infos/boutique.html.twig');
+    }
 }
