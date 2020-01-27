@@ -7,7 +7,7 @@
                 <h1 class="primary-title">Estime ton tel</h1>
                 <h2 class="text-dark">Voici la liste disponible</h2>
                 {% for brand in brands %}
-                    <a class="btn btn-success" href="{{ path('remove_estimationModel', {'id': id, 'brand': brand}) }}">{{ brand }}</a>
+                    <a class="btn btn-success" href="{{ path('modify_estimationModel', {'id': id, 'brand': brand}) }}">{{ brand }}</a>
                 {% endfor %}
             </div>
         </div>

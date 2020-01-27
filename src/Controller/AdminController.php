@@ -370,12 +370,13 @@ class AdminController extends AbstractController
         $casingCracks = $phone->getPriceCasingCracks();
         $bateryPrice = $phone->getPriceBattery();
         $buttonPrice = $phone->getPriceButtons();
-
         $estimation = $estimationsRepo->findOneBy(['id' => $id]);
         $form = $this->createForm(EstimationType::class, $estimation, ['method' => Request::METHOD_POST]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $imei = $data->getImei();
             $estimation->setEstimationDate(new DateTime('now'))
                 ->setIsCollected(false)
                 ->setBrand($brand)
@@ -385,7 +386,7 @@ class AdminController extends AbstractController
                 ->setMaxPrice($maxPrice)
                 ->setIsValidatedPayment(false)
                 ->setIsValidatedCi(false)
-                ->setImei('0');
+                ->setImei($imei);
 
             $estimated = $maxPrice;
 
