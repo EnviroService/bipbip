@@ -3,6 +3,7 @@
 {% block title %}Partenaires{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('partnerList') }}
 {% endblock %}
 
@@ -41,11 +42,5 @@
         {% if is_granted("ROLE_ADMIN") %}
             <br><a class="aLink secondary-button" href="{{ path('organisms_new') }}">Ajouter</a>
         {% endif %}
-
-
-
     </main>
-
-
-
 {% endblock %}
