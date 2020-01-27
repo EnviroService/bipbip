@@ -28,9 +28,11 @@
                     {% if app.user %}
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
-                        {% if app.user.roles == ["ROLE_COLLECTOR"] or ["ROLE_ADMIN"] %}
-                            <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
-                        {% endif %}
+                        {% for role in app.user.roles %}
+                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                            {% endif %}
+                        {% endfor %}
 
                     {% else %}
                         <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
