@@ -251,6 +251,7 @@ class AdminController extends AbstractController
             'f_a_q' => $fAQ ]);
     }
 
+    /**
      * @Route("/user/{id}/documents", name="user_documents")
      * @param User $user
      * @return Response
