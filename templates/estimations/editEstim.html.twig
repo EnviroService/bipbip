@@ -33,7 +33,7 @@
                 {{ form_label(form.brand) }} :
             </div>
             <div class="col-2 text-center font-weight-bold">
-                {{ estimation.brand }}
+                {{  estimation.brand }}
             </div>
             <div class="col-1 text-center ">
                 <input type="checkbox" aria-label="Checkbox">
@@ -181,9 +181,10 @@
                 <a href="{{ path('estimations_index') }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                <button class="btn btn-info">{{ button_label|default('Mettre à jour') }}</button>
+                <a href="{{ path('remove_estimationBrand', {id: estimation.id}) }}" class="btn btn-info">Mettre à jour</a>
                 <a href="{{ path('verifyUser', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
             </div>
         </div>
     </main>
+    {{ form_end(form) }}
 {% endblock %}

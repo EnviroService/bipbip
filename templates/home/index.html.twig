@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil BipBip{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -9,7 +9,7 @@
 
 {% block body %}
     <main class="home">
-        <h1><span class="orange-font">Bipbip</span> <span class="blue-font">rachète ton tel et en fait</span> <span class="orange-font">le 1er mobile</span> <span class="blue-font"><b>recyclé et connecté aux</b></span> <span class="orange-font">bons plans de ta région</span></h1>
+        <h1><span class="orange-font">Bipbip</span> <span class="blue-font">rachète ton tél et en fait</span> <span class="orange-font">le 1er mobile</span> <span class="blue-font"><b>recyclé et connecté aux</b></span> <span class="orange-font">bons plans de ta région</span></h1>
 
         {{ include('/home/slide.html.twig') }}
 
@@ -22,14 +22,14 @@
                     <div>
                         <h3>Etape 1</h3>
                     </div>
-                    <p>Découvre la valeur de ton tèl</p>
+                    <p>Découvre la valeur de ton tél</p>
                 </div>
                 <p class="third-button">Télécharge l'appli Bipbip</p>
                 <div id="links-apps">
                     <a href="#"><img src="/images/apple-store-mini.png" class="link-app"></a>
                     <a href="#"><img src="/images/google-play-mini.png" class="link-app"></a>
                 </div>
-                <p>Si ton tèl est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
+                <p>Si ton tél est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
             </article>
 
             <article>
@@ -39,7 +39,7 @@
                     <div>
                         <h3>Etape 2</h3>
                     </div>
-                    <p>Prends RDV et rejoins nous</p>
+                    <p>Prends RDV et rejoins-nous</p>
                 </div>
                 <a href="#" title="Lien vers les points de collecte" class="primary-button">Trouve les points de collecte</a>
                 <ul>
@@ -78,22 +78,24 @@
         <section class="home-partner">
             <h2 class="primary-title">Ils nous font confiance</h2>
             <h3>+ de 15 partenaires nous font confiance</h3>
+
+
+
             <article>
-                <a><img src="/images/ilevia-logo.png" alt=""/></a>
-                <a><img src="/images/jules-logo.png" alt=""/></a>
-                <a><img src="/images/yuka-logo.png" alt=""/></a>
+                {% for organism in organisms %}
+                <a href="{{ path('organisms_show', {'id' : organism.id}) }}">
+                    <img src="{{asset('uploads/logos/')}}{{organism.logo}}" alt="{{organism.organismName}}"></a>
+                {% endfor %}
+
             </article>
+
             <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
         </section>
 
         <section class="contact">
             <h2 class="primary-title">Contact</h2>
-            {#{{ render(controller(
-                'App\\Controller\\ContactController::add'
-            )) }}
-            {{ include('contact/_form.html.twig') }}#}
 
-            <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte nous</a>
+            <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte-nous</a>
         </section>
     </main>
 {% endblock %}
