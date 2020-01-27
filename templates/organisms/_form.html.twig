@@ -10,9 +10,8 @@
             {{ form_start(form, {'class': 'form-group'}) }}
             {{ form_widget(form.organismName, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom du partenaire', 'label': 'Nom du partenaire', 'required': true}}) }}
             {{ form_widget(form.description, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Description', 'label': 'Description', 'required': true}}) }}
-            {{ form_widget(form.organismLink, {'attr': {'class': 'form-control mt-3 mb-3', 'placeholder': 'Lien', 'label': 'Lien', 'required': true}}) }}
-            {{ form_widget(form.logo, {'attr': {'class': 'form-file', 'label': 'Logo', 'required': false}}) }}
-            {{ form_help(form.logo) }}
+            {{ form_widget(form.organismLink, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Lien', 'label': 'Lien', 'required': true}}) }}
+            {{ form_widget(form.logo, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Logo', 'label': 'Logo', 'required': true}}) }}
             {{ form_widget(form.organismAddress, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Adresse', 'label': 'Adresse', 'required': true}}) }}
             {{ form_widget(form.organismCity, {'attr': {'class': 'form-control mt-3 mb-3', 'placeholder': 'Ville', 'label': 'Ville', 'required': true}}) }}
             {{ form_widget(form.organismPostcode, {'attr': {'class': 'form-control mt-3 mb-3', 'placeholder': 'Code postal', 'label': 'Code postal', 'required': true}}) }}
