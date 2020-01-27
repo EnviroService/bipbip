@@ -221,8 +221,11 @@ class AdminController extends AbstractController
     public function showFaq(FAQ $fAQ): Response
     {
         return $this->render('admin/admin_faqShow.html.twig', [
-            'f_a_q' => $fAQ,
+            'f_a_q' => $fAQ
+        ]);
+    }
 
+     /**
      * @Route("/modify/{id}", name="modify_estimationBrand")
      * @param EntityManagerInterface $em
      * @param int $id
