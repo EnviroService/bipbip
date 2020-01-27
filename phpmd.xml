@@ -11,6 +11,7 @@
         <exclude name="StaticAccess" />
     </rule>
     <rule ref="rulesets/codesize.xml" >
+        <exclude name="CyclomaticComplexity" />
         <exclude name="TooManyFields" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields">

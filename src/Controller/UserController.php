@@ -42,14 +42,20 @@ class UserController extends AbstractController
         } else {
             $organism = $this->getUser()->getOrganism();
             if ($organism !== null) {
-                $privateCollects = $collectsRepository->findBy(['collector' => $organism->getId()], ["collector" => "ASC"]);
+                $privateCollects = $collectsRepository->findBy(
+                    ['collector' => $organism->getId()],
+                    ["collector" => "ASC"]
+                );
 
                 $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
                 $publicOrganismsId = [];
                 foreach ($publicOrganisms as $publicOrganism) {
                     $publicOrganismsId [] = $publicOrganism->getId();
                 }
-                $publicCollects = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+                $publicCollects = $collectsRepository->findBy(
+                    ['collector' => $publicOrganismsId],
+                    ["collector" => "ASC"]
+                );
 
                 $repo = [];
                 foreach ($privateCollects as $privateCollect) {
