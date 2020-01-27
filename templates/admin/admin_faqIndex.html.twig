@@ -1,0 +1,37 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block title %} Foire Aux Questions {% endblock %}
+
+{% block body %}
+    <main id="mainFaq">
+        <h1 class="primary-title"> Foire Aux Questions </h1>
+        <a class="secondary-button addFaq" href="{{ path('faq_new') }}">Ajouter</a>
+        <table class="tableFaq">
+            <thead class="faqHead">
+            <tr>
+                <td>Questions & Réponses</td>
+            </tr>
+            </thead>
+
+            {% for faq in faqContent %}
+
+                <tbody>
+                <tr>
+                    <td class="questionFaq">{{faq.question}} </td>
+                    <td><a class="fourth-button editFaq" href=" {{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a></td>
+                </tr>
+                </tbody>
+            {% endfor %}
+
+        </table>
+
+
+    </main>
+{% endblock %}
+{%  block javascripts %}
+    {{ encore_entry_script_tags('faq') }}
+{% endblock %}
