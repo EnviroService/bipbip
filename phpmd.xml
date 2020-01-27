@@ -12,10 +12,16 @@
     </rule>
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
+        <exclude name="TooManyPublicMethods" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields">
         <properties>
             <property name="maxfields" value="20" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
+        <properties>
+            <property name="maxmethods" value="20" />
         </properties>
     </rule>
     <rule ref="rulesets/controversial.xml" >
@@ -24,11 +30,7 @@
     <rule ref="rulesets/design.xml" >
         <exclude name="CouplingBetweenObjects" />
     </rule>
-    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
-        <properties>
-            <property name="maximum" value="20" />
-        </properties>
-    </rule>
+
     <rule ref="rulesets/naming.xml" >
         <exclude name="ShortVariable" />
     </rule>

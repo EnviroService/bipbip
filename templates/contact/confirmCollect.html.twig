@@ -1,0 +1,10 @@
+{% block body %}
+    <p>Salut {{ user.firstname }} !</p>
+    <p>Nous avons bien reçu ton inscription à une collecte pour déposer ton téléphone.</p>
+    <p>Prends note du lieu et de l'horaire :</p>
+    <ul>
+        <li>Partenaire de collecte : {{ organism.organismName }}</li>
+        <li>Adresse : {{ organism.organismAddress }}</li>
+        <li>Horaire : {{ day}} à {{ hour }}</li>
+    </ul>
+{% endblock %}
