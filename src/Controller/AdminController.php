@@ -42,6 +42,7 @@ class AdminController extends AbstractController
      * @param Request $request
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $em
+     * @return JsonResponse|Response
      */
     public function searchBar(
         Request $request,
@@ -412,7 +413,6 @@ class AdminController extends AbstractController
                 'id' => $id
             ]);
         }
-
         return $this->render("admin/modifyEstimationQuest.html.twig", [
             "model" => $model,
             "brand" => $brand,
