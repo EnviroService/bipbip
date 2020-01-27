@@ -8,6 +8,7 @@ use Dompdf\Options;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -53,6 +54,19 @@ class BdcController extends AbstractController
             'files' => $files,
             'dates' => $dates,
             'estimationIds' => $estimationIds,
+        ]);
+    }
+
+    /**
+     * @Route("/barcode/{id}", name="barcode")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    // route to generate only the BarCode
+    public function barcode(Estimations $estimation)
+    {
+        return $this->render('bdc/barcode.html.twig', [
+            'estimation' => $estimation,
         ]);
     }
   
