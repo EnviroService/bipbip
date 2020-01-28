@@ -3,6 +3,7 @@
 {% block title %}Nouveau partenaire{% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('admin') }}
     {{ encore_entry_link_tags('newPartner') }}
 {% endblock %}
@@ -10,7 +11,7 @@
 {% block body %}
 
     <h1 class="primary-title">Ajouter un partenaire</h1>
-    
+
     {{ include('organisms/_form.html.twig') }}
     <button class="secondary-button add">Ajouter</button>
     {{ form_end(form) }}

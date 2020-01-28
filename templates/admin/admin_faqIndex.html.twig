@@ -1,6 +1,7 @@
 {% extends 'admin/index.html.twig' %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('admin') }}
 {% endblock %}
 
@@ -13,7 +14,7 @@
         <table class="tableFaq">
             <thead class="faqHead">
             <tr>
-                <td>Questions & Réponses</td>
+                <td class="primary-title">Questions & Réponses</td>
             </tr>
             </thead>
 

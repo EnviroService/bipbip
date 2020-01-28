@@ -35,6 +35,7 @@ Encore
     .addEntry('final_estimation', './assets/scss/final_estimation.scss')
     .addEntry('show_collect', './assets/js/show_collect.js')
     .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
+    .addEntry('admin', './assets/scss/admin.scss')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
