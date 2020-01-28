@@ -1,32 +1,48 @@
 @import "app";
 @import "vars";
 
-.estimations-index {
+.admin-tables {
     width : 80%;
+    margin : auto;
+    position : relative;
 
     h2 {
-        margin-top: 5px;
         margin-bottom: 5px;
         z-index: -1;
     }
 
-    .table-head {
-        background-color: $secondary-color;
-        color: white;
-        padding: 10px;
+    .add{
+        width : 100px;
+        height : 40px;
+        padding : 7px;
+        position : absolute;
+        right : 150px;
+        top : -20px;
+        background-color: $primary-color;
     }
 
-    .fourth-button {
-        margin: 10px auto;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .container{
+        margin-top : 30px;
 
-        a {
+        .table-head {
+            background-color: $secondary-color;
             color: white;
+            padding: 10px;
         }
 
+        .fourth-button {
+            margin: 10px auto;
+            padding : 1px;
+            width : 110px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                color: white;
+            }
+        }
     }
 }
 
@@ -39,10 +55,6 @@
     margin: 4% auto;
     width: 80%;
 
-    .fourth-button {
-        width: 70%;
-    }
-
     #table-head {
         background-color: $secondary-color;
         color: white;
@@ -54,11 +66,16 @@
         padding: 10px 10px 10px 55px;
     }
 
-    .tbody {
+    tbody {
 
         .tableContain {
-            border-bottom: black 5px solid;
-            width: 50%;
+            border-bottom: #dee2e6 1px solid;
+            width: 40%;
+
+            .fourth-button, .secondary-button {
+                width: 130px;
+                height : 50px;
+            }
         }
     }
 }
