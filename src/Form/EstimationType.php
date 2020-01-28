@@ -62,9 +62,6 @@ class EstimationType extends AbstractType
                     'non' => '0'
                 ]
             ])
-            ->add('imei', TextType::class, [
-                'label' => 'imei'
-            ])
             ->add('submit', SubmitType::class);
     }
 

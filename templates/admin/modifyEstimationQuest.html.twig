@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    {{ encore_entry_link_tags('final_estimation') }}
     {{ parent() }}
+    {{ encore_entry_link_tags('final_estimation') }}
 {% endblock %}
 {% block body %}
     <main id="final_estimation">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-4">
                     {{ form_start(form) }}
-                    {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+                    {{ form_widget(form.liquidDamage, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
                 </div>
             </div>
         </div>
