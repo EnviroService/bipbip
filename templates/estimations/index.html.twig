@@ -3,40 +3,49 @@
 {% block title %}Estimations index{% endblock %}
  {% block stylesheets %}
      {{ parent() }}
-     {{ encore_entry_link_tags('estimationAdmin') }}
+     {{ encore_entry_link_tags('admin-tables') }}
  {% endblock %}
 {% block body %}
-    <h2 class="primary-title">Estimations</h2>
+    <main class="container estimations-index">
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h2 class="primary-title">Estimations</h2>
+            </div>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom Prénom</th>
-                <th>Téléphone</th>
-                <th>Collecter</th>
+        <div class="row align-items-center table-head rounded-top">
+            <div class="col-3 text-center">
+                Nom Prénom
+            </div>
+            <div class="col-3 text-center">
+                Téléphone
+            </div>
+            <div class="col-3 text-center ">
+                Montant
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
 
-            </tr>
-        </thead>
-        <tbody>
         {% for estimation in estimations %}
-            <tr>
-                {% if estimation.user is not null%}
-                    <td class="infoUser row bg-light align-items-center">
-                        {{ estimation.user.lastname }}
-                        {{ estimation.user.firstname }}
-                    </td>
-                {% else %}
-                    <td colspan="17" class="row bg-light align-items-center">Utilisateur Anonyme</td>
-                {% endif %}
-
-                <td class="row bg-light align-items-center">
+            <div class="row align-items-center border-bottom">
+                <div class="col-3 text-center">
+                    {% if estimation.user is not null%}
+                        {{  estimation.user.lastname }} {{ estimation.user.firstname }}
+                    {% else %}
+                        Utilisateur Anonyme
+                    {% endif %}
+                </div>
+                <div class="col-3 text-center">
                     {{ estimation.brand }} {{ estimation.model }}
-                </td>
-                <td>
-                    <a href="{{ path('verifyEstim', {id: estimation.id}) }}" class="fourth-button buttonsCollecters">Procéder à la collecte</a>
-                </td>
-            </tr>
+                </div>
+                <div class="col-3 text-center ">
+                    {{ estimation.estimatedPrice }} €
+                </div>
+                <a class="col-2 fourth-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                    Collecter
+                </a>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </main>
 {% endblock %}
