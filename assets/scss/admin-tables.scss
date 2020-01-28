@@ -30,35 +30,47 @@
     }
 }
 
-.adminTitle {
-    text-align: center;
-    margin-top: 20px;
-}
+#organisms {
+    position: relative;
 
-.adminPartners {
-    margin: 4% auto;
-    width: 80%;
-
-    .fourth-button {
-        width: 70%;
+    .adminTitle {
+        text-align: center;
+        margin-top: 20px;
     }
 
-    #table-head {
-        background-color: $secondary-color;
-        color: white;
-        padding: 10px;
-        height: 80px;
+    .addOrganism {
+        position: absolute;
+        right: 188px;
+        top: 1px;
+        background-color: $primary-color;
     }
 
-    td {
-        padding: 10px 10px 10px 55px;
-    }
+    .adminPartners {
+        margin: 4% auto;
+        width: 80%;
 
-    .tbody {
+        .fourth-button {
+            width: 70%;
+        }
 
-        .tableContain {
-            border-bottom: black 5px solid;
-            width: 50%;
+        #table-head {
+            background-color: $secondary-color;
+            color: white;
+            padding: 10px;
+            height: 80px;
+        }
+
+        td {
+            padding: 10px 10px 10px 55px;
+        }
+
+        .tbody {
+
+            .tableContain {
+                border-bottom: black 5px solid;
+                width: 50%;
+            }
         }
     }
 }
+
