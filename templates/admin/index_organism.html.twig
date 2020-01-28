@@ -14,24 +14,24 @@
 
         <table class="adminPartners">
             <thead id="table-head">
-            <tr>
-                <td>Partenaire</td>
-                <td>Ville</td>
-                <td>Statut</td>
-                <td></td>
-                <td id="rowFour"></td>
+                <tr>
+                    <td>Partenaire</td>
+                    <td>Ville</td>
+                    <td>Statut</td>
+                    <td></td>
+                    <td id="rowFour"></td>
 
-            </tr>
+                </tr>
             </thead>
             {% for organism in organisms %}
             <tbody >
-            <tr >
-                <td class="tableContain"><a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a></td>
-                <td class="tableContain">{{ organism.organismCity }}</td>
-                <td class="tableContain">{{ organism.organismStatus }}</td>
-                <td class="tableContain"><a class="fourth-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a></td>
-                <td class="tableContain"> {{ include('organisms/_delete_form.html.twig') }}</td>
-            </tr>
+                <tr >
+                    <td class="tableContain"><a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a></td>
+                    <td class="tableContain">{{ organism.organismCity }}</td>
+                    <td class="tableContain">{{ organism.organismStatus }}</td>
+                    <td class="tableContain"><a class="fourth-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a></td>
+                    <td class="tableContain"> {{ include('organisms/_delete_form.html.twig') }}</td>
+                </tr>
 
             {% else %}
 
