@@ -6,6 +6,7 @@ use App\Entity\FAQ;
 use App\Entity\Organisms;
 use App\Entity\Phones;
 use App\Entity\User;
+use App\Form\EstimationsType;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
 use App\Repository\FAQRepository;
@@ -370,12 +371,13 @@ class AdminController extends AbstractController
         $casingCracks = $phone->getPriceCasingCracks();
         $bateryPrice = $phone->getPriceBattery();
         $buttonPrice = $phone->getPriceButtons();
-
         $estimation = $estimationsRepo->findOneBy(['id' => $id]);
-        $form = $this->createForm(EstimationType::class, $estimation, ['method' => Request::METHOD_POST]);
+        $form = $this->createForm(EstimationsType::class, $estimation, ['method' => Request::METHOD_POST]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $imei = $data->getImei();
             $estimation->setEstimationDate(new DateTime('now'))
                 ->setIsCollected(false)
                 ->setBrand($brand)
@@ -385,11 +387,11 @@ class AdminController extends AbstractController
                 ->setMaxPrice($maxPrice)
                 ->setIsValidatedPayment(false)
                 ->setIsValidatedCi(false)
-                ->setImei('0');
+                ->setImei($imei);
 
             $estimated = $maxPrice;
 
-            if ($form['liquid_damage']->getData() === "1") {
+            if ($form['liquidDamage']->getData() === "1") {
                 $estimation->setLiquidDamage($liquidDamage);
                 $estimated -= $liquidDamage;
             } else {

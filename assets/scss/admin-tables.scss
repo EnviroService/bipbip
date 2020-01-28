@@ -46,36 +46,48 @@
     }
 }
 
-.adminTitle {
-    text-align: center;
-    margin-top: 20px;
-}
+#organisms {
+    position: relative;
 
-.adminPartners {
-    margin: 4% auto;
-    width: 80%;
-
-    #table-head {
-        background-color: $secondary-color;
-        color: white;
-        padding: 10px;
-        height: 80px;
+    .adminTitle {
+        text-align: center;
+        margin-top: 20px;
     }
 
-    td {
-        padding: 10px 10px 10px 55px;
+    .addOrganism {
+        position: absolute;
+        right: 188px;
+        top: 1px;
+        background-color: $primary-color;
     }
 
-    tbody {
+    .adminPartners {
+        margin: 4% auto;
+        width: 80%;
 
-        .tableContain {
-            border-bottom: #dee2e6 1px solid;
-            width: 40%;
+        #table-head {
+            background-color: $secondary-color;
+            color: white;
+            padding: 10px;
+            height: 80px;
+        }
 
-            .fourth-button, .secondary-button {
-                width: 130px;
-                height : 50px;
+        tbody {
+
+            .tableContain {
+                border-bottom: #dee2e6 1px solid;
+                width: 40%;
+
+                .fourth-button, .secondary-button {
+                    width: 130px;
+                    height: 50px;
+                }
             }
+        }
+
+        td {
+            padding: 10px 10px 10px 55px;
         }
     }
 }
+

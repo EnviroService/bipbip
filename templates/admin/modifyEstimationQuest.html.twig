@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
+    {{ parent() }}
     {{ encore_entry_link_tags('final_estimation') }}
 {% endblock %}
 {% block body %}
@@ -26,7 +27,7 @@
                 </div>
                 <div class="col-4">
                     {{ form_start(form) }}
-                    {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+                    {{ form_widget(form.liquidDamage, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
                 </div>
             </div>
         </div>
@@ -91,6 +92,11 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div>
+                IMEI: {{ form_widget(form.imei, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+            </div>
+        </div>
 
         <div class="container">
             <div class="row">
@@ -99,6 +105,7 @@
                     {{ form_end(form) }}
                 </div>
             </div>
+
         </div>
 
         <div class="row">

@@ -17,7 +17,7 @@
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estimer mon tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vendre ton tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Les points de collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
@@ -28,6 +28,7 @@
                     {% if app.user %}
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
                         {% for role in app.user.roles %}
                             {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
                                 <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>

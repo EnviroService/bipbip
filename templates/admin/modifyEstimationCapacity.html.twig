@@ -7,7 +7,7 @@
                 <h2 class="text-dark">{{ brand }}</h2>
                 <h3 class="text-dark">{{ model.model }}</h3>
                 {% for capacity in capacities %}
-                    <a class="btn btn-success mb-3" href="{{ path('remove_estimation_quest', {'id': id, 'brand': brand, 'model': model.model, 'capacity': capacity}) }}">{{ capacity }} Go</a>
+                    <a class="btn btn-success mb-3" href="{{ path('modify_estimation_quest', {'id': id, 'brand': brand, 'model': model.model, 'capacity': capacity}) }}">{{ capacity }} Go</a>
                 {% endfor %}
             </div>
         </div>

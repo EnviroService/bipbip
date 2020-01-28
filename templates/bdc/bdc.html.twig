@@ -38,8 +38,9 @@
         <tr>
             <td style="width:60%;">
                 <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
-                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
-                <p>IMEI : {{ IMEI }}</p>
+                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}<br>
+                IMEI : {{ estimation.imei }}</p>
+                <img width="200px; margin-top:30px;" src="{{ estimation.imei }}.png" alt="BipBip Mobile"></p>
             </td>
             <td style="width:40%; padding-left:20px;">
                 <p>ENVIRO SERVICES FRANCE<br>
