@@ -56,19 +56,6 @@ class BdcController extends AbstractController
             'estimationIds' => $estimationIds,
         ]);
     }
-
-    /**
-     * @Route("/barcode/{id}", name="barcode")
-     * @param Estimations $estimation
-     * @return Response
-     */
-    // route to generate only the BarCode
-    public function barcode(Estimations $estimation)
-    {
-        return $this->render('bdc/barcode.html.twig', [
-            'estimation' => $estimation,
-        ]);
-    }
   
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
@@ -78,6 +65,23 @@ class BdcController extends AbstractController
     // route to generate a PDF from estimation
     public function showPDF(Estimations $estimation)
     {
+        // create barcode image
+        $imei = $estimation->getImei();
+        $text = "*" . $imei . "*";
+        header("Content-Type: image/png");
+        $imgPath = "uploads/barcodes/";
+        $barcode = @imagecreate(240, 40);
+        if ($barcode) {
+            imagecolorallocate($barcode, 255, 255, 255);
+            $font = 'fonts/code128.ttf';
+            $black = imagecolorallocate($barcode, 0, 0, 0);
+            imagettftext($barcode, 30, 0, 2, 38, $black, $font, $text);
+            imagetruecolortopalette($barcode, true, 255);
+            imagepng($barcode, "$imei.png");
+            move_uploaded_file("$imei.png", $imgPath);
+            imagedestroy($barcode);
+        }
+
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -118,11 +122,6 @@ class BdcController extends AbstractController
         // Prepare flash message
         $message = "Le bon de cession a été généré";
         $this->addFlash('success', $message);
-
-        // Output the generated PDF to Browser (inline view)
-        //$dompdf->stream($filename, [
-        //"Attachment" => false
-        //]);
 
         return $this->redirectToRoute('bdc_pay', [
             'id' => $estimation->getId(),
