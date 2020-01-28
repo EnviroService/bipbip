@@ -121,6 +121,18 @@
             </div>
         </div>
 
+        {{ form_start(form) }}
+        <div class="row bg-light pt-3">
+            <div class="offset-2 col-4 text-center align-items-center">
+                {{ form_label(form.imei) }}
+            </div>
+            <div class="col-4 text-center font-weight-bold">
+                {{ form_widget(form.imei) }}
+            </div>
+            {{ form_widget(form.submit) }}
+        </div>
+        {{ form_end(form) }}
+
         <div class="row bg-light p-4">
             <p class="font-italic mx-auto">Pour réévaluer l'estimation, cliquez sur "mettre à jour"</p>
         </div>
