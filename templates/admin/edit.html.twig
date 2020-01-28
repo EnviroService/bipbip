@@ -3,8 +3,9 @@
 {% block title %}Modifier partenaire{% endblock %}
 
 {% block stylesheets %}
-    {{ encore_entry_link_tags('admin') }}
+    {{ parent() }}
     {{ encore_entry_link_tags('editPartner') }}
+    {{ encore_entry_link_tags('admin') }}
 {% endblock %}
 
 {% block body %}
