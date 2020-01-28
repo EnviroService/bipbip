@@ -7,7 +7,7 @@
                 <h2 class="text-dark">{{ brand.brand }}</h2>
                 {% for model in models %}
                     <a class="btn btn-success mb-3"
-                       href="{{path("remove_estimation_capacity", {'id': id, 'brand': brand.brand, 'model': model})}}">{{ model }}</a>
+                       href="{{path("modify_estimation_capacity", {'id': id, 'brand': brand.brand, 'model': model})}}">{{ model }}</a>
                 {% endfor %}
             </div>
         </div>

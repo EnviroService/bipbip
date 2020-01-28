@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Estimations;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,22 +14,43 @@ class EstimationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('estimationDate')
-            ->add('isCollected')
-            ->add('model')
-            ->add('capacity')
-            ->add('brand')
-            ->add('color')
-            ->add('liquidDamage')
-            ->add('screenCracks')
-            ->add('casingCracks')
-            ->add('batteryCracks')
-            ->add('buttonCracks')
-            ->add('maxPrice')
-            ->add('estimatedPrice')
-            ->add('isValidatedPayment')
-            ->add('isValidatedCi')
-            ->add('user', null, ['choice_label'=>'email'])
+            ->add('liquidDamage', ChoiceType::class, [
+                'expanded' => true,
+                'choices' => [
+                    'oui' => '1',
+                    'non' => '0'
+                ]
+            ])
+            ->add('screenCracks', ChoiceType::class, [
+                'expanded' => true,
+                'choices' => [
+                    'oui' => '1',
+                    'non' => '0'
+                ]
+            ])
+            ->add('casingCracks', ChoiceType::class, [
+                'expanded' => true,
+                'choices' => [
+                    'oui' => '1',
+                    'non' => '0'
+                ]
+            ])
+            ->add('batteryCracks', ChoiceType::class, [
+                'expanded' => true,
+                'choices' => [
+                    'oui' => '1',
+                    'non' => '0'
+                ]
+            ])
+            ->add('buttonCracks', ChoiceType::class, [
+                'expanded' => true,
+                'choices' => [
+                    'oui' => '1',
+                    'non' => '0'
+                ]
+            ])
+            ->add('imei')
+            ->add('submit', SubmitType::class)
         ;
     }
 

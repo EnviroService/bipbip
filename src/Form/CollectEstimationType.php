@@ -21,10 +21,7 @@ class CollectEstimationType extends AbstractType
             ->add('brand', EntityType::class, [
                 'label' => 'Marque',
                 'class' => Phones::class,
-                'choice_label' => 'brand',
-                'query_builder' => function (PhonesRepository $phonesRepository) {
-                    return $phonesRepository->createQueryBuilder('u')->orderBy('u.brand', 'ASC')->distinct();
-                }
+                'choice_label' => 'brand'
             ])
             ->add('model', EntityType::class, [
                 'label' => 'Modèle',
