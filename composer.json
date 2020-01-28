@@ -31,7 +31,8 @@
         "symfony/yaml": "4.3.*",
         "twig/extensions": "^1.5",
         "ext-intl": "*",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-gd": "*"
     },
     "require-dev": {
         "phpro/grumphp": "^0.15.2",

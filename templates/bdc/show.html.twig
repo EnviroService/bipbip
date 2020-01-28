@@ -6,11 +6,6 @@
 {% endblock %}
 {%  block body %}
 <main class="container">
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center">
-            {{ message }}
-        </div>
-    {% endfor %}
     <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="7" style="width: 71%">
             5 sur 7
