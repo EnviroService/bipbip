@@ -2,6 +2,11 @@
 
 {% block title %}Nouvel question{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
 {% block body %}
     <h1 class="primary-title">Créer une nouvelle question</h1>
 
