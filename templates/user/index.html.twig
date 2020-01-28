@@ -2,42 +2,57 @@
 
 {% block title %}Collecteurs{% endblock %}
 
-{% block body %}
-    <h2 class="primary-title">Liste des collecteurs</h2>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin-tables') }}
+{% endblock %}
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nom - Prénom</th>
-            <th>Organisme</th>
-            <th><a href="{{ path('register_collector') }}" class="fourth-button">Ajouter</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for collector in collectors %}
-            <tr>
-                <td>
-                    <a href="{{ path('collectors_show', {'id' : collector.id}) }}">{{ collector.lastname }} {{ collector.firstname }}</a>
-                </td>
-                <td>
-                    {% if collector.organism is null %}
-                        Pas d'organisme associé
-                    {% else %}
-                        {{ collector.organism.organismName }}
-                    {% endif %}
-                </td>
-                <td class="fourth-button">
-                    <a href="{{ path('collectors_edit', {'id': collector.id}) }}">Editer</a>
-                </td>
-                <td class="fourth-button">
-                    {{ include('user/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="13">Aucun collecteur trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block body %}
+    <main class="admin-tables">
+        <h2 class="primary-title">Liste des collecteurs</h2>
+        <a href="{{ path('register_collector') }}" class="fourth-button add">Ajouter</a>
+
+        <div class="container">
+            <div class="row align-items-center table-head rounded-top">
+                <div class="col-4 text-center">
+                    Nom Prénom
+                </div>
+                <div class="col-4 text-center">
+                    Organisme
+                </div>
+                <div class="col-2 text-center">
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+            {% for collector in collectors %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-4 text-center">
+                        <a href="{{ path('collectors_show', {'id' : collector.id}) }}">{{ collector.lastname }} {{ collector.firstname }}</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        {% if collector.organism is null %}
+                            Pas d'organisme associé
+                        {% else %}
+                            {{ collector.organism.organismName }}
+                        {% endif %}
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ path('collectors_edit', {'id': collector.id}) }}" class="fourth-button">Editer</a>
+                    </div>
+                    <div class="col-2 delete-btn">
+                        {{ include('user/_delete_form.html.twig') }}
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-12 text-center">
+                        Aucun collecteur trouvé
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </main>
 {% endblock %}
