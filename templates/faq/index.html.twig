@@ -15,7 +15,7 @@
         </div>
 
         {% if is_granted("ROLE_ADMIN") %}
-            <br><a class="fourth-button" href="{{ path('faq_new') }}">Ajouter</a>
+            <br><a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
         {% endif %}
 
         {% for faq in faqContent %}
@@ -27,13 +27,7 @@
 
                     {% endif %}
                 </article>
-                <article class="answer">{{faq.answer}}
-                    {% if is_granted('ROLE_ADMIN') %}
-
-                        <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
-
-                    {% endif %}
-                </article>
+                <article class="answer">{{faq.answer}} </article>
             </div>
         {% endfor %}
 
