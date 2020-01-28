@@ -6,11 +6,12 @@
 
 .menu-faq {
     display : flex;
-    flex-direction : column;
+    flex-direction : row;
     justify-content : center;
-    margin: 10% 10% ;
-    max-width: 80%;
-    width: 80%;
+    margin: 6% auto ;
+    max-width: 60%;
+    width: 60%;
+    cursor: pointer;
 }
 
 .question {
@@ -23,6 +24,8 @@
     background-color : $secondary-color;
     opacity: 90%;
     color : white;
+    cursor: pointer;
+    margin: 10px auto;
 }
 
 .answer {
@@ -36,8 +39,39 @@
     width: 100%;
     text-align: justify;
     box-shadow: inset 2px 0px 10px rgba(150, 134, 134, 0.25);
+    cursor: pointer;
 }
 
 .answer.displayed {
     display: block;
+}
+
+.add-button {
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    width : 20vw;
+    min-width : 90px;
+    max-width : 100px;
+    height : 8vw;
+    min-height: 48px;
+    max-height: 80px;
+    background-color : $fourth-color;
+    @media screen and (min-width: 740px){
+        display : flex;
+        justify-content : center;
+        align-items : center;
+        border-radius : 60%;
+        width : 20vw;
+        min-width : 59px;
+        max-width : 100px;
+        height : 8vw;
+        min-height: 64px;
+        max-height: 82px;
+        background-color : $fourth-color;
+        position : fixed;
+        right: 5vw;
+        bottom: -2vh;
+        z-index : 5;
+    }
 }
