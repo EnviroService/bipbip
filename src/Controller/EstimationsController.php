@@ -40,10 +40,13 @@ class EstimationsController extends AbstractController
                 'estimations' => $eRepo->findBy(
                     ['id' => $estimationIds,
                     'isCollected' => 0 ]
-                )]);
+                ),
+                'pageTitle' => 'Toutes les estimations'
+                ]);
         } else {
             return $this->render('estimations/index.html.twig', [
-            'estimations' => $eRepo->findBy([], ['id' => "ASC"])
+            'estimations' => $eRepo->findBy([], ['id' => "ASC"]),
+            'pageTitle' => 'Toutes les estimations'
             ]);
         }
     }
@@ -59,6 +62,7 @@ class EstimationsController extends AbstractController
         $estimations = $eRepo->findByUncollected();
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            'pageTitle' => 'Estimations à collecter'
         ]);
     }
 
@@ -73,6 +77,7 @@ class EstimationsController extends AbstractController
         $estimations = $eRepo->findByCollected();
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            'pageTitle' => 'Estimations collectées'
         ]);
     }
 
@@ -87,6 +92,7 @@ class EstimationsController extends AbstractController
         $estimations = $eRepo->findByUnfinished();
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            'pageTitle' => 'Estimations non validées'
         ]);
     }
 

@@ -1,10 +1,44 @@
 @import "app";
 
-.table {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    font-family: 'co-headline', Arial sans-serif;
-    margin-right: 30%;
-    margin-left: 30%;
+#estimations-show{
+    h3{
+        background-color : $secondary-color;
+        color : white;
+        text-align : center;
+        font-size : 1.1rem;
+        width : 50%;
+        margin : auto;
+        padding : 5px;
+        border-top-right-radius : 5px;
+        border-top-left-radius: 5px;
+    }
+
+    .tables{
+        display : flex;
+        justify-content: center;
+
+        .table-left, .table-right{
+            margin : 30px 40px;
+
+            th{
+                padding : 5px 30px;
+                border-bottom : 1px solid #dee2e6;
+            }
+
+            td{
+                border-bottom : 1px solid #dee2e6;
+            }
+        }
+    }
+
+    section{
+        display : flex;
+        justify-content: center;
+
+        a{
+            margin : 30px 50px;
+            width : 150px;
+        }
+    }
 }
+

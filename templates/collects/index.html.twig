@@ -1,35 +1,53 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Collects index{% endblock %}
+{% block title %}Collectes{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
 
 {% block body %}
-    <h1>Collects index</h1>
+    <main class="admin-tables">
+        <h2 class="primary-title">Liste des collectes en cours</h2>
+        <a href="{{ path('collects_new') }}" class="fourth-button add">Ajouter</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>DateCollect</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for collect in collects %}
-            <tr>
-                <td>{{ collect.id }}</td>
-                <td>{{ collect.dateCollect ? collect.dateCollect|date('d-m-Y H:i') : '' }}</td>
-                <td>
-                    <a href="{{ path('collects_show', {'id': collect.id}) }}">show</a>
-                    <a href="{{ path('collects_edit', {'id': collect.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('collects_new') }}">Create new</a>
+        <div class="container">
+            <div class="row align-items-center table-head rounded-top">
+                <div class="col-3 text-center">
+                    Organisme
+                </div>
+                <div class="col-3 text-center">
+                    Ville
+                </div>
+                <div class="col-3 text-center">
+                    Date
+                </div>
+                <div class="col-3 text-center">
+                </div>
+            </div>
+            {% for collect in collects %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-3 text-center">
+                        {{ collect.collector.organismName }}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ collect.collector.organismCity }}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ collect.dateCollect ? collect.dateCollect|date('d-m-Y H:i') : '' }}
+                    </div>
+                    <div class="col-3 delete-btn">
+                        {{ include('collects/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-12 text-center">
+                        Aucune date de collecte trouvée
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 {% endblock %}

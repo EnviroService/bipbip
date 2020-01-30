@@ -45,10 +45,10 @@
                 <h2 class="title">Estimations</h2>
                 <div class="block">
                     <div>
-                        <a href="{{ path ('estimations_index') }}">Toutes</a>
-                        <a href="{{ path ('estimations_uncollected_index') }}">Non collectées</a>
+                        <a href="{{ path ('estimations_uncollected_index') }}">A collecter</a>
                         <a href="{{ path('estimations_collected_index') }}">Collectées</a>
                         <a href="{{ path('estimations_unfinished_index') }}">Inachevées</a>
+                        <a href="{{ path ('estimations_index') }}">Toutes</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,6 @@
                 <h2 class="title">Gestion</h2>
                 <div class="block">
                     <div>
-
                         <a href="{{ path('admin_organisms_index') }}">Partenaires</a>
                         <a href="{{ path('organisms_new') }}">Collecteurs</a>
                         <a href="{{ path('organisms_index') }}">Collectes</a>
@@ -68,13 +67,7 @@
                 </div>
             </li>
             <li class="officialDocuments">
-                <h2 class="title">Documents</h2>
-                <div class="block">
-                    <div>
-                        <a href="{{ path ('bdc_index') }}" class="officialDocumentsBc">Bons de cessions</a>
-                        <a href="#" class="officialDocumentsCi">Cartes d'identitées</a>
-                    </div>
-                </div>
+                <a href="{{ path ('bdc_index') }}" class="title">Bons de cession</a>
             </li>
         </ul>
     {% endif %}
