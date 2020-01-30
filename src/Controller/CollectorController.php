@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Estimations;
-use App\Form\CollectEstimationType;
 use App\Form\CollectUserType;
+use App\Form\ImeiType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,25 +27,19 @@ class CollectorController extends AbstractController
      */
     public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(CollectEstimationType::class, $estimation);
+        $form = $this->createForm(ImeiType::class, $estimation);
         $form->handleRequest($request);
         $id = $estimation->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form-> getData();
-            $estimation->setBrand($data['brand']);
-            $estimation->setModel($data['model']);
-            $estimation->setCapacity($data['capacity']);
-            $estimation->setLiquidDamage($data['liquidDamage']);
-            $estimation->setScreenCracks($data['screenCracks']);
-            $estimation->setCasingCracks($data['casingCracks']);
-            $estimation->setBatteryCracks($data['batteryCracks']);
-            $estimation->setButtonCracks($data['buttonCracks']);
+            $data = $form->getData();
+            $imei = $data->getImei();
+            $estimation->setImei($imei);
 
             $em->persist($estimation);
             $em->flush();
 
-            return $this->redirectToRoute('takePhoto', [
+            return $this->redirectToRoute('verifyEstim', [
                 'id' => $id,
             ]);
         }
