@@ -58,8 +58,8 @@
                 <div class="block">
                     <div>
                         <a href="{{ path('admin_organisms_index') }}">Partenaires</a>
-                        <a href="{{ path('organisms_new') }}">Collecteurs</a>
-                        <a href="{{ path('organisms_index') }}">Collectes</a>
+                        <a href="{{ path('collectors_index') }}">Collecteurs</a>
+                        <a href="{{ path('collects_index') }}">Collectes</a>
                         <a href="{{ path('matrice_upload') }}">Matrice</a>
                         <a href="{{ path('admin_faq_index') }}">FAQ</a>
                     </div>
@@ -67,7 +67,12 @@
                 </div>
             </li>
             <li class="officialDocuments">
-                <a href="{{ path ('bdc_index') }}" class="title">Bons de cession</a>
+                <h2 class="title">Documents</h2>
+                <div class="block">
+                    <div>
+                        <a href="{{ path ('bdc_index') }}">Bons de cessions</a>
+                    </div>
+                </div>
             </li>
         </ul>
     {% endif %}
