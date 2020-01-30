@@ -1,51 +1,59 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}Estimations index{% endblock %}
+{% block title %}{{ pageTitle }}{% endblock %}
+
  {% block stylesheets %}
      {{ parent() }}
      {{ encore_entry_link_tags('admin-tables') }}
  {% endblock %}
+
 {% block body %}
-    <main class="container estimations-index">
-        <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <h2 class="primary-title">Estimations</h2>
-            </div>
-        </div>
+    <main class="admin-tables">
+        <h2 class="primary-title">{{ pageTitle }}</h2>
 
-        <div class="row align-items-center table-head rounded-top">
-            <div class="col-3 text-center">
-                Nom Prénom
-            </div>
-            <div class="col-3 text-center">
-                Téléphone
-            </div>
-            <div class="col-3 text-center ">
-                Montant
-            </div>
-            <div class="col-3">
-            </div>
-        </div>
-
-        {% for estimation in estimations %}
-            <div class="row align-items-center border-bottom">
+        <div class="container">
+            <div class="row align-items-center table-head rounded-top">
                 <div class="col-3 text-center">
-                    {% if estimation.user is not null%}
-                        {{  estimation.user.lastname }} {{ estimation.user.firstname }}
+                    Nom Prénom
+                </div>
+                <div class="col-3 text-center">
+                    Téléphone
+                </div>
+                <div class="col-2 text-center">
+                    Montant
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            {% for estimation in estimations %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-3 text-center">
+                        {% if estimation.user is not null%}
+                            {{  estimation.user.lastname }} {{ estimation.user.firstname }}
+                        {% else %}
+                            Utilisateur Anonyme
+                        {% endif %}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ estimation.brand }} {{ estimation.model }}
+                    </div>
+                    <div class="col-2 text-center ">
+                        {{ estimation.estimatedPrice }} €
+                    </div>
+                    {% if estimation.isCollected == 0 %}
+                        <a class="col-2 fourth-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                            Collecter
+                        </a>
                     {% else %}
-                        Utilisateur Anonyme
+                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
                     {% endif %}
                 </div>
-                <div class="col-3 text-center">
-                    {{ estimation.brand }} {{ estimation.model }}
-                </div>
-                <div class="col-3 text-center ">
-                    {{ estimation.estimatedPrice }} €
-                </div>
-                <a class="col-2 fourth-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
-                    Collecter
-                </a>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </main>
 {% endblock %}
