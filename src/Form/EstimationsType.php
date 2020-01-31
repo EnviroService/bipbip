@@ -45,8 +45,8 @@ class EstimationsType extends AbstractType
             ->add('buttonCracks', ChoiceType::class, [
                 'expanded' => true,
                 'choices' => [
-                    'oui' => '1',
-                    'non' => '0'
+                    'oui' => '0',
+                    'non' => '1'
                 ]
             ])
             ->add('imei')
