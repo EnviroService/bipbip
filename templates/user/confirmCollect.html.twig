@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Rendez-vous à la collecte !{% endblock %}
+
 {% block body %}
-    <main class="container">
+    <main class="container shadow-lg p-4 bg-light">
         <div class="row">
             <div class="col-12 mx-auto text-center">
                 <h3>Merci pour ton inscription {{ user.firstname }} !</h3>
             </div>
         </div>
-        <div class="row bg-light">
+        <div class="row p-3">
                 <h5>Présente-toi le jour de la collecte avec :</h5>
         </div>
-        <dl class="row bg-light">
+        <dl class="row">
             <dt class="col-sm-3 p-3 text-right">Ton téléphone !</dt>
             <dd class="col-sm-9 p-3">Pas de mot de passe, d'empreinte digitale, il faut que BipBip puisse y accèder !</dd>
 
@@ -21,7 +23,7 @@
         <div class="row">
             <ul class="col-7 mx-auto text-left">
                 <li>Un collecteur t'accueillera pour procéder à la collecte.</li>
-                <li class="mt-1">Les informations que tu as fournies seront vérifiées et la vente signée.</li>
+                <li class="mt-1">Les informations fournies seront vérifiées et la vente signée.</li>
                 <li class="mt-3">Grâce à Pumpkin, tu pourras être payé immédiatement !</li>
             </ul>
             <div class="col-5 mx-auto">
