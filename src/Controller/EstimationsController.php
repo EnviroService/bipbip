@@ -41,7 +41,7 @@ class EstimationsController extends AbstractController
                     ['id' => $estimationIds,
                     'isCollected' => 0 ]
                 ),
-                'pageTitle' => 'Toutes les estimations'
+                'pageTitle' => "Etape 1 : choix de l'estimation"
                 ]);
         } else {
             return $this->render('estimations/index.html.twig', [

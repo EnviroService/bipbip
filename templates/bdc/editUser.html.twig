@@ -22,86 +22,84 @@
                 Informations fournies
             </div>
             <div class="col-5 mx-auto text-left form p-4 font-weight-bold">
-                Modification (si nécessaire)
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Prénom :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.firstname }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Nom :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.lastname }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Adresse mail :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.email }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Numéro de téléphone :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 0{{ estimation.user.phoneNumber }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
-                {{ form_help(form.phoneNumber) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Adresse :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.address }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.address, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Code postal :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.postCode }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.postCode, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
-                {{ form_help(form.postCode) }}
+
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Ville :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 {{ estimation.user.city }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.city, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
+                Informations à titre indicatif, <br>à modifier par l'utilisateur en cas d'erreur.
             </div>
         </div>
         <div class="row">
@@ -109,8 +107,7 @@
                 <a href="{{ path('verifyEstim', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                {{ form_widget(form.save, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
-                <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
+                <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Etape suivante -></a>
             </div>
         </div>
     </main>

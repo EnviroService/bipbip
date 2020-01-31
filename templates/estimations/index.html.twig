@@ -9,9 +9,16 @@
 
 {% block body %}
     <main class="admin-tables">
-        <h2 class="primary-title">{{ pageTitle }}</h2>
-
         <div class="container">
+            {% if app.user.roles[0] == "ROLE_COLLECTOR" %}
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="7" style="width: 14%">
+                    1 sur 7
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="primary-title">{{ pageTitle }}</h1>
             <div class="row align-items-center table-head rounded-top">
                 <div class="col-3 text-center">
                     Nom - Prénom
