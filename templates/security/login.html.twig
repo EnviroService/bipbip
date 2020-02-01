@@ -22,7 +22,7 @@
         {% if app.user %}
             <div class="mb-3">
                 <p>Tu es connecté(e) en tant que {{ app.user.email }}</p>
-                <a href="{{ path('app_logout') }}" class="disconnection">Logout</a>
+                <a href="{{ path('app_logout') }}" class="disconnection fourth-button">Se déconnecter</a>
             </div>
         {% else %}
             <div class="container-fluid">

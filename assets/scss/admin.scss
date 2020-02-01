@@ -306,9 +306,10 @@ body{
         bottom: 94%;
         left: 71%;
         text-align: center;
-        width: 183px;
-        height: 50px;
-        background-color: $primary-color;
+        width: 150px;
+        @media screen and (max-width: 1024px){
+            bottom: 97%;
+        }
 
     }
 
