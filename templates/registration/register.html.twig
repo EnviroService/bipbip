@@ -16,7 +16,7 @@
             <div class="offset-sm-2 col-sm-8 offset-sm-2">
                 <p>Afin d'accéder aux points de collecte te concernant, appartiens-tu à un des organismes de la liste ci-dessous ?</p>
                 {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de Bip Bip Mobile :', 'label_attr': {'class': 'label-registration-form'} }) }}
-                <p class="contact-link">Tu souhaites que ton entreprise ou ton école organise une collecte ? N'hésite pas à nous envoyer un message en <a href="{{ path('add_message') }}" class="font-italic">cliquant ici !</a></p>
+                <p class="contact-link">Tu souhaites que ton entreprise ou ton école organise une collecte ? N'hésite pas à nous envoyer un message en <a href="{{ path('add_message') }}" class="font-italic" target="_blank">cliquant ici !</a></p>
             </div>
             <div class="offset-sm-2 col-sm-8 offset-sm-2">
                 {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
