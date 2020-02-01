@@ -1,26 +1,49 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Choix d'une collecte{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
 {% block body %}
 
-<table class="table">
-    <thead class="jumbotron">
-        <td>Nom d'organisme</td>
-        <td>Adresse</td>
-        <td>Date de collecte</td>
-    </thead>
-    {% for collect in collects %}
-    <tbody>
-        <td><h5>{{ collect.collector.organismName }}</h5></td>
-        <td>{{ collect.collector.organismAddress }}, {{ collect.collector.organismPostcode }} {{ collect.collector.organismCity }}</td>
-        <td>{{ collect.dateCollect.date|date('d M Y H:i') }}</td>
-        <td><a class="btn btn-success choice_collect" href="{{ path('choice', {collect: collect.id }) }}">Participer</a></td>
-    </tbody>
+    <main class="admin-tables">
+        <h2 class="primary-title">Choisis une collecte</h2>
+
+        <div class="container">
+            <div class="row align-items-center table-head rounded-top">
+                <div class="col-3 text-center">
+                    Partenaire de collecte
+                </div>
+                <div class="col-4 text-center">
+                    Adresse
+                </div>
+                <div class="col-3 text-center">
+                    Date de collecte
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+        {% for collect in collects %}
+            <div class="row align-items-center border-bottom">
+                <div class="col-3 text-center">
+                    <h5>{{ collect.collector.organismName }}</h5>
+                </div>
+                <div class="col-4 text-center">
+                    {{ collect.collector.organismAddress }},
+                    {{ collect.collector.organismPostcode }}
+                    {{ collect.collector.organismCity }}
+                </div>
+                <div class="col-3 text-center">
+                    {{ collect.dateCollect.date|date('d/m/Y') }} à {{ collect.dateCollect.date|date('H:i') }}
+                </div>
+                <a class="col-2 fourth-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a></td>
+            </div>
     {% endfor %}
-</table>
-{#
-{% block javascripts %}
-    {{ encore_entry_script_tags('show_collect') }}
-{% endblock %}
-#}
+        </div>
+    </main>
 {% endblock %}
 
