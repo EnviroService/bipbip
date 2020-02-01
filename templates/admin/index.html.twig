@@ -33,12 +33,12 @@
         </a>
     </div>
 </header>
-
+{#
 <div id="nameSearch">
     <input type="text" id="search_nameSearch">
 </div>
-
-<nav class="menu-admin">
+#}
+<nav class="menu-admin mt-2">
     {% if app.user.roles[0] == "ROLE_ADMIN" %}
         <ul class="icon-menu">
             <li class="estimations">
