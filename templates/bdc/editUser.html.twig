@@ -22,7 +22,7 @@
                 Informations fournies
             </div>
             <div class="col-5 mx-auto text-left form p-4 font-weight-bold">
-
+                Modification (si nécessaire)
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -33,7 +33,7 @@
                 {{ estimation.user.firstname }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -44,7 +44,7 @@
                 {{ estimation.user.lastname }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -55,7 +55,7 @@
                 {{ estimation.user.email }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -66,7 +66,7 @@
                 0{{ estimation.user.phoneNumber }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.phoneNumber, {'data': '02', 'attr': {'class': 'form-control mt-3', 'required': true, 'placeholder': 'truc'}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -77,7 +77,7 @@
                 {{ estimation.user.address }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.address, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -88,7 +88,7 @@
                 {{ estimation.user.postCode }}
             </div>
             <div class="col-5 mx-auto text-left form">
-
+                {{ form_widget(form.postCode, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
@@ -99,7 +99,7 @@
                 {{ estimation.user.city }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                Informations à titre indicatif, <br>à modifier par l'utilisateur en cas d'erreur.
+                {{ form_widget(form.city, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row">
@@ -107,6 +107,7 @@
                 <a href="{{ path('verifyEstim', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
+                {{ form_widget(form.save, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
                 <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Etape suivante -></a>
             </div>
         </div>
