@@ -5,6 +5,9 @@
     width : 80%;
     margin : auto;
     position : relative;
+    @media screen and (max-width: 960px) {
+        font-size : 0.9rem;
+    }
 
     h2 {
         margin-bottom: 5px;
@@ -36,7 +39,7 @@
             padding: 10px;
         }
 
-        .fourth-button {
+        .fourth-button, .secondary-button {
             margin: 10px auto;
             padding : 1px;
             width : 110px;
@@ -91,11 +94,16 @@
 
             .tableContain {
                 border-bottom: #dee2e6 1px solid;
-                width: 40%;
+                width: 30%;
 
                 .fourth-button, .secondary-button {
-                    width: 130px;
-                    height: 50px;
+                    margin: 10px auto;
+                    padding : 1px;
+                    width : 110px;
+                    height: 35px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
         }
