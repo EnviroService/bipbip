@@ -1,4 +1,11 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="container">
+    {{ form_start(form) }}
+        <div class="offset-sm-3 col-sm-6 offset-sm-3">
+                {{ form_row(form.collector) }}
+        </div>
+        <div class="offset-sm-3 col-sm-6 offset-sm-3">
+                {{ form_row(form.dateCollect) }}
+        </div>
+        <button class="fourth-button">{{ button_label|default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+</div>
