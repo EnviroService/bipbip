@@ -83,7 +83,7 @@ class FAQController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('faq_index');
+            return $this->redirectToRoute('admin_faq_index');
         }
 
         return $this->render('faq/edit.html.twig', [

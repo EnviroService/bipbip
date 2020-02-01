@@ -12,13 +12,19 @@
     }
 
     .add{
-        width : 100px;
-        height : 40px;
-        padding : 7px;
+        width : 16%;
+        height : 53px;
+        padding : 12px;
         position : absolute;
-        right : 150px;
-        top : -20px;
+        right : 9%;
+        top : -18px;
         background-color: $primary-color;
+        @media screen and (max-width: 1024px){
+            left: 80%;
+            top: 0;
+            width: 164px;
+            height: 48px;
+        }
     }
 
     .container{
@@ -56,14 +62,23 @@
 
     .addOrganism {
         position: absolute;
-        right: 188px;
-        top: 1px;
+        top: -13px;
+        right : 15%;
         background-color: $primary-color;
+        @media screen and (max-width: 1024px){
+            left: 74%;
+            top: -23px;
+        }
     }
 
+    .secondary-button {
+        width: 16%;
+    }
+
+
     .adminPartners {
-        margin: 4% auto;
-        width: 80%;
+        margin: 2% auto;
+        width: 70%;
 
         #table-head {
             background-color: $secondary-color;
