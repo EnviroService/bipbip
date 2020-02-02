@@ -2,12 +2,29 @@
 @import "vars";
 
 #final_estimation {
+    @media screen and (min-width: 740px) {
+        width : 50%;
+        margin : auto;
+    }
+
+    .jumbotron{
+        margin-bottom : 0;
+    }
+
+    h2{
+        font-size : 1.3rem;
+    }
+
+    h3{
+        font-size : 1.2rem;
+    }
+
     h4 {
         margin-top: 10px;
+        font-size : 1.1rem;
     }
 
     .form-check {
-        font-size: 20px;
         font-style: italic;
         font-family: monospace;
     }
@@ -18,8 +35,7 @@
     }
 
     .choice-box {
-        width: 100%;
-
+        font-size : 1.1rem;
     }
 
     .quest {
@@ -28,10 +44,14 @@
         margin-bottom: 32px;
     }
 
-    .info-bulle {
-        padding: 0;
-        margin-top: 12px;
-        height: 40px;
+    .question-row{
+        display : flex;
+        justify-content: space-around;
+        align-items: center;
+
+        img{
+            width: 2%;
+        }
     }
 
     .choice {
