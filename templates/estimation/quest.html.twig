@@ -17,78 +17,97 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-11">
+        <div class="row question-row">
+            <div class="col-10">
                 <h4>Ton téléphone a t-il été en contact avec de l'eau ?</h4>
             </div>
-            <div class="col-1">
-                <img src="/images/info.png" alt="" title="Si ton téléphone est tombé dans l'eau, coche 'oui'"
-                     class="w-50 h-50 d-inline">
+            <div class="bubble-info">
+                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <div class="bubble-info-bg">
+                </div>
+                <p class="bubble-info-txt">Si ton téléphone est tombé dans l'eau, coche 'oui'</p>
             </div>
-            <div class="col-4">
+        </div>
+        <div class="row">
+            <div class="col-10 choice">
                 {{ form_start(form) }}
-                {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+                {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
 
-    <div class="container jumbotron">
-        <div class="row">
-            <div class="col-11">
+    <div class="container jumbo">
+        <div class="row question-row">
+            <div class="col-10">
                 <h4>Ton écran est-il endommagé ?</h4>
             </div>
-            <div class="col-1">
-                <img src="/images/info.png" alt="" title="Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé"
-                     class="w-50 h-50 d-inline">
+            <div class="bubble-info">
+                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <div class="bubble-info-bg">
+                </div>
+                <p class="bubble-info-txt">Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé</p>
             </div>
-            <div class="col-4">
-                {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+        </div>
+        <div class="row">
+            <div class="col-10 choice">
+                {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-11">
+        <div class="row  question-row">
+            <div class="col-10">
                 <h4>La coque du téléphone est-elle endommagée ?</h4>
             </div>
-            <div class="col-1">
-                <img src="/images/info.png" alt="" title="Fissures, griffes, mauvais emboîtement, coche 'oui'"
-                     class="w-50 h-50 d-inline">
+            <div class="bubble-info">
+                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <div class="bubble-info-bg">
+                </div>
+                <p class="bubble-info-txt">Fissures, griffes, mauvais emboîtement, coche 'oui'</p>
             </div>
-            <div class="col-4">
-                {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+        </div>
+        <div class="row">
+            <div class="col-10 choice">
+                {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
 
-    <div class="container jumbotron">
-        <div class="row">
-            <div class="col-11">
+    <div class="container jumbo">
+        <div class="row question-row">
+            <div class="col-10">
                 <h4>As-tu des problèmes de charge au niveau de la batterie ?</h4>
             </div>
-            <div class="col-1">
-                <img src="/images/info.png" alt=""
-                     title="Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'"
-                     class="w-50 h-50 d-inline">
+            <div class="bubble-info">
+                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <div class="bubble-info-bg">
+                </div>
+                <p class="bubble-info-txt">Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'</p>
             </div>
-            <div class="col-4">
-                {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+        </div>
+        <div class="row">
+            <div class="col-10 choice">
+                {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-11">
+        <div class="row question-row">
+            <div class="col-10">
                 <h4>Tous les boutons sont-ils fonctionnels ?</h4>
             </div>
-            <div class="col-1">
-                <img src="/images/info.png" alt="" title="Si un de tes boutons ne fonctionne plus, coche 'non'"
-                     class="w-50 h-50 d-inline">
+            <div class="bubble-info">
+                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <div class="bubble-info-bg">
+                </div>
+                <p class="bubble-info-txt">Si un de tes boutons ne fonctionne plus, coche 'non'</p>
             </div>
-            <div class="col-4">
-                {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 p-4', 'placeholder': ''}}) }}
+        </div>
+        <div class="row">
+            <div class="col-10 choice">
+                {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
@@ -102,11 +121,13 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 text-center">
-            <a class="btn btn-info" href="{{ path("home") }}">Retour à l'accueil</a>
-        </div>
-    </div>
+    <a class="secondary-button" href="{{ path("home") }}">Retour à l'accueil</a>
+
 </main>
+{% endblock %}
+
+{%  block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('modal_infos') }}
 {% endblock %}
 

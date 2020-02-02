@@ -10,12 +10,16 @@
 {% block body %}
     <main id="mainFaq">
         <h1 class="primary-title"> Foire Aux Questions </h1>
-        <a class="secondary-button addFaq" href="{{ path('faq_new') }}">Ajouter</a>
+        <a class="primary-button addFaq" href="{{ path('faq_new') }}">Ajouter</a>
+
         <table class="tableFaq">
-            <thead class="faqHead">
-            <tr>
-                <td class="primary-title">Questions & Réponses</td>
-            </tr>
+
+            <thead class="head-table">
+               <tr>
+                   <td>Questions</td>
+                   <td></td>
+                   <td></td>
+               </tr>
             </thead>
 
             {% for faq in faqContent %}
@@ -24,6 +28,7 @@
                 <tr>
                     <td class="questionFaq">{{faq.question}} </td>
                     <td><a class="fourth-button editFaq" href=" {{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a></td>
+                    <td class="deleteFaq">{{ include('faq/_delete_form.html.twig') }}</td>
                 </tr>
                 </tbody>
             {% endfor %}
@@ -32,7 +37,4 @@
 
 
     </main>
-{% endblock %}
-{%  block javascripts %}
-    {{ encore_entry_script_tags('faq') }}
 {% endblock %}

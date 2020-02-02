@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
-{% block title %}New Collects{% endblock %}
+{% block title %}Nouvelle collecte{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin-tables') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Collects</h1>
+    <main id="new-collect">
+        <h2 class="primary-title">Ajout d'une collecte</h2>
 
-    {{ include('collects/_form.html.twig') }}
-
-    <a href="{{ path('collects_index') }}">back to list</a>
+        {{ include('collects/_form.html.twig') }}
+    </main>
 {% endblock %}

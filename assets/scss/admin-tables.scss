@@ -5,30 +5,39 @@
     width : 80%;
     margin : auto;
     position : relative;
+    @media screen and (max-width: 960px) {
+        font-size : 0.9rem;
+    }
 
     h2 {
         margin-bottom: 5px;
         z-index: -1;
+        @media screen and (max-width: 960px) {
+            font-size : 1rem;
+            width : 50%;
+        }
     }
 
     .add{
-        width : 16%;
-        height : 53px;
-        padding : 12px;
+        width : 150px;
+        padding : 10px;
         position : absolute;
-        right : 9%;
+        right : 13%;
         top : -18px;
         background-color: $primary-color;
         @media screen and (max-width: 1024px){
-            left: 80%;
-            top: 0;
-            width: 164px;
-            height: 48px;
+            top: -1vh;
+            right : 3vw;
+            width: 100px;
+            padding : 5px;
         }
     }
 
     .container{
         margin-top : 30px;
+        @media screen and (max-width: 1024px){
+            font-size : 0.9rem;
+        }
 
         .table-head {
             background-color: $secondary-color;
@@ -36,7 +45,7 @@
             padding: 10px;
         }
 
-        .fourth-button {
+        .fourth-button, .secondary-button, .primary-button {
             margin: 10px auto;
             padding : 1px;
             width : 110px;
@@ -44,6 +53,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            @media screen and (max-width: 1024px){
+                width: 80px;
+                padding : 5px;
+                font-size: 0.8rem;
+            }
 
             a {
                 color: white;
@@ -61,13 +75,16 @@
     }
 
     .addOrganism {
+        width : 150px;
+        padding : 10px;
         position: absolute;
-        top: -13px;
-        right : 15%;
-        background-color: $primary-color;
+        right : 15vw;
+        top : -18px;
         @media screen and (max-width: 1024px){
-            left: 74%;
-            top: -23px;
+            right : 8vw;
+            top: -10px;
+            width: 100px;
+            padding : 5px;
         }
     }
 
@@ -91,11 +108,16 @@
 
             .tableContain {
                 border-bottom: #dee2e6 1px solid;
-                width: 40%;
+                width: 30%;
 
                 .fourth-button, .secondary-button {
-                    width: 130px;
-                    height: 50px;
+                    margin: 10px auto;
+                    padding : 1px;
+                    width : 110px;
+                    height: 35px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
         }
@@ -103,6 +125,20 @@
         td {
             padding: 10px 10px 10px 55px;
         }
+    }
+}
+
+#new-collect{
+    .fourth-button{
+        width : 200px;
+    }
+
+    label{
+        margin-top : 40px;
+    }
+
+    select{
+        margin-bottom : 20px;
     }
 }
 

@@ -41,7 +41,7 @@ class EstimationsController extends AbstractController
                     ['id' => $estimationIds,
                     'isCollected' => 0 ]
                 ),
-                'pageTitle' => 'Toutes les estimations'
+                'pageTitle' => "Etape 1 : choix de l'estimation"
                 ]);
         } else {
             return $this->render('estimations/index.html.twig', [
@@ -128,9 +128,13 @@ class EstimationsController extends AbstractController
      */
     public function show(Estimations $estimation): Response
     {
-        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
-            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
-                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+
+        if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+            return $this->render('estimations/show.html.twig', [
+                'estimation' => $estimation,
+            ]);
+        } elseif ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism()) {
                 return $this->render('estimations/show.html.twig', [
                     'estimation' => $estimation,
                 ]);

@@ -10,12 +10,9 @@
 {% block body %}
     <main id="faq">
 
-        <div class = primary-title>
-            <h1> Foire Aux Questions </h1>
-        </div>
-
+            <h1 class="primary-title"> Foire Aux Questions </h1>
         {% if is_granted("ROLE_ADMIN") %}
-            <br><a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
+            <a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
         {% endif %}
 
         {% for faq in faqContent %}
