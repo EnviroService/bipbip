@@ -55,7 +55,7 @@
                             Détails
                         </a>
                     {% elseif estimation.isCollected == 0 %}
-                        <a class="col-2 fourth-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                        <a class="col-2 primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
                             Collecter
                         </a>
                     {% else %}
