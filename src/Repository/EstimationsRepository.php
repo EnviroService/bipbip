@@ -24,7 +24,7 @@ class EstimationsRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('e')
             ->where('e.isCollected = 0')
             ->andWhere('e.user is not null')
-            ->orderBy('e.id', 'ASC');
+            ->orderBy('e.id', 'DESC');
 
         $query = $qb->getQuery();
 
@@ -35,7 +35,7 @@ class EstimationsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->where('e.isCollected = 1')
-            ->orderBy('e.id', 'ASC');
+            ->orderBy('e.id', 'DESC');
 
         $query = $qb->getQuery();
 
@@ -46,7 +46,7 @@ class EstimationsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->where('e.user is null')
-            ->orderBy('e.id', 'ASC');
+            ->orderBy('e.id', 'DESC');
 
         $query = $qb->getQuery();
 
