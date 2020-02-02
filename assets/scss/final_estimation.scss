@@ -29,6 +29,7 @@
     h4 {
         margin-top: 10px;
         font-size : 1.1rem;
+        color : $fourth-color;
     }
 
     .form-check {
@@ -53,22 +54,6 @@
         margin-bottom: 32px;
     }
 
-    .question-row{
-        display : flex;
-        justify-content: space-around;
-        align-items: center;
-
-        img{
-            width : 4%;
-            @media screen and (min-width: 740px) {
-                width: 4%;
-            }
-            @media screen and (min-width: 1024px) {
-                width: 3%;
-            }
-        }
-    }
-
     .choice {
         transform: scale(1.1);
         cursor: pointer;
@@ -82,5 +67,67 @@
     .secondary-button{
         width : 170px;
         padding : 7px;
+    }
+
+    .question-row{
+        display : flex;
+        justify-content: space-around;
+        align-items: center;
+
+        img{
+            width : 4%;
+            @media screen and (min-width: 740px) {
+                width: 4%;
+            }
+            @media screen and (min-width: 1024px) {
+                width: 50%;
+            }
+        }
+    }
+
+    .bubble-info{
+        width : 50px;
+
+        div{
+            display : none;
+            z-index: 900;
+            width : 100%;
+            height : 100%;
+            color : white;
+            padding : 5%;
+            background-color: grey;
+            opacity : 0.3;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .bubble-info-txt {
+            display : none;
+            margin : auto;
+            text-align: center;
+            font-size : 1.1rem;
+            z-index: 901;
+            width : 30%;
+            color : white;
+            padding : 5%;
+            background-color: $fourth-color;
+            opacity : 1;
+            border-radius : 20px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        div.displayed{
+            display : block;
+        }
+
+        .bubble-info-txt.displayed{
+            display : block;
+        }
     }
 }
