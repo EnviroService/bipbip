@@ -321,51 +321,78 @@ body{
 
     position: relative;
 
-    .secondary-button {
+    .primary-button {
         position: absolute;
         padding: 12px 1%;
-        right: 200px;
-        bottom: 94%;
-        left: 71%;
+        right: 453px;
+        bottom: 95%;
+        left: 65%;
         text-align: center;
-        width: 150px;
+        width: 275px;
+        height: 55px;
         @media screen and (max-width: 1024px){
             bottom: 97%;
+            left: 74%;
+            width:164px;
+            height: 45px;
         }
 
     }
 
     .tableFaq {
-        width: 70%;
-        margin: 20px auto;
+        width: 60%;
+        margin: -22px auto;
+        @media screen and (max-width: 1024px){
+            margin: 50px auto;
+            width: 80%;
+        }
 
         tr {
             border-bottom: 1px solid black;
             width: 10%;
         }
 
-        .faqHead {
-            color: white;
-            text-align: center;
-            height: 100px;
+        tbody {
+
+            .questionFaq {
+                display: flex;
+                flex-direction: column;
+                text-align: justify;
+                padding: 1px 40% 10px 5px;
+            }
+
+            .fourth-button {
+                margin: 20px auto 20px 80%;
+                width: 20%;
+            }
+
+            .editFaq {
+                padding: 14px 1%;
+                margin: 20px auto;
+                width: 140px;
+                height: 53px;
+            }
+
+            .deleteFaq {
+                width: 21%;
+                padding: 1% 1px;
+                @media screen and (max-width: 1024px){
+                    width: 28%;
+                }
+            }
         }
 
-        .questionFaq {
-            display: flex;
-            flex-direction: column;
-            text-align: justify;
-            padding: 1px 40% 10px 5px;
-        }
+    }
+}
 
-        .fourth-button {
-            margin: 20px auto 20px 80%;
-            width: 20%;
-        }
+.head-table {
+    background-color: $secondary-color;
 
-        .editFaq {
-            padding: 4px 1%;
-        }
-
+    td {
+        height: 60px;
+        text-align: center;
+        color: white;
+        padding: 20px;
     }
 }
 

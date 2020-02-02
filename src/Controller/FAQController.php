@@ -87,7 +87,7 @@ class FAQController extends AbstractController
         }
 
         return $this->render('faq/edit.html.twig', [
-            'f_a_q' => $fAQ,
+            'faq' => $fAQ,
             'form' => $form->createView(),
         ]);
     }
