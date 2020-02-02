@@ -24,7 +24,7 @@
             <img src="/images/info.png" alt="" title="Si ton téléphone est tombé dans l'eau, coche 'oui'">
         </div>
         <div class="row">
-            <div class="col-12 choice">
+            <div class="col-10 choice">
                 {{ form_start(form) }}
                 {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
@@ -39,7 +39,7 @@
             <img src="/images/info.png" alt="" title="Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé">
         </div>
         <div class="row">
-            <div class="col-12 choice">
+            <div class="col-10 choice">
                 {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
@@ -53,7 +53,7 @@
             <img src="/images/info.png" alt="" title="Fissures, griffes, mauvais emboîtement, coche 'oui'">
         </div>
         <div class="row">
-            <div class="col-12 choice">
+            <div class="col-10 choice">
                 {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
@@ -68,8 +68,8 @@
                      title="Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'">
         </div>
         <div class="row">
-            <div class="col-12 choice">
-                {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 p-4 choice-box', 'placeholder': ''}}) }}
+            <div class="col-10 choice">
+                {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
@@ -82,8 +82,8 @@
             <img src="/images/info.png" alt="" title="Si un de tes boutons ne fonctionne plus, coche 'non'">
         </div>
         <div class="row">
-            <div class="col-4 choice">
-                {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 p-4 choice-box', 'placeholder': ''}}) }}
+            <div class="col-10 choice">
+                {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
             </div>
         </div>
     </div>
@@ -97,11 +97,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 text-center">
-            <a class="btn btn-info" href="{{ path("home") }}">Retour à l'accueil</a>
-        </div>
-    </div>
+    <a class="secondary-button" href="{{ path("home") }}">Retour à l'accueil</a>
+
 </main>
 {% endblock %}
 

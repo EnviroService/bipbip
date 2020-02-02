@@ -2,9 +2,16 @@
 @import "vars";
 
 #final_estimation {
+    margin : auto;
     @media screen and (min-width: 740px) {
-        width : 50%;
-        margin : auto;
+        width : 80%;
+    }
+    @media screen and (min-width: 1024px) {
+        width : 60%;
+    }
+
+    .container {
+        padding : 2%;
     }
 
     .jumbotron{
@@ -32,10 +39,12 @@
     .form-check-input {
         align-content: center;
         position: relative;
+        cursor : pointer;
     }
 
     .choice-box {
         font-size : 1.1rem;
+        padding-left : 3%;
     }
 
     .quest {
@@ -50,7 +59,13 @@
         align-items: center;
 
         img{
-            width: 2%;
+            width : 4%;
+            @media screen and (min-width: 740px) {
+                width: 4%;
+            }
+            @media screen and (min-width: 1024px) {
+                width: 3%;
+            }
         }
     }
 
@@ -62,5 +77,10 @@
 
     .jumbo {
         background-color: #e9ecef;
+    }
+
+    .secondary-button{
+        width : 170px;
+        padding : 7px;
     }
 }
