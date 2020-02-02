@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Prénom :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Nom :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Adresse mail :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -59,19 +59,18 @@
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Numéro de téléphone :
             </div>
             <div class="col-4 text-center font-weight-bold">
                 0{{ estimation.user.phoneNumber }}
             </div>
             <div class="col-5 mx-auto text-left form">
-                {{ form_widget(form.phoneNumber, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
-                {{ form_help(form.phoneNumber) }}
+                {{ form_widget(form.phoneNumber, {'data': '02', 'attr': {'class': 'form-control mt-3', 'required': true}}) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Adresse :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -82,7 +81,7 @@
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Code postal :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -90,11 +89,10 @@
             </div>
             <div class="col-5 mx-auto text-left form">
                 {{ form_widget(form.postCode, {'attr': {'class': 'form-control mt-3', 'required': true}}) }}
-                {{ form_help(form.postCode) }}
             </div>
         </div>
         <div class="row bg-light align-items-center">
-            <div class="col-3 text-right p-3">
+            <div class="col-3 text-right p-2">
                 Ville :
             </div>
             <div class="col-4 text-center font-weight-bold">
@@ -110,7 +108,7 @@
             </div>
             <div class="col-8 mx-auto text-right form p-4">
                 {{ form_widget(form.save, { 'label': 'Mettre à jour', 'attr': {'class': "btn btn-info" }}) }}
-                <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
+                <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-success">Etape suivante -></a>
             </div>
         </div>
     </main>
