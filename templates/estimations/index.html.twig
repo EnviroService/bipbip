@@ -50,8 +50,12 @@
                     <div class="col-2 text-center ">
                         {{ estimation.estimatedPrice }} €
                     </div>
-                    {% if estimation.isCollected == 0 %}
-                        <a class="col-2 fourth-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                    {% if estimation.isCollected == 0 and estimation.user is null %}
+                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
+                    {% elseif estimation.isCollected == 0 %}
+                        <a class="col-2 primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
                             Collecter
                         </a>
                     {% else %}

@@ -1,31 +1,33 @@
 @import "vars";
-@import "~bootstrap/scss/bootstrap";
-
-// customize some Bootstrap variables
-// the ~ allows you to reference things in node_modules
 
 .menu-faq {
     display : flex;
-    flex-direction : row;
+    flex-direction : column;
     justify-content : center;
-    margin: 6% auto ;
-    max-width: 60%;
-    width: 60%;
+    margin: 3% auto ;
+    width: 70%;
     cursor: pointer;
+    @media screen and (min-width: 740px) {
+        width: 60%;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 40%;
+    }
 }
 
 .question {
     display: block;
     width: 100%;
     text-align: center;
-    font-size : 1.2rem;
-    padding: 20px;
+    font-size : 1rem;
+    padding: 15px;
     border-radius: 5px;
     background-color : $secondary-color;
     opacity: 90%;
     color : white;
     cursor: pointer;
-    margin: 10px auto;
+    margin: 0 auto;
+    box-shadow: 5px 5px 10px rgba(150, 134, 134, 0.25);
 }
 
 .answer {
@@ -38,7 +40,7 @@
     padding: 20px;
     width: 100%;
     text-align: justify;
-    box-shadow: inset 2px 0px 10px rgba(150, 134, 134, 0.25);
+    box-shadow: 5px 5px 10px rgba(150, 134, 134, 0.25);
     cursor: pointer;
 }
 
