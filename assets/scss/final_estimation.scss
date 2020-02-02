@@ -2,6 +2,10 @@
 @import "vars";
 
 #final_estimation {
+    h4 {
+        margin-top: 10px;
+    }
+
     .form-check {
         font-size: 20px;
         font-style: italic;
@@ -13,10 +17,30 @@
         position: relative;
     }
 
+    .choice-box {
+        width: 100%;
+
+    }
+
     .quest {
         font-size: 10px;
         box-shadow: 0 0 100px -15px lightgrey;
         margin-bottom: 32px;
     }
 
+    .info-bulle {
+        padding: 0;
+        margin-top: 12px;
+        height: 40px;
+    }
+
+    .choice {
+        transform: scale(1.1);
+        cursor: pointer;
+        margin-left: 5vh;
+    }
+
+    .jumbo {
+        background-color: #e9ecef;
+    }
 }
