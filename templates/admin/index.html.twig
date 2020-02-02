@@ -38,8 +38,8 @@
     <input type="text" id="search_nameSearch">
 </div>
 
-<nav class="menu-admin">
-    {% if app.user.roles[0] == "ROLE_ADMIN" %}
+{% if app.user.roles[0] == "ROLE_ADMIN" %}
+    <nav class="menu-admin">
         <ul class="icon-menu">
             <li class="estimations">
                 <h2 class="title">Estimations</h2>
@@ -75,9 +75,8 @@
                 </div>
             </li>
         </ul>
-    {% endif %}
-</nav>
-
+    </nav>
+{% endif %}
 <div>
     <section class="resultSearch"></section>
 </div>

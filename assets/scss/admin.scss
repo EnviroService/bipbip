@@ -32,10 +32,17 @@ header{
 
             li{
                 margin-left: 10px;
+                @media screen and (max-width: 960px) {
+                    font-size : 0.9rem;
+                    margin-left: 5px;
+                }
 
                 span{
                     font-weight : 400;
                     font-size: 1rem;
+                    @media screen and (max-width: 960px) {
+                        font-size : 0.9rem;
+                    }
                 }
 
                 a{
@@ -49,6 +56,9 @@ header{
             .date{
                 font-size : 0.9rem;
                 font-weight : 400;
+                @media screen and (max-width: 960px) {
+                    font-size : 0.7rem;
+                }
             }
         }
 
@@ -63,6 +73,9 @@ header{
             font-size: 1.6rem;
             font-style: italic;
             color: $secondary-color;
+            @media screen and (max-width: 960px) {
+                font-size : 1.2rem;
+            }
         }
 
         a{
@@ -159,6 +172,9 @@ header{
                 margin: 0;
                 z-index: 100;
                 cursor : pointer;
+                @media screen and (max-width: 960px) {
+                    font-size : 1rem;
+                }
             }
 
             .block {
@@ -206,6 +222,9 @@ header{
                 font-size: 1.1rem;
                 margin: 0;
                 cursor : pointer;
+                @media screen and (max-width: 960px) {
+                    font-size : 1rem;
+                }
             }
 
             .block {
@@ -253,6 +272,9 @@ header{
                 font-size: 1.1rem;
                 margin: 0;
                 cursor : pointer;
+                @media screen and (max-width: 960px) {
+                    font-size : 1rem;
+                }
             }
 
             .block {
