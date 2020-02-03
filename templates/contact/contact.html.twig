@@ -1,6 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block title %}Contacte-nous !{% endblock %}
 {% block body %}
-    <h1 class="primary-title">Contacte-nous</h1>
-    {{ include('contact/_form.html.twig') }}
+    <main class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-8 mx-auto p-3">
+                <h1 class="primary-title">Contacte-nous</h1>
+                <div class="row align-items-end">
+                    <div class="col-8">
+                        <p>Salut toi ! Alors comme ça tu veux papoter ?</p>
+                        <p>Avant de nous poser une question, vérifie que la réponse ne se trouve pas dans la FAQ !</p>
+                    </div>
+                    <div class="col-4">
+                        <a href="{{ path('faq_index') }}" class="primary-button">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                {{ include('contact/_form.html.twig') }}
+    </main>
 {% endblock %}
