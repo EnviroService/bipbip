@@ -151,16 +151,18 @@ class CollectorController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
-        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
-            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
-                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+        if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+            return $this->render('bdc/show.html.twig', [
+                'estimation' => $estimation,
+            ]);
+        } elseif ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
                 return $this->render('bdc/show.html.twig', [
-                    'IMEI' => "355 402 092 374 478",
                     'estimation' => $estimation,
                 ]);
             }
         }
-        $message = "Ce Bon de Cession n'est pas lié à un utilisateur";
+        $message = "Cette estimation n'est pas liée à un utilisateur";
         $this->addFlash('danger', $message);
         return $this->redirectToRoute('adminIndex');
     }

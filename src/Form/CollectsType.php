@@ -33,7 +33,7 @@ class CollectsType extends AbstractType
                             ->orderBy('o.organismName', 'ASC')
                             ;
                     },
-                    'required' => false,
+                    'required' => true,
                     'choice_label' => 'organismName',
                     'expanded' => false,
                     'multiple' => false,
