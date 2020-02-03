@@ -33,8 +33,8 @@ class OrganismsType extends AbstractType
             ->add('organismPhone', TelType::class)
             ->add('organismStatus', ChoiceType::class, [
                 'choices' => [
-                    'Collecteur privé' => 'Partenaire privé',
-                    'Collecteur public' => 'Partenaire public',
+                    'Collecteur privé' => 'Collecteur privé',
+                    'Collecteur public' => 'Collecteur public',
                     'Partenaire économique' => 'Partenaire économique'
                 ],
                 'help' => 'Type de collecteur',
