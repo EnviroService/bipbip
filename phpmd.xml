@@ -10,27 +10,44 @@
         <exclude name="ElseExpression" />
         <exclude name="StaticAccess" />
     </rule>
-    <rule ref="rulesets/codesize.xml" />
+    <rule ref="rulesets/codesize.xml" >
+        <exclude name="CyclomaticComplexity" />
+        <exclude name="TooManyFields" />
+        <exclude name="TooManyPublicMethods" />
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="20" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
+        <properties>
+            <property name="maxmethods" value="20" />
+        </properties>
+    </rule>
     <rule ref="rulesets/controversial.xml" >
         <exclude name="Superglobals" />
     </rule>
     <rule ref="rulesets/design.xml" >
         <exclude name="CouplingBetweenObjects" />
     </rule>
-    <rule ref="rulesets/design.xml/CouplingBetweenObjects">
-        <properties>
-            <property name="minimum" value="20" />
-        </properties>
-    </rule>
+
     <rule ref="rulesets/naming.xml" >
         <exclude name="ShortVariable" />
     </rule>
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="exceptions" value="id,qb" />
+            <property name="exceptions" value="id,qb,em" />
         </properties>
     </rule>
-    <rule ref="rulesets/unusedcode.xml" />
+    <rule ref="rulesets/naming.xml/LongVariable">
+    <properties>
+        <property name="maximum" value="30" />
+    </properties>
+</rule>
+    <rule ref="rulesets/unusedcode.xml" >
+        <exclude name="UnusedFormalParameter"/>
+    </rule>
 
     <exclude-pattern>src/Migrations</exclude-pattern>
 </ruleset>

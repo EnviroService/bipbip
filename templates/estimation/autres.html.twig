@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto text-center form p-4">
+                <h1 class="primary-title">Estime ton tel</h1>
+                <p class="alert alert-danger">Désolé, ton téléphone n'est pas repris par Bip Bip Mobile, reviens plus tard, nous aurons une liste qui pourrait t'intéresser.</p>
+                <a class="btn btn-success" href="{{ path('home') }}">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

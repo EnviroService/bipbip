@@ -1,0 +1,79 @@
+@import "vars";
+
+.menu-faq {
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    margin: 3% auto ;
+    width: 70%;
+    cursor: pointer;
+    @media screen and (min-width: 740px) {
+        width: 60%;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 40%;
+    }
+}
+
+.question {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size : 1rem;
+    padding: 15px;
+    border-radius: 5px;
+    background-color : $secondary-color;
+    opacity: 90%;
+    color : white;
+    cursor: pointer;
+    margin: 0 auto;
+    box-shadow: 5px 5px 10px rgba(150, 134, 134, 0.25);
+}
+
+.answer {
+    display : none;
+    background-color : rgba(243, 252, 251, 0.35);
+    opacity: 95%;
+    font-size : 1rem;
+    font-weight: 300;
+    border-radius: 2px;
+    padding: 20px;
+    width: 100%;
+    text-align: justify;
+    box-shadow: 5px 5px 10px rgba(150, 134, 134, 0.25);
+    cursor: pointer;
+}
+
+.answer.displayed {
+    display: block;
+}
+
+.add-button {
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    width : 20vw;
+    min-width : 90px;
+    max-width : 100px;
+    height : 8vw;
+    min-height: 48px;
+    max-height: 80px;
+    background-color : $fourth-color;
+    @media screen and (min-width: 740px){
+        display : flex;
+        justify-content : center;
+        align-items : center;
+        border-radius : 60%;
+        width : 20vw;
+        min-width : 59px;
+        max-width : 100px;
+        height : 8vw;
+        min-height: 64px;
+        max-height: 82px;
+        background-color : $fourth-color;
+        position : fixed;
+        right: 5vw;
+        bottom: -2vh;
+        z-index : 5;
+    }
+}

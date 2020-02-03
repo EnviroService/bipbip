@@ -18,9 +18,24 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    //.addEntry('page1', './assets/js/page1.js')
-    //.addEntry('page2', './assets/js/page2.js')
-
+    .addEntry('signup', './assets/scss/signup.scss')
+    .addEntry('admin-tables', './assets/scss/admin-tables.scss')
+    .addEntry('showEstimationAdmin', './assets/scss/showEstimationAdmin.scss')
+    .addEntry('home', './assets/js/home.js')
+    .addEntry('faq', './assets/js/faq.js')
+    .addEntry('signature', './assets/js/signature.js')
+    .addEntry('partnerList', './assets/scss/partnerList.scss')
+    .addEntry('partnerPage', './assets/scss/partnerPage.scss')
+    .addEntry('adminHomePage', './assets/js/adminHomePage.js')
+    .addEntry('newPartner', './assets/scss/newPartner.scss')
+    .addEntry('editPartner', './assets/scss/editPartner.scss')
+    .addEntry('bdc', './assets/scss/bdc.scss')
+    .addEntry('login', './assets/scss/login.scss')
+    .addEntry('final_estimation', './assets/scss/final_estimation.scss')
+    .addEntry('show_collect', './assets/js/show_collect.js')
+    .addEntry('modal_infos', './assets/js/modal_infos.js')
+    .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
+    .addEntry('admin', './assets/scss/admin.scss')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -60,9 +75,9 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
+    // uncomment if you use API Platform admin (composer req api-admin)
     //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
-;
+    //.addEntry('admin', './assets/js/adminHomePage.js')
+
 
 module.exports = Encore.getWebpackConfig();

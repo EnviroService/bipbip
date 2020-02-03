@@ -1,0 +1,17 @@
+@import "vars";
+
+.editTitle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.editLink{
+    display: block;
+    text-align: center;
+    margin-left: 20%;
+    @media screen and (min-width: 740px){
+        margin: 10px auto;
+    }
+}
+

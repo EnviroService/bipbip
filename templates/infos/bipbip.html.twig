@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous ?{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-left form p-4">
+                <h1 class="primary-title">Notre mission recyclage local</h1>
+                <p>Bip Bip Mobile a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler
+                    tous les téléphones usagés ou inutilisés à l'aide des associations étudiantes qui nous accueillent
+                    et nous accompagnent lors des points de collecte. C'est l'occasion pour nos partenaires locaux
+                    de se faire connaître davantage dans notre région.</p>
+                <h1 class="primary-title">Quelques chiffres</h1>
+                <ul>
+                    <li>Le recyclage des téléphones dans le monde</li>
+                    <p>720 millions de téléphones portables sont jetés chaque année dans le monde selon
+                        le cabinet ABI search qui estime que cela représente 60% des 1,2 milliards d'unités
+                        vendues annuellement. Le taux de recyclage des téléphones mobiles en France était de 15%
+                    en 2015 avec un objectif de 30% en 2020.</p>
+                    <li>Le recyclage des téléphones en France</li>
+                    <p>En 2015, selon la fédération française des télécoms, 1,5 million de téléphones ont été collectés
+                    par les opérateurs français (500 000 en 2009), ce qui correspond à un taux de recyclage de 15%.</p>
+                    <p>Le taux de recyclage des téléphones mobiles en France était de 15% en 2015 avec un objectif de
+                    30% en 2020.</p>
+                    <p>A partir de 50.000 téléphones portables, on peut recycler 1 Kg d'or et 10 Kg d'argent sans
+                    compter de nombreux métaux rares !</p>
+                </ul>
+                {#<img src="{{ asset('images/infos-bipbip.png') }}" alt="Chiffres BipBip" class="d-block float-none mx-auto">
+            #}</div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+{# this twig generate the PDF #}
+{% block title %}Bon de Cession - PDF{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
+    <style>
+        .bold-text {
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            padding-top: 5px;
+        }
+        td {
+            vertical-align:top;
+        }
+    </style>
+{% endblock %}
+{%  block header %}{%  endblock %}
+
+{%  block body %}
+<main style="font-family: 'co-headline', Arial sans-serif;">
+    <table>
+        <tr>
+            <td style="width:30%;">
+                <img width="200px; margin-top:30px;" src="images/logo-bipbip.png" alt="BipBip Mobile">
+            </td>
+            <td style="width:70%; text-align: center">
+                <h1 style="font-size: 1.7rem; text-align: center;
+                text-transform: uppercase;">Bon de cession de propriété</h1>
+                <p class="bold-text">Signature obligatoire par les 2 parties</p>
+                <p>1 exemplaire pour Enviro Services France<br>
+                    et 1 exemplaire à envoyer au client par mail sous les 48h</p>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="width:60%;">
+                <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
+                Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}<br>
+                IMEI : {{ estimation.imei }}</p>
+                <img width="200px; margin-top:30px;" src="{{ estimation.imei }}.png" alt="BipBip Mobile"></p>
+            </td>
+            <td style="width:40%; padding-left:20px;">
+                <p>ENVIRO SERVICES FRANCE<br>
+                391 avenue Clément Ader<br>
+                59118 WAMBRECHIES<br>
+                Téléphone : 03 20 00 00 00</p>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:40%" class="bold-text">
+                N° Client :<br>
+                Type d'appareil :<br>
+                Marque :<br>
+                Modèle :<br>
+                Montant de la reprise :<br>
+                Paiement immédiat :
+            </td>
+            <td style="width:60%; padding-left:20px;">
+                {{ estimation.user.id }}<br>
+                MOBILE<br>
+                {{estimation.brand}}<br>
+                {{ estimation.model }} {{ estimation.capacity }} Go<br>
+                {{ estimation.estimatedPrice }} €<br>
+                Oui
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Diagnostic :
+            </td>
+            <td style="width:80%; padding-left:20px;">
+                Votre téléphone a-t-il été immergé dans l'eau ?
+                {% if estimation.liquidDamage > 0 %}
+                OUI
+                {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Votre écran est-il endommagé ?
+                {% if estimation.screenCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                La coque du téléphone est-elle endommagée ?
+                {% if estimation.casingCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Avez-vous des problèmes de charge au niveau de votre batterie ?
+                {% if estimation.batteryCracks > 0 %}
+                OUI
+            {% else %}
+                NON
+                {%  endif %}
+                <br>
+                Tous vos boutons sont-ils fonctionnels ?
+                {% if estimation.buttonCracks > 0 %}
+                    NON
+                {% else %}
+                    OUI
+                {%  endif %}
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Nom :<br>
+                Prénom :<br>
+                Numéro de tél :<br>
+                Email :<br>
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                {{ estimation.user.lastname }}<br>
+                {{ estimation.user.firstname }}<br>
+                0{{ estimation.user.phoneNumber }}<br>
+                {{ estimation.user.email }}
+            </td>
+            <td style="width:20%" class="bold-text">
+                Adresse :<br>
+                Code Postal :<br>
+                Ville :<br>
+                Pays :
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                {{ estimation.user.address }}<br>
+                {{ estimation.user.postCode }}<br>
+                {{ estimation.user.city }}<br>
+                France
+            </td>
+        </tr>
+    </table>
+
+<p>* J'atteste sur l'honneur être le propriétaire légitime de ce produit et d'avoir le droit
+    de transmettre la propriété de celui-ci (je suis majeur et apte jurdiquement).<br>
+    * Je déclare avoir pris connaissance des conditions générales d'achat et de vente d'ENVIRO SERVICES FRANCE.</p>
+
+    <table>
+        <tr>
+            <td style="width:20%" class="bold-text">
+                Lieu de collecte :<br>
+                Code Collecte :<br>
+                Code Association :
+            </td>
+            <td style="width:30%; padding-left:20px;">
+                Wild Code School - Lille<br>
+                74543829<br>
+                L745
+            </td>
+            <td style="width:50%;">
+                <span class="bold-text">Le propriétaire du bien</span><br>
+                Date et signature avec la mention "Lu et Approuvé" :
+            </td>
+        </tr>
+    </table>
+
+    <table style="height:160px;">
+        <tr>
+            <td style="width:50%; border:2px solid black; text-align:center;">
+                <img width="100px; margin-top:30px;" src="images/cachet.png" alt="BipBip Mobile">
+            </td>
+            <td style="width:50%; border:2px solid black;">
+                <img width="100px; margin-top:30px;" src="uploads/signatures/signature.jpg" alt="BipBip Mobile">
+            </td>
+        </tr>
+    </table>
+
+</main>
+{%  endblock %}
+
+{% block footer %}{%  endblock %}

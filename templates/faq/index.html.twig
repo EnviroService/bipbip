@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('faq') }}
+{% endblock %}
+
+{% block title %} Foire Aux Questions {% endblock %}
+
+{% block body %}
+    <main id="faq">
+
+            <h1 class="primary-title"> Foire Aux Questions </h1>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
+        {% endif %}
+
+        {% for faq in faqContent %}
+            <div class="menu-faq">
+                <article class="question">{{faq.question}}
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
+
+                    {% endif %}
+                </article>
+                <article class="answer">{{faq.answer}} </article>
+            </div>
+        {% endfor %}
+
+    </main>
+{% endblock %}
+{%  block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('faq') }}
+{% endblock %}

@@ -1,0 +1,52 @@
+@import "vars";
+
+.partnersList {
+    section{
+        display: flex;
+        justify-content : space-around;
+        flex-wrap: wrap;
+        @media screen and (min-width: 740px){
+            width: 70%;
+            max-width: 70%;
+            margin: auto;
+        }
+
+        article {
+            display: block;
+            margin: 10px;
+            @media screen and (min-width: 740px){
+                display: flex;
+                width: 20%;
+                overflow: hidden;
+            }
+
+            .logo{
+                width: 10%;
+
+                img{
+                    width :100px;
+                    margin : 4% 0;
+                    @media screen and (min-width: 740px){
+                        width: 200px;
+                        float: top;
+                    }
+                }
+            }
+
+            a {
+                font-size: 1em;
+
+            }
+        }
+    }
+
+    .aLink{
+        font-size: 1em;
+        display: block;
+        text-decoration: underline;
+        text-align: center;
+    }
+}
+
+
+

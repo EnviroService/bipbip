@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil BipBip{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main class="home">
+        <h1><span class="orange-font">Bipbip</span> <span class="blue-font">rachète ton tél et en fait</span> <span class="orange-font">le 1er mobile</span> <span class="blue-font"><b>recyclé et connecté aux</b></span> <span class="orange-font">bons plans de ta région</span></h1>
+
+        {{ include('/home/slide.html.twig') }}
+
+        <h2 class="primary-title">Cash - Rapide - Rentable</h2>
+        <section class="steps">
+            <article>
+                <div id="step1" class="step">
+                    <img class="background-pic" src="/images/etape1.png" alt="c'est l'étape un ! ">
+                    <img src="/images/loupe.png" alt="La loupe !!" class="step-logo">
+                    <div>
+                        <h3>Etape 1</h3>
+                    </div>
+                    <p>Découvre la valeur de ton tél</p>
+                </div>
+                <p class="third-button">Télécharge l'appli Bipbip</p>
+                <div id="links-apps">
+                    <a href="#"><img src="/images/apple-store-mini.png" class="link-app"></a>
+                    <a href="#"><img src="/images/google-play-mini.png" class="link-app"></a>
+                </div>
+                <p>Si ton tél est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
+            </article>
+
+            <article>
+                <div id="step2" class="step">
+                    <img class="background-pic" src="/images/etape2.png" alt="c'est l'étape deux ! ">
+                    <img src="/images/position-logo.png" class="step-logo">
+                    <div>
+                        <h3>Etape 2</h3>
+                    </div>
+                    <p>Prends RDV et rejoins-nous</p>
+                </div>
+                <a href="#" title="Lien vers les points de collecte" class="primary-button">Trouve les points de collecte</a>
+                <ul>
+                    <li>Dans ton école</li>
+                    <li>Dans ton entreprise</li>
+                    <li>Dans ta ville</li>
+                    <li>Au bipbip bus</li>
+                    <li>Tu en veux plus...</li>
+                </ul>
+                <p><a href="{{ path('add_message') }}" title="lien vers la page contact">Organise une collecte</a></p>
+            </article>
+
+            <article>
+                <div id="step3" class="step">
+                    <img class="background-pic" src="/images/etape3.png" alt="c'est l'étape trois ! ">
+                    <img src="/images/pumpkin.png" class="step-logo">
+                    <div>
+                        <h3>Etape 3</h3>
+                    </div>
+                    <p>Reçois ton argent instantanément</p>
+                </div>
+                <p class="secondary-button">Télécharge l'appli Pumpkin</p>
+                <div id="links-apps">
+                    <a target=_blank href="https://apps.apple.com/fr/app/pumpkin-remboursement-facile/id904976887"><img src="/images/apple-store-mini.png" class="link-app"></a>
+                    <a target=_blank href="https://play.google.com/store/apps/details?id=com.pumpkin.pumpkin&hl=fr"><img src="/images/google-play-mini.png" class="link-app"></a>
+                </div>
+            </article>
+        </section>
+{#
+        <section class="bail-bipbip">
+            <h2 class="primary-title">Le bon bail Bipbip</h2>
+            <a href="#">Teste un bipbip mobile</a>
+            <a href="#">Les bons plans de ta région</a>
+        </section>
+#}
+        <section class="home-partner">
+            <h2 class="primary-title">Ils nous font confiance</h2>
+            <h3>+ de 15 partenaires nous font confiance</h3>
+
+
+
+            <article>
+                {% for organism in organisms %}
+                <a href="{{ path('organisms_show', {'id' : organism.id}) }}">
+                    <img src="{{asset('uploads/logos/')}}{{organism.logo}}" alt="{{organism.organismName}}"></a>
+                {% endfor %}
+
+            </article>
+
+            <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
+        </section>
+
+        <section class="contact">
+            <h2 class="primary-title">Contact</h2>
+
+            <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte-nous</a>
+        </section>
+    </main>
+{% endblock %}

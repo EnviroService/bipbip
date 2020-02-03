@@ -1,0 +1,70 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+{% block body %}
+    <main class="admin-tables">
+        <div class="container">
+            {% if app.user.roles[0] == "ROLE_COLLECTOR" %}
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="7" style="width: 14%">
+                    1 sur 7
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="primary-title">{{ pageTitle }}</h1>
+            <div class="row align-items-center table-head rounded-top">
+                <div class="col-3 text-center">
+                    Nom - Prénom
+                </div>
+                <div class="col-3 text-center">
+                    Téléphone
+                </div>
+                <div class="col-2 text-center">
+                    Montant
+                </div>
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
+            {% for estimation in estimations %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-3 text-center">
+                        {% if estimation.user is not null%}
+                            {{  estimation.user.lastname }} {{ estimation.user.firstname }}
+                        {% else %}
+                            Utilisateur Anonyme
+                        {% endif %}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ estimation.brand }} {{ estimation.model }}
+                    </div>
+                    <div class="col-2 text-center ">
+                        {{ estimation.estimatedPrice }} €
+                    </div>
+                    {% if estimation.isCollected == 0 and estimation.user is null %}
+                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
+                    {% elseif estimation.isCollected == 0 %}
+                        <a class="col-2 primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                            Collecter
+                        </a>
+                    {% else %}
+                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

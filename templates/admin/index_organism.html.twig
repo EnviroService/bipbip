@@ -1,0 +1,50 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Partenaires{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+{% block body %}
+
+    <main id="organisms">
+        <h1 class="adminTitle primary-title">Les partenaires</h1>
+
+        <a class="primary-button addOrganism" href="{{ path('organisms_new') }}">Ajouter</a>
+
+        <table class="adminPartners">
+            <thead id="table-head">
+                <tr>
+                    <td>Partenaire</td>
+                    <td>Ville</td>
+                    <td>Statut</td>
+                    <td></td>
+                    <td id="rowFour"></td>
+
+                </tr>
+            </thead>
+            {% for organism in organisms %}
+            <tbody >
+                <tr >
+                    <td class="tableContain"><a href="{{ path('admin_organism_show', {'id' : organism.id}) }}">{{ organism.organismName }}</a></td>
+                    <td class="tableContain">{{ organism.organismCity }}</td>
+                    <td class="tableContain">{{ organism.organismStatus }}</td>
+                    <td class="tableContain"><a class="fourth-button" href="{{ path('admin_organism_edit', {'id': organism.id}) }}">Modifier</a></td>
+                    <td class="tableContain"> {{ include('organisms/_delete_form.html.twig') }}</td>
+                </tr>
+
+            {% else %}
+
+                <td colspan="11">Aucun partenaire trouvé</td>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </main>
+
+
+
+{% endblock %}

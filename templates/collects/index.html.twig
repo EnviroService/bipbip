@@ -1,0 +1,53 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Collectes{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+{% block body %}
+    <main class="admin-tables">
+        <h2 class="primary-title">Liste des collectes en cours</h2>
+        <a href="{{ path('collects_new') }}" class="fourth-button add">Ajouter</a>
+
+        <div class="container">
+            <div class="row align-items-center table-head rounded-top">
+                <div class="col-3 text-center">
+                    Organisme
+                </div>
+                <div class="col-3 text-center">
+                    Ville
+                </div>
+                <div class="col-3 text-center">
+                    Date
+                </div>
+                <div class="col-3 text-center">
+                </div>
+            </div>
+            {% for collect in collects %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-3 text-center">
+                        {{ collect.collector.organismName }}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ collect.collector.organismCity }}
+                    </div>
+                    <div class="col-3 text-center">
+                        {{ collect.dateCollect ? collect.dateCollect|date('d-m-Y H:i') : '' }}
+                    </div>
+                    <div class="col-3 delete-btn">
+                        {{ include('collects/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-12 text-center">
+                        Aucune date de collecte trouvée
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

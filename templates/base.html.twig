@@ -1,16 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}BipBip Mobile{% endblock %}</title>
+        <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    {% block header %}
+        <header>
+            <nav id="menu">
+                <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                <ul>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vendre ton tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
+                </ul>
+                <div class="user-infos-menu">
+                    {% if app.user %}
+                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
+                        {% for role in app.user.roles %}
+                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                    {% endif %}
+                </div>
+            </nav>
+            <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="circle-buttons">
+                <div id="menu-burger">
+                    <img src="/images/menu-burger.png" alt="menu burger" />
+                    <p>Menu</p>
+                </div>
+
+                <a href="{{ path('faq_index') }}">
+                    <div id="faq-button">
+                        <p>FAQ</p>
+                    </div>
+                </a>
+
+            </div>
+        </header>
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+
+        {% block footer %}
+        <footer>
+            <h2 class="primary-title">Plus d'infos</h2>
+            <ul>
+                <li><a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">Qui sommes-nous ?</a></li>
+                <li><a href="{{ path('new_estimation') }}" title="Revendre ton tèl">Revendre ton tél</a></li>
+                <li><a href="{{ path('add_message') }}" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
+                <li><a href="{{ path('faq_index') }}" title="FAQ">Besoin d'aide ?</a></li>
+                <li><a href="{{ path('add_message') }}" title="Contact">Contacte-nous</a></li>
+                <li>Ce que l'on oublie de lire
+                     (<a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
+                     -
+                    <a href="{{ path('cgu') }}" title="Conditions Générales d'Utilisation">CGU</a>
+                     -
+                    <a href="#" title="Protection des données">Protections des données</a>
+                     -
+                    <a href="#" title="Cookies">Cookies</a>
+                     -
+                    <a href="#" title="Mentions Légales">Mentions Légales</a>)
+                </li>
+            </ul>
+            <div class="social-networks">
+                <a href="#" target="_blank" title="Page Facebook">
+                    <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+                </a>
+                <a href="#" target="_blank" title="Instagram">
+                    <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+                </a>
+                <a href="#" target="_blank" title="LinkedIn">
+                    <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+                </a>
+            </div>
+        </footer>
+        {% endblock %}
+
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         {% endblock %}
     </body>
+
 </html>
