@@ -83,6 +83,7 @@ class FAQController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Modification effectuée avec succès');
             return $this->redirectToRoute('admin_faq_index');
         }
 
