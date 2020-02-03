@@ -29,8 +29,8 @@
         <div class="col-7">
             <p>Création du dossier : {{ "now"|date("d/m/Y") }}<br>
             Numéro du bon de cession : {{ "now"|date("Ymd") }}C{{ estimation.user.id }}P{{ estimation.id }}</p>
-            <p>IMEI : {{ IMEI }}</p>
-            <p class="barcode">*{{ IMEI }}*</p>
+            <p>IMEI : {{ estimation.imei }}</p>
+            <p class="barcode">*{{ estimation.imei }}*</p>
         </div>
         <div class="col-5">
             <p>ENVIRO SERVICES FRANCE<br>

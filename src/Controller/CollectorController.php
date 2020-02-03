@@ -151,9 +151,12 @@ class CollectorController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
-        if ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
-            if (($this->getUser()->getRoles()[0] == "ROLE_ADMIN")
-                || ($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
+        if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
+            return $this->render('bdc/show.html.twig', [
+                'estimation' => $estimation,
+            ]);
+        } elseif ($estimation->getUser() !== null && $estimation->getUser()->getOrganism() !== null) {
+            if (($estimation->getUser()->getOrganism() === $this->getUser()->getOrganism())) {
                 return $this->render('bdc/show.html.twig', [
                     'estimation' => $estimation,
                 ]);
