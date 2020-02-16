@@ -13,7 +13,7 @@
         "popper.js": "^1.16.0",
         "sass-lint": "^1.13.1",
         "webpack-notifier": "^1.6.0",
-        "yarn": "^1.21.1"
+        "yarn": "^1.22.0"
     },
     "license": "UNLICENSED",
     "private": true,
