@@ -60,6 +60,14 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("infos/protection", name="protection")
+     */
+    public function protection()
+    {
+        return $this->render('infos/protection.html.twig');
+    }
+
+    /**
      * @Route("autres", name="autres")
      */
     public function autres()

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CGU{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1 class="primary-title">Notre politique de confidentialité</h1>
+            </div>
+        </div>
+        <div class="list-group mt-2">
+            <div class="flex-column align-items-start mb-4">
+                <small class="text-muted">BipBip accorde une grande importance à tes données privées, et te montre sur cette page, en toute transparence, à quoi servent les informations fournies.</small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Quelles données sont récoltées par BipBip ?</p>
+                <small class="text-muted">Afin d'assurer le bon fonctionnement des estimations, des collectes et de la génération des bons de cession lors de la vente de ton téléphone, BipBip récolte des données personnelles nécessaires : ton nom, prénom, adresse mail, numéro de téléphone.</small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Où puis-je avoir accès à ces données ?</p>
+                <small class="text-muted">Depuis ton compte client, tu peux avoir accès à l'historique de tes estimations, aux ventes réalisées, ainsi qu'aux informations personnelles que tu as fournies.<br>
+                    Depuis cette page, tu peux éventuellement modifier ces données.</bfr></small>
+             </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Comment demander le retrait de mes données ?</p>
+                <small class="text-muted">Tu peux adresser un message à contact@bibip-mobil.fr afin de demander que tes données soient supprimées de nos serveurs.<br>
+                Elles seront, quoi qu'il en soit, supprimées au bout d'une durée de 2 ans, et seuls les bons de cessions, traces des actes de vente des téléphones, seront conservés dans nos archives.</small>
+            </div>
+        </div>
+        <div class="offset-4 col-4">
+            <a href="{{ path('home') }}" class="primary-button">C'est noté, retour à l'accueil !</a>
+        </div>
+    </main>
+{% endblock %}
