@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cookies{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1 class="primary-title">Utilisation des cookies</h1>
+            </div>
+        </div>
+        <div class="col-12 mx-auto text-center m-4">
+                <small class="text-muted text-center">Actuellement, BipBip n'utilise pas de cookies pour ses services.</small>
+        </div>
+        <div class="offset-4 col-4">
+            <a href="{{ path('home') }}" class="primary-button">Accueil</a>
+        </div>
+    </main>
+{% endblock %}

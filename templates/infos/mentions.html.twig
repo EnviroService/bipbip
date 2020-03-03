@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1 class="primary-title">Mentions légales</h1>
+            </div>
+        </div>
+        <div class="list-group mt-2">
+            <div class="flex-column align-items-start mb-4">
+                <small class="text-muted">Page en construction.</small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Titre</p>
+                <small class="text-muted">Informations.</small>
+            </div>
+        </div>
+        <div class="offset-4 col-4">
+            <a href="{{ path('home') }}" class="primary-button">Accueil</a>
+        </div>
+    </main>
+{% endblock %}
