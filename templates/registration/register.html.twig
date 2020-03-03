@@ -43,12 +43,14 @@
                 {{ form_row(registrationForm.password) }}
             </div>
             <div class="offset-sm-2 col-sm-8 offset-sm-2">
-                {{ form_row(registrationForm.agreeTerms, { 'label': 'J\'accepte les termes des conditions générales d\'utilisation' }) }}
+                {% set terms_link %}J'accepte que BipBip stocke mes données afin de me
+                    permettre d'accéder à des lieux de collectes et de procéder à la revente de mon téléphone.
+                {% endset %}
+                    {{ form_row(registrationForm.agreeTerms, { 'label': terms_link }) }}
+                    <a href="{{ path('cgu') }}" class="">En savoir plus</a>
             </div>
-
         </div>
     </main>
-
         <button class="fourth-button">S'inscrire</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
