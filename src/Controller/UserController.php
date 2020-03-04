@@ -64,6 +64,45 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @param User $user
+     * @return Response
+     */
+    public function showUser(User $user): Response
+    {
+        return $this->render('user/showUser.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId(),
+            ]);
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
      * @param OrganismsRepository $organismsRepository
@@ -196,7 +235,7 @@ class UserController extends AbstractController
     {
         $collectors = $userRepository->findCollectors('ROLE_COLLECTOR');
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/indexCollectors.html.twig', [
             'collectors' => $collectors
         ]);
     }
@@ -207,9 +246,9 @@ class UserController extends AbstractController
      * @param User $user
      * @return Response
      */
-    public function show(User $user): Response
+    public function showCollector(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('user/showCollector.html.twig', [
             'user' => $user,
         ]);
     }
@@ -222,7 +261,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function editCollector(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
