@@ -17,7 +17,7 @@
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vendre ton tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
@@ -25,7 +25,9 @@
                 </ul>
                 <div class="user-infos-menu">
                     {% if app.user %}
+                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                    </a>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
                         {% for role in app.user.roles %}

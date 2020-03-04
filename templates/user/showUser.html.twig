@@ -4,8 +4,9 @@
 
 {% block body %}
 <main class="container">
+    <h1 class="primary-title">Profil de {{ user.firstname }} {{ user.lastname }}</h1>
     <div class="row mb-3">
-    <p class="primary-title">Informations personnelles</p>
+    <p class="secondary-title">Informations personnelles</p>
     </div>
     <div class="row align-items-center">
         <div class="offset-2 col-3 text-right border-bottom p-2">
@@ -79,7 +80,7 @@
             <a href="{{ path('user_edit', {'id': user.id}) }}" class="text-right">> modifier</a>
         </p>
     <div class="row mb-3">
-        <p class="primary-title">Collecte</p>
+        <p class="secondary-title">Collecte</p>
     </div>
     <div class="row mb-3">
             <div class="offset-2 col-8">
@@ -91,21 +92,21 @@
             </div>
     </div>
     <div class="row mb-3">
-        <p class="primary-title">Estimations réalisées</p>
+        <p class="secondary-title">Estimations réalisées</p>
     </div>
     {% for estimation in user.estimations %}
         <div class="row mb-3">
             <div class="offset-2 col-3">
             {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
             </div>
-            <div class="col-1">
+            <div class="col-2 text-center">
                 {{ estimation.maxPrice}} €
             </div>
             <div class="col-3">
                 {% if estimation.isCollected == 1 %}
                     <p class="text-success">Vendu</p>
                 {% else %}
-                    non vendu - choisir une collecte ?
+                    <span class="text-warning">non vendu</span> - <a href="{{ path('show_collect') }}">choisir une collecte ?</a>
                 {% endif %}
             </div>
         </div>
