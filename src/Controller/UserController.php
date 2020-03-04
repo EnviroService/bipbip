@@ -64,45 +64,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
-     * @param User $user
-     * @return Response
-     */
-    public function showUser(User $user): Response
-    {
-        return $this->render('user/showUser.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_USER")
-     * @param Request $request
-     * @param User $user
-     * @param EntityManagerInterface $entityManager
-     * @return Response
-     */
-    public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user_show', [
-                'id' => $user->getId(),
-            ]);
-        }
-
-        return $this->render('user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
      * @param OrganismsRepository $organismsRepository
@@ -158,7 +119,6 @@ class UserController extends AbstractController
                 unset($repo[$i]);
             }
         }
-
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
             'collector' => $organism
@@ -294,5 +254,45 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('collectors_index');
+    }
+
+    /**
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @param User $user
+     * @param CollectsRepository $collects
+     * @return Response
+     */
+    public function showUser(User $user, CollectsRepository $collects): Response
+    {
+        return $this->render('user/showUser.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId(),
+            ]);
+        }
+
+        return $this->render('user/editUser.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 }

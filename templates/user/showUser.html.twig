@@ -5,11 +5,11 @@
 {% block body %}
 <main class="container">
     <div class="row mb-3">
-    <p>Informations personnelles</p>
+    <p class="primary-title">Informations personnelles</p>
     </div>
     <div class="row align-items-center">
         <div class="offset-2 col-3 text-right border-bottom p-2">
-            Nom de famille
+            Nom
         </div>
         <div class="col-5 text-left border-bottom p-2 pl-5">
             {{ user.lastname }}
@@ -76,13 +76,43 @@
         </div>
     </div>
         <p class="text-right">
-    <a href="{{ path('user_edit', {'id': user.id}) }}" class="text-right">> modifier</a>
+            <a href="{{ path('user_edit', {'id': user.id}) }}" class="text-right">> modifier</a>
         </p>
     <div class="row mb-3">
-        <p>Collecte à laquelle tu es inscrite</p>
+        <p class="primary-title">Collecte</p>
     </div>
     <div class="row mb-3">
-        <p>Estimations réalisées</p>
+            <div class="offset-2 col-8">
+        {% if user.collect is not empty %}
+        <p>Collecte à laquelle tu es inscrit : le {{ user.collect.dateCollect ? user.collect.dateCollect|date('d/m/Y à H:i') : '' }} par {{ user.collect.collector.organismName }}</p>
+        {% else %}
+            <p>Tu n'es inscrit à aucune collecte.</p>
+        {% endif %}
+            </div>
+    </div>
+    <div class="row mb-3">
+        <p class="primary-title">Estimations réalisées</p>
+    </div>
+    {% for estimation in user.estimations %}
+        <div class="row mb-3">
+            <div class="offset-2 col-3">
+            {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
+            </div>
+            <div class="col-1">
+                {{ estimation.maxPrice}} €
+            </div>
+            <div class="col-3">
+                {% if estimation.isCollected == 1 %}
+                    <p class="text-success">Vendu</p>
+                {% else %}
+                    non vendu - choisir une collecte ?
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+            Tu n'as encore estimé aucun téléphone. <a href="{{ path('new_estimation') }}">Faire une estimation ?</a>
+    {% endfor %}
+    <div class="row mb-5">
     </div>
 </main>
 {% endblock %}
