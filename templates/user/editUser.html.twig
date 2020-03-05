@@ -4,9 +4,74 @@
 
 {% block body %}
     <main class="container">
-    <h1>Modifier mes informations</h1>
-
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        <h1 class="primary-title">Modifier mes informations</h1>
+        {{ form_start(form) }}
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.firstname, 'Prénom') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.firstname) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.lastname, 'Nom') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.lastname) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.email, 'Adresse Mail') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.email) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.phoneNumber, 'Numéro de téléphone') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.phoneNumber) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.address, 'Adresse') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.address) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.postCode, 'Code Postal') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.postCode) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.city, 'Ville') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.city) }}
+            </div>
+        </div>
+        <div class="row align-items-center p-1">
+            <div class="col-3 text-right pr-3">
+        {{ form_label(form.city, 'Partenaire') }}
+            </div>
+            <div class="col-9">
+        {{ form_widget(form.organism) }}
+            </div>
+        </div>
+        <button class="primary-button mb-1">{{ button_label|default('Modifier') }}</button>
+        {{ form_end(form) }}
 
     <a href="{{ path('user_show', {'id':user.id}) }}" class="fourth-button">Annuler</a>
     </main>
