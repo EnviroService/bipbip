@@ -258,15 +258,20 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_USER")
      * @param User $user
      * @param CollectsRepository $collects
      * @return Response
      */
     public function showUser(User $user, CollectsRepository $collects): Response
     {
-        return $this->render('user/showUser.html.twig', [
-            'user' => $user,
-        ]);
+        if (($this->getUser()->getId()) == $user->getId()) {
+            return $this->render('user/showUser.html.twig', [
+                'user' => $user,
+            ]);
+        }
+        $this->addFlash('danger', 'Tu ne peux pas accèder au compte d\'un autre utilisateur');
+        return $this->redirectToRoute('home');
     }
 
     /**
