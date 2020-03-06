@@ -6,7 +6,7 @@
     <main class="container">
         <div class="row">
             <div class="col-12 mx-auto text-center">
-                <h1 class="primary-title">Notre politique de confidentialité</h1>
+                <h1 class="primary-title">Protection des données</h1>
             </div>
         </div>
         <div class="list-group mt-2">
@@ -15,21 +15,34 @@
             </div>
             <div class="flex-column align-items-start mb-4">
                 <p class="mb-1">Quelles données sont récoltées par BipBip ?</p>
-                <small class="text-muted">Afin d'assurer le bon fonctionnement des estimations, des collectes et de la génération des bons de cession lors de la vente de ton téléphone, BipBip récolte des données personnelles nécessaires : ton nom, prénom, adresse mail, numéro de téléphone.</small>
+                <small class="text-muted">Afin d'assurer le bon fonctionnement des estimations, des collectes et de la génération des bons de cession lors de la vente de ton téléphone, BipBip récolte uniquement les données personnelles nécessaires : ton nom, prénom, e-mail, adresse, numéro de téléphone. Ces données servent exclusivement au traitement des collectes et des ventes, et ne sont en aucun cas utilisées à d'autres fins ou cédées à d'autres sociétés.<br>
+                La conservation de ces données est également mis en oeuvre à des fins de prévention de la fraude (vol de téléphone, dysfonctionnement).</small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Réglement général sur la protection des données </p>
+                <small class="text-muted">Conformément au RGPD adopté en mai 2018, tes données récoltées le sont sur ton consentement explicite.<br>
+                    Bipbip stocke les données sur un serveur en France, et s'assure qu'elles sont protégées sur le plan technique et organisationnel.
+                </small>
             </div>
             <div class="flex-column align-items-start mb-4">
                 <p class="mb-1">Où puis-je avoir accès à ces données ?</p>
-                <small class="text-muted">Depuis ton compte client, tu peux avoir accès à l'historique de tes estimations, aux ventes réalisées, ainsi qu'aux informations personnelles que tu as fournies.<br>
-                    Depuis cette page, tu peux éventuellement modifier ces données.</bfr></small>
+                <small class="text-muted">Depuis
+                    {% if app.user.id is defined %}
+                    <a href="{{ path('user_show', { id:app.user.id}) }}">ton compte client</a>
+                    {% else %}
+                    ton compte client si tu es connecté
+                    {% endif %}
+                    , tu peux avoir accès à l'historique de tes estimations, aux ventes réalisées, ainsi qu'aux informations personnelles que tu as fournies.<br>
+                    Depuis cette page, tu peux modifier certaines données.</bfr></small>
              </div>
             <div class="flex-column align-items-start mb-4">
                 <p class="mb-1">Comment demander le retrait de mes données ?</p>
-                <small class="text-muted">Tu peux adresser un message à contact@bibip-mobil.fr afin de demander que tes données soient supprimées de nos serveurs.<br>
-                Elles seront, quoi qu'il en soit, supprimées au bout d'une durée de 2 ans, et seuls les bons de cessions, traces des actes de vente des téléphones, seront conservés dans nos archives.</small>
+                <small class="text-muted">Tu peux adresser un message à contact@bibip-mobil.fr ou via notre <a href="{{ path('add_message') }}">formulaire de contact</a> afin de demander que tes données soient supprimées de nos serveurs. Les traces des ventes seront toutefois conservées pour une durée de 2 ans en cas de litige (vol ou dysfonctionnement du téléphone).<br>
+                Tes données personnelles relatives au bon de cession (vente d'un téléphone) seront supprimées au bout d'une durée de 2 ans.</small>
             </div>
         </div>
         <div class="offset-4 col-4">
-            <a href="{{ path('home') }}" class="primary-button">C'est noté, retour à l'accueil !</a>
+            <a href="{{ path('home') }}" class="primary-button">Accueil</a>
         </div>
     </main>
 {% endblock %}

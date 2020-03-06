@@ -4,22 +4,14 @@
 
 {% block body %}
     <main class="container">
-        <h1 class="primary-title">Modifier mes informations</h1>
+        <h1 class="primary-title">Modifier mon profil</h1>
         {{ form_start(form) }}
-        <div class="row align-items-center p-1">
+        <div class="row align-items-center p-2">
             <div class="col-3 text-right pr-3">
-        {{ form_label(form.firstname, 'Prénom') }}
+                Identité
             </div>
             <div class="col-9">
-        {{ form_widget(form.firstname) }}
-            </div>
-        </div>
-        <div class="row align-items-center p-1">
-            <div class="col-3 text-right pr-3">
-        {{ form_label(form.lastname, 'Nom') }}
-            </div>
-            <div class="col-9">
-        {{ form_widget(form.lastname) }}
+                {{ app.user.firstname }} {{ app.user.lastname }}
             </div>
         </div>
         <div class="row align-items-center p-1">
@@ -71,7 +63,7 @@
             </div>
         </div>
         <button class="primary-button mb-1">{{ button_label|default('Modifier') }}</button>
-        {{ form_end(form) }}
+        {{ form_end(form ) }}
 
     <a href="{{ path('user_show', {'id':user.id}) }}" class="fourth-button">Annuler</a>
     </main>

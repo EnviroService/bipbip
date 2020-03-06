@@ -6,6 +6,7 @@ use App\Entity\Collects;
 use App\Entity\Estimations;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserEditType;
 use App\Repository\CollectsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
@@ -284,7 +285,7 @@ class UserController extends AbstractController
      */
     public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserEditType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -294,7 +295,6 @@ class UserController extends AbstractController
                 'id' => $user->getId(),
             ]);
         }
-
         return $this->render('user/editUser.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
