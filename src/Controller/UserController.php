@@ -270,9 +270,10 @@ class UserController extends AbstractController
             return $this->render('user/showUser.html.twig', [
                 'user' => $user,
             ]);
+        } else {
+            $this->addFlash('danger', 'Tu ne peux pas accèder au compte d\'un autre utilisateur');
+            return $this->redirectToRoute('home');
         }
-        $this->addFlash('danger', 'Tu ne peux pas accèder au compte d\'un autre utilisateur');
-        return $this->redirectToRoute('home');
     }
 
     /**
