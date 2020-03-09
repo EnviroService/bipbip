@@ -17,7 +17,7 @@
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vendre ton tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
@@ -25,7 +25,9 @@
                 </ul>
                 <div class="user-infos-menu">
                     {% if app.user %}
+                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                    </a>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
                         {% for role in app.user.roles %}
@@ -79,15 +81,15 @@
                 <li><a href="{{ path('faq_index') }}" title="FAQ">Besoin d'aide ?</a></li>
                 <li><a href="{{ path('add_message') }}" title="Contact">Contacte-nous</a></li>
                 <li>Ce que l'on oublie de lire
-                     (<a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
+                     (<a href="{{ path('cgv') }}" title="Conditions Générales de Vente">CGV</a>
                      -
                     <a href="{{ path('cgu') }}" title="Conditions Générales d'Utilisation">CGU</a>
                      -
-                    <a href="#" title="Protection des données">Protections des données</a>
+                    <a href="{{ path('protection') }}" title="Protection des données">Protections des données</a>
                      -
-                    <a href="#" title="Cookies">Cookies</a>
+                    <a href="{{ path('cookies') }}" title="Cookies">Cookies</a>
                      -
-                    <a href="#" title="Mentions Légales">Mentions Légales</a>)
+                    <a href="{{ path('mentions') }}" title="Mentions Légales">Mentions Légales</a>)
                 </li>
             </ul>
             <div class="social-networks">
@@ -103,7 +105,6 @@
             </div>
         </footer>
         {% endblock %}
-
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

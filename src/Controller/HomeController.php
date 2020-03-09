@@ -60,6 +60,38 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("infos/cgv", name="cgv")
+     */
+    public function cgv()
+    {
+        return $this->render('infos/cgv.html.twig');
+    }
+
+    /**
+     * @Route("infos/protection", name="protection")
+     */
+    public function protection()
+    {
+        return $this->render('infos/protection.html.twig');
+    }
+
+    /**
+     * @Route("infos/cookies", name="cookies")
+     */
+    public function cookies()
+    {
+        return $this->render('infos/cookies.html.twig');
+    }
+
+    /**
+     * @Route("infos/mentions", name="mentions")
+     */
+    public function mentions()
+    {
+        return $this->render('infos/mentions.html.twig');
+    }
+
+    /**
      * @Route("autres", name="autres")
      */
     public function autres()
