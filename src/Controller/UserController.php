@@ -261,10 +261,9 @@ class UserController extends AbstractController
      * @Route("/{id}", name="user_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
      * @param User $user
-     * @param CollectsRepository $collects
      * @return Response
      */
-    public function showUser(User $user, CollectsRepository $collects): Response
+    public function showUser(User $user): Response
     {
         if (($this->getUser()->getId()) == $user->getId()) {
             return $this->render('user/showUser.html.twig', [
