@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur{% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1 class="primary-title">Profil de {{ user.firstname }} {{ user.lastname }}</h1>
+    <div class="row mb-3">
+    <p class="secondary-title">Informations personnelles</p>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Nom
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.lastname }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Prénom
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.firstname }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Email
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.email }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Numéro de téléphone
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.phoneNumber }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Adresse
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.address }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Code postal
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.postCode }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Ville
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {{ user.city }}
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="offset-2 col-3 text-right border-bottom p-2">
+            Organisme rattaché
+        </div>
+        <div class="col-5 text-left border-bottom p-2 pl-5">
+            {% if user.organism.organismName is defined %}
+                {{ user.organism.organismName }}
+            {% else %}
+                Tu n'appartiens à aucun organisme
+            {% endif %}
+        </div>
+    </div>
+        <p class="text-right">
+            <a href="{{ path('user_edit', {'id': user.id}) }}" class="text-right">> modifier</a>
+        </p>
+    <div class="row mb-3">
+        <p class="secondary-title">Collecte</p>
+    </div>
+    <div class="row mb-3">
+            <div class="offset-2 col-8">
+        {% if user.collect is not empty %}
+        <p>Collecte à laquelle tu es inscrit : le {{ user.collect.dateCollect ? user.collect.dateCollect|date('d/m/Y à H:i') : '' }} par {{ user.collect.collector.organismName }}</p>
+        {% else %}
+            <p>Tu n'es inscrit à aucune collecte.</p>
+        {% endif %}
+            </div>
+    </div>
+    <div class="row mb-3">
+        <p class="secondary-title">Estimations réalisées</p>
+    </div>
+    {% for estimation in user.estimations %}
+        <div class="row mb-3">
+            <div class="offset-2 col-3">
+            {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
+            </div>
+            <div class="col-2 text-center">
+                {{ estimation.maxPrice}} €
+            </div>
+            <div class="col-3">
+                {% if estimation.isCollected == 1 %}
+                    <p class="text-success">Vendu</p>
+                {% else %}
+                    <span class="text-warning">non vendu</span> - <a href="{{ path('show_collect') }}">choisir une collecte ?</a>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+            Tu n'as encore estimé aucun téléphone. <a href="{{ path('new_estimation') }}">Faire une estimation ?</a>
+    {% endfor %}
+    <div class="row mb-5">
+    </div>
+</main>
+{% endblock %}
