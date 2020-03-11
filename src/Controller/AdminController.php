@@ -20,7 +20,8 @@ use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
 use App\Repository\PhonesRepository;
 use App\Security\LoginFormAuthenticator;
-use DateTime;
+use DateInterval;
+use \DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -449,6 +450,23 @@ class AdminController extends AbstractController
             "phone" => $phone,
             "form" => $form->createView()
 
+        ]);
+    }
+
+    /**
+     * @Route("/anon", name="users_anon")
+     * @param UserRepository $users
+     * @return Response
+     * @throws Exception
+     */
+    // route to anonymise users after 3 years
+    public function anonUsers(UserRepository $users)
+    {
+        $date = new DateTime('now');
+        $date->sub(new DateInterval('P3Y'));
+        $users = $users->findOldUsers($date);
+        return $this->render('bdc/anon.html.twig', [
+            'users' => $users,
         ]);
     }
 }
