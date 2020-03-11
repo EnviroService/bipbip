@@ -8,6 +8,12 @@
         <div class="row mb-3">
 <p>Le RGPD nous demande de ne pas conserver les données d'utilisateurs non connectés depuis plus de 3 ans. Cette page permet de gérer les utilisateurs concernés.</p>
         </div>
+        <div class="row mb-3">
+            <p>Utilisateurs non connectés depuis plus de 3 ans</p>
+        </div>
+        {% for user in users %}
+            {{ user.firstname }} {{ user.lastname }}<br>
+        {%  endfor %}
     </main>
 {%  endblock %}
 
