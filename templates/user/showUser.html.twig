@@ -106,7 +106,7 @@
                 {% if estimation.isCollected == 1 %}
                     <p class="text-success">Vendu</p>
                 {% else %}
-                    <span class="text-warning">non vendu</span> - <a href="{{ path('show_collect') }}">choisir une collecte ?</a>
+                    <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'estimation': estimation}) }}">Revendre ce téléphone</a>
                 {% endif %}
             </div>
         </div>

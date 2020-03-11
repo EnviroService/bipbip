@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if user %}
+    <p>
+        Hey ! tu as reussi {{ user.firstname }}
+    </p>
+    <p>
+        Désormais tu peux imprimer ton étiquette chronospost et la coller sur ton colis, aucun frais ne t'est demandé ! <br>
+        Une fenêtre s'ouvrira, tu pourras l'imprimer de suite et un mail te sera envoyé contenant l'étiquette,
+        si tu souhaites l'imprimer plus tard.
+    </p>
+    <a class="btn btn-primary" href="{{ path('api_chronopost_ae', {'id': user.id}) }}">
+        Générer mon étiquette
+    </a><br>
+    <p>
+        Ou alors, tu préféres recevoir un code sur ton tel, par message, et déposer ton colis avec ce code, l'étiquette
+        sera générée lors de ton passage au bureau de poste.
+    </p>
+    <a class="btn btn-primary" href="{{ path('api_chronopost_se', {'id': user.id}) }}">
+        Recevoir mon code
+    </a>
+    {% else %}
+        <div class="jumbotron">
+            <a class="btn btn-info m-auto" href="{{ path('app_login') }}">Reconnecte toi</a>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
