@@ -465,7 +465,6 @@ class AdminController extends AbstractController
         $date = new DateTime('now');
         $date->sub(new DateInterval('P3Y'));
         $users = $users->findOldUsers($date);
-        // return $this->redirectToRoute('bdc_index');
         return $this->render('bdc/anon.html.twig', [
             'users' => $users,
         ]);
