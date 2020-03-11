@@ -127,19 +127,4 @@ class BdcController extends AbstractController
             'id' => $estimation->getId(),
         ]);
     }
-
-    /**
-     * @Route("/anon", name="bdc_anon")
-     */
-    // route to generate an anonimysed PDF after time and delete old one
-    public function deletePDF()
-    {
-        $dir = "uploads/BDC/";
-        foreach (glob($dir."*.txt") as $file) {
-            if (filectime($file) < time() - 2592000) {
-                unlink($file);
-            }
-        }
-        return $this->redirectToRoute('bdc_index');
-    }
 }

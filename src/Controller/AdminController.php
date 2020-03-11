@@ -451,4 +451,14 @@ class AdminController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/anon", name="users_anon")
+     */
+    // route to generate an anonimysed PDF after time and delete old one
+    public function anonUsers()
+    {
+        // return $this->redirectToRoute('bdc_index');
+        return $this->render('bdc/anon.html.twig');
+    }
 }
