@@ -459,7 +459,7 @@ class AdminController extends AbstractController
      * @return Response
      * @throws Exception
      */
-    // route to generate an anonimysed PDF after time and delete old one
+    // route to anonymise users after 3 years
     public function anonUsers(UserRepository $users)
     {
         $date = new DateTime('now');
