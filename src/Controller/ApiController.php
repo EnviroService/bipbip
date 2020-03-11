@@ -23,7 +23,7 @@ class ApiController extends AbstractController
 
 
         if ($user == null) {
-            $this->addFlash("error", "Tu a été déconnecté pour le bien de la planéte... Connecte toi à nouveau ..");
+            $this->addFlash("error", "Tu as été déconnecté pour le bien de la planéte... Connecte-toi à nouveau ...");
             return $this->redirectToRoute('app_login');
         } else {
             return $this->render("user/choiceEnvoi.html.twig", [
@@ -39,7 +39,7 @@ class ApiController extends AbstractController
     {
         $user = $this->getUser();
         if ($user == null) {
-            $this->addFlash("error", "Tu a été déconnecté pour le bien de la planéte... Connecte toi à nouveau ..");
+            $this->addFlash("error", "Tu as été déconnecté pour le bien de la planéte... Connect-toi à nouveau ...");
             $this->redirectToRoute('app_login');
         }
         return $this->render("user/envoi_chronopost.html.twig", [
@@ -222,7 +222,7 @@ class ApiController extends AbstractController
                 'shipperCountry' => 'FR',
                 'shipperCountryName' => 'FRANCE',
                 'shipperEmail' => $user->getEmail(),
-                'shipperMobilePhone' => $user->getPhoneNumber(),
+                'shipperMobilePhone' => "0788232290",
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
                 'shipperPhone' => "0788232290",
@@ -326,7 +326,7 @@ class ApiController extends AbstractController
             echo "Response :<br>", htmlentities($clientCh->__getLastResponse()), "<br>";
         }
 
-        $this->addFlash("success", "Félicitation, tu va recevoir un sms contenant le numéro à 
+        $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
         présenter au bureau de poste");
 
         return new Response($etiquette);
