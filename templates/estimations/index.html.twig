@@ -19,6 +19,7 @@
             {% endif %}
 
             <h1 class="primary-title">{{ pageTitle }}</h1>
+            L'estimation la plus récente est en tête de liste.
             <div class="row align-items-center table-head rounded-top">
                 <div class="col-3 text-center">
                     Nom - Prénom
@@ -26,7 +27,7 @@
                 <div class="col-3 text-center">
                     Téléphone
                 </div>
-                <div class="col-1 text-center">
+                <div class="col-2 text-center">
                     Montant
                 </div>
                 <div class="col-2 text-center">
@@ -45,10 +46,17 @@
                             Utilisateur Anonyme
                         {% endif %}
                     </div>
-                    <div class="col-3 text-center">
+                    {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
+                    {% if difference.days < 15 %}
+                        <div class="col-3 text-center ">
+                    {% elseif difference.days > 15 and difference.days < 30 %}
+                        <div class="col-3 text-center bg-warning">
+                    {% else %}
+                        <div class="col-3 text-center bg-danger">
+                    {% endif %}
                         {{ estimation.brand }} {{ estimation.model }}
                     </div>
-                    <div class="col-1 text-center ">
+                    <div class="col-2 text-center ">
                         {{ estimation.estimatedPrice }} €
                     </div>
                     <div class="col-2 text-center">
