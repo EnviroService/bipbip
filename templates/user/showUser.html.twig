@@ -3,6 +3,11 @@
 {% block title %}Profil utilisateur{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
 <main class="container">
     <h1 class="primary-title">Profil de {{ user.firstname }} {{ user.lastname }}</h1>
     <div class="row mb-3">
@@ -96,7 +101,7 @@
     </div>
     {% for estimation in user.estimations %}
         <div class="row mb-3">
-            <div class="offset-2 col-3">
+            <div class="col-3">
             {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
             </div>
             <div class="col-2 text-center">
@@ -106,8 +111,11 @@
                 {% if estimation.isCollected == 1 %}
                     <p class="text-success">Vendu</p>
                 {% else %}
-                    <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'estimation': estimation}) }}">Revendre ce téléphone</a>
+                    <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">Revendre ce téléphone</a>
                 {% endif %}
+            </div>
+            <div class="col-4">
+                <a class="btn btn-info" href="">Voir l'étiquette chronnopost</a>
             </div>
         </div>
         {% else %}
