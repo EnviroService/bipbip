@@ -466,10 +466,10 @@ class AdminController extends AbstractController
         $date = new DateTime('now');
         $date->sub(new DateInterval('P3Y'));
         $users = $users->findOldUsers($date);
-        //if no user, just give a message
-        $empty = 0;
+
+        $empty = 0; // find users
         if (empty($users)) {
-            $empty = 1;
+            $empty = 1; // find no users
         } else {
             // if button is activated, then anonymised users
             // and give last signin in 1970 to forget them
@@ -485,7 +485,7 @@ class AdminController extends AbstractController
                         ->setCollect(null);
                     $em->persist($user);
                     $em->flush();
-                    $empty = 2;
+                    $empty = 2; // users anonymised
                 }
                 $this->addFlash('success', 'Utilisateur(s) anonymisé(s)');
             }
