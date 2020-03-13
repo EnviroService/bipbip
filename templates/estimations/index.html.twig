@@ -26,10 +26,11 @@
                 <div class="col-3 text-center">
                     Téléphone
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-1 text-center">
                     Montant
                 </div>
-                <div class="col-2">
+                <div class="col-2 text-center">
+                    Date
                 </div>
                 <div class="col-2">
                 </div>
@@ -47,8 +48,11 @@
                     <div class="col-3 text-center">
                         {{ estimation.brand }} {{ estimation.model }}
                     </div>
-                    <div class="col-2 text-center ">
+                    <div class="col-1 text-center ">
                         {{ estimation.estimatedPrice }} €
+                    </div>
+                    <div class="col-2 text-center">
+                        {{ estimation.estimationDate | date('d/m/Y') }}
                     </div>
                     {% if estimation.isCollected == 0 and estimation.user is null %}
                         <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
