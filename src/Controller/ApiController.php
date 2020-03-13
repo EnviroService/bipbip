@@ -6,8 +6,6 @@ use App\Entity\Estimations;
 use App\Entity\User;
 use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +16,6 @@ class ApiController extends AbstractController
 {
     /**
      * @Route("/mode-envoi/{id}", name="mode_envoi")
-     * @ParamConverter("id", options={"id" = "id"})
      * @param Estimations $estimation
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -206,7 +203,7 @@ class ApiController extends AbstractController
                 $openDir = scandir($repertory);
                 foreach ($openDir as $value) {
                     if ($filename === $value) {
-                        $this->addFlash('error', 'Votre étiquette a déjà été enregistrée, 
+                        $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
                         elle est disponible sur votre profil');
                         return $this->redirectToRoute('user_show', [
                             'id' => $idUser
@@ -229,7 +226,7 @@ class ApiController extends AbstractController
                 echo "Response :<br>", htmlentities($clientCh->__getLastResponse()), "<br>";
             }
         } else {
-            $this->addFlash('error', 'Vous ne pouvez pas éditer cette étiquette. Seules 
+            $this->addFlash('danger', 'Vous ne pouvez pas éditer cette étiquette. Seules 
             les étiquettes vous appartenant sont disponibles');
             $id = $this->getUser()->getId();
 

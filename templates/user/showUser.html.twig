@@ -3,11 +3,6 @@
 {% block title %}Profil utilisateur{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger text-center">
-            {{ message }}
-        </div>
-    {% endfor %}
 <main class="container">
     <h1 class="primary-title">Profil de {{ user.firstname }} {{ user.lastname }}</h1>
     <div class="row mb-3">
