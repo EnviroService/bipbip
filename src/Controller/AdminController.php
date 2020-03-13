@@ -484,9 +484,9 @@ class AdminController extends AbstractController
                         ->setOrganism(null)
                         ->setCollect(null);
                     $em->persist($user);
-                    $em->flush();
                     $empty = 2; // users anonymised
                 }
+                $em->flush();
                 $this->addFlash('success', 'Utilisateur(s) anonymisé(s)');
             }
         }
