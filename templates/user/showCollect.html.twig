@@ -43,6 +43,14 @@
                 <a class="col-2 fourth-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a></td>
             </div>
     {% endfor %}
+            <div class="row align-items-center mt-5">
+                <div class="offset-2 col-8 text-center">
+                Aucune collecte ne te convient ?
+                    <a class="btn btn-warning" href="{{ path('add_message') }}">
+                        Propose un lieu ou une date !
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 {% endblock %}
