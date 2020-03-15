@@ -29,8 +29,8 @@
                     Avec BipBip il est possible de te générer une étiquette chronopost à
                     coller sur ton colis et l'envoyer directement à notre dépot.
                 </p>
-                <a class="btn btn-info" href="{{ path('envoi_chronopost', {'user': user} ) }}">
-                    Envoie ton tel par chronopost
+                <a class="btn btn-info" href="{{ path('envoi_chronopost', {'user': user, 'id': estimation.id} ) }}">
+                    Envoie par chronopost
                 </a>
             </div>
         </div>
