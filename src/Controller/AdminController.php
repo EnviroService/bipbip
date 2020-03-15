@@ -456,17 +456,44 @@ class AdminController extends AbstractController
     /**
      * @Route("/anon", name="users_anon")
      * @param UserRepository $users
+     * @param EntityManagerInterface $em
      * @return Response
      * @throws Exception
      */
     // route to anonymise users after 3 years
-    public function anonUsers(UserRepository $users)
+    public function anonUsers(UserRepository $users, EntityManagerInterface $em)
     {
         $date = new DateTime('now');
         $date->sub(new DateInterval('P3Y'));
         $users = $users->findOldUsers($date);
-        return $this->render('bdc/anon.html.twig', [
+
+        $empty = 0; // find users
+        if (empty($users)) {
+            $empty = 1; // find no users
+        } else {
+            // if button is activated, then anonymised users
+            // and give last signin in 1970 to forget them
+            if (isset($_GET["anon"])) {
+                foreach ($users as $user) {
+                    $newEmail = $user->getId()."@olduser.bipbip";
+                    $user->setEmail($newEmail)
+                        ->setLastname("xxx")
+                        ->setPhonenumber("0000000000")
+                        ->setAddress("xxx")
+                        ->setSigninDate(\DateTime::createFromFormat('Y-m-d', "1970-01-01"))
+                        ->setOrganism(null)
+                        ->setCollect(null);
+                    $em->persist($user);
+                    $empty = 2; // users anonymised
+                }
+                $em->flush();
+                $this->addFlash('success', 'Utilisateur(s) anonymisé(s)');
+            }
+        }
+
+        return $this->render('admin/anon.html.twig', [
             'users' => $users,
+            'empty' => $empty,
         ]);
     }
 }
