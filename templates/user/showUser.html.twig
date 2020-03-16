@@ -94,7 +94,7 @@
     <div class="row mb-3">
         <p class="secondary-title">Estimations réalisées</p>
     </div>
-    {% for estimation in user.estimations %}
+    {% for estimation in user.estimations | sort() %}
     {# show only estimations validated, and estimation non validated < 15 days #}
         {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
         {% if difference.days < 15 or estimation.isCollected == 1 %}
