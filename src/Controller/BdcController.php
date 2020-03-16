@@ -23,6 +23,12 @@ class BdcController extends AbstractController
      */
     public function index()
     {
+        // if collector, verify that estimation belongs to collector's organism
+        $truc="bonjour";
+        if ($this->getUser()->getRoles() == ["ROLE_COLLECTOR"]) {
+            dd($truc);
+        }
+
         // list all pdf in public/uploads/BDC/
         $dates = [];
         $estimationIds = [];
@@ -59,6 +65,7 @@ class BdcController extends AbstractController
   
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return RedirectResponse
      */

@@ -6,6 +6,7 @@ use App\Entity\Estimations;
 use App\Form\CollectUserType;
 use App\Form\ImeiType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/verify/estim/{id}", name="verifyEstim", methods={"GET","POST"})
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Request $request
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
@@ -52,6 +54,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/verify/user/{id}", name="verifyUser", methods={"GET","POST"})
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Request $request
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
@@ -88,6 +91,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/capture/{id}", name="takePhoto")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
      * @return Response
@@ -145,6 +149,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/show/{id}", name="bdc_show")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return Response
      */
@@ -169,6 +174,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/pay/{id}", name="bdc_pay")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return Response
      */
@@ -182,6 +188,7 @@ class CollectorController extends AbstractController
 
     /**
      * @Route("/end/{id}", name="bdc_end")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
      * @return Response
