@@ -11,6 +11,13 @@
 
     <main class="admin-tables">
         <h2 class="primary-title">Choisis une collecte</h2>
+        {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
+            <div class="text-right">
+                <a class="text-right" href="{{ path('estimations_index') }}">
+                    Retour aux collectes
+                </a>
+            </div>
+        {% endif %}
         {%  if collects is empty %}
             <div class="container">
                 <div class="row align-items-center mt-5">
