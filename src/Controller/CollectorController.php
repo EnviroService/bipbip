@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Estimations;
+use App\Entity\Organisms;
 use App\Form\CollectUserType;
 use App\Form\ImeiType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,26 @@ class CollectorController extends AbstractController
      */
     public function verifyEstim(Request $request, Estimations $estimation, EntityManagerInterface $em): Response
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         $form = $this->createForm(ImeiType::class, $estimation);
         $form->handleRequest($request);
         $id = $estimation->getId();
@@ -65,6 +86,26 @@ class CollectorController extends AbstractController
         Estimations $estimation,
         EntityManagerInterface $em
     ): Response {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         $user = $estimation->getUser();
         $form = $this->createForm(CollectUserType::class, $user);
         $form->handleRequest($request);
@@ -99,6 +140,26 @@ class CollectorController extends AbstractController
     // route to take a photo of the Identity Card
     public function takePhoto(Estimations $estimation, EntityManagerInterface $em)
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         if (isset($_POST['submit'])) {
             if (!$estimation->getUser()) {
                 $message = "Cette estimation n'est pas liée à un utilisateur";
@@ -156,6 +217,26 @@ class CollectorController extends AbstractController
     // route to show an estimation
     public function show(Estimations $estimation)
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
             return $this->render('bdc/show.html.twig', [
                 'estimation' => $estimation,
@@ -181,6 +262,26 @@ class CollectorController extends AbstractController
     // route to go to payment
     public function pay(Estimations $estimation)
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         return $this->render('bdc/pay.html.twig', [
             'estimation' => $estimation,
         ]);
@@ -196,6 +297,26 @@ class CollectorController extends AbstractController
     // route to confirm picture of identity Card
     public function end(Estimations $estimation, EntityManagerInterface $em)
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector) {
+                    // Unless prepare flash message and redirect
+                    $message = "Cette estimation n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
+
         // Validation of estimation and payment
         $estimation->setIsValidatedPayment(true)->setIsCollected(true);
         $em->persist($estimation);
