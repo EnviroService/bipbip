@@ -18,9 +18,20 @@
             </div>
             {% endif %}
 
-            <h1 class="primary-title">{{ pageTitle }}</h1>
-            L'estimation la plus récente est en tête de liste.
+            <div class="row align-items-center border mb-2 mt-4">
+                {# legende #}
+                <div class="col-4 text-center">
+                    Blanc : estimation active
+                </div>
+                <div class="col-4 text-center bg-warning">
+                    Orange : + de 15 jours
+                </div>
+                <div class="col-4 text-center bg-danger">
+                    Rouge : + de 30 jours
+                </div>
+            </div>
             <div class="row align-items-center table-head rounded-top">
+                {# titles #}
                 <div class="col-3 text-center">
                     Nom - Prénom
                 </div>
@@ -39,6 +50,7 @@
 
             {% for estimation in estimations %}
                 <div class="row align-items-center border-bottom">
+                    {# content #}
                     <div class="col-3 text-center">
                         {% if estimation.user is not null%}
                             {{  estimation.user.lastname }} {{ estimation.user.firstname }}
