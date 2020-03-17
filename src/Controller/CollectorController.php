@@ -144,6 +144,20 @@ class CollectorController extends AbstractController
     }
 
     /**
+     * @Route("/camera/{id}", name="openCamera")
+     * @param Estimations $estimation
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    // route to take a photo of the Identity Card by webcam
+    public function openCamera(Estimations $estimation, EntityManagerInterface $em)
+    {
+        return $this->render('bdc/openCamera.html.twig', [
+            'estimation' => $estimation,
+        ]);
+    }
+
+    /**
      * @Route("/show/{id}", name="bdc_show")
      * @param Estimations $estimation
      * @return Response

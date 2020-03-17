@@ -1,0 +1,27 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}
+    Utilisation de la caméra
+{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="7" style="width: 57%">
+                4 sur 7
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                ici un test de caméra
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('takePhoto', {id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4"></div>
+        </div>
+    </main>
+{% endblock %}
+
+
+

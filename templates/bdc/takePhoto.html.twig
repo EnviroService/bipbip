@@ -4,11 +4,6 @@
 {% endblock %}
 {% block body %}
     <main class="container">
-        {% for error in app.flashes('danger') %}
-            <div class="alert alert-danger text-center">
-                {{ error }}
-            </div>
-        {% endfor %}
         <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="7" style="width: 57%">
                 4 sur 7
@@ -22,6 +17,7 @@
                     <input type="file" name="upload" accept="image/*" capture>
                     <input type="submit" name="submit" class="btn btn-info" value="Envoyer la photo">
                 </form>
+                <a href="{{ path('openCamera', {'id': estimation.id}) }}" class="primary-button">Ouvrir la caméra</a>
             </div>
         </div>
         <div class="row">
