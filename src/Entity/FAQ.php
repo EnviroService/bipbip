@@ -54,4 +54,5 @@ class FAQ
 
         return $this;
     }
+
 }

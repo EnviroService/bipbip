@@ -101,6 +101,11 @@ class Estimations
      */
     private $imei;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
 
     public function getId(): ?int
     {
@@ -307,6 +312,18 @@ class Estimations
     public function setImei(string $imei): self
     {
         $this->imei = $imei;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

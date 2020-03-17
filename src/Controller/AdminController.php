@@ -20,6 +20,7 @@ use App\Repository\OrganismsRepository;
 use App\Form\RegistrationCollectorFormType;
 use App\Repository\PhonesRepository;
 use App\Security\LoginFormAuthenticator;
+use App\Service\UploaderHelper;
 use DateInterval;
 use \DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -200,21 +201,28 @@ class AdminController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
+     * @param UploaderHelper $uploaderHelper
      * @return Response
      */
-    public function edit(Request $request, Organisms $organism): Response
+    public function edit(Request $request, Organisms $organism, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(OrganismsType::class, $organism);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form['logo']->getData();
+            $uploadedFile = $form['logo']->getData();
+
+            if ($uploadedFile) {
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $organism->setLogo($newFileName);
+            }
+            /*
             if ($file) {
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();
                 $file->move($this->getParameter('upload_directory'), $fileName);
                 $organism->setLogo($fileName);
             }
-
+            */
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_organisms_index');
