@@ -36,6 +36,7 @@ Encore
     .addEntry('modal_infos', './assets/js/modal_infos.js')
     .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
     .addEntry('admin', './assets/scss/admin.scss')
+    .addEntry('openCamera', './assets/js/openCamera.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

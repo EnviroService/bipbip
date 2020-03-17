@@ -1,7 +1,14 @@
 {% extends 'admin/index.html.twig' %}
+
 {% block title %}
     Utilisation de la caméra
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('openCamera') }}
+{% endblock %}
+
 {% block body %}
     <main class="container">
         <div class="progress">
@@ -11,7 +18,10 @@
         </div>
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                ici un test de caméra
+                <video id="video"></video>
+                <button id="startbutton">Prendre une photo</button>
+                <canvas id="canvas"></canvas>
+                <img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
             </div>
         </div>
         <div class="row">
@@ -21,6 +31,10 @@
             <div class="col-8 mx-auto text-right form p-4"></div>
         </div>
     </main>
+{% endblock %}
+
+{%  block javascripts %}
+    {{ encore_entry_script_tags('adminHomePage') }}
 {% endblock %}
 
 
