@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,21 +18,28 @@ class ApiController extends AbstractController
     /**
      * @Route("/mode-envoi/{id}", name="mode_envoi")
      * @param Estimations $estimation
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      */
     public function choiceTransport(Estimations $estimation)
     {
-        $user = $this->getUser();
-
-
-        if ($user == null) {
-            $this->addFlash("error", "Tu as été déconnecté pour le bien de la planéte... Connecte-toi à nouveau ...");
-            return $this->redirectToRoute('app_login');
+        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" || $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
+            return $this->redirectToRoute('estimations_index');
         } else {
-            return $this->render("user/choiceEnvoi.html.twig", [
-                'user' => $user,
-                'estimation' => $estimation
-            ]);
+            $user = $this->getUser();
+
+
+            if ($user == null) {
+                $this->addFlash(
+                    "error",
+                    "Tu as été déconnecté pour le bien de la planéte... Connecte-toi à nouveau ..."
+                );
+                return $this->redirectToRoute('app_login');
+            } else {
+                return $this->render("user/choiceEnvoi.html.twig", [
+                    'user' => $user,
+                    'estimation' => $estimation
+                ]);
+            }
         }
     }
 
@@ -219,7 +227,6 @@ class ApiController extends AbstractController
                 return new Response($pdf, 200, [
                     'Content-Disposition' => "attachment; filename=$filename"
                 ]);
-
             } catch (SoapFault $soapFault) {
                 //var_dump($soapFault);
                 echo "Request :<br>", htmlentities($clientCh->__getLastRequest()), "<br>";
@@ -385,4 +392,3 @@ class ApiController extends AbstractController
         return new Response($etiquette);
     }
 }
-
