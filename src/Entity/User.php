@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Ce mail est déjà utilisé pour un autre compte")
  */
 class User implements UserInterface
 {
@@ -23,6 +24,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Regex(pattern="/^\[a-z0-9._-]+@[a-z0-9_.-]+\\.[a-z]{2,4}$/",
+     *     match=false,
+     *     message="Format d'email non reconnu")
      */
     private $email;
 
@@ -48,7 +52,10 @@ class User implements UserInterface
     private $firstname;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Regex(pattern="/^\(0\)[0-9]*$/",
+     *     match=false,
+     *     message="Seuls 10 chiffres sont acceptés")
      */
     private $phoneNumber;
 
@@ -200,12 +207,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(int $phoneNumber): self
+    public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
 
