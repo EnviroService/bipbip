@@ -94,27 +94,36 @@
     <div class="row mb-3">
         <p class="secondary-title">Estimations réalisées</p>
     </div>
-    {% for estimation in user.estimations %}
-        <div class="row mb-3">
-            <div class="col-3">
-            {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
+    {% for estimation in user.estimations | sort() %}
+    {# show only estimations validated, and estimation non validated < 15 days #}
+        {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
+        {% if difference.days < 15 or estimation.isCollected == 1 %}
+            <div class="row mb-3">
+                <div class="col-3">
+                {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
+                </div>
+                <div class="col-2 text-center">
+                    {{ estimation.maxPrice}} €
+                </div>
+                <div class="col-3">
+                    {% if estimation.isCollected == 1 %}
+                        <p class="text-success">Vendu</p>
+                    {% else %}
+                        <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">Revendre ce téléphone</a>
+                    {% endif %}
+                </div>
+                <div class="col-4">
+                    <a class="btn btn-info" href="">Voir l'étiquette chronnopost</a>
+                </div>
             </div>
-            <div class="col-2 text-center">
-                {{ estimation.maxPrice}} €
-            </div>
-            <div class="col-3">
-                {% if estimation.isCollected == 1 %}
-                    <p class="text-success">Vendu</p>
-                {% else %}
-                    <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">Revendre ce téléphone</a>
-                {% endif %}
-            </div>
-            <div class="col-4">
-                <a class="btn btn-info" href="">Voir l'étiquette chronnopost</a>
-            </div>
+        {% endif %}
+    {% else %}
+    <div class="row mb-3">
+        <div class="offset-2 col-8">
+            Tu n'as encore estimé aucun téléphone.
+            <a href="{{ path('new_estimation') }}" class="primary-button">Faire une estimation ?</a>
         </div>
-        {% else %}
-            Tu n'as encore estimé aucun téléphone. <a href="{{ path('new_estimation') }}">Faire une estimation ?</a>
+    </div>
     {% endfor %}
     <div class="row mb-5">
     </div>
