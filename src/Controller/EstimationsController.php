@@ -39,7 +39,8 @@ class EstimationsController extends AbstractController
             return $this->render('estimations/index.html.twig', [
                 'estimations' => $eRepo->findBy(
                     ['id' => $estimationIds,
-                    'isCollected' => 0 ]
+                    'isCollected' => 0 ],
+                    ['estimationDate' => "DESC"]
                 ),
                 'pageTitle' => "Etape 1 : choix de l'estimation"
                 ]);
