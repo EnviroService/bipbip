@@ -1,60 +1,112 @@
-(function() {
+function ouvrir_camera()
+{
 
-    var streaming = false,
-        video        = document.querySelector('#video'),
-        cover        = document.querySelector('#cover'),
-        canvas       = document.querySelector('#canvas'),
-        photo        = document.querySelector('#photo'),
-        startbutton  = document.querySelector('#startbutton'),
-        width = 320,
-        height = 0;
+    navigator.mediaDevices.getUserMedia({ audio: false, video: { width: 400 } }).then(function (mediaStream) {
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia);
+        var video = document.getElementById('sourcevid');
+        video.srcObject = mediaStream;
 
-    navigator.getMedia(
-        {
-            video: true,
-            audio: false
-        },
-        function(stream) {
-            if (navigator.mozGetUserMedia) {
-                video.mozSrcObject = stream;
-            } else {
-                var vendorURL = window.URL || window.webkitURL;
-                video.src = vendorURL.createObjectURL(stream);
-            }
+        var tracks = mediaStream.getTracks();
+
+        document.getElementById("message").innerHTML="message: "+tracks[0].label+" connecté"
+
+        console.log(tracks[0].label)
+        console.log(mediaStream)
+
+        video.onloadedmetadata = function (e) {
             video.play();
-        },
-        function(err) {
-            console.log("An error occured! " + err);
-        }
-    );
+        };
 
-    video.addEventListener('canplay', function(ev){
-        if (!streaming) {
-            height = video.videoHeight / (video.videoWidth/width);
-            video.setAttribute('width', width);
-            video.setAttribute('height', height);
-            canvas.setAttribute('width', width);
-            canvas.setAttribute('height', height);
-            streaming = true;
-        }
-    }, false);
+    }).catch(function (err) {
+        console.log(err.name + ": " + err.message);
 
-    function takepicture() {
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
+        document.getElementById("message").innerHTML="message: connection refusé"});
+}
+
+function photo()
+{
+
+    var vivi = document.getElementById('sourcevid');
+    //var canvas1 = document.createElement('canvas');
+    var canvas1 = document.getElementById('cvs')
+    var ctx =canvas1.getContext('2d');
+    canvas1.height=vivi.videoHeight
+    canvas1.width=vivi.videoWidth
+    console.log(vivi.videoWidth)
+    ctx.drawImage(vivi, 0,0, vivi.videoWidth, vivi.videoHeight);
+
+    //var base64=canvas1.toDataURL("image/png"); //l'image au format base 64
+    //document.getElementById('tar').value='';
+    //document.getElementById('tar').value=base64;
+}
+
+function sauver()
+{
+
+    if (navigator.msSaveOrOpenBlob) {
+        var blobObject=document.getElementById("cvs").msToBlob()
+
+        window.navigator.msSaveOrOpenBlob(blobObject, "image.png");
+    } else {
+        var canvas = document.getElementById("cvs");
+        var elem = document.createElement('a');
+        elem.href = canvas.toDataURL("image/png");
+        elem.download = "nom.png";
+        var evt = new MouseEvent("click", { bubbles: true,cancelable: true,view: window,});
+        elem.dispatchEvent(evt);
+    }
+}
+
+function prepare_envoi()
+{
+
+    var canvas = document.getElementById('cvs');
+    canvas.toBlob(function (blob) {
+        envoi(blob)}, 'image/jpeg');
+}
+
+
+function envoi(blob)
+{
+
+    console.log(blob.type)
+
+    var formImage = new FormData();
+    formImage.append('image_a', blob, 'image_a.jpg');
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST","http://scriptevol.free.fr/contenu/reception/upload_camera.php",true);
+
+    ajax.onreadystatechange=function () {
+
+        if (ajax.readyState == 4 && ajax.status==200) {
+            document.getElementById("jaxa").innerHTML+=(ajax.responseText);
+        }
     }
 
-    startbutton.addEventListener('click', function(ev){
-        takepicture();
-        ev.preventDefault();
-    }, false);
+    ajax.onerror=function () {
 
-})();
+        alert("la requette a échoué")
+    }
+
+    ajax.send(formImage);
+    console.log("ok")
+}
+
+
+function fermer()
+{
+
+    var video = document.getElementById('sourcevid');
+    var mediaStream=video.srcObject;
+    console.log(mediaStream)
+    var tracks = mediaStream.getTracks();
+    console.log(tracks[0])
+    tracks.forEach(function (track) {
+        track.stop();
+        document.getElementById("message").innerHTML="message: "+tracks[0].label+" déconnecté"
+    });
+
+    video.srcObject = null;
+}
