@@ -11,153 +11,117 @@
                 4 sur 7
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <div style='display:inline-block'>
-
-                    <video id="sourcevid" width='400' autoplay="true"></video>
-
-                    <div id="message" style='height:20px;width:350px;margin:5px;'>message:</div>
-                </div>
-
-                <canvas id="cvs" style='display:inline-block'></canvas>
-
-                <div>
-                    <button onclick='ouvrir_camera()' >ouvrir camera</button>
-                    <button onclick='fermer()' >fermer camera</button>
-                    <br>
-                    <button onclick='photo()' >prise de photo</button>
-                    <button onclick='sauver()' >sauvegarder</button>
-                    <button onclick='prepare_envoi()' >envoyer</button>
-                </div>
-
-                <div id="jaxa" style='width:80%;margin:5px;'>message:</div>
-            </div>
+        <div class="camera">
+            <video id="video">Video stream not available.</video>
+            <button id="startbutton">Take photo</button>
         </div>
-        <div class="row">
-            <div class="col-4 mx-auto text-left form p-4">
-                <a href="{{ path('takePhoto', {id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
-            </div>
-            <div class="col-8 mx-auto text-right form p-4"></div>
+        <canvas id="canvas">
+        </canvas>
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
         </div>
-    </main>
-{% endblock %}
+        <script type="text/javascript">
+            (function() {
+                // The width and height of the captured photo. We will set the
+                // width to the value defined here, but the height will be
+                // calculated based on the aspect ratio of the input stream.
 
-{%  block javascripts %}
-    <script>
+                var width = 320;    // We will scale the photo width to this
+                var height = 0;     // This will be computed based on the input stream
 
-        function ouvrir_camera() {
+                // |streaming| indicates whether or not we're currently streaming
+                // video from the camera. Obviously, we start at false.
 
-            navigator.mediaDevices.getUserMedia({ audio: false, video: { width: 400 } }).then(function(mediaStream) {
+                var streaming = false;
 
-                var video = document.getElementById('sourcevid');
-                video.srcObject = mediaStream;
+                // The various HTML elements we need to configure or control. These
+                // will be set by the startup() function.
 
-                var tracks = mediaStream.getTracks();
+                var video = null;
+                var canvas = null;
+                var photo = null;
+                var startbutton = null;
 
-                document.getElementById("message").innerHTML="message: "+tracks[0].label+" connecté"
+                function startup() {
+                    video = document.getElementById('video');
+                    canvas = document.getElementById('canvas');
+                    photo = document.getElementById('photo');
+                    startbutton = document.getElementById('startbutton');
 
-                console.log(tracks[0].label)
-                console.log(mediaStream)
+                    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+                        .then(function(stream) {
+                            video.srcObject = stream;
+                            video.play();
+                        })
+                        .catch(function(err) {
+                            console.log("An error occurred: " + err);
+                        });
 
-                video.onloadedmetadata = function(e) {
-                    video.play();
-                };
+                    video.addEventListener('canplay', function(ev){
+                        if (!streaming) {
+                            height = video.videoHeight / (video.videoWidth/width);
 
-            }).catch(function(err) { console.log(err.name + ": " + err.message);
+                            // Firefox currently has a bug where the height can't be read from
+                            // the video, so we will make assumptions if this happens.
 
-                document.getElementById("message").innerHTML="message: connection refusé"});
-        }
+                            if (isNaN(height)) {
+                                height = width / (4/3);
+                            }
 
-        function photo(){
+                            video.setAttribute('width', width);
+                            video.setAttribute('height', height);
+                            canvas.setAttribute('width', width);
+                            canvas.setAttribute('height', height);
+                            streaming = true;
+                        }
+                    }, false);
 
-            var vivi = document.getElementById('sourcevid');
-            //var canvas1 = document.createElement('canvas');
-            var canvas1 = document.getElementById('cvs')
-            var ctx =canvas1.getContext('2d');
-            canvas1.height=vivi.videoHeight
-            canvas1.width=vivi.videoWidth
-            console.log(vivi.videoWidth)
-            ctx.drawImage(vivi, 0,0, vivi.videoWidth, vivi.videoHeight);
+                    startbutton.addEventListener('click', function(ev){
+                        takepicture();
+                        ev.preventDefault();
+                    }, false);
 
-            //var base64=canvas1.toDataURL("image/png"); //l'image au format base 64
-            //document.getElementById('tar').value='';
-            //document.getElementById('tar').value=base64;
-        }
-
-        function sauver(){
-
-            if(navigator.msSaveOrOpenBlob){
-
-                var blobObject=document.getElementById("cvs").msToBlob()
-
-                window.navigator.msSaveOrOpenBlob(blobObject, "image.png");
-            }
-
-            else{
-
-                var canvas = document.getElementById("cvs");
-                var elem = document.createElement('a');
-                elem.href = canvas.toDataURL("image/png");
-                elem.download = "nom.png";
-                var evt = new MouseEvent("click", { bubbles: true,cancelable: true,view: window,});
-                elem.dispatchEvent(evt);
-            }
-        }
-
-        function prepare_envoi(){
-
-            var canvas = document.getElementById('cvs');
-            canvas.toBlob(function(blob){envoi(blob)}, 'image/jpeg');
-        }
-
-
-        function envoi(blob){
-
-            console.log(blob.type)
-
-            var formImage = new FormData();
-            formImage.append('image_a', blob, 'image_a.jpg');
-
-            var ajax = new XMLHttpRequest();
-
-            ajax.open("POST","http://scriptevol.free.fr/contenu/reception/upload_camera.php",true);
-
-            ajax.onreadystatechange=function(){
-
-                if (ajax.readyState == 4 && ajax.status==200){
-
-                    document.getElementById("jaxa").innerHTML+=(ajax.responseText);
+                    clearphoto();
                 }
-            }
 
-            ajax.onerror=function(){
+                // Fill the photo with an indication that none has been
+                // captured.
 
-                alert("la requette a échoué")
-            }
+                function clearphoto() {
+                    var context = canvas.getContext('2d');
+                    context.fillStyle = "#AAA";
+                    context.fillRect(0, 0, canvas.width, canvas.height);
 
-            ajax.send(formImage);
-            console.log("ok")
-        }
+                    var data = canvas.toDataURL('image/png');
+                    photo.setAttribute('src', data);
+                }
 
+                // Capture a photo by fetching the current contents of the video
+                // and drawing it into a canvas, then converting that to a PNG
+                // format data URL. By drawing it on an offscreen canvas and then
+                // drawing that to the screen, we can change its size and/or apply
+                // other changes before drawing it.
 
-        function fermer(){
+                function takepicture() {
+                    var context = canvas.getContext('2d');
+                    if (width && height) {
+                        canvas.width = width;
+                        canvas.height = height;
+                        context.drawImage(video, 0, 0, width, height);
 
-            var video = document.getElementById('sourcevid');
-            var mediaStream=video.srcObject;
-            console.log(mediaStream)
-            var tracks = mediaStream.getTracks();
-            console.log(tracks[0])
-            tracks.forEach(function(track) {
-                track.stop();
-                document.getElementById("message").innerHTML="message: "+tracks[0].label+" déconnecté"
-            });
+                        var data = canvas.toDataURL('image/png');
+                        photo.setAttribute('src', data);
+                    } else {
+                        clearphoto();
+                    }
+                }
 
-            video.srcObject = null;
-        }
-
-
+                // Set up our event listener to run the startup process
+                // once loading is complete.
+                window.addEventListener('load', startup, false);
+            })();
     </script>
+    </main>
 {% endblock %}
 
 
