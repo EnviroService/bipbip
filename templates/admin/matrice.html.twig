@@ -6,4 +6,135 @@
         </div>
     {% endfor %}
     {{ include ('admin/_form.html.twig') }}
+
+    {% if nbrPhoneBdd is defined %}
+        <div class="container">
+            <div class="row text-center">
+                <h1>
+                    Compte rendu de matrice
+                </h1>
+            </div>
+
+            <div class="row d-flex justify-content-around  bg-secondary">
+
+                <div class="text-center col-6 mb-2 mt-2">
+                    <div class="card bg-info col-12">
+                        <div class="card-body">
+                            <h4 class="card-title border-bottom border-dark">
+                                Nombre de téléphone en Bdd avant modification
+                            </h4>
+                            <h5 class="card-text">
+                                {{ nbrPhoneBdd }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center col-6 mb-2 mt-2">
+                    <div class="card bg-info col-12">
+                        <div class="card-body">
+                            <h4 class="card-title border-bottom border-dark">
+                                Données CSV analysées
+                            </h4>
+                            <h5 class="card-text">
+                                {{ analiseCsv }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center col-6 mb-2 mt-2">
+                    <div class="card bg-info col-12">
+                        <div class="card-body">
+                            <h4 class="card-title border-bottom border-dark">
+                                Téléphone identique à la Bdd
+                            </h4>
+                                <h5 class="card-text">
+                                    {{ donneeIdentique }}
+                                </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center col-6 mb-2 mt-2">
+                    <div class="card bg-info col-12">
+                        <div class="card-body">
+                            <h4 class="card-title border-bottom border-dark">
+                                Nombre de téléphone Ajouté
+                            </h4>
+                            <h5 class="card-text">
+                                {{ nbrTelNonTrouve }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center col-6 mb-2 mt-2">
+                    <div class="card bg-info col-12">
+                        <div class="card-body">
+                            <h4 class="card-title border-bottom border-dark">
+                                Nombre de téléphone Supprimé
+                            </h4>
+                            <h5 class="card-text">
+                                {{ nbrPhoneSup }}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% if nbrTelNonTrouve != 0 %}
+                <div class="container mt-5">
+                    <div>
+                        <h5 class="col-12 text-center">
+                            Liste d'ajout en Bdd
+                        </h5>
+                    </div>
+                    <div class="row bg-dark d-flex justify-content-around">
+
+                        {% for phone in telNonTrouve %}
+                            <div class="card bg-success col-3 m-2">
+                                <div class="card-body text-center">
+                                    <p class="card-title border-bottom">
+                                        {{ phone.brand }} {{ phone.model }}
+                                    </p>
+                                    <p class="card-text">
+                                        {{ phone.capacity }} Go
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        {% endif %}
+
+        {% if nbrPhoneSup != 0 %}
+            <div class="container mt-5">
+                <div>
+                    <h5 class="col-12 text-center">
+                        Liste de suppression en Bdd
+                    </h5>
+                </div>
+                <div class="row bg-dark d-flex justify-content-around">
+
+                    {% for phone in phoneSup %}
+                        <div class="mb-2 mt-2">
+                            <div class="card bg-warning col-12">
+                                <div class="card-body text-center">
+                                    <p class="card-title border-bottom">
+                                        {{ phone.brand }} {{ phone.model }}
+                                    </p>
+                                    <p class="card-text">
+                                        {{ phone.capacity }} Go
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 {% endblock %}
