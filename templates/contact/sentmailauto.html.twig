@@ -1,6 +1,20 @@
 {% block body %}
     <p>
-        Ce message vous a été envoyé via l'application BipBip Mobile le
+        Bonjour,
+    </p>
+    <p>
+        {# show phones estimated the day before #}
+        Téléphones estimés le {{ "now"|date_modify("-1 day")|date("d/m/Y") }} :<br><br>
+        {% for estimation in estimations %}
+            - {{ estimation.brand }} {{ estimation.model }} {{ estimation.capacity }} : {{ estimation.estimatedPrice }} €
+        <br>
+        {% else %}
+            Aucun téléphone estimé ce jour.
+        {% endfor %}
+    </p>
+    <p>
+        --<br>
+        Ce message vous a été envoyé automatiquement le
         {{ "now"|date("d/m/Y à H:i:s") }}
     </p>
 {% endblock %}
