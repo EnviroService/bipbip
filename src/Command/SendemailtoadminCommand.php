@@ -33,11 +33,34 @@ class SendemailtoadminCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // mail for bipbip
+        // create csv file, format COLLECTEES_DATE_NBITEMS.csv
+        $path = "public/uploads/reporting/collectees/";
+        $today = new DateTime('now');
+        $nbitems = 3;
+        $filename = "COLLECTEES_" . $today->format('Ymd') . "_" . $nbitems .".csv";
+
+        $file = fopen($path . $filename, 'w'); // writing mode
+        if ($file != false) {
+            $headerData = ['id', 'title', 'price']; // TODO change for csv Enviro
+            fputcsv($file, $headerData);
+            $fileData = [ // TODO change with datas
+                ['1', 'riri', '3'],
+                ['2', 'loulou', '2'],
+                ['3', 'fifi', '1'],
+            ];
+            foreach ($fileData as $row) {
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        }
+
+        // mail for admin to show collected phones during a day
         $yesterday = new DateTime('-1 day');
         $email = (new TemplatedEmail())
             ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
             ->to(new Address('jyaire@gmail.com', 'Jean-Roch Masson'))
+            ->addTo(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile')) // For Paul
+            ->addTo(new Address('github-prod@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
             ->replyTo('github-test@bipbip-mobile.fr')
             ->subject("Estimations du ".$yesterday-> format('d/m/Y'))
             ->htmlTemplate(
@@ -45,7 +68,8 @@ class SendemailtoadminCommand extends Command
             )
             ->context([
                 'estimations' => $this->estimations,
-            ]);
+            ])
+            ->attachFromPath($path.$filename);
 
         $this->mailer->send($email);
     }
