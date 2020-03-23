@@ -177,6 +177,9 @@
     "phenx/php-svg-lib": {
         "version": "v0.3.3"
     },
+    "php": {
+        "version": "7.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
