@@ -318,7 +318,10 @@ class CollectorController extends AbstractController
         }
 
         // Validation of estimation and payment
-        $estimation->setIsValidatedPayment(true)->setIsCollected(true);
+        $estimation
+            ->setIsValidatedPayment(true)
+            ->setIsCollected(true)
+            ->setStatus(1);
         $em->persist($estimation);
         $em->flush();
         return $this->render('bdc/end.html.twig', [
