@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Entity\Organisms;
+use App\Entity\Reporting;
 use App\Form\CollectUserType;
 use App\Form\ImeiType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -293,6 +296,7 @@ class CollectorController extends AbstractController
      * @param Estimations $estimation
      * @param EntityManagerInterface $em
      * @return Response
+     * @throws Exception
      */
     // route to confirm picture of identity Card
     public function end(Estimations $estimation, EntityManagerInterface $em)
@@ -319,7 +323,13 @@ class CollectorController extends AbstractController
 
         // Validation of estimation and payment
         $estimation->setIsValidatedPayment(true)->setIsCollected(true);
+        // Adding of a line in reporting table
+        $reporting = new Reporting();
+        $reporting->setReportype('collected')
+            ->setDatereport(new DateTime('now'))
+            ->setEstimation($estimation);
         $em->persist($estimation);
+        $em->persist($reporting);
         $em->flush();
         return $this->render('bdc/end.html.twig', [
             'estimation' => $estimation,
