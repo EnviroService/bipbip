@@ -98,7 +98,7 @@ class ApiController extends AbstractController
                     'shipperCountry' => 'FR',
                     'shipperCountryName' => 'FRANCE',
                     'shipperEmail' => $user->getEmail(),
-                    'shipperMobilePhone' => $user->getPhoneNumber(),
+                    'shipperMobilePhone' => '',
                     'shipperName' => $firstname,
                     'shipperName2' => $name,
                     'shipperPhone' => $user->getPhoneNumber(),
@@ -115,7 +115,7 @@ class ApiController extends AbstractController
                     'customerCountry' => 'FR',
                     'customerCountryName' => 'FRANCE',
                     'customerEmail' => 'jerem62026@gmail.com',
-                    'customerMobilePhone' => '0611223344',
+                    'customerMobilePhone' => '',
                     'customerName' => 'The Journal',
                     'customerName2' => '',
                     'customerPhone' => '0133333333',
@@ -132,7 +132,7 @@ class ApiController extends AbstractController
                     'recipientCountry' => 'FR',
                     'recipientCountryName' => 'FRANCE',
                     'recipientEmail' => 'test@gmail.com',
-                    'recipientMobilePhone' => '0655667788',
+                    'recipientMobilePhone' => '',
                     'recipientName' => 'BipBip Mobile',
                     'recipientName2' => '',
                     'recipientPhone' => '0455667788',
@@ -172,6 +172,7 @@ class ApiController extends AbstractController
                     'length' => '30',
                     'width' => '40',
                 ],
+
                 //STRUCTURE SKYBILLPARAMSVALUE
                 'skybillParamsValue' => [
                     'mode' => 'PPR',
@@ -204,7 +205,7 @@ class ApiController extends AbstractController
                 // Récupération de l'id de l'estimation passée en GET
                 $estimation = $_GET['estimation'];
                 $date = date("d_M_Y");
-                $repertory = "uploads/etiquette/";
+                $repertory = "uploads/etiquettes/";
                 $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
                 $filename = "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
 
@@ -249,7 +250,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/chronopost/{id}", name="api_chronopost_se")
+     * @Route("/chronopost/se/{id}", name="api_chronopost_se")
      * @return Response
      * @throws SoapFault
      */
@@ -282,7 +283,7 @@ class ApiController extends AbstractController
                 'shipperCountry' => 'FR',
                 'shipperCountryName' => 'FRANCE',
                 'shipperEmail' => $user->getEmail(),
-                'shipperMobilePhone' => "0788232290",
+                'shipperMobilePhone' => "",
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
                 'shipperPhone' => "0788232290",
@@ -316,10 +317,10 @@ class ApiController extends AbstractController
                 'recipientCountry' => 'FR',
                 'recipientCountryName' => 'FRANCE',
                 'recipientEmail' => 'test@gmail.com',
-                'recipientMobilePhone' => '0655667788',
+                'recipientMobilePhone' => '',
                 'recipientName' => 'BipBip Mobile',
                 'recipientName2' => '',
-                'recipientPhone' => '0455667788',
+                'recipientPhone' => '0655667788',
                 'recipientPreAlert' => 0,
                 'recipientZipCode' => '59118',
                 'recipientCivility' => 'M',
@@ -361,6 +362,26 @@ class ApiController extends AbstractController
                 'mode' => 'SLT|PDF|XML|XML2D',
                 'withReservation' => '1',
             ],
+
+            /*'customsValue' => [
+                'articlesValue' => [
+                    'content' => '',
+                    'contentInLanguage' => '',
+                    'grossWeight' => '',
+                    'hscode' => '',
+                    'netWeight' => 2,
+                    'origin' => '',
+                    'position' => '',
+                    'quantity' => 1,
+                    'regime' => '',
+                    'value' => 100,
+                ],
+                'clearanceCleared' => 0,
+                'currency' => 'EUR',
+                'incoterm' => 'DP',
+                'numberOfItems' => 1
+            ],*/
+
             //OTHERS
             'password' => '255562',
             'modeRetour' => '3',
@@ -373,22 +394,23 @@ class ApiController extends AbstractController
         //var_dump($client_ch->__getFunctions());
         //var_dump($client_ch->__getTypes());
 
-        $results = $clientCh->shippingMultiParcelV2($params);
+        $clientCh->shippingMultiParcelV2($params);
         //$reservation = $results->return->reservationNumber;
-        $etiquette = $results->return->resultMultiParcelValue;
 
-        try {
+        /*try {
             //Objet StdClass
             $results = $clientCh->shippingMultiParcelV2($params);
         } catch (SoapFault $soapFault) {
             //var_dump($soapFault);
             echo "Request :<br>", htmlentities($clientCh->__getLastRequest()), "<br>";
             echo "Response :<br>", htmlentities($clientCh->__getLastResponse()), "<br>";
-        }
+        }*/
 
         $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
         présenter au bureau de poste");
 
-        return new Response($etiquette);
+        return $this->redirectToRoute("user_show", [
+            'id' => $user->getId()
+        ]);
     }
 }
