@@ -11,6 +11,12 @@
     <main id="faq">
 
             <h1 class="primary-title"> Foire Aux Questions </h1>
+                <h2 class="categories">
+                    {% for category in categories %}
+                        <a class="fourth-button" href="{{ category.name }}"></a>
+
+                    {% endfor %}
+                </h2>
         {% if is_granted("ROLE_ADMIN") %}
             <a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
         {% endif %}
