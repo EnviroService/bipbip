@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Repository\EstimationsRepository;
+use App\Repository\ReportingRepository;
 use DateTime;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Console\Command\Command;
@@ -17,7 +17,7 @@ class SendemailtoadminCommand extends Command
 
     private $mailer;
     private $estimations;
-    public function __construct(MailerInterface $mailer, EstimationsRepository $estimations)
+    public function __construct(MailerInterface $mailer, ReportingRepository $estimations)
     {
         parent::__construct(null);
         $this->mailer = $mailer;
