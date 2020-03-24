@@ -5,6 +5,7 @@
 {%  block body %}
     <main class="container">
         <h1 class="primary-title">Reporting</h1>
+        <p>Voici les informations de reporting envoyées chaque jour à minuit aux administrateurs.</p>
         <p>
             {# show phones estimated the day before #}
             <div class="font-weight-bold">Téléphones estimés les dernières 24h :</div>
@@ -18,13 +19,13 @@
         </p>
         <p>
             {# show phones collected the day before #}
-            <div class="font-weight-bold">Téléphones estimés les dernières 24h :</div>
+            <div class="font-weight-bold">Téléphones collectés les dernières 24h :</div>
             {% for report in collected %}
                 - {{ report.datereport | date("d/m/Y à H:i") }} : {{ report.estimation.brand }}
-                {{ report.estimation.model }} {{ report.estimation.capacity }} > estimé {{ report.estimation.estimatedPrice }} €
+                {{ report.estimation.model }} {{ report.estimation.capacity }} > collecté pour {{ report.estimation.estimatedPrice }} €
                 <br>
             {% else %}
-                Aucun téléphone estimé.
+                Aucun téléphone collecté.
             {% endfor %}
         </p>
     </main>

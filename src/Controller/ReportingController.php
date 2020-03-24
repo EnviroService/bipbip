@@ -5,17 +5,16 @@ namespace App\Controller;
 use App\Repository\ReportingRepository;
 use DateTime;
 use Exception;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ReportingController extends AbstractController
 {
     /**
      * @Route("/admin/reporting", name="reporting_index")
+     * @IsGranted("ROLE_ADMIN")
      * @param ReportingRepository $reporting
      * @return Response
      * @throws Exception
