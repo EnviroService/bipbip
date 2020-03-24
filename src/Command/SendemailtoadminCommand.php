@@ -58,8 +58,7 @@ class SendemailtoadminCommand extends Command
         $yesterday = new DateTime('-1 day');
         $email = (new TemplatedEmail())
             ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
-            ->to(new Address('jyaire@gmail.com', 'Jean-Roch Masson'))
-            ->addTo(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile')) // For Paul
+            ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile')) // For Paul
             ->addTo(new Address('github-prod@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
             ->replyTo('github-test@bipbip-mobile.fr')
             ->subject("Estimations du ".$yesterday-> format('d/m/Y'))
