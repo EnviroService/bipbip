@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Catégories</h1>
-    {% for category in categories %}
+        <div class = "category">
         {% for faq in faqContent %}
         <div class="menu-faq">
             <article class="question">{{faq.question}}
@@ -12,11 +12,11 @@
                     <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
                 {% endif %}
             </article>
-
+        </div>
             <article class="answer">{{faq.answer}} </article>
         </div>
         {% endfor %}
-    {% endfor %}
+
 {% endblock %}
 
 {%  block javascripts %}

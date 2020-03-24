@@ -20,17 +20,15 @@ class FAQController extends AbstractController
 {
 
     /**
-     * @param FAQRepository $faqRepo
      * @param CategoryRepository $categoryRepo
      * @return Response
      * @Route("/", name="faq_index")
      */
-    public function index(FAQRepository $faqRepo, categoryRepository $categoryRepo) : Response
+    public function index(categoryRepository $categoryRepo) : Response
     {
         $categories = $categoryRepo->findAll();
-        $faqContent = $faqRepo->findAll();
+
         return $this->render('faq/index.html.twig', [
-            'faqContent' => $faqContent,
             'categories' => $categories]);
     }
 
