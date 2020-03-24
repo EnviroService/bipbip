@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+    <h1>Catégories</h1>
+    {% for category in categories %}
+        {% for faq in faqContent %}
+        <div class="menu-faq">
+            <article class="question">{{faq.question}}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
+                {% endif %}
+            </article>
+
+            <article class="answer">{{faq.answer}} </article>
+        </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{%  block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('faq') }}
+{% endblock %}
