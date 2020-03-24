@@ -15,7 +15,7 @@
                         Une fenêtre s'ouvrira, tu pourras l'imprimer de suite et un mail te sera envoyé contenant l'étiquette,
                         si tu souhaites l'imprimer plus tard.
                     </p>
-                    <a class="btn btn-info" href="{{ path('api_chronopost_ae', {'id': user.id, 'estimation': estimation}) }}">
+                    <a class="btn btn-info" href="{{ path('api_chronopost_ae', {'id': user.id, 'estimation': estimation, 'status': 2}) }}">
                         Générer mon étiquette
                     </a><br>
                 </div>
@@ -30,7 +30,7 @@
                         Ou alors, tu préféres recevoir un code sur ton tel, par message, et déposer ton colis avec ce code, l'étiquette
                         sera générée lors de ton passage au bureau de poste.
                     </p>
-                    <a class="btn btn-info" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation}) }}">
+                    <a class="btn btn-info" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation, 'status': 2}) }}">
                         Recevoir mon code
                     </a>
                 </div>

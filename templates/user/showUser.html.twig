@@ -106,11 +106,30 @@
                     {{ estimation.maxPrice}} €
                 </div>
                 <div class="col-3">
+
                     {% if estimation.isCollected == 1 %}
-                        <p class="text-success">Vendu</p>
-                    {% else %}
-                        <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">Revendre ce téléphone</a>
+                        <p class="text-success">
+                            Vendu
+                        </p>
                     {% endif %}
+
+                    {% if estimation.status == 0 %}
+                        <span class="text-warning">
+                            non vendu
+                        </span> -
+                        <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">
+                            Revendre ce téléphone
+                        </a>
+                    {% elseif estimation.status == 2 %}
+                        <p class="text-success">
+                            En cours d'envoi
+                        </p>
+                    {% elseif estimation.status == 3 %}
+                        <p class="text-success">
+                            Refusé
+                        </p>
+                    {% endif %}
+
                 </div>
                 <div class="col-4">
                     <a class="btn btn-info" href="">Voir l'étiquette chronnopost</a>
