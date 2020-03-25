@@ -9,18 +9,32 @@
 
 {% block body %}
     <main id="faq">
+        <h1 class="primary-title"> Foire Aux Questions </h1>
 
-            <h1 class="primary-title"> Foire Aux Questions </h1>
-                <h2 class="categories">
-                    {% for category in categories %}
-                        <a class="fourth-button" href="{{ path('faq_category') }}">{{ category.name }}</a>
-                    {% endfor %}
-                </h2>
+        {% for category in categories %}
+            <article class="category">
+                <a class="fourth-button" href="{{ path('faq_index', { 'id': category.id } )}}"> {{ category.name }}</a>
+            </article>
+
+        {% endfor %}
+
         {% if is_granted("ROLE_ADMIN") %}
             <a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
         {% endif %}
 
+        {% for faq in faqContent %}
+            <div class="menu-faq">
+                <article class="question">{{faq.question}}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
+                    {% endif %}
+                </article>
+            </div>
+            <article class="answer">{{faq.answer}} </article>
+        {% endfor %}
+
     </main>
+
 {% endblock %}
 {%  block javascripts %}
     {{ parent() }}
