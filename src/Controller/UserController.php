@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Collects;
 use App\Entity\Estimations;
+use App\Entity\Reporting;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserEditType;
@@ -140,31 +141,35 @@ class UserController extends AbstractController
     ) {
         $user = $this->getUser();
         $collect = $repository->findOneBy(['id' => $collect]);
-        $organism = $collect->getCollector();
-        $user->setCollect($collect);
-        $em->persist($user);
-        $em->flush();
+        if (!empty($collect)) {
+            $organism = $collect->getCollector();
+            $user->setCollect($collect);
+            $em->persist($user);
+            $em->flush();
 
-        // mail for user
-        $day = $collect->getDateCollect()->format("d/m/y");
-        $hour = $collect->getDateCollect()->format("h:i");
-        $emailExp = (new Email())
-            ->from(new Address('contact@bipbipmobile.com', 'BipBip Mobile'))
-            ->to(new Address($user->getEmail(), $user
-                    ->getFirstname() . ' ' . $user->getLastname()))
-            ->replyTo('contact@bipbipmobile.com')
-            ->subject('Tu es inscrit à une collecte !')
-            ->html($this->renderView(
-                'contact/confirmCollect.html.twig',
-                [
-                    'day' => $day,
-                    'hour' => $hour,
-                    'user' => $user,
-                    'organism' => $organism,
-                ]
-            ));
+            // mail for user
+            if (!empty($collect->getDateCollect())) {
+                $day = $collect->getDateCollect()->format("d/m/y");
+                $hour = $collect->getDateCollect()->format("h:i");
+                $emailExp = (new Email())
+                    ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                    ->to(new Address($user->getEmail(), $user
+                            ->getFirstname() . ' ' . $user->getLastname()))
+                    ->replyTo('github-test@bipbip-mobile.fr')
+                    ->subject('Tu es inscrit à une collecte !')
+                    ->html($this->renderView(
+                        'contact/confirmCollect.html.twig',
+                        [
+                            'day' => $day,
+                            'hour' => $hour,
+                            'user' => $user,
+                            'organism' => $organism,
+                        ]
+                    ));
 
-        $mailer->send($emailExp);
+                $mailer->send($emailExp);
+            }
+        }
 
         return $this->redirectToRoute("collect_confirm");
     }
