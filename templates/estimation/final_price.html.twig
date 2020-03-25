@@ -13,7 +13,7 @@
                 {% if app.user %}
                 <div class="jumbotron">
                     <h4>Pour finaliser la vente de ton téléphone, </h4>
-                    <a class="btn btn-primary" href="{{ path("mode_envoi") }}">Choisis une collecte</a>
+                    <a class="btn btn-primary" href="{{ path("mode_envoi", {'id': estimation.id  }) }}">Choisis une collecte</a>
                 </div>
                 {% else %}
                 <div class="jumbotron">

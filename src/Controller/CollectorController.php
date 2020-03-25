@@ -322,12 +322,18 @@ class CollectorController extends AbstractController
         }
 
         // Validation of estimation and payment
-        $estimation->setIsValidatedPayment(true)->setIsCollected(true);
+        $estimation
+            ->setIsValidatedPayment(true)
+            ->setIsCollected(true)
+            ->setStatus(1);
+      
         // Adding of a line in reporting table
         $reporting = new Reporting();
-        $reporting->setReportype('collected')
+        $reporting
+            ->setReportype('collected')
             ->setDatereport(new DateTime('now'))
             ->setEstimation($estimation);
+
         $em->persist($estimation);
         $em->persist($reporting);
         $em->flush();
