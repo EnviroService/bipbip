@@ -106,22 +106,50 @@
                     {{ estimation.maxPrice}} €
                 </div>
                 <div class="col-3">
+
                     {% if estimation.isCollected == 1 %}
-                        <p class="text-success">Vendu</p>
-                    {% else %}
-                        <span class="text-warning">non vendu</span> - <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">Revendre ce téléphone</a>
+                        <p class="text-success">
+                            Vendu
+                        </p>
+                    {% endif %}
+
+                    {% if estimation.status == 0 %}
+                        <span class="text-warning">
+                            non vendu
+                        </span> -
+                        <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">
+                            Revendre ce téléphone
+                        </a>
+                    {% elseif estimation.status == 2 %}
+                        <p class="text-success">
+                            En cours d'envoi
+                        </p>
+                    {% elseif estimation.status == 3 %}
+                        <p class="text-success">
+                            Refusé
+                        </p>
                     {% endif %}
                 </div>
+
+
+                {% if estimation.status == 2  %}
                 <div class="col-4">
-                    <a class="btn btn-info" href="">Voir l'étiquette chronnopost</a>
+                    <a class="btn btn-info" href="">
+                        Voir l'étiquette chronnopost
+                    </a>
                 </div>
+                {% endif %}
+
+
             </div>
         {% endif %}
     {% else %}
     <div class="row mb-3">
         <div class="offset-2 col-8">
             Tu n'as encore estimé aucun téléphone.
-            <a href="{{ path('new_estimation') }}" class="primary-button">Faire une estimation ?</a>
+            <a href="{{ path('new_estimation') }}" class="primary-button">
+                Faire une estimation ?
+            </a>
         </div>
     </div>
     {% endfor %}

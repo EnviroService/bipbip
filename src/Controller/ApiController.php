@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Collects;
 use App\Entity\Estimations;
 use App\Entity\User;
 use App\Repository\EstimationsRepository;
+use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,8 +73,12 @@ class ApiController extends AbstractController
      * @return Response
      * @throws SoapFault
      */
-    public function apiChronopostAe(User $user, EstimationsRepository $repository)
-    {
+    public function apiChronopostAe(
+        User $user,
+        EstimationsRepository $repository,
+        EntityManagerInterface $em,
+        OrganismsRepository $organismsRepository
+    ) {
 
         if ($this->getUser()->getId() == $user->getId()) {
             $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
@@ -203,11 +212,26 @@ class ApiController extends AbstractController
                 $idUser = $user->getId();
 
                 // Récupération de l'id de l'estimation passée en GET
-                $estimation = $_GET['estimation'];
+                $estimationId = $_GET['estimation'];
                 $date = date("d_M_Y");
                 $repertory = "uploads/etiquettes/";
-                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
-                $filename = "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
+                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+                $filename = "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+
+                if ($_GET['status'] == 2) {
+                    $estimation = $repository->find($estimationId);
+                    $estimation->setStatus(2)->setUser($user);
+                    $em->persist($estimation);
+
+                    $organism = $organismsRepository->findOneBy([
+                        'organismName' => 'Bip-Bip'
+                    ]);
+
+                    $collect = new Collects();
+                    $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
+                    $em->persist($collect);
+                    $em->flush();
+                }
 
                 $openDir = scandir($repertory);
                 foreach ($openDir as $value) {
@@ -222,8 +246,6 @@ class ApiController extends AbstractController
                 $fichier = fopen($filenameSave, "w");
                 fwrite($fichier, $pdf);
                 fclose($fichier);
-                //$set_estimation = $repository->find($estimation);
-                //$set_estimation->setStatus(1);
 
                 return new Response($pdf, 200, [
                     'Content-Disposition' => "attachment; filename=$filename"
@@ -254,8 +276,11 @@ class ApiController extends AbstractController
      * @return Response
      * @throws SoapFault
      */
-    public function apiChronopostSe(User $user)
-    {
+    public function apiChronopostSe(
+        User $user,
+        EstimationsRepository $repository,
+        EntityManagerInterface $em
+    ) {
 
         $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
         $clientCh = new SoapClient($wsdl);
@@ -394,17 +419,14 @@ class ApiController extends AbstractController
         //var_dump($client_ch->__getFunctions());
         //var_dump($client_ch->__getTypes());
 
-        $clientCh->shippingMultiParcelV2($params);
-        //$reservation = $results->return->reservationNumber;
+        if ($_GET['status'] == 2) {
+            $estimation = $repository->find($_GET['estimation']);
+            $estimation->setStatus(2)->setUser($user);
+            $em->persist($estimation);
+            $em->flush();
+        }
 
-        /*try {
-            //Objet StdClass
-            $results = $clientCh->shippingMultiParcelV2($params);
-        } catch (SoapFault $soapFault) {
-            //var_dump($soapFault);
-            echo "Request :<br>", htmlentities($clientCh->__getLastRequest()), "<br>";
-            echo "Response :<br>", htmlentities($clientCh->__getLastResponse()), "<br>";
-        }*/
+        $clientCh->shippingMultiParcelV2($params);
 
         $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
         présenter au bureau de poste");
