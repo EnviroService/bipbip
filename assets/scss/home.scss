@@ -1,37 +1,50 @@
 @import "vars";
 
 .home{
-    h1{
-        font-size : 1.3rem;
-        margin : 3% auto;
-        text-align : center;
-        text-transform : uppercase;
-        line-height: 1.5em;
-        width : 80%;
-        @media screen and (min-width: 740px) {
-            width : 50%;
-            font-size: 1.3rem;
-            margin-top : 0;
-        }
-        @media screen and (min-width: 1025px) {
-            width : 50%;
-            font-size: 1.3rem;
-        }
+   .text-img {
+       display: flex;
+       margin: 5% 17%;
 
-        .orange-font{
-            color : $primary-color;
-            font-weight : bold;
-        }
+       h1{
+           display: block;
+           font-size : 2.3rem;
+           margin : 15% auto;
+           text-align : center;
+           text-transform : uppercase;
+           line-height: 1.5em;
+           width : 80%;
+           @media screen and (min-width: 740px) {
+               width : 50%;
+               font-size: 1.3rem;
+               margin: 10% auto 10px;
+           }
+           @media screen and (min-width: 1025px) {
+               width : 50%;
+               font-size: 1.5rem;
+               margin: 16% auto;
+           }
 
-        .blue-font{
-            color : $secondary-color;
-            font-weight : lighter;
+           .black-font{
+               //color : $primary-color;
+               color: black;
+               font-weight : bold;
+           }
 
-            b{
-                font-weight : bold;
-            }
-        }
-    }
+           .blue-font{
+               color : $secondary-color;
+               font-weight : lighter;
+
+               b{
+                   font-weight : bold;
+               }
+           }
+       }
+
+       img {
+           display: block;
+           width: 80%;
+       }
+   }
 
     /* CAROUSEL */
     #carouselExampleFade {

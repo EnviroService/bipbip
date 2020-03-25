@@ -26,7 +26,7 @@
                 <div class="user-infos-menu">
                     {% if app.user %}
                     <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
-                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                        <h3 class="user_name">{{ app.user.firstname|capitalize }} {{ app.user.lastname|capitalize }}</h3>
                     </a>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
@@ -41,7 +41,7 @@
                     {% endif %}
                 </div>
             </nav>
-            <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
+            <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/Logo BipBip.png" alt="logo bipbip" /></a>
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center">
                     {{ message }}
@@ -111,6 +111,7 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         {% endblock %}
     </body>
 

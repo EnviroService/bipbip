@@ -66,6 +66,8 @@
     }
 }
 
+// ORGANISMS PART
+
 #organisms {
     position: relative;
 
@@ -102,6 +104,10 @@
             color: white;
             padding: 10px;
             height: 80px;
+
+            .head-tr {
+                width: 100%;
+            }
         }
 
         tbody {
@@ -128,6 +134,7 @@
     }
 }
 
+// COLLECTS PART
 #new-collect{
     .fourth-button{
         width : 200px;
@@ -142,3 +149,9 @@
     }
 }
 
+// MATRIX PART
+
+.matrix_button {
+    width: 110px;
+    padding: 8px;
+}
