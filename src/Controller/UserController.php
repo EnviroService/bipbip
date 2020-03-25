@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Collects;
 use App\Entity\Estimations;
+use App\Entity\Reporting;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserEditType;
