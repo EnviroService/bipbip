@@ -1,0 +1,25 @@
+{% block body %}
+    <p>
+        Bonjour,
+    </p>
+
+        {# show phones collected the day before #}
+    <div class="font-weight-bold">Téléphones collectés les dernières 24h :</div>
+    <p>
+    {% for report in collected %}
+        - {{ report.datereport | date("d/m/Y à H:i") }} : {{ report.estimation.brand }}
+        {{ report.estimation.model }} {{ report.estimation.capacity }} > collecté pour {{ report.estimation.estimatedPrice }} €
+        <br>
+    {% else %}
+        Aucun téléphone collecté.
+    {% endfor %}
+    </p>
+    <p>
+        Le détail se trouve dans le fichier csv joint à ce message.
+    </p>
+    <p>
+        --<br>
+        Ce message vous a été envoyé automatiquement le
+        {{ "now"|date("d/m/Y à H:i:s") }}
+    </p>
+{% endblock %}

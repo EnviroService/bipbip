@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Reporting;
+use DateTime;
+use DateInterval;
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +20,36 @@ class ReportingRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Reporting::class);
+    }
+
+    public function findByEstimatedYesterday()
+    {
+        $yesterday = new DateTime('-1 day');
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.datereport > :yesterday')
+            ->andWhere('r.reportype = :reportype')
+            ->orderBy('r.datereport', 'ASC')
+            ->setParameter('reportype', 'tobecollected')
+            ->setParameter('yesterday', $yesterday->format('Y-m-d H:i:s'));
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+    public function findByCollectedYesterday()
+    {
+        $yesterday = new DateTime('-1 day');
+        $qb = $this->createQueryBuilder('r')
+            ->where('r.datereport > :yesterday')
+            ->andWhere('r.reportype = :reportype')
+            ->orderBy('r.datereport', 'ASC')
+            ->setParameter('reportype', 'collected')
+            ->setParameter('yesterday', $yesterday->format('Y-m-d H:i:s'));
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
 
     // /**

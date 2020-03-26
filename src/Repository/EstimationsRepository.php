@@ -54,18 +54,6 @@ class EstimationsRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function findByEstimatedYesterday()
-    {
-        $qb = $this->createQueryBuilder('e')
-            ->where('e.estimationDate = :yesterday')
-            ->orderBy('e.estimationDate', 'ASC')
-            ->setParameter('yesterday', new DateTime('-1 day'));
-
-        $query = $qb->getQuery();
-
-        return $query->execute();
-    }
-
     /*
     public function findOneBySomeField($value): ?Estimations
     {
