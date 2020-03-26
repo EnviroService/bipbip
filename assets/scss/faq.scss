@@ -1,4 +1,9 @@
 @import "vars";
+    article.category {
+        display: inline-flex;
+        width: 290px;
+        height: 66px;
+    }
 
 .menu-faq  {
     display : flex;

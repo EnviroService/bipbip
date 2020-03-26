@@ -31,13 +31,31 @@ class FAQController extends AbstractController
         $categories = $categoryRepo->findAll();
         $faqContent = $faqRepo->findAll();
 
-
         return $this->render('faq/index.html.twig', [
             'categories' => $categories,
             'faqContent' => $faqContent,
         ]);
     }
+/*
+    /**
+     * @Route("/category", name="faq_category")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+   /* public function showCategory(EntityManagerInterface $em): Response
+    {
+        $queryBuilder = $em->getRepository(FAQ::class)->findAll();
+        $categories = [];
+        foreach ($queryBuilder as $faq) {
+            array_push($categories, $faq->getCategory);
+        }
+        $categories = array_unique($categories);
 
+        return $this->render("faq/index.html.twig", [
+            "faq" => $faq
+        ]);
+    }
+*/
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="faq_new", methods={"GET","POST"})
