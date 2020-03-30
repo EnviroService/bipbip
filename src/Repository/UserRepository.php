@@ -74,4 +74,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('oldDate', '1970-01-01');
         return $qb->getQuery()->getResult();
     }
+
+    public function findFutureOldUsers()
+    {
+        $olddate = new DateTime('-35 month');
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.signinDate < :olddate')
+            ->setParameter('olddate', $olddate->format('Y-m-d H:i:s'));
+
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 }
