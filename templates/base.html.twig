@@ -14,33 +14,72 @@
     {% block header %}
         <header>
             <nav id="menu">
-                <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
-                <ul>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
-                </ul>
-                <div class="user-infos-menu">
-                    {% if app.user %}
-                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
-                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                    </a>
-                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+                <div class="container-global">
+                    <div class="card-img-menu">
+                        <img src="" alt="">
+                    </div>
 
-                        {% for role in app.user.roles %}
-                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
-                            {% endif %}
-                        {% endfor %}
+                <div class="list-in-menu">
+                    <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                        <ul>
+                            <h3>BiBIP</h3>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que c'est?</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
+                            <h3>DEVIENS BIPBIP</h3>
+                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vend ton tel</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter ton tel</a></li>
+                            <h3>LA BIPBIP ATTITUDE</h3>
+                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Voir une collecte">Les points de collecte</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                                <li class="primary-title-menu"><a href="{{ path('organisms_index') }}" title="Bon plan">Les bons plans</a></li>
+                            <h3>BIPBIP INFOS</h3>
+                                <li class="primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
+                                <li class="primary-title-menu"><a href="{{ path('faq_index') }}" title="Jobs et recrutement">Jobs/Recrutement</a></li>
+                                <li class="primary-title-menu"><a href="{{ path('faq_index') }}" title="Presses">Espace presse</a></li>
+                            <h3>PARLONS BIPBIP</h3>
+                                <li class="primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
+                        </ul>
 
-                    {% else %}
-                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
-                    {% endif %}
+                    <div class="user-infos-menu">
+                        {% if app.user %}
+                            <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
+                                <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                            </a>
+                            <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
+                            {% for role in app.user.roles %}
+                                {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                    <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="commu">
+                        <h3 class="">Rejoins la commu</h3>
+                        <div class="social-networks">
+                            <a href="#" target="_blank" title="Page Facebook">
+                                <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+                            </a>
+                            <a href="#" target="_blank" title="Instagram">
+                                <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+                            </a>
+                            <a href="#" target="_blank" title="LinkedIn">
+                                <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
+                </div>
+
+
+
+
             </nav>
+
             <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center">
@@ -52,6 +91,7 @@
                     {{ message }}
                 </div>
             {% endfor %}
+
             <div class="circle-buttons">
                 <div id="menu-burger">
                     <img src="/images/menu-burger.png" alt="menu burger" />
