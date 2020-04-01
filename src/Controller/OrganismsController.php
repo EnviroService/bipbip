@@ -6,6 +6,7 @@ use App\Entity\Collects;
 use App\Entity\Organisms;
 use App\Form\OrganismsType;
 use App\Repository\OrganismsRepository;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,20 +37,25 @@ class OrganismsController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
+     * @param UploaderHelper $uploaderHelper
      * @return Response
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UploaderHelper $uploaderHelper
+    ): Response {
         $organism = new Organisms();
         $form = $this->createForm(OrganismsType::class, $organism);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('logo')->getData();
-            $fileName = md5(uniqid()). '.' . $file->guessExtension();
-            $file->move($this->getParameter('upload_directory'), $fileName);
+            $uploadedFile = $form->get('logo')->getData();
 
-            $organism->setLogo($fileName);
+            if ($uploadedFile) {
+                $newFileName = $uploaderHelper->uploadArticleImage($uploadedFile);
+                $organism->setLogo($newFileName);
+            }
 
             $entityManager->persist($organism);
             $entityManager->flush();

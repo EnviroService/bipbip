@@ -14,6 +14,7 @@
         <exclude name="CyclomaticComplexity" />
         <exclude name="TooManyFields" />
         <exclude name="TooManyPublicMethods" />
+        <exclude name="ExcessiveMethodLength" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields">
         <properties>

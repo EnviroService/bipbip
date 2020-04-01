@@ -13,6 +13,9 @@
                 'label': 'Téléphone'}}) }}
             {{ form_widget(form.message, {'attr': {'class': 'form-control mt-3 mb-3',
                 'placeholder': 'Message', 'label': 'Message', 'required': true}}) }}
+            {{ form_row(form.agreeTerms, {'class': 'form-text text-muted',
+                'label': 'Aucune donnée personnelle n\’est conservée par notre site via ce formulaire,
+            mais tu acceptes que BipBip te recontacte afin de répondre à ta demande.', 'required': true}) }}
             {{ form_row(form.save, {'label': 'Envoyer le message', 'attr': {'class': 'fourth-button'}}) }}
             {{ form_end(form) }}
         </div>

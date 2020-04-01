@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Collects;
 use App\Entity\Estimations;
+use App\Entity\Reporting;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserEditType;
 use App\Repository\CollectsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
@@ -72,42 +74,38 @@ class UserController extends AbstractController
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
-        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN" || $this->getUser()->getRoles()[0] === "ROLE_COLLECTOR") {
-            return $this->redirectToRoute('estimations_index');
-        } else {
             $organism = $this->getUser()->getOrganism();
-            if ($organism !== null) {
-                $privateCollects = $collectsRepository->findBy(
-                    ['collector' => $organism->getId()],
-                    ["collector" => "ASC"]
-                );
+        if ($organism !== null) {
+            $privateCollects = $collectsRepository->findBy(
+                ['collector' => $organism->getId()],
+                ["collector" => "ASC"]
+            );
 
-                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-                $publicOrganismsId = [];
-                foreach ($publicOrganisms as $publicOrganism) {
-                    $publicOrganismsId [] = $publicOrganism->getId();
-                }
-                $publicCollects = $collectsRepository->findBy(
-                    ['collector' => $publicOrganismsId],
-                    ["collector" => "ASC"]
-                );
-
-                $repo = [];
-                foreach ($privateCollects as $privateCollect) {
-                    $repo[] = $privateCollect;
-                }
-
-                foreach ($publicCollects as $publicCollect) {
-                    $repo[] = $publicCollect;
-                }
-            } else {
-                $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-                $publicOrganismsId = [];
-                foreach ($publicOrganisms as $publicOrganism) {
-                    $publicOrganismsId [] = $publicOrganism->getId();
-                }
-                $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+            $publicOrganismsId = [];
+            foreach ($publicOrganisms as $publicOrganism) {
+                $publicOrganismsId [] = $publicOrganism->getId();
             }
+            $publicCollects = $collectsRepository->findBy(
+                ['collector' => $publicOrganismsId],
+                ["collector" => "ASC"]
+            );
+
+            $repo = [];
+            foreach ($privateCollects as $privateCollect) {
+                $repo[] = $privateCollect;
+            }
+
+            foreach ($publicCollects as $publicCollect) {
+                $repo[] = $publicCollect;
+            }
+        } else {
+            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
+            $publicOrganismsId = [];
+            foreach ($publicOrganisms as $publicOrganism) {
+                $publicOrganismsId [] = $publicOrganism->getId();
+            }
+            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
         }
 
         $now = new DateTime('now');
@@ -119,7 +117,6 @@ class UserController extends AbstractController
                 unset($repo[$i]);
             }
         }
-
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
             'collector' => $organism
@@ -144,31 +141,35 @@ class UserController extends AbstractController
     ) {
         $user = $this->getUser();
         $collect = $repository->findOneBy(['id' => $collect]);
-        $organism = $collect->getCollector();
-        $user->setCollect($collect);
-        $em->persist($user);
-        $em->flush();
+        if (!empty($collect)) {
+            $organism = $collect->getCollector();
+            $user->setCollect($collect);
+            $em->persist($user);
+            $em->flush();
 
-        // mail for user
-        $day = $collect->getDateCollect()->format("d/m/y");
-        $hour = $collect->getDateCollect()->format("h:i");
-        $emailExp = (new Email())
-            ->from(new Address('contact@bipbipmobile.com', 'BipBip Mobile'))
-            ->to(new Address($user->getEmail(), $user
-                    ->getFirstname() . ' ' . $user->getLastname()))
-            ->replyTo('contact@bipbipmobile.com')
-            ->subject('Tu es inscrit à une collecte !')
-            ->html($this->renderView(
-                'contact/confirmCollect.html.twig',
-                [
-                    'day' => $day,
-                    'hour' => $hour,
-                    'user' => $user,
-                    'organism' => $organism,
-                ]
-            ));
+            // mail for user
+            if (!empty($collect->getDateCollect())) {
+                $day = $collect->getDateCollect()->format("d/m/y");
+                $hour = $collect->getDateCollect()->format("h:i");
+                $emailExp = (new Email())
+                    ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                    ->to(new Address($user->getEmail(), $user
+                            ->getFirstname() . ' ' . $user->getLastname()))
+                    ->replyTo('github-test@bipbip-mobile.fr')
+                    ->subject('Tu es inscrit à une collecte !')
+                    ->html($this->renderView(
+                        'contact/confirmCollect.html.twig',
+                        [
+                            'day' => $day,
+                            'hour' => $hour,
+                            'user' => $user,
+                            'organism' => $organism,
+                        ]
+                    ));
 
-        $mailer->send($emailExp);
+                $mailer->send($emailExp);
+            }
+        }
 
         return $this->redirectToRoute("collect_confirm");
     }
@@ -196,7 +197,7 @@ class UserController extends AbstractController
     {
         $collectors = $userRepository->findCollectors('ROLE_COLLECTOR');
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/indexCollectors.html.twig', [
             'collectors' => $collectors
         ]);
     }
@@ -207,9 +208,9 @@ class UserController extends AbstractController
      * @param User $user
      * @return Response
      */
-    public function show(User $user): Response
+    public function showCollector(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('user/showCollector.html.twig', [
             'user' => $user,
         ]);
     }
@@ -222,7 +223,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function editCollector(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -255,5 +256,49 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('collectors_index');
+    }
+
+    /**
+     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     * @param User $user
+     * @return Response
+     */
+    public function showUser(User $user): Response
+    {
+        if (($this->getUser()->getId()) == $user->getId()) {
+            return $this->render('user/showUser.html.twig', [
+                'user' => $user,
+            ]);
+        } else {
+            $this->addFlash('danger', 'Tu ne peux pas accèder au compte d\'un autre utilisateur');
+            return $this->redirectToRoute('home');
+        }
+    }
+
+    /**
+     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
+     * @param Request $request
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId(),
+            ]);
+        }
+        return $this->render('user/editUser.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
     }
 }

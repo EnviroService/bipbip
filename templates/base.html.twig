@@ -17,7 +17,7 @@
                 <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
                 <ul>
                     <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vendre ton tel</a></li>
+                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
                     <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
@@ -25,7 +25,9 @@
                 </ul>
                 <div class="user-infos-menu">
                     {% if app.user %}
+                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
                         <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                    </a>
                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
                         {% for role in app.user.roles %}
@@ -71,25 +73,7 @@
 
         {% block footer %}
         <footer>
-            <h2 class="primary-title">Plus d'infos</h2>
-            <ul>
-                <li><a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">Qui sommes-nous ?</a></li>
-                <li><a href="{{ path('new_estimation') }}" title="Revendre ton tèl">Revendre ton tél</a></li>
-                <li><a href="{{ path('add_message') }}" title="Devenir organisateur de collecte">Tu veux devenir organisateur de collecte</a></li>
-                <li><a href="{{ path('faq_index') }}" title="FAQ">Besoin d'aide ?</a></li>
-                <li><a href="{{ path('add_message') }}" title="Contact">Contacte-nous</a></li>
-                <li>Ce que l'on oublie de lire
-                     (<a href="{{ path('cgu') }}" title="Conditions Générales de Vente">CGV</a>
-                     -
-                    <a href="{{ path('cgu') }}" title="Conditions Générales d'Utilisation">CGU</a>
-                     -
-                    <a href="#" title="Protection des données">Protections des données</a>
-                     -
-                    <a href="#" title="Cookies">Cookies</a>
-                     -
-                    <a href="#" title="Mentions Légales">Mentions Légales</a>)
-                </li>
-            </ul>
+            <h2 class="primary-title">T'en veux plus ?</h2>
             <div class="social-networks">
                 <a href="#" target="_blank" title="Page Facebook">
                     <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
@@ -101,9 +85,65 @@
                     <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
                 </a>
             </div>
+            <div class="container links-footer">
+                <div class="row">
+                    <div class="col-sm m-3">
+                        <div class="font-weight-bold pb-2">
+                            A propos de BipBip<br>
+                        </div>
+                        <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
+                            Qui sommes-nous ?
+                        </a><br>
+                        <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
+                            Notre mission
+                        </a><br>
+                        <br>
+                        <a href="{{ path('protection') }}" title="Protection des données">
+                            Ce qu'on oublie de lire
+                        </a><br>
+                        <br>
+                        <a href="{{ path('home') }}" title="Collectes et évènements">
+                            Collectes et évènements
+                        </a>
+                    </div>
+                    <div class="col-sm m-3">
+                        <div class="font-weight-bold pb-2">
+                            S'informer<br>
+                        </div>
+                        <a href="{{ path('show_collect') }}" title="Points de collecte">
+                            Points de collecte
+                        </a><br>
+                        <a href="{{ path('organisms_index') }}" title="Nos partenaires">
+                            Nos partenaires
+                        </a><br>
+                        <a href="{{ path('add_message') }}" title="Devenir partenaire">
+                            Devenir partenaire
+                        </a><br>
+                        <br>
+                        <a href="{{ path('faq_index') }}" title="FAQ">
+                            FAQ
+                        </a>
+                    </div>
+                    <div class="col-sm m-3">
+                        <div class="font-weight-bold pb-2">
+                            Besoin d'aide ?<br>
+                        </div>
+                        <a href="{{ path('home') }}" title="Comment bien choisir son smarthpone reconditionné ?">
+                            Comment bien choisir son smarthpone reconditionné ?
+                        </a><br>
+                        <br>
+                        <a href="{{ path('home') }}" title="Nos partenaires">
+                            Les grades de smartphone reconditionnés BipBip
+                        </a><br>
+                        <br>
+                        <a href="{{ path('add_message') }}" title="Contact">
+                            Nous contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
         </footer>
         {% endblock %}
-
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

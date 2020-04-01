@@ -126,6 +126,12 @@
     "justinrainbow/json-schema": {
         "version": "5.2.8"
     },
+    "markbaker/complex": {
+        "version": "1.4.7"
+    },
+    "markbaker/matrix": {
+        "version": "1.2.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -171,6 +177,9 @@
     "phenx/php-svg-lib": {
         "version": "v0.3.3"
     },
+    "php": {
+        "version": "7.2"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
@@ -182,6 +191,9 @@
     },
     "phpmd/phpmd": {
         "version": "2.6.1"
+    },
+    "phpoffice/phpspreadsheet": {
+        "version": "1.11.0"
     },
     "phpro/grumphp": {
         "version": "v0.15.2"
@@ -213,6 +225,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "roromix/spreadsheetbundle": {
+        "version": "v1.0.1"
+    },
     "sabberworm/php-css-parser": {
         "version": "8.3.0"
     },
@@ -233,6 +248,12 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "specshaper/encrypt-bundle": {
+        "version": "v1.1.1"
+    },
+    "specshaper/gdpr-bundle": {
+        "version": "v2.1.3"
     },
     "squizlabs/php_codesniffer": {
         "version": "3.0",

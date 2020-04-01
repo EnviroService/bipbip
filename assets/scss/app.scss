@@ -92,6 +92,16 @@ a{
     margin : 15px auto;
 }
 
+.secondary-title{
+    text-transform : uppercase;
+    font-size : 0.9rem;
+    font-weight: 500;
+    color : $fourth-color;
+    padding : 1%;
+    width : 70%;
+    margin-left: 20%;
+}
+
 /* HEADER NAV */
 header{
     .logo-bipbip{
@@ -240,27 +250,24 @@ header{
 
 /* FOOTER */
 footer {
-    li{
-        text-align : center;
-        margin : 10px;
-        font-size : 1rem;
-    }
-
-    .social-networks{
-        display : flex;
-        justify-content : center;
+    .social-networks {
+        display: flex;
+        justify-content: center;
         align-items: center;
-        margin : 10% 5% 30% 5%;
 
-        a{
-            text-align : center;
-            display : block;
-            margin : 0 2%;
+        a {
+            text-align: center;
+            display: block;
+            margin: 0 2%;
 
-            img{
-                width : 75%;
+            img {
+                width: 75%;
             }
         }
+    }
+
+    .links-footer{
+        background-color: $primary-color;
     }
 }
 

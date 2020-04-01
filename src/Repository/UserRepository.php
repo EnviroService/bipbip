@@ -10,6 +10,7 @@ use Doctrine\ORM\Query;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use \DateTime;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -61,5 +62,27 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('roles', '%"'.$role.'"%');
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findOldUsers(DateTime $date)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u')
+            ->where('u.signinDate < :date')
+            ->andWhere('u.signinDate != :oldDate')
+            ->setParameter('date', $date)
+            ->setParameter('oldDate', '1970-01-01');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findFutureOldUsers()
+    {
+        $olddate = new DateTime('-35 month');
+        $qb = $this->createQueryBuilder('u')
+            ->where('u.signinDate < :olddate')
+            ->setParameter('olddate', $olddate->format('Y-m-d H:i:s'));
+
+        $query = $qb->getQuery();
+        return $query->execute();
     }
 }

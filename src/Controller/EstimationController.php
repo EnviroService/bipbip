@@ -126,16 +126,19 @@ class EstimationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $estimation->setEstimationDate(new DateTime('now'))
-                       ->setIsCollected(false)
-                       ->setBrand($brand)
-                       ->setModel($model)
-                       ->setCapacity($capacity)
-                       ->setColor("all")
-                       ->setMaxPrice($maxPrice)
-                       ->setIsValidatedPayment(false)
-                       ->setIsValidatedCi(false)
-                       ->setImei('0');
+            $estimation
+                ->setEstimationDate(new DateTime('now'))
+                ->setIsCollected(false)
+                ->setBrand($brand)
+                ->setModel($model)
+                ->setCapacity($capacity)
+                ->setColor("all")
+                ->setMaxPrice($maxPrice)
+                ->setIsValidatedPayment(false)
+                ->setIsValidatedCi(false)
+                ->setImei('0')
+                ->setStatus(0);
+
 
             $estimated = $maxPrice;
 
@@ -235,15 +238,21 @@ class EstimationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+            $firstname = $user->getFirstname();
+            $this->addFlash('success', "Compte créé, bienvenue $firstname.");
 
-            $this->addFlash('success', 'Compte créé, choisis ta collecte');
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
+            $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
+
+            return $this->render("user/choiceEnvoi.html.twig", [
+                'estimation' => $estimation,
+                'user' => $user
+            ]);
         }
 
         return $this->render('registration/register.html.twig', [

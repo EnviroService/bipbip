@@ -101,6 +101,16 @@ class Estimations
      */
     private $imei;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $status;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Reporting", mappedBy="estimation", cascade={"persist", "remove"})
+     */
+    private $reporting;
+
 
     public function getId(): ?int
     {
@@ -307,6 +317,35 @@ class Estimations
     public function setImei(string $imei): self
     {
         $this->imei = $imei;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getReporting(): ?Reporting
+    {
+        return $this->reporting;
+    }
+
+    public function setReporting(Reporting $reporting): self
+    {
+        $this->reporting = $reporting;
+
+        // set the owning side of the relation if necessary
+        if ($reporting->getEstimation() !== $this) {
+            $reporting->setEstimation($this);
+        }
 
         return $this;
     }

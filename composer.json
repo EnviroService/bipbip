@@ -4,11 +4,18 @@
     "require": {
         "php": "^7.2",
         "ext-ctype": "*",
+        "ext-gd": "*",
         "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-soap": "*",
         "doctrine/annotations": "^1.8",
         "dompdf/dompdf": "^0.8.3",
         "phpmd/phpmd": "^2.6",
+        "roromix/spreadsheetbundle": "^1.0",
         "sensio/framework-extra-bundle": "^5.5",
+        "specshaper/encrypt-bundle": "^1.1",
+        "specshaper/gdpr-bundle": "^2.1",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
@@ -29,10 +36,7 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
-        "twig/extensions": "^1.5",
-        "ext-intl": "*",
-      "ext-json": "*",
-      "ext-gd": "*"
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "phpro/grumphp": "^0.15.2",

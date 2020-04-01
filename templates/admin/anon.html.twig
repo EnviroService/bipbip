@@ -1,0 +1,29 @@
+{% extends 'admin/index.html.twig' %}
+{# this twig allow to admin the anonymisation of old datas #}
+{% block title %}Nettoyage des données{% endblock %}
+
+{%  block body %}
+    <main class="container">
+        <h1 class="primary-title">Anonymisation des données</h1>
+        <div class="row mb-3">
+<p>Le RGPD nous demande de ne pas conserver les données d'utilisateurs non connectés depuis plus de 3 ans. Cette page permet de gérer les utilisateurs concernés.</p>
+        </div>
+        {% if empty == 0 %}
+        <div class="row mb-3">
+            <p>Utilisateurs non connectés depuis plus de 3 ans</p>
+        </div>
+            {% for user in users %}
+                - {{ user.firstname }} {{ user.lastname }}, {{ user.city }},
+                inscrit le {{ user.signupDate|date('d/m/Y') }}<br>
+            {%  endfor %}
+           <a class="primary-button" href="{{ path('users_anon', {anon:1}) }}">Anonymiser ces utilisateurs</a>
+        {% elseif empty == 1 %}
+            <p class="text-success">Il n'y a pas actuellement d'utilisateur concerné.</p>
+            <a class="secondary-button" href="{{ path('estimations_index') }}">Retour aux estimations</a>
+        {% else %}
+            <a class="secondary-button" href="{{ path('estimations_index') }}">Retour aux estimations</a>
+        {% endif %}
+    </main>
+{%  endblock %}
+
+{% block footer %}{%  endblock %}

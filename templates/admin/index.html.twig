@@ -33,11 +33,15 @@
         </a>
     </div>
 </header>
-{#
+
 <div id="nameSearch">
+    <label for="search_nameSearch">Rechercher</label>
     <input type="text" id="search_nameSearch">
+    <div class="resultSearch">
+
+    </div>
 </div>
-#}
+
 
 {% if app.user.roles[0] == "ROLE_ADMIN" %}
     <nav class="menu-admin mt-2">
@@ -63,6 +67,7 @@
                         <a href="{{ path('collects_index') }}">Collectes</a>
                         <a href="{{ path('matrice_upload') }}">Matrice</a>
                         <a href="{{ path('admin_faq_index') }}">FAQ</a>
+                        <a href="{{ path('users_anon') }}">Anonymisation</a>
                     </div>
 
                 </div>

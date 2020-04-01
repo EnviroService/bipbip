@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if user %}
+        <div class="container col-10 d-flex flex-wrap justify-content-between mt-5">
+            <div class="card col-5 mt-2 mb-2 border-dark">
+                <img src="/images/etiq_chrono.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        GENERE UNE ETIQUETTE
+                    </h5>
+                    <p class="card-text text-center">
+                        Désormais tu peux imprimer ton étiquette chronospost et la coller sur ton colis, aucun frais ne t'est demandé ! <br>
+                        Une fenêtre s'ouvrira, tu pourras l'imprimer de suite et un mail te sera envoyé contenant l'étiquette,
+                        si tu souhaites l'imprimer plus tard.
+                    </p>
+                    <a class="btn btn-info" href="{{ path('api_chronopost_ae', {'id': user.id, 'estimation': estimation, 'status': 2}) }}">
+                        Générer mon étiquette
+                    </a><br>
+                </div>
+            </div>
+            <div class="card col-5 mt-2 mb-2 border-dark">
+                <img src="/images/tel_chrono.jpeg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        RECEVOIR UN CODE
+                    </h5>
+                    <p class="card-text text-center">
+                        Ou alors, tu préféres recevoir un code sur ton tel, par message, et déposer ton colis avec ce code, l'étiquette
+                        sera générée lors de ton passage au bureau de poste.
+                    </p>
+                    <a class="btn btn-info" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation, 'status': 2}) }}">
+                        Recevoir mon code
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="jumbotron">
+            <a class="btn btn-info m-auto" href="{{ path('app_login') }}">Reconnecte toi</a>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

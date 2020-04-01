@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ContactType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -33,7 +34,7 @@ class ContactController extends AbstractController
             $emailBip = (new Email())
                 ->from(new Address($contactFormData->getEmail(), $contactFormData
                     ->getFirstname() . ' ' . $contactFormData->getLastname()))
-                ->to(new Address('jyaire@gmail.com', 'BipBip Mobile'))
+                ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
                 ->replyTo($contactFormData->getEmail())
                 ->subject($contactFormData->getSubject())
                 ->html($this->renderView(
@@ -43,10 +44,10 @@ class ContactController extends AbstractController
 
             // send a copie to sender
             $emailExp = (new Email())
-                ->from(new Address('nepasrepondre@bipbipmobile.com', 'BipBip Mobile'))
+                ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
                 ->to(new Address($contactFormData->getEmail(), $contactFormData
                         ->getFirstname() . ' ' . $contactFormData->getLastname()))
-                ->replyTo('nepasrepondre@bipbipmobile.com')
+                ->replyTo('github-test@bipbip-mobile.fr')
                 ->subject('Votre message envoyé à BipBip Mobile')
                 ->html($this->renderView(
                     'contact/sentmailexp.html.twig',

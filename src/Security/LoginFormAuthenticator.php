@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -90,7 +91,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
-            return new RedirectResponse($this->urlGenerator->generate('show_collect'));
+            return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 
     protected function getLoginUrl()

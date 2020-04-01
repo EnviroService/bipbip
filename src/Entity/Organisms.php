@@ -55,7 +55,10 @@ class Organisms
     private $organismPostcode;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Regex(pattern="/^\(0\)[0-9]*$/",
+     *     match=false,
+     *     message="Seuls 10 chiffres sont acceptés")
      */
     private $organismPhone;
 
@@ -169,12 +172,12 @@ class Organisms
         return $this;
     }
 
-    public function getOrganismPhone(): ?int
+    public function getOrganismPhone(): ?string
     {
         return $this->organismPhone;
     }
 
-    public function setOrganismPhone(int $organismPhone): self
+    public function setOrganismPhone(string $organismPhone): self
     {
         $this->organismPhone = $organismPhone;
 

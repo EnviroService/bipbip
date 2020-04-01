@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Estimations;
+use App\Entity\Organisms;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -59,12 +60,32 @@ class BdcController extends AbstractController
   
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
+     * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return RedirectResponse
      */
     // route to generate a PDF from estimation
     public function showPDF(Estimations $estimation)
     {
+        // if collector, verify that estimation belongs to collector's organism
+        // unless redirect him to estimations_index
+        $userRoles = $this->getUser()->getRoles();
+        foreach ($userRoles as $role) {
+            if ($role == "ROLE_COLLECTOR") {
+                $organismUser = $this->getUser()->getOrganism();
+                if ($estimation->getUser() !== null) {
+                    $organismCollector = $estimation->getUser()->getOrganism();
+                } else {
+                    $organismCollector = new Organisms();
+                }
+                if ($organismUser != $organismCollector or $organismUser == null) {
+                    // Prepare flash message and redirect
+                    $message = "Ce bon de cession n'appartient pas à votre organisme";
+                    $this->addFlash('danger', $message);
+                    return $this->redirectToRoute('estimations_index');
+                }
+            }
+        }
         // create barcode image
         $imei = $estimation->getImei();
         $text = "*" . $imei . "*";
