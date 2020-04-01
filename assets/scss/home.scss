@@ -1,46 +1,42 @@
 @import "vars";
 
 .home{
-    h1{
-        font-size : 1.3rem;
-        margin : 3% auto;
-        text-align : center;
-        text-transform : uppercase;
-        line-height: 1.5em;
-        width : 80%;
-        @media screen and (min-width: 740px) {
-            width : 50%;
-            font-size: 1.3rem;
-            margin-top : 0;
-        }
-        @media screen and (min-width: 1025px) {
-            width : 50%;
-            font-size: 1.3rem;
-        }
+   .header {
+       display: flex;
+       img {
+           width: 40%;
+           margin: -148px 0 10px;
+           @media screen and (min-width: 1025px){
+           }
+       }
+       h1{
+           font-size : 1.3rem;
+           margin : 3% auto;
+           text-align : center;
+           text-transform : uppercase;
+           line-height: 1.5em;
+           width : 80%;
+           @media screen and (min-width: 740px) {
+               width : 50%;
+               font-size: 1.3rem;
+               margin-top : 0;
+           }
+           @media screen and (min-width: 1025px) {
+               width : 30%;
+               font-size: 2.3rem;
+               margin: 10px 5% 10px 15%;
+           }
 
-        .orange-font{
-            color : $primary-color;
-            font-weight : bold;
-        }
+           img {
+               width: 25%;
+           }
 
-        .blue-font{
-            color : $secondary-color;
-            font-weight : lighter;
-
-            b{
-                font-weight : bold;
-            }
-        }
-    }
-
-    /* CAROUSEL */
-    #carouselExampleFade {
-        @media screen and (min-width: 740px) {
-            width : 50%;
-            height : 50%;
-            margin : auto;
-        }
-    }
+           .blue-font{
+               color : $secondary-color;
+               font-weight : bold;
+           }
+       }
+   }
 
     /* STEPS */
     .steps {
@@ -48,14 +44,20 @@
         flex-direction : column;
         justify-content : flex-start;
         align-items : center;
+        width : 60%;
+        margin : 45px auto;
+
         @media screen and (min-width: 740px){
             display : flex;
             flex-direction : row;
             justify-content:  space-around;
             align-items: flex-start;
-            width : 60%;
-            margin : auto;
         }
+        @media screen and (min-width: 1025px){
+            margin : auto;
+
+        }
+
 
         article{
             width : 300px;
@@ -64,44 +66,39 @@
             }
 
             .step{
-                width : 300px;
-                height : 300px;
+
+                height : 188px;
+                width: 90%;
                 max-width: 100%;
-                margin : 0 auto;
+                margin : 10px;
                 padding : 12% 0;
                 display : flex;
                 flex-flow : column wrap;
                 justify-content: space-around;
                 align-items: center;
                 position: relative;
+                border: 1px solid black;
                 @media screen and (min-width: 740px){
                     width : 250px;
                     height : 250px;
                 }
                 @media screen and (min-width: 1025px){
-                    width : 270px;
-                    height : 270px;
+                    width : 297px;
+                    height : 298px;
                 }
 
                 .background-pic{
                     position: absolute;
-                    width: 100%;
-                    height: 100%;
+                    width: 160%;
                     top: 0;
-                    left: 0;
+                    left: -82px;
                 }
 
-                .step-logo{
-                    width : 18%;
-                    margin-right : 10px;
-                }
+
 
                 div{
-                    background-color : $third-color;
-                    -webkit-transform:skew(-30deg);
-                    -moz-transform:skew(-30deg);
-                    -o-transform:skew(-30deg);
-                    transform:skew(-30deg);
+                    background-color : $secondary-color;
+                    border-radius: 25px;
                     margin-right : 10px;
                     margin-bottom : 8px;
                     width : 150px;
@@ -110,7 +107,9 @@
                         width : 130px;
                     }
                     @media screen and (min-width: 1025px) {
-                        width : 180px;
+                        position: absolute;
+                        top: 71%;
+                        width : 150px;
                         margin-bottom : 15px;
                     }
 
@@ -121,12 +120,12 @@
                         margin : 0;
                         padding : 8px 15px;
                         text-align : center;
-                        transform:skew(30deg);
+
                         @media screen and (min-width: 740px) {
                             font-size: 1rem;
                         }
                         @media screen and (min-width: 1025px) {
-                            padding : 10px 15px;
+                            padding : 5px 15px;
                             font-size : 1.1rem;
                         }
                     }
@@ -146,53 +145,29 @@
                 }
             }
 
-            #links-apps{
-                display : flex;
-                justify-content : center;
-
-                img{
-                    width : 70%;
-                    margin : 7% 4% 3% 4%;
-                }
-            }
-
-            p{
-                width : 50%;
-                margin : 3% auto;
-                text-align : center;
-                font-size : 1rem;
-
-                a{
-                    text-decoration: underline;
-                }
-            }
-
-            #step2{
-                div{
-                    background-color: $primary-color;
-                }
-            }
-
-            ul{
-                text-align: center;
-                line-height: 1.5em;
-            }
-
-            p{
-                a{
-                    text-decoration: underline;
-                    text-align: center;
+            #step1 {
+                .step-logo{
+                    position: absolute;
+                    margin-top : 15px;
+                    top: -129%;
+                    left: -99%;
+                    width: 300%;
+                    @media screen and (min-width: 1025px) {
+                        top: -108%
+                    }
                 }
             }
 
             #step3{
                 .step-logo{
-                    width : 25%;
+                    position: absolute;
                     margin-top : 15px;
-                }
-
-                div{
-                    background-color: $secondary-color;
+                    top: -111%;
+                    left: -99%;
+                    width: 300%;
+                    @media screen and (min-width: 1025px) {
+                        top: -103%
+                    }
                 }
             }
         }
@@ -202,20 +177,75 @@
     .bail-bipbip{
         margin : 80px auto;
 
-        a{
-            display : block;
-            text-align : center;
-            margin : 5%;
-            text-decoration: underline;
-            @media screen and (min-width: 740px) {
-                font-size: 1.1rem;
-                margin : 3%;
+        .we-are {
+            position: relative;
+            display: flex;
+            img{
+                width: 50%;
+                margin:-16% -3% 0 7%;
+                @media screen and (min-width: 1025px){
+                    width: 40%;
+                }
             }
 
-            &:hover{
-                color : $primary-color;
+            .planet {
+                margin: -22% -1% 0 9%;
+            }
+
+            #p-planet {
+                margin-top: -5%;
+                margin-left: -9%
+            }
+
+            #bul-planet{
+                top: 9%;
+                @media screen and (min-width: 1025px){
+                    top: 36%;
+                }
+            }
+
+            p {
+                width: 30%;
+                margin-left: -11%;
+                font-size: 1rem;
+                @media screen and (min-width: 1025px){
+                    font-size: 1.2rem;
+                    margin-left: -5%;
+                    width: 50%;
+                }
+            }
+
+            .buble-text {
+                position: absolute;
+                bottom: 60%;
+                right: 50%;
+                top: 25%;
+                background: $secondary-color;
+                color: #FFFFFF;
+                font-weight: bold;
+                border-radius: 10px;
+                width: 8%;
+                height: 37px;
+                padding: 8px 2px;
+                text-align: center;
+                @media screen and (min-width: 1025px){
+                    width: 14%;
+                    top: 44%;
+                    right: 33%;
+                }
+            }
+            .buble-text::after {
+                content:"";
+                border-right: 6px solid transparent;
+                border-left: 14px solid transparent;
+                border-top: 27px solid $secondary-color;
+                position: absolute;
+                top: 52%;
+                right: 2%;
             }
         }
+
+
     }
 
     /* PARTNERS */

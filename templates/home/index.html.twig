@@ -9,39 +9,42 @@
 
 {% block body %}
     <main class="home">
-        <h1><span class="orange-font">Bipbip</span> <span class="blue-font">rachète ton tél et en fait</span> <span class="orange-font">le 1er mobile</span> <span class="blue-font"><b>recyclé et connecté aux</b></span> <span class="orange-font">bons plans de ta région</span></h1>
+       <div class="header">
+           <h1>
+               <span class="blue-font">BipBip rachète ton tél et en fait</span> le 1er mobile recyclé et connecté
+               <span class="blue-font">aux bons plans de ta région</span>
+           </h1>
 
-        {{ include('/home/slide.html.twig') }}
+           <img src="/images/perso-hipster.jpg" alt="">
 
-        <h2 class="primary-title">Cash - Rapide - Rentable</h2>
+       </div>
+
         <section class="steps">
             <article>
                 <div id="step1" class="step">
-                    <img class="background-pic" src="/images/etape1.png" alt="c'est l'étape un ! ">
-                    <img src="/images/loupe.png" alt="La loupe !!" class="step-logo">
+                    <img src="/images/estime.png" alt="La bulle message" class="step-logo">
                     <div>
-                        <h3>Etape 1</h3>
+                        <h3>Estime ton tél</h3>
                     </div>
-                    <p>Découvre la valeur de ton tél</p>
                 </div>
+                {#
                 <p class="third-button">Télécharge l'appli Bipbip</p>
                 <div id="links-apps">
                     <a href="#"><img src="/images/apple-store-mini.png" class="link-app"></a>
                     <a href="#"><img src="/images/google-play-mini.png" class="link-app"></a>
                 </div>
-                <p>Si ton tél est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p>
+                <p>Si ton tél est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p> #}
             </article>
 
             <article>
-                <div id="step2" class="step">
-                    <img class="background-pic" src="/images/etape2.png" alt="c'est l'étape deux ! ">
-                    <img src="/images/position-logo.png" class="step-logo">
+                <div id="step1" class="step">
+                    <img src="/images/vends.png" class="step-logo">
                     <div>
-                        <h3>Etape 2</h3>
+                        <h3>Vends ton tél</h3>
                     </div>
-                    <p>Prends RDV et rejoins-nous</p>
+                    {#<p>Prends RDV et rejoins-nous</p>#}
                 </div>
-                <a href="#" title="Lien vers les points de collecte" class="primary-button">Trouve les points de collecte</a>
+               {# <a href="#" title="Lien vers les points de collecte" class="primary-button">Trouve les points de collecte</a>
                 <ul>
                     <li>Dans ton école</li>
                     <li>Dans ton entreprise</li>
@@ -49,23 +52,22 @@
                     <li>Au bipbip bus</li>
                     <li>Tu en veux plus...</li>
                 </ul>
-                <p><a href="{{ path('add_message') }}" title="lien vers la page contact">Organise une collecte</a></p>
+                <p><a href="{{ path('add_message') }}" title="lien vers la page contact">Organise une collecte</a></p>#}
             </article>
 
             <article>
                 <div id="step3" class="step">
-                    <img class="background-pic" src="/images/etape3.png" alt="c'est l'étape trois ! ">
-                    <img src="/images/pumpkin.png" class="step-logo">
+                    <img src="/images/achète.png" class="step-logo">
                     <div>
-                        <h3>Etape 3</h3>
+                        <h3>Achète un tél</h3>
                     </div>
-                    <p>Reçois ton argent instantanément</p>
+                   {# <p>Reçois ton argent instantanément</p>#}
                 </div>
-                <p class="secondary-button">Télécharge l'appli Pumpkin</p>
+              {#  <p class="secondary-button">Télécharge l'appli Pumpkin</p>
                 <div id="links-apps">
                     <a target=_blank href="https://apps.apple.com/fr/app/pumpkin-remboursement-facile/id904976887"><img src="/images/apple-store-mini.png" class="link-app"></a>
                     <a target=_blank href="https://play.google.com/store/apps/details?id=com.pumpkin.pumpkin&hl=fr"><img src="/images/google-play-mini.png" class="link-app"></a>
-                </div>
+                </div>#}
             </article>
         </section>
 {#
@@ -74,7 +76,7 @@
             <a href="#">Teste un bipbip mobile</a>
             <a href="#">Les bons plans de ta région</a>
         </section>
-#}
+
         <section class="home-partner">
             <h2 class="primary-title">Ils nous font confiance</h2>
             <h3>+ de 15 partenaires nous font confiance</h3>
@@ -90,6 +92,31 @@
             </article>
 
             <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
+        </section>
+        #}
+
+        <section class="bail-bipbip">
+           <div class="we-are">
+               <img src="/images/qui-sommes-nous.png" alt="Qui sommes-nous">
+               <p>BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
+               Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en faissant gagner de l'argent.
+               </p>
+
+               <div class="buble-text">
+                   En savoir plus?
+               </div>
+           </div>
+
+
+            <div class="we-are">
+                <img class="planet" src="/images/ta-planète.png" alt="La planète">
+                <p id="p-planet">BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
+                    Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en faissant gagner de l'argent.
+                </p>
+                <div id="bul-planet" class="buble-text">
+                    En savoir plus?
+                </div>
+            </div>
         </section>
 
         <section class="contact">
