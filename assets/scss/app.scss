@@ -78,8 +78,10 @@ a{
 
 .primary-title{
     text-transform : uppercase;
+    font-family: 'century-gothic', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     font-size : 1rem;
-    font-weight: 500;
     color : $fourth-color;
     text-align : center;
     border-bottom : 1px $fourth-color solid;
@@ -127,15 +129,6 @@ header{
         left: 50%;
         transform: translate(-50%, -50%);
 
-        .close-button{
-            width : 30%;
-            max-width : 30px;
-            position : absolute;
-            top : 5%;
-            right : 6%;
-            cursor : pointer;
-        }
-
         .container-global {
             display: flex;
             flex-direction: initial;
@@ -155,6 +148,15 @@ header{
             .list-in-menu{
                 width: 50%;
                 margin-left: 1%;
+
+                .close-button{
+                    width : 30%;
+                    max-width : 30px;
+                    position : absolute;
+                    top : 5%;
+                    right : 6%;
+                    cursor : pointer;
+                }
 
                 ul{
                     margin : 80px auto 30px auto;
@@ -181,7 +183,7 @@ header{
         
 
                             a{
-                                color : $fourth-color;
+                                color : black;
                                 text-align: left;
                             }
                     }
@@ -240,9 +242,6 @@ header{
     }
 
 
-
-    }
-
     #menu.displayed{
         display : block;
     }
@@ -262,7 +261,7 @@ header{
             min-width : 70px;
             height : 8vw;
             min-height: 70px;
-            background-color : $primary-color;
+            background-color : grey;
             position : fixed;
             right : 5vw;
             bottom : 5vh;
@@ -306,7 +305,7 @@ header{
         }
     }
 
-
+}
 /* FOOTER */
 footer {
     .social-networks {
@@ -386,6 +385,14 @@ footer {
     .connect{
         color : $primary-color;
         font-weight: 500;
+    }
+
+    .close{
+        position: absolute;
+    }
+    .commu{
+        position: absolute;
+        max-width: 50px;
     }
 }
 
