@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil BipBip{% endblock %}
+{% block title %}BipBip - Ton Green Mobile{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,9 +14,7 @@
                <span class="blue-font">BipBip rachète ton tél et en fait</span> le 1er mobile recyclé et connecté
                <span class="blue-font">aux bons plans de ta région</span>
            </h1>
-
-           <img src="/images/perso-hipster.jpg" alt="">
-
+           <img src="/images/perso-hipster.jpg" alt="BipBip rachète ton tél">
        </div>
 
         <section class="steps">
@@ -27,32 +25,17 @@
                         <h3>Estime ton tél</h3>
                     </div>
                 </div>
-                {#
-                <p class="third-button">Télécharge l'appli Bipbip</p>
-                <div id="links-apps">
-                    <a href="#"><img src="/images/apple-store-mini.png" class="link-app"></a>
-                    <a href="#"><img src="/images/google-play-mini.png" class="link-app"></a>
-                </div>
-                <p>Si ton tél est cassé, <a href="{{ path("new_estimation") }}" title="Lien vers l'estimation en ligne">fais une estimation en ligne</a></p> #}
             </article>
 
             <article>
                 <div id="step1" class="step">
-                    <img src="/images/vends.png" class="step-logo">
+                    <img src="{{ asset('images/vends.png') }}" class="step-logo" alt="Vends ton tél">
                     <div>
-                        <h3>Vends ton tél</h3>
+                        <a href="{{ path('boutique') }}">
+                            <h3>Vends ton tél</h3>
+                        </a>
                     </div>
-                    {#<p>Prends RDV et rejoins-nous</p>#}
                 </div>
-               {# <a href="#" title="Lien vers les points de collecte" class="primary-button">Trouve les points de collecte</a>
-                <ul>
-                    <li>Dans ton école</li>
-                    <li>Dans ton entreprise</li>
-                    <li>Dans ta ville</li>
-                    <li>Au bipbip bus</li>
-                    <li>Tu en veux plus...</li>
-                </ul>
-                <p><a href="{{ path('add_message') }}" title="lien vers la page contact">Organise une collecte</a></p>#}
             </article>
 
             <article>
@@ -61,57 +44,27 @@
                     <div>
                         <h3>Achète un tél</h3>
                     </div>
-                   {# <p>Reçois ton argent instantanément</p>#}
                 </div>
-              {#  <p class="secondary-button">Télécharge l'appli Pumpkin</p>
-                <div id="links-apps">
-                    <a target=_blank href="https://apps.apple.com/fr/app/pumpkin-remboursement-facile/id904976887"><img src="/images/apple-store-mini.png" class="link-app"></a>
-                    <a target=_blank href="https://play.google.com/store/apps/details?id=com.pumpkin.pumpkin&hl=fr"><img src="/images/google-play-mini.png" class="link-app"></a>
-                </div>#}
             </article>
         </section>
-{#
-        <section class="bail-bipbip">
-            <h2 class="primary-title">Le bon bail Bipbip</h2>
-            <a href="#">Teste un bipbip mobile</a>
-            <a href="#">Les bons plans de ta région</a>
-        </section>
-
-        <section class="home-partner">
-            <h2 class="primary-title">Ils nous font confiance</h2>
-            <h3>+ de 15 partenaires nous font confiance</h3>
-
-
-
-            <article>
-                {% for organism in organisms %}
-                <a href="{{ path('organisms_show', {'id' : organism.id}) }}">
-                    <img src="{{asset('uploads/Logos/Logos/')}}{{organism.logo}}" alt="{{organism.organismName}}"></a>
-                {% endfor %}
-
-            </article>
-
-            <a href="{{ path('organisms_index') }}" title="Lien vers la page partenaire" class="primary-button">Rejoindre nos partenaires</a>
-        </section>
-        #}
 
         <section class="bail-bipbip">
            <div class="we-are">
                <img src="/images/qui-sommes-nous.png" alt="Qui sommes-nous">
                <p>BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
-               Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en faissant gagner de l'argent.
+               Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en te faisant gagner de l'argent.
                </p>
-
                <div class="buble-text">
                    En savoir plus?
                </div>
            </div>
 
-
             <div class="we-are">
                 <img class="planet" src="/images/ta-planète.png" alt="La planète">
-                <p id="p-planet">BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
-                    Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en faissant gagner de l'argent.
+                <p id="p-planet">BipBip a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler
+                    tous les téléphones usagés ou unitilisés à l'aide des associations étudiantes qui nous accueillent et nous
+                    accompagnent en ouvrant des points de collecte. C'est l'occaion pour nos partenaires de collecte
+                    et partenaires locaux de se faire connapitre davantage dans notre région.
                 </p>
                 <div id="bul-planet" class="buble-text">
                     En savoir plus?
@@ -119,10 +72,46 @@
             </div>
         </section>
 
-        <section class="contact">
-            <h2 class="primary-title">Contact</h2>
-
-            <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte-nous</a>
+        <section class="combien-vaut">
+            <h2 class="primary-title">Combien vaut ton mobile ?</h2>
+            <div class="row justify-content-center p-2">
+                <div class="col-8 text-center">
+                    <p>A l'aide de l'application <span class="font-weight-bold">BipBip Test</span>,<br>
+                        ton mobile sera évalué avec expertise pour donner le meilleur de lui-même</p>
+                </div>
+            </div>
+            <div class="row justify-content-center p-5">
+                <div class="col-3 text-center">
+                    <a href="{{ path('home') }}" class="primary-button">
+                        Je télécharge l'appli
+                    </a>
+                </div>
+                <div class="col-3 text-center">
+                    <a href="{{ path('estimations_new') }}" class="primary-button">
+                        Estimation en ligne
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-center m-0 p-0 pt-5 pb-5 bg-primary-color">
+                <div class="col-5 text-center">
+                       image
+                </div>
+                <div class="col-5 text-center">
+                        1520 tél collectés
+                </div>
+            </div>
         </section>
+        <h2 class="primary-title">T'en veux plus ?</h2>
+        <div class="social-networks">
+            <a href="#" target="_blank" title="Page Facebook">
+                <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+            </a>
+            <a href="#" target="_blank" title="Instagram">
+                <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+            </a>
+            <a href="#" target="_blank" title="LinkedIn">
+                <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+            </a>
+        </div>
     </main>
 {% endblock %}

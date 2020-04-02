@@ -1,28 +1,25 @@
 @import "vars";
 @import '~bootstrap/scss/bootstrap';
+@font-face
+{
+    font-family: Avenir Next;
+    src: url('AvenirNextLTPro-Regular.otf') format('opentype');
+}
 
 /* Boutons */
 
 @mixin button($color){
+    font-family: $secondary-font, sans-serif;
     background-color : $color;
-    border-radius : 5px;
-    text-decoration : none;
-    font-size : 1.1rem;
-    color : white;
-    width : 60%;
-    max-width: 300px;
-    padding : 15px 10px;
-    max-height: 70px;
-    display : block;
-    margin : 2% auto 5% auto;
     text-align : center;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
+    vertical-align: center;
+    color : white;
+    font-size : 1.1rem;
+    font-weight: bold;
+    width : 150px;
+    border-radius: 25px;
+    margin : 0;
+    padding : 8px 15px;
 
     &:hover{
         -webkit-transform: scale(1.1);
@@ -54,9 +51,13 @@
 
 /* GENERAL */
 body{
-    font-family: 'co-headline', Arial sans-serif;
+    font-family: $primary-font, sans-serif;
     color : black;
     font-size : 1rem;
+}
+
+.bg-primary-color{
+    background-color: $secondary-color;
 }
 
 main{
@@ -77,19 +78,19 @@ a{
 }
 
 .primary-title{
-    text-transform : uppercase;
-    font-size : 1rem;
-    font-weight: 500;
-    color : $fourth-color;
+    font-family: $primary-font, sans-serif;
+    padding:20px;
+    font-size : 1.7rem;
+    font-stretch: expanded;
+    font-weight: 900;
     text-align : center;
-    border-bottom : 1px $fourth-color solid;
-    padding : 1%;
-    width : 70%;
-    min-width: 200px;
-    max-width : 400px;
-    min-height: 40px;
-    max-height : 60px;
-    margin : 15px auto;
+    margin : auto;
+    @media screen and (min-width: 740px) {
+        font-size: 1.8rem;
+    }
+    @media screen and (min-width: 1025px) {
+        font-size : 2.1rem;
+    }
 }
 
 .secondary-title{
@@ -106,10 +107,10 @@ a{
 header{
     .logo-bipbip{
         display : block;
-        margin : -13vw auto;
+        margin : -18vw auto;
 
         img{
-            width : 48%;
+            width : 75%;
         }
     }
 
@@ -247,6 +248,7 @@ header{
 }
 
 /* FOOTER */
+
 footer {
     .social-networks {
         display: flex;
@@ -265,16 +267,13 @@ footer {
     }
 
     .links-footer{
-        background-color: $primary-color;
+        background-color: $third-color;
     }
 }
 
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 740px) {
-    .primary-title{
-        font-size : 1.1rem;
-    }
 
     header {
         .circle-buttons {
@@ -297,12 +296,6 @@ footer {
                     font-size: 1.1rem;
                 }
             }
-        }
-    }
-
-    footer{
-        .social-networks{
-            margin: 5% auto;
         }
     }
 }
