@@ -16,10 +16,19 @@
     color : white;
     font-size : 1.1rem;
     font-weight: bold;
-    width : 150px;
+    min-width : 150px;
+    max-width: 200px;
     border-radius: 25px;
     margin : 0;
-    padding : 8px 15px;
+    padding : 15px 15px;
+    display:block;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
 
     &:hover{
         -webkit-transform: scale(1.1);
@@ -54,9 +63,11 @@ body{
     font-family: $primary-font, sans-serif;
     color : black;
     font-size : 1rem;
+    background-image: url("../images/fond.png");
+    background-repeat: repeat;
 }
 
-.bg-primary-color{
+.bg-secondary-color{
     background-color: $secondary-color;
 }
 
@@ -89,7 +100,7 @@ a{
         font-size: 1.8rem;
     }
     @media screen and (min-width: 1025px) {
-        font-size : 2.1rem;
+        font-size : 2.3rem;
     }
 }
 
@@ -107,10 +118,10 @@ a{
 header{
     .logo-bipbip{
         display : block;
-        margin : -18vw auto;
+        //margin : -18vw auto;
 
         img{
-            width : 75%;
+            width : 50%
         }
     }
 
@@ -250,24 +261,16 @@ header{
 /* FOOTER */
 
 footer {
-    .social-networks {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        a {
-            text-align: center;
-            display: block;
-            margin: 0 2%;
-
-            img {
-                width: 75%;
-            }
-        }
-    }
 
     .links-footer{
         background-color: $third-color;
+        color: white;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+
+        a{
+            color: white;
+        }
     }
 }
 

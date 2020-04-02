@@ -10,19 +10,21 @@
 {% block body %}
     <main class="home">
        <div class="header">
-           <h1>
+           <div class="row pt-3">
+               <h1>
                <span class="blue-font">BipBip rachète ton tél et en fait</span> le 1er mobile recyclé et connecté
                <span class="blue-font">aux bons plans de ta région</span>
-           </h1>
-           <img src="/images/perso-hipster.jpg" alt="BipBip rachète ton tél">
+               </h1>
+           </div>
+           <img src="{{ asset('images/perso-bipbip.png') }}" alt="BipBip rachète ton tél">
        </div>
 
         <section class="steps">
             <article>
                 <div id="step1" class="step">
-                    <img src="/images/estime.png" alt="La bulle message" class="step-logo">
+                    <img src="{{ asset('images/estime.png') }}" alt="La bulle message" class="step-logo">
                     <div>
-                        <h3>Estime ton tél</h3>
+                        <a href="{{ path('estimations_new') }}" class="primary-button">Estime ton tél</a>
                     </div>
                 </div>
             </article>
@@ -31,18 +33,16 @@
                 <div id="step1" class="step">
                     <img src="{{ asset('images/vends.png') }}" class="step-logo" alt="Vends ton tél">
                     <div>
-                        <a href="{{ path('boutique') }}">
-                            <h3>Vends ton tél</h3>
-                        </a>
+                            <a href="{{ path('estimations_new') }}" class="primary-button">Vends ton tél</a>
                     </div>
                 </div>
             </article>
 
             <article>
                 <div id="step3" class="step">
-                    <img src="/images/achète.png" class="step-logo">
+                    <img src="{{ asset('images/achete.png') }}" class="step-logo">
                     <div>
-                        <h3>Achète un tél</h3>
+                        <a href="{{ path('boutique') }}" class="primary-button">Achète un tel</a>
                     </div>
                 </div>
             </article>
@@ -76,7 +76,7 @@
             <h2 class="primary-title">Combien vaut ton mobile ?</h2>
             <div class="row justify-content-center p-2">
                 <div class="col-8 text-center">
-                    <p>A l'aide de l'application <span class="font-weight-bold">BipBip Test</span>,<br>
+                    <p class="explain-text">A l'aide de l'application <span class="font-weight-bold">BipBip Test</span>,<br>
                         ton mobile sera évalué avec expertise pour donner le meilleur de lui-même</p>
                 </div>
             </div>
@@ -92,26 +92,97 @@
                     </a>
                 </div>
             </div>
-            <div class="row justify-content-center m-0 p-0 pt-5 pb-5 bg-primary-color">
-                <div class="col-5 text-center">
-                       image
+            <div class="row justify-content-center m-0 p-0 pt-5 pb-5 bg-secondary-color">
+                <div class="col-3 text-center">
+                    <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" class="img-phone">
                 </div>
-                <div class="col-5 text-center">
-                        1520 tél collectés
+                <div class="col-3 text-center">
+                    <p class="recolted-text pt-5">1520 tél collectés</p>
                 </div>
             </div>
         </section>
-        <h2 class="primary-title">T'en veux plus ?</h2>
-        <div class="social-networks">
-            <a href="#" target="_blank" title="Page Facebook">
-                <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
-            </a>
-            <a href="#" target="_blank" title="Instagram">
-                <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
-            </a>
-            <a href="#" target="_blank" title="LinkedIn">
-                <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
-            </a>
-        </div>
+
+        <section class="comment-marche">
+            <h2 class="primary-title">Comment ça marche ?</h2>
+            <div class="row align-items-center mt-2">
+                <div class="col-2 text-center">
+                    <img src="{{ asset('images/1.png') }}" alt="1">
+                </div>
+                <div class="col-10 p-3 pr-5 border-bottom-color">
+                    <p class="h3">Teste ton téléphone sur
+                        <a href="{{ path('new_estimation') }}">
+                            <span class="explain-text-color">notre site</span>
+                        </a>
+                        ou sur notre
+                        <a href="{{ path('home') }}">
+                            <span class="explain-text-color">appli</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-2 text-center">
+                    <img src="{{ asset('images/2.png') }}" alt="2">
+                </div>
+                <div class="col-10 p-3 pr-5 border-bottom-color">
+                    <p class="h3">Après la création de ton compte <span class="explain-text-color">
+                            choisis un point de collecte</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-2 text-center">
+                    <img src="{{ asset('images/3.png') }}" alt="3">
+                </div>
+                <div class="col-10 p-3 pr-5 border-bottom-color">
+                    <p class="h3">Présente-toi au point de collecte muni de ta  <span class="explain-text-color">
+                            pièce d'identité</span> et de ton smartphone avec l'appli pumpkin
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-2 text-center">
+                    <img src="{{ asset('images/4.png') }}" alt="4">
+                </div>
+                <div class="col-10 p-3 pr-5 border-bottom-color">
+                    <p class="h3">Une fois l'expertise faite, tu recevras instantanément ton argent et ton bon de cession
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-3">
+                <div class="col-3 text-center">
+                    <img src="{{ asset('images/coche.png') }}" alt="4">
+                </div>
+                <div class="col-6 p-3">
+                    <p class="h3">
+                        Tu as gagné de l'argent et fait <span class="explain-text-color">une bonne action pour ta planète !</span>
+                    </p>
+                </div>
+                <div class="col-3 text-center">
+                    <img src="{{ asset('images/planete.png') }}" alt="4">
+                </div>
+            </div>
+        </section>
+
+        <section class="social-networks">
+        <h2 class="primary-title mt-4">Tu en veux plus ?</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-2">
+                    <a href="#" target="_blank" title="Page Facebook">
+                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" target="_blank" title="Instagram">
+                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a href="#" target="_blank" title="LinkedIn">
+                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 {% endblock %}

@@ -7,31 +7,34 @@
    .header {
        display: flex;
        img {
-           width: 40%;
-           margin: -148px 0 10px;
-           @media screen and (min-width: 1025px){
+           height: 150px;
+           margin: -50px 0 50px;
+           @media screen and (min-width: 740px) {
+               height: 250px;
+               margin: -100px 0 50px;
+           }
+           @media screen and (min-width: 1025px) {
+               height: 350px;
+               margin: -120px 0 50px;
+               padding-right: 100px;
            }
        }
        h1{
+           width : 60%;
            font-size : 1.4rem;
            font-weight: 600;
-           margin : -3rem auto;
+           margin : -3rem auto 20px;
            padding: 1rem;
            text-align : left;
            line-height: 1.3em;
            @media screen and (min-width: 740px) {
                width : 50%;
                font-size: 1.8rem;
-               margin-top : -3rem;
+               margin-top : -2rem;
            }
            @media screen and (min-width: 1025px) {
                width : 40%;
                font-size: 2.3rem;
-           }
-
-           img {
-               margin-top: -3rem;
-               width: 50%;
            }
 
            .blue-font{
@@ -109,23 +112,6 @@
                         top: 71%;
                         width : 150px;
                         margin-bottom : 15px;
-                    }
-
-                    h3{
-                        font-size : 1.1rem;
-                        font-weight: bold;
-                        color : white;
-                        margin : 0;
-                        padding : 8px 15px;
-                        text-align : center;
-
-                        @media screen and (min-width: 740px) {
-                            font-size: 1rem;
-                        }
-                        @media screen and (min-width: 1025px) {
-                            padding : 5px 15px;
-                            font-size : 1.1rem;
-                        }
                     }
                 }
             }
@@ -235,5 +221,30 @@
 
     /* COMBIEN VAUT */
 
+    .combien-vaut {
+        .explain-text {
+            font-size: 1.3rem;
+        }
 
+        .recolted-text {
+            font-size: 5rem;
+            font-weight: 900;
+        }
+
+        .img-phone {
+            height: 300px;
+        }
+    }
+
+    .comment-marche {
+        .explain-text-color {
+            color: $primary-color;
+            font-weight: bold;
+        }
+
+        .border-bottom-color {
+            border-bottom: solid $primary-color;
+            border-bottom-width: 14px;
+        }
+    }
 }

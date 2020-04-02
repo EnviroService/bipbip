@@ -13,35 +13,43 @@
     <body>
     {% block header %}
         <header>
-            <nav id="menu">
-                <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
-                <ul>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
-                </ul>
-                <div class="user-infos-menu">
-                    {% if app.user %}
-                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
-                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                    </a>
-                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
-
-                        {% for role in app.user.roles %}
-                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
-                            {% endif %}
-                        {% endfor %}
-
-                    {% else %}
-                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
-                    {% endif %}
+            <div class="row mb-5">
+                <div class="col-8 text-center pt-3">
+                    <a href="{{ path('home') }}" class="logo-bipbip"><img src="{{ asset('/images/new-logo-bipbip.png') }}"
+                                                                          alt="BipBip ton Green Mobile" /></a>
                 </div>
-            </nav>
-            <a href="{{ path('home') }}" class="logo-bipbip"><img src="{{ asset('/images/new-logo-bipbip.png') }}" alt="BipBip ton Green Mobile" /></a>
+                <div class="col-4">
+                    <nav id="menu">
+                        <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                        <ul>
+                            <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
+                            <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
+                            <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
+                            <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                            <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
+                            <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
+                        </ul>
+                        <div class="user-infos-menu">
+                            {% if app.user %}
+                                <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
+                                    <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                </a>
+                                <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
+                                {% for role in app.user.roles %}
+                                    {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                        <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% else %}
+                                <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                            {% endif %}
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center">
                     {{ message }}
@@ -84,11 +92,9 @@
                     <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
                         Notre mission
                     </a><br>
-                    <br>
                     <a href="{{ path('protection') }}" title="Protection des données">
                         Ce qu'on oublie de lire
                     </a><br>
-                    <br>
                     <a href="{{ path('home') }}" title="Collectes et évènements">
                         Collectes et évènements
                     </a>
@@ -106,7 +112,6 @@
                     <a href="{{ path('add_message') }}" title="Devenir partenaire">
                         Devenir partenaire
                     </a><br>
-                    <br>
                     <a href="{{ path('faq_index') }}" title="FAQ">
                         FAQ
                     </a>
@@ -118,11 +123,9 @@
                     <a href="{{ path('home') }}" title="Comment bien choisir son smarthpone reconditionné ?">
                         Comment bien choisir son smarthpone reconditionné ?
                     </a><br>
-                    <br>
                     <a href="{{ path('home') }}" title="Nos partenaires">
                         Les grades de smartphone reconditionnés BipBip
                     </a><br>
-                    <br>
                     <a href="{{ path('add_message') }}" title="Contact">
                         Nous contacter
                     </a>
