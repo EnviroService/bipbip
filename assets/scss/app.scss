@@ -212,27 +212,23 @@ header{
             flex-direction : column;
             justify-content : center;
             align-items: center;
+            background-color: white;
+            box-shadow: 5px 3px 10px silver;
+            width: 70px;
+            height: 70px;
             border-radius : 50%;
-            width : 8vw;
-            min-width : 70px;
-            height : 8vw;
-            min-height: 70px;
-            background-color : $primary-color;
             position : fixed;
-            right : 5vw;
-            bottom : 5vh;
+            right : 2vw;
+            top : 2vh;
             z-index : 5;
             cursor : pointer;
 
             img{
-                width : 30%;
-                margin-bottom : 8%;
+                width : 40%;
             }
 
             p{
-                font-size : 1rem;
-                color : white;
-                margin-bottom : 0;
+                display: none;
             }
         }
 
@@ -291,6 +287,7 @@ footer {
             #menu-burger {
                 align-self: flex-start;
                 border-radius: 5px;
+                background-color : $primary-color;
                 box-shadow: 5px 3px 10px $primary-color;
                 width: 120px;
                 min-height: 40px;
@@ -303,8 +300,11 @@ footer {
                     display: none;
                 }
 
-                p {
-                    font-size: 1.1rem;
+                p{
+                    display: inline;
+                    font-size : 1.1rem;
+                    color : white;
+                    margin-bottom : 0;
                 }
             }
         }
