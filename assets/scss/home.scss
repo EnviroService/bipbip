@@ -1,147 +1,30 @@
 @import "vars";
+@import '~bootstrap/scss/bootstrap';
 
 .home{
 
     /* HEADER */
 
    .header {
-       display: flex;
+       .color-font {
+           color : $primary-color;
+           font-weight : bold;
+       }
+
        img {
-           height: 150px;
-           margin: -50px 0 50px;
-           @media screen and (min-width: 740px) {
-               height: 250px;
-               margin: -100px 0 50px;
+           margin-top: -30%;
+           @include media-breakpoint-up(md) {
+               margin-top: -40%;
            }
-           @media screen and (min-width: 1025px) {
-               height: 350px;
-               margin: -120px 0 50px;
-               padding-right: 100px;
+           @include media-breakpoint-up(xl) {
+               margin-top: -90%;
            }
        }
-       h1{
-           width : 60%;
-           font-size : 1.4rem;
-           font-weight: 600;
-           margin : -3rem auto 20px;
-           padding: 1rem;
-           text-align : left;
-           line-height: 1.3em;
-           @media screen and (min-width: 740px) {
-               width : 50%;
-               font-size: 1.8rem;
-               margin-top : -2rem;
-           }
-           @media screen and (min-width: 1025px) {
-               width : 40%;
-               font-size: 2.3rem;
-           }
+    }
 
-           .blue-font{
-               color : $primary-color;
-               font-weight : bold;
-           }
-       }
-   }
-
-    /* STEPS */
-
-    .steps {
-        display : flex;
-        flex-direction : column;
-        justify-content : flex-start;
-        align-items : center;
-        width : 60%;
-        margin : 45px auto;
-
-        @media screen and (min-width: 740px){
-            flex-direction : row;
-            justify-content:  space-around;
-            align-items: flex-start;
-        }
-        @media screen and (min-width: 1025px){
-            margin : auto;
-        }
-
-        article{
-            width : 300px;
-            @media screen and (min-width: 1025px){
-                width : 350px;
-            }
-
-            .step{
-                height : 188px;
-                width: 90%;
-                max-width: 100%;
-                margin : 10px;
-                padding : 12% 0;
-                display : flex;
-                flex-flow : column wrap;
-                justify-content: space-around;
-                align-items: center;
-                position: relative;
-                border: 1px solid black;
-                @media screen and (min-width: 740px){
-                    width : 250px;
-                    height : 250px;
-                }
-                @media screen and (min-width: 1025px){
-                    width : 297px;
-                    height : 298px;
-                }
-
-                .background-pic{
-                    position: absolute;
-                    width: 160%;
-                    top: 0;
-                    left: -82px;
-                }
-
-                div{
-                    background-color : $primary-color;
-                    border-radius: 25px;
-                    margin-right : 10px;
-                    margin-bottom : 8px;
-                    width : 150px;
-                    vertical-align: center;
-                    @media screen and (min-width: 740px) {
-                        width : 130px;
-                    }
-                    @media screen and (min-width: 1025px) {
-                        position: absolute;
-                        top: 71%;
-                        width : 150px;
-                        margin-bottom : 15px;
-                    }
-                }
-            }
-
-            #step1 {
-                .step-logo{
-                    position: absolute;
-                    margin-top : 15px;
-                    top: -129%;
-                    left: -99%;
-                    width: 300%;
-                    @media screen and (min-width: 1025px) {
-                        top: -108%;
-                    }
-                }
-            }
-
-            #step3{
-                .step-logo{
-                    position: absolute;
-                    margin-top : 15px;
-                    top: -111%;
-                    left: -99%;
-                    width: 300%;
-                    @media screen and (min-width: 1025px) {
-                        top: -103%;
-                    }
-                }
-            }
-        }
+    .img-steps {
+        width: 70%;
+        height: auto;
     }
 
     /* BAIL BIPBIP */
@@ -155,7 +38,7 @@
             img{
                 width: 50%;
                 margin:-16% -3% 0 7%;
-                @media screen and (min-width: 1025px){
+                @media screen and (min-width: 1140px){
                     width: 40%;
                 }
             }
@@ -171,7 +54,7 @@
 
             #bul-planet{
                 top: 9%;
-                @media screen and (min-width: 1025px){
+                @media screen and (min-width: 1140px){
                     top: 36%;
                 }
             }
@@ -180,7 +63,7 @@
                 width: 30%;
                 margin-left: -11%;
                 font-size: 1rem;
-                @media screen and (min-width: 1025px){
+                @media screen and (min-width: 1140px){
                     font-size: 1.2rem;
                     margin-left: -5%;
                     width: 50%;
@@ -201,7 +84,7 @@
                 height: 37px;
                 padding: 8px 2px;
                 text-align: center;
-                @media screen and (min-width: 740px){
+                @media screen and (min-width: 768px){
                     width: 14%;
                     top: 44%;
                     right: 33%;
@@ -227,12 +110,12 @@
         }
 
         .recolted-text {
-            font-size: 5rem;
+            font-size: 3rem;
             font-weight: 900;
         }
 
         .img-phone {
-            height: 300px;
+            height: 250px;
         }
     }
 

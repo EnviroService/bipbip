@@ -9,19 +9,19 @@
 /* Boutons */
 
 @mixin button($color){
+    display: inline-block;
     font-family: $secondary-font, sans-serif;
     background-color : $color;
     text-align : center;
     vertical-align: center;
     color : white;
-    font-size : 1.1rem;
+    font-size : 0.8rem;
     font-weight: bold;
-    min-width : 150px;
-    max-width: 200px;
+    min-width : 70px;
+    max-width: 160px;
     border-radius: 25px;
     margin : 0;
-    padding : 15px 15px;
-    display:block;
+    padding : 5px 10px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -36,7 +36,7 @@
         color : white;
         text-decoration: none;
     }
-    @media screen and (min-width: 740px) {
+    @media screen and (min-width: 768px) {
         font-size: 1rem;
     }
 }
@@ -73,7 +73,7 @@ body{
 
 main{
     min-height : 70vh;
-    @media screen and (min-width: 740px){
+    @media screen and (min-width: 768px){
         min-height : 65vh;
     }
 }
@@ -96,7 +96,7 @@ a{
     font-weight: 900;
     text-align : center;
     margin : auto;
-    @media screen and (min-width: 740px) {
+    @media screen and (min-width: 768px) {
         font-size: 1.8rem;
     }
     @media screen and (min-width: 1025px) {
@@ -115,13 +115,17 @@ a{
 }
 
 /* HEADER NAV */
+
 header{
     .logo-bipbip{
-        display : block;
-        //margin : -18vw auto;
-
         img{
-            width : 50%
+            width : 60%;
+            @include media-breakpoint-up(sm) {
+                width: 50%;
+            }
+            @include media-breakpoint-up(xl) {
+                width: 40%;
+            }
         }
     }
 
@@ -261,6 +265,10 @@ header{
 /* FOOTER */
 
 footer {
+    .social-networks {
+        max-width: 90%;
+        height: auto;
+    }
 
     .links-footer{
         background-color: $third-color;
@@ -276,7 +284,7 @@ footer {
 
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 740px) {
+@media screen and (min-width: 768px) {
 
     header {
         .circle-buttons {

@@ -14,40 +14,40 @@
     {% block header %}
         <header>
             <div class="row mb-5">
-                <div class="col-8 text-center pt-3">
+                <div class="col col-md-8 text-center pt-3">
                     <a href="{{ path('home') }}" class="logo-bipbip"><img src="{{ asset('/images/new-logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
                 </div>
-                <div class="col-4">
-                    <nav id="menu">
-                        <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
-                        <ul>
-                            <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                            <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                            <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                            <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                            <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
-                            <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
-                        </ul>
-                        <div class="user-infos-menu">
-                            {% if app.user %}
-                                <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
-                                    <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                                </a>
-                                <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
-
-                                {% for role in app.user.roles %}
-                                    {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                        <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
-                                    {% endif %}
-                                {% endfor %}
-
-                            {% else %}
-                                <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
-                            {% endif %}
-                        </div>
-                    </nav>
+                <div class="d-none col-md-4">
                 </div>
+                <nav id="menu">
+                    <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
+                    <ul>
+                        <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
+                        <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
+                        <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
+                        <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                        <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
+                        <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
+                    </ul>
+                    <div class="user-infos-menu">
+                        {% if app.user %}
+                            <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
+                                <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                            </a>
+                            <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
+                            {% for role in app.user.roles %}
+                                {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                    <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                        {% endif %}
+                    </div>
+                </nav>
             </div>
 
             {% for message in app.flashes('success') %}
@@ -81,8 +81,26 @@
 
         {% block footer %}
         <footer>
+            <h2 class="primary-title mt-4">Tu en veux plus ?</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="Page Facebook">
+                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" class="social-networks" />
+                    </a>
+                </div>
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="Instagram">
+                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" class="social-networks" />
+                    </a>
+                </div>
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="LinkedIn">
+                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" class="social-networks" />
+                    </a>
+                </div>
+            </div>
             <div class="row links-footer m-0 p-4">
-                <div class="col-sm">
+                <div class="col mb-4">
                     <div class="font-weight-bold pb-2">
                         A propos de BipBip<br>
                     </div>
@@ -99,7 +117,7 @@
                         Collectes et évènements
                     </a>
                 </div>
-                <div class="col-sm">
+                <div class="col mb-4">
                     <div class="font-weight-bold pb-2">
                         S'informer<br>
                     </div>
@@ -116,7 +134,7 @@
                         FAQ
                     </a>
                 </div>
-                <div class="col-sm">
+                <div class="col mb-4">
                     <div class="font-weight-bold pb-2">
                         Besoin d'aide ?<br>
                     </div>
