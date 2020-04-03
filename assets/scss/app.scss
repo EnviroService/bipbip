@@ -17,8 +17,8 @@
     color : white;
     font-size : 0.8rem;
     font-weight: bold;
-    min-width : 70px;
-    max-width: 160px;
+    min-width : 90px;
+    max-width: 180px;
     border-radius: 25px;
     margin : 0;
     padding : 5px 10px;
@@ -207,83 +207,32 @@ header{
         justify-content: space-between;
         cursor : pointer;
 
-        #menu-burger{
-            display : flex;
-            flex-direction : column;
-            justify-content : center;
+        #menu-burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
             background-color: white;
             box-shadow: 5px 3px 10px silver;
             width: 70px;
             height: 70px;
-            border-radius : 50%;
-            position : fixed;
-            right : 2vw;
-            top : 2vh;
-            z-index : 5;
-            cursor : pointer;
+            border-radius: 50%;
+            position: fixed;
+            right: 2vw;
+            top: 2vh;
+            z-index: 5;
 
-            img{
-                width : 40%;
+            img {
+                width: 40%;
             }
 
-            p{
+            p {
                 display: none;
             }
         }
 
-        #faq-button{
-            display : flex;
-            justify-content : center;
-            align-items : center;
-            border-radius : 50%;
-            width : 8vw;
-            min-width : 70px;
-            max-width : 75px;
-            height : 8vw;
-            min-height: 70px;
-            max-height: 75px;
-            background-color : black;
-            position : fixed;
-            left : 5vw;
-            bottom : 5vh;
-            z-index : 5;
+        @media screen and (min-width: 768px) {
 
-            p{
-                color : white;
-                font-size : 1rem;
-                margin-bottom : 0;
-            }
-        }
-    }
-}
-
-/* FOOTER */
-
-footer {
-    .social-networks {
-        max-width: 90%;
-        height: auto;
-    }
-
-    .links-footer{
-        background-color: $third-color;
-        color: white;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
-
-        a{
-            color: white;
-        }
-    }
-}
-
-
-/* MEDIA QUERIES */
-@media screen and (min-width: 768px) {
-
-    header {
-        .circle-buttons {
             #menu-burger {
                 align-self: flex-start;
                 border-radius: 5px;
@@ -307,6 +256,39 @@ footer {
                     margin-bottom : 0;
                 }
             }
+        }
+
+        #faq-button{
+            display : flex;
+            justify-content : center;
+            align-items : center;
+            border-radius : 50%;
+            width : 70px;
+            height : 70px;
+            position : fixed;
+            left : 5vw;
+            bottom : 5vh;
+            z-index : 5;
+        }
+    }
+}
+
+/* FOOTER */
+
+footer {
+    .social-networks {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .links-footer{
+        background-color: $third-color;
+        color: white;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+
+        a{
+            color: white;
         }
     }
 }

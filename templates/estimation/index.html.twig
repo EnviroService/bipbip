@@ -3,16 +3,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <h1 class="primary-title">Estime ton tel</h1>
-                <h2 class="text-dark">Voici la liste disponible</h2>
+                <h1 class="primary-title">Estime ton tél</h1>
+                <h2 class="text-dark">Choisis la marque</h2>
                 {% for brand in brands %}
-                <a class="btn btn-success" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                <a class="primary-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
                 {% endfor %}
             </div>
         </div>
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <a class="btn btn-primary" href="{{ path("autres") }}">Autres...</a>
+                <a class="third-button" href="{{ path("autres") }}">Autres...</a>
             </div>
         </div>
     </div>

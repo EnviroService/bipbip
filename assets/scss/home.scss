@@ -29,77 +29,35 @@
 
     /* BAIL BIPBIP */
 
-    .bail-bipbip{
-        margin : 80px auto;
+    .bubble-text
+    {
+        position: relative;
+        width: 210px;
+        height: 3rem;
+        padding: 8px;
+        background: $primary-color;
+        font-family: $secondary-font, sans-serif;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: center;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
 
-        .we-are {
-            position: relative;
-            display: flex;
-            img{
-                width: 50%;
-                margin:-16% -3% 0 7%;
-                @media screen and (min-width: 1140px){
-                    width: 40%;
-                }
-            }
-
-            .planet {
-                margin: -22% -1% 0 9%;
-            }
-
-            #p-planet {
-                margin-top: -5%;
-                margin-left: -9%
-            }
-
-            #bul-planet{
-                top: 9%;
-                @media screen and (min-width: 1140px){
-                    top: 36%;
-                }
-            }
-
-            p {
-                width: 30%;
-                margin-left: -11%;
-                font-size: 1rem;
-                @media screen and (min-width: 1140px){
-                    font-size: 1.2rem;
-                    margin-left: -5%;
-                    width: 50%;
-                }
-            }
-
-            .buble-text {
-                display:block;
-                position: absolute;
-                bottom: 60%;
-                right: 50%;
-                top: 25%;
-                background: $primary-color;
-                color: #FFFFFF;
-                font-weight: bold;
-                border-radius: 10px;
-                width: 8%;
-                height: 37px;
-                padding: 8px 2px;
-                text-align: center;
-                @media screen and (min-width: 768px){
-                    width: 14%;
-                    top: 44%;
-                    right: 33%;
-                }
-            }
-            .buble-text::after {
-                content:"";
-                border-right: 6px solid transparent;
-                border-left: 14px solid transparent;
-                border-top: 27px solid $primary-color;
-                position: absolute;
-                top: 52%;
-                right: 2%;
-            }
-        }
+    .bubble-text:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 5px 0 5px 18px;
+        border-color: transparent $primary-color;
+        display: block;
+        width: 0;
+        z-index: 1;
+        right: -12px;
+        top: 31px;
     }
 
     /* COMBIEN VAUT */
