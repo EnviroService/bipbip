@@ -21,15 +21,28 @@
                 <div class="d-none col-md-4">
                 </div>
                 <nav id="menu">
-                    <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
-                    <ul>
-                        <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                        <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                        <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                        <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                        <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
-                        <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
-                    </ul>
+                    <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
+                    <div class="row align-items-center justify-content-end">
+                        <div class="col col-md-5 col-lg-3">
+                            <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
+                        </div>
+                        <div class="col col-md-5 col-lg-4">
+                            <ul>
+                                <li class="primary-title-menu-color">BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que c'est ?</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
+                                <li class="primary-title-menu-color pt-2">Deviens BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
+                                <li class="primary-title-menu-color pt-2">La BipBip attitude</li>
+                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Les points de collecte</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                                <li class="primary-title-menu"><a href="" title="Les bons plans">Les bons plans</a></li>
+                                <li class="primary-title-menu-color pt-2">BipBip Infos</li>
+                                <li class="primary-title-menu"><a href="{{ path("faq_index") }}" title="FAQ">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="user-infos-menu">
                         {% if app.user %}
                             <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
