@@ -10,7 +10,7 @@
 {% block body %}
 
     <main class="admin-tables">
-        <h2 class="primary-title">Choisis une collecte</h2>
+        <h1 class="primary-title">Choisis une collecte</h1>
         {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
             <div class="text-right">
                 <a class="text-right" href="{{ path('estimations_index') }}">

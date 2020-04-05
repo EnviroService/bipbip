@@ -1,3 +1,5 @@
+/* IMPORT - FONTS */
+
 @import "vars";
 @import '~bootstrap/scss/bootstrap';
 @font-face
@@ -11,7 +13,66 @@
     src: url('LobsterHand.otf') format('opentype');
 }
 
-/* Boutons */
+/* GENERAL */
+
+body{
+    font-family: $primary-font, sans-serif;
+    color : black;
+    font-size : 1rem;
+    background-image: url("../images/fond.png");
+    background-repeat: repeat;
+}
+
+main{
+    min-height : 70vh;
+    @media screen and (min-width: 768px){
+        min-height : 65vh;
+    }
+}
+
+a{
+    color: black;
+    text-decoration: none;
+
+    &:hover{
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.bg-secondary-color{
+    background-color: $secondary-color;
+}
+
+/* TITLES */
+
+.primary-title{
+    font-family: $primary-font, sans-serif;
+    padding:20px;
+    font-size : 1.7rem;
+    font-stretch: expanded;
+    font-weight: 900;
+    text-align : center;
+    margin : auto;
+    @media screen and (min-width: 768px) {
+        font-size: 1.8rem;
+    }
+    @media screen and (min-width: 1025px) {
+        font-size : 2.3rem;
+    }
+}
+
+.secondary-title{
+    text-transform : uppercase;
+    font-size : 0.9rem;
+    font-weight: 500;
+    color : $fourth-color;
+    padding : 1%;
+    width : 70%;
+    margin-left: 20%;
+}
+
+/* BUTTONS */
 
 @mixin button($color){
     display: inline-block;
@@ -20,13 +81,13 @@
     text-align : center;
     vertical-align: center;
     color : white;
-    font-size : 0.8rem;
+    font-size : 1rem;
     font-weight: bold;
-    min-width : 90px;
-    max-width: 180px;
+    min-width : 150px;
+    max-width: 230px;
     border-radius: 25px;
     margin : 0;
-    padding : 5px 10px;
+    padding : 12px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -42,7 +103,10 @@
         text-decoration: none;
     }
     @media screen and (min-width: 768px) {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        padding : 15px;
+        min-width: 200px;
+        max-width: 300px;
     }
 }
 
@@ -86,63 +150,6 @@
     @include button($fourth-color)
 }
 
-
-/* GENERAL */
-body{
-    font-family: $primary-font, sans-serif;
-    color : black;
-    font-size : 1rem;
-    background-image: url("../images/fond.png");
-    background-repeat: repeat;
-}
-
-.bg-secondary-color{
-    background-color: $secondary-color;
-}
-
-main{
-    min-height : 70vh;
-    @media screen and (min-width: 768px){
-        min-height : 65vh;
-    }
-}
-
-a{
-    color : black;
-    text-decoration: none;
-
-    &:hover{
-        color : black;
-        text-decoration: none;
-    }
-}
-
-.primary-title{
-    font-family: $primary-font, sans-serif;
-    padding:20px;
-    font-size : 1.7rem;
-    font-stretch: expanded;
-    font-weight: 900;
-    text-align : center;
-    margin : auto;
-    @media screen and (min-width: 768px) {
-        font-size: 1.8rem;
-    }
-    @media screen and (min-width: 1025px) {
-        font-size : 2.3rem;
-    }
-}
-
-.secondary-title{
-    text-transform : uppercase;
-    font-size : 0.9rem;
-    font-weight: 500;
-    color : $fourth-color;
-    padding : 1%;
-    width : 70%;
-    margin-left: 20%;
-}
-
 /* HEADER NAV */
 
 header{
@@ -158,7 +165,20 @@ header{
         }
     }
 
+    /* MENU */
+
     #menu{
+
+        a{
+            color: black;
+            text-decoration: none;
+
+            &:hover{
+                color: black;
+                text-decoration: none;
+            }
+        }
+
         display : none;
         z-index : 9998;
         background : #FFFFFF;
@@ -194,6 +214,7 @@ header{
 
             .primary-title-menu {
                 font-family: $third-font;
+                font-weight: normal;
                 font-size: 1.4rem;
                 color : black;
             }

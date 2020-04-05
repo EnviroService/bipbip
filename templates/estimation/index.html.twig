@@ -4,15 +4,19 @@
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
                 <h1 class="primary-title">Estime ton tél</h1>
-                <h2 class="text-dark">Choisis la marque</h2>
-                {% for brand in brands %}
-                <a class="primary-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
-                {% endfor %}
+                <h4 class="text-dark">Choisis la marque</h4>
             </div>
         </div>
         <div class="row">
+            {% for brand in brands %}
+                <div class="col mx-auto text-center p-1">
+            <a class="primary-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <a class="third-button" href="{{ path("autres") }}">Autres...</a>
+                <a class="third-button" href="{{ path("autres") }}">Autre marque</a>
             </div>
         </div>
     </div>

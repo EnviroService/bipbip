@@ -22,11 +22,11 @@
         <div class="row justify-content-center steps">
             <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
                 <img src="{{ asset('images/step-estime.png') }}" alt="Estime ton tél" class="img-fluid img-steps">
-                <a href="{{ path('estimations_new') }}" class="small-button">Estime ton tél</a>
+                <a href="{{ path('new_estimation') }}" class="small-button">Estime ton tél</a>
             </div>
             <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
                 <img src="{{ asset('images/step-vends.png') }}" alt="Vends ton tél" class="img-fluid img-steps">
-                <a href="{{ path('estimations_new') }}" class="small-button">Vends ton tél</a>
+                <a href="{{ path('new_estimation') }}" class="small-button">Vends ton tél</a>
             </div>
 
             <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
@@ -72,12 +72,12 @@
                 </div>
             </div>
             <div class="row justify-content-center p-5">
-                <div class="col-5 col-lg-3 text-center">
+                <div class="col col-lg-3 text-center">
                     <a href="{{ path('home') }}" class="primary-button">
                         Je télécharge l'appli
                     </a>
                 </div>
-                <div class="col-5 col-lg-3 text-center">
+                <div class="col col-lg-3 text-center p-1">
                     <a href="{{ path('estimations_new') }}" class="primary-button">
                         Estimation en ligne
                     </a>

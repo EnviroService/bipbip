@@ -1,9 +1,15 @@
 @import "vars";
 @import '~bootstrap/scss/bootstrap';
 
-.home{
+.home {
 
-    /* HEADER */
+    a{
+        text-decoration: none;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
 
    .header {
        .color-font {
@@ -27,10 +33,7 @@
         height: auto;
     }
 
-    /* BAIL BIPBIP */
-
-    .bubble-text
-    {
+    .bubble-text {
         position: relative;
         width: 210px;
         height: 3rem;
@@ -60,16 +63,17 @@
         top: 31px;
     }
 
-    /* COMBIEN VAUT */
-
     .combien-vaut {
         .explain-text {
             font-size: 1.3rem;
         }
 
         .recolted-text {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 900;
+            @include media-breakpoint-up(md) {
+                font-size: 2.7rem;
+            }
         }
 
         .img-phone {

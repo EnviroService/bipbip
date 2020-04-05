@@ -3,17 +3,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <h1 class="primary-title">Sélectionne sa capacité</h1>
-                <h2 class="text-dark">{{ brand }}</h2>
-                <h3 class="text-dark">{{ model.model }}</h3>
-                {% for capacity in capacities %}
-                    <a class="btn btn-success mb-3" href="/estimation/{{ brand }}/{{ model.model }}/{{ capacity }}/quest">{{ capacity }} Go</a>
-                {% endfor %}
+                <h1 class="primary-title">Quelle capacité de mémoire ?</h1>
+                <h4 class="text-dark">Modèle : {{ brand }} - {{ model.model }}</h4>
             </div>
         </div>
         <div class="row">
+            {% for capacity in capacities %}
+            <div class="col mx-auto text-center p-1">
+                <a class="primary-button" href="/estimation/{{ brand }}/{{ model.model }}/{{ capacity }}/quest">{{ capacity }} Go</a>
+            </div>
+                {% endfor %}
+        </div>
+        <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
-                <a class="btn btn-primary" href="{{ path("autres") }}">Autres...</a>
+                <a class="third-button" href="{{ path("autres") }}">Autre capacité</a>
             </div>
         </div>
     </div>
