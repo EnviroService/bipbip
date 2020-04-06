@@ -1,271 +1,95 @@
 @import "vars";
+@import '~bootstrap/scss/bootstrap';
 
-.home{
-    h1{
-        font-size : 1.3rem;
-        margin : 3% auto;
-        text-align : center;
-        text-transform : uppercase;
-        line-height: 1.5em;
-        width : 80%;
-        @media screen and (min-width: 740px) {
-            width : 50%;
+.home {
+
+    a{
+        text-decoration: none;
+
+        &:hover{
+            text-decoration: none;
+        }
+    }
+
+   .header {
+       .color-font {
+           color : $primary-color;
+           font-weight : bold;
+       }
+
+       img {
+           margin-top: -30%;
+           @include media-breakpoint-up(md) {
+               margin-top: -40%;
+           }
+           @include media-breakpoint-up(xl) {
+               margin-top: -90%;
+           }
+       }
+    }
+
+    .img-steps {
+        width: 70%;
+        height: auto;
+    }
+
+    .bubble-text {
+        position: relative;
+        width: 210px;
+        height: 3rem;
+        padding: 8px;
+        background: $primary-color;
+        font-family: $secondary-font, sans-serif;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: center;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    .bubble-text:after {
+        content: '';
+        position: absolute;
+        border-style: solid;
+        border-width: 5px 0 5px 18px;
+        border-color: transparent $primary-color;
+        display: block;
+        width: 0;
+        z-index: 1;
+        right: -12px;
+        top: 31px;
+    }
+
+    .combien-vaut {
+        .explain-text {
             font-size: 1.3rem;
-            margin-top : 0;
-        }
-        @media screen and (min-width: 1025px) {
-            width : 50%;
-            font-size: 1.3rem;
         }
 
-        .orange-font{
-            color : $primary-color;
-            font-weight : bold;
-        }
-
-        .blue-font{
-            color : $secondary-color;
-            font-weight : lighter;
-
-            b{
-                font-weight : bold;
+        .recolted-text {
+            font-size: 2rem;
+            font-weight: 900;
+            @include media-breakpoint-up(md) {
+                font-size: 2.7rem;
             }
+        }
+
+        .img-phone {
+            height: 250px;
         }
     }
 
-    /* CAROUSEL */
-    #carouselExampleFade {
-        @media screen and (min-width: 740px) {
-            width : 50%;
-            height : 50%;
-            margin : auto;
-        }
-    }
-
-    /* STEPS */
-    .steps {
-        display : flex;
-        flex-direction : column;
-        justify-content : flex-start;
-        align-items : center;
-        @media screen and (min-width: 740px){
-            display : flex;
-            flex-direction : row;
-            justify-content:  space-around;
-            align-items: flex-start;
-            width : 60%;
-            margin : auto;
-        }
-
-        article{
-            width : 300px;
-            @media screen and (min-width: 1025px){
-                width : 350px;
-            }
-
-            .step{
-                width : 300px;
-                height : 300px;
-                max-width: 100%;
-                margin : 0 auto;
-                padding : 12% 0;
-                display : flex;
-                flex-flow : column wrap;
-                justify-content: space-around;
-                align-items: center;
-                position: relative;
-                @media screen and (min-width: 740px){
-                    width : 250px;
-                    height : 250px;
-                }
-                @media screen and (min-width: 1025px){
-                    width : 270px;
-                    height : 270px;
-                }
-
-                .background-pic{
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                }
-
-                .step-logo{
-                    width : 18%;
-                    margin-right : 10px;
-                }
-
-                div{
-                    background-color : $third-color;
-                    -webkit-transform:skew(-30deg);
-                    -moz-transform:skew(-30deg);
-                    -o-transform:skew(-30deg);
-                    transform:skew(-30deg);
-                    margin-right : 10px;
-                    margin-bottom : 8px;
-                    width : 150px;
-                    vertical-align: center;
-                    @media screen and (min-width: 740px) {
-                        width : 130px;
-                    }
-                    @media screen and (min-width: 1025px) {
-                        width : 180px;
-                        margin-bottom : 15px;
-                    }
-
-                    h3{
-                        font-size : 1.1rem;
-                        font-weight: bold;
-                        color : white;
-                        margin : 0;
-                        padding : 8px 15px;
-                        text-align : center;
-                        transform:skew(30deg);
-                        @media screen and (min-width: 740px) {
-                            font-size: 1rem;
-                        }
-                        @media screen and (min-width: 1025px) {
-                            padding : 10px 15px;
-                            font-size : 1.1rem;
-                        }
-                    }
-                }
-
-                p{
-                    text-transform : uppercase;
-                    font-size : 0.8rem;
-                    text-align : center;
-                    margin : 0 10px 25px 0;
-                    @media screen and (min-width: 740px) {
-                        font-size: 0.7rem;
-                    }
-                    @media screen and (min-width: 1025px) {
-                        font-size: 1rem;
-                    }
-                }
-            }
-
-            #links-apps{
-                display : flex;
-                justify-content : center;
-
-                img{
-                    width : 70%;
-                    margin : 7% 4% 3% 4%;
-                }
-            }
-
-            p{
-                width : 50%;
-                margin : 3% auto;
-                text-align : center;
-                font-size : 1rem;
-
-                a{
-                    text-decoration: underline;
-                }
-            }
-
-            #step2{
-                div{
-                    background-color: $primary-color;
-                }
-            }
-
-            ul{
-                text-align: center;
-                line-height: 1.5em;
-            }
-
-            p{
-                a{
-                    text-decoration: underline;
-                    text-align: center;
-                }
-            }
-
-            #step3{
-                .step-logo{
-                    width : 25%;
-                    margin-top : 15px;
-                }
-
-                div{
-                    background-color: $secondary-color;
-                }
-            }
-        }
-    }
-
-    /* BAIL BIPBIP */
-    .bail-bipbip{
-        margin : 80px auto;
-
-        a{
-            display : block;
-            text-align : center;
-            margin : 5%;
-            text-decoration: underline;
-            @media screen and (min-width: 740px) {
-                font-size: 1.1rem;
-                margin : 3%;
-            }
-
-            &:hover{
-                color : $primary-color;
-            }
-        }
-    }
-
-    /* PARTNERS */
-    .home-partner{
-        margin : 80px auto;
-
-        h3{
-            font-size : 1.3rem;
-            color : $primary-color;
-            text-align: center;
+    .comment-marche {
+        .explain-text-color {
+            color: $primary-color;
             font-weight: bold;
-            margin : 2% 8%;
         }
 
-        article{
-            display : flex;
-            justify-content: center;
-            flex-wrap : wrap;
-            margin-bottom : 6%;
-            margin-top : 6%;
-            @media screen and (min-width: 740px) {
-                width : 80%;
-                margin : auto;
-            }
-
-            a {
-                display : block;
-                width : 18%;
-                margin: 4%;
-                @media screen and (min-width: 740px) {
-                    width : 12%;
-                }
-
-                img {
-                    width: 100%;
-                    @media screen and (min-width: 740px) {
-                        width: 100%;
-                    }
-                }
-            }
-        }
-    }
-
-    /* CONTACT */
-    .contact{
-        margin : 80px auto;
-
-        .fourth-button{
-            font-size : 1rem;
-            width : 150px;
+        .border-bottom-color {
+            border-bottom: solid $primary-color;
+            border-bottom-width: 14px;
         }
     }
 }
