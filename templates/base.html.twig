@@ -72,7 +72,7 @@
                 </div>
             {% endfor %}
             {% for message in app.flashes('danger') %}
-                <div class="alert alert-danger text-center">
+                <div class="alert alert-danger text-center mt-1 alert-dismissible fade show">
                     {{ message }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -81,7 +81,7 @@
             {% endfor %}
             <div class="circle-buttons">
                 <div id="menu-burger">
-                    <img src="/images/menu-burger.png" alt="menu burger" />
+                    <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
                     <p>Menu</p>
                 </div>
 
