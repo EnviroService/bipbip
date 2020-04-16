@@ -66,21 +66,17 @@
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
                     {{ message }}
-                    <a href="{{ path(app.request.attributes.get('_route')) }}" alt="Fermer">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </a>
                 </div>
             {% endfor %}
             {% for message in app.flashes('danger') %}
                 <div class="alert alert-danger text-center">
                     {{ message }}
-                    <a href="{{ path(app.request.attributes.get('_route')) }}" alt="Fermer">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </a>
                 </div>
             {% endfor %}
             <div class="circle-buttons">
