@@ -64,12 +64,11 @@ a{
 
 .secondary-title{
     text-transform : uppercase;
-    font-size : 0.9rem;
-    font-weight: 500;
-    color : $fourth-color;
+    font-size : 1.1rem;
+    font-weight: 700;
+    color : $primary-color;
     padding : 1%;
-    width : 70%;
-    margin-left: 20%;
+    margin-left: 20px;
 }
 
 /* BUTTONS */
@@ -320,6 +319,21 @@ header{
             left : 5vw;
             bottom : 5vh;
             z-index : 5;
+        }
+    }
+}
+
+/* TEAM */
+
+.team-page {
+    .carousel {
+        width: 195px;
+        box-shadow: 5px 3px 10px grey;
+    }
+    .carousel-item {
+        img {
+            height: 350px;
+            width: 195px;
         }
     }
 }
