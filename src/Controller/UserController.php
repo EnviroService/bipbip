@@ -74,7 +74,11 @@ class UserController extends AbstractController
      */
     public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
     {
+        if (!empty($this->getUser())) {
             $organism = $this->getUser()->getOrganism();
+        } else {
+            $organism = null;
+        }
         if ($organism !== null) {
             $privateCollects = $collectsRepository->findBy(
                 ['collector' => $organism->getId()],
