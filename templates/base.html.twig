@@ -34,7 +34,7 @@
 
                                     {% for role in app.user.roles %}
                                         {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                            <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                                            <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-button">Accéder à la plateforme d'administration</a>
                                         {% endif %}
                                     {% endfor %}
 
@@ -46,17 +46,19 @@
                         <div class="col col-md-5 col-lg-4">
                             <ul>
                                 <li class="primary-title-menu-color">BipBip</li>
-                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que c'est ?</a></li>
                                 <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
-                                <li class="primary-title-menu-color pt-2">Deviens BipBip</li>
-                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                                <li class="primary-title-menu-color pt-2">La BipBip attitude</li>
-                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Les points de collecte</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                                <li class="primary-title-menu"><a href="" title="Les bons plans">Les bons plans</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("team") }}" title="Description Bip Bip">Notre team</a></li>
+                                <li class="primary-title-menu-color pt-2">#Je suis BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vends ton tél</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Achète un BipBip</a></li>
+                                <li class="primary-title-menu-color pt-2">BipBip a besoin de toi</li>
+                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Collecteurs / bippeurs</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Devenir site de collecte</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("organisms_index") }}" title="Nos partenaires">Nos partenaires</a></li>
                                 <li class="primary-title-menu-color pt-2">BipBip Infos</li>
                                 <li class="primary-title-menu"><a href="{{ path("faq_index") }}" title="FAQ">FAQ</a></li>
+                                <li class="primary-title-menu-color pt-2">Parlons BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Contact">Contacte-nous</a></li>
                             </ul>
                         </div>
                     </div>
