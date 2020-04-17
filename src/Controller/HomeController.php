@@ -19,6 +19,14 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("infos/team", name="team")
+     */
+    public function team()
+    {
+        return $this->render('infos/team.html.twig');
+    }
+
+    /**
      * @Route("infos/bipbip", name="qui-sommes-nous")
      */
     public function who()
