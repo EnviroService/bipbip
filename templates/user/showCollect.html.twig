@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Choix d'une collecte{% endblock %}
+{% block title %}Lieux de collecte - BipBip{% endblock %}
 
  {% block stylesheets %}
      {{ parent() }}
@@ -10,13 +10,16 @@
 {% block body %}
 
     <main class="admin-tables">
-        <h1 class="primary-title">Choisis une collecte</h1>
-        {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
-            <div class="text-right">
-                <a class="text-right" href="{{ path('estimations_index') }}">
-                    Retour aux collectes
-                </a>
-            </div>
+        <h1 class="primary-title">Lieux de collecte</h1>
+        {% if app.user.roles is defined %}
+            <p>Choisis une collecte pour déposer ton téléphone</p>
+            {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
+                <div class="text-right">
+                    <a class="text-right" href="{{ path('estimations_index') }}">
+                        Retour aux collectes
+                    </a>
+                </div>
+            {% endif %}
         {% endif %}
         {%  if collects is empty %}
             <div class="container">
@@ -49,14 +52,16 @@
                     <div class="col-3 text-center">
                         Partenaire de collecte
                     </div>
-                    <div class="col-4 text-center">
+                    <div class="col-3 text-center">
                         Adresse
                     </div>
                     <div class="col-3 text-center">
                         Date de collecte
                     </div>
-                    <div class="col-2">
-                    </div>
+                    {% if app.user.roles is defined %}
+                        <div class="col-3">
+                        </div>
+                    {% endif %}
                 </div>
 
             {% for collect in collects %}
@@ -64,15 +69,19 @@
                     <div class="col-3 text-center">
                         <h5>{{ collect.collector.organismName }}</h5>
                     </div>
-                    <div class="col-4 text-center">
+                    <div class="col-3 text-center">
                         {{ collect.collector.organismAddress }},
                         {{ collect.collector.organismPostcode }}
                         {{ collect.collector.organismCity }}
                     </div>
                     <div class="col-3 text-center">
-                        {{ collect.dateCollect.date|date('d/m/Y') }} à {{ collect.dateCollect.date|date('H:i') }}
+                        {{ collect.dateCollect|date('d/m/Y') }} à {{ collect.dateCollect|date('H:i') }}
                     </div>
-                    <a class="col-2 fourth-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a></td>
+                    {% if app.user.roles is defined %}
+                        <div class="col-2">
+                            <a class="fourth-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a>
+                        </div>
+                    {% endif %}
                 </div>
         {% endfor %}
                 <div class="row align-items-center mt-5">
