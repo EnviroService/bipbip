@@ -88,13 +88,19 @@
 </div>
 
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center">
+        <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
     {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger text-center">
+        <div class="alert alert-danger text-center mt-1 alert-dismissible fade show">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
 

@@ -13,6 +13,7 @@
 
         {{ form_start(registrationForm) }}
         <div class="container">
+            <div class="row">
             <div class="offset-sm-2 col-sm-8 offset-sm-2">
                 <p>Afin d'accéder aux points de collecte te concernant, appartiens-tu à un des organismes de la liste ci-dessous ?</p>
                 {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de Bip Bip Mobile :', 'label_attr': {'class': 'label-registration-form'} }) }}
@@ -47,10 +48,13 @@
                     permettre d'accéder à des lieux de collectes et de procéder à la revente de mon téléphone.
                 {% endset %}
                     {{ form_row(registrationForm.agreeTerms, { 'label': terms_link }) }}
-                    <a href="{{ path('cgu') }}" class="">En savoir plus</a>
+                    <a href="{{ path('protection') }}" target="_blank">En savoir plus</a>
+            </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="primary-button">S'inscrire</button>
             </div>
         </div>
-    </main>
-        <button class="fourth-button">S'inscrire</button>
     {{ form_end(registrationForm) }}
+    </main>
 {% endblock %}

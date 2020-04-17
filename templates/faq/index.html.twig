@@ -32,8 +32,9 @@
                         <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">Modifier</a>
                     {% endif %}
                 </article>
+                <article class="answer">{{faq.answer}} </article>
             </div>
-            <article class="answer">{{faq.answer}} </article>
+
         {% endfor %}
 
     </main>
