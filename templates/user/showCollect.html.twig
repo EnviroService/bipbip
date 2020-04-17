@@ -72,7 +72,7 @@
                     <div class="col-3 text-center">
                         {{ collect.dateCollect.date|date('d/m/Y') }} à {{ collect.dateCollect.date|date('H:i') }}
                     </div>
-                    <a class="col-2 fourth-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a></td>
+                    <a class="col-2 primary-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a></td>
                 </div>
         {% endfor %}
                 <div class="row align-items-center mt-5">
