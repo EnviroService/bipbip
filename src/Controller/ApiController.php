@@ -413,7 +413,7 @@ class ApiController extends AbstractController
 
         $clientCh->shippingMultiParcelV2($params);
 
-        $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
+        $this->addFlash("success", "Félicitations, tu vas recevoir un mail contenant le numéro à 
         présenter au bureau de poste");
 
         return $this->redirectToRoute("user_show", [
