@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\FAQ;
 use App\Form\FAQType;
 use App\Repository\CategoryRepository;
@@ -36,26 +37,28 @@ class FAQController extends AbstractController
             'faqContent' => $faqContent,
         ]);
     }
-/*
+
     /**
-     * @Route("/category", name="faq_category")
-     * @param EntityManagerInterface $em
+     * @Route("/category/{id}", name="faq_category")
+     * @param FAQRepository $faqRepo
+     * @param int $id
+     * @param CategoryRepository $cateRepo
      * @return Response
      */
-   /* public function showCategory(EntityManagerInterface $em): Response
-    {
-        $queryBuilder = $em->getRepository(FAQ::class)->findAll();
-        $categories = [];
-        foreach ($queryBuilder as $faq) {
-            array_push($categories, $faq->getCategory);
-        }
-        $categories = array_unique($categories);
+    public function showCategory(
+        FAQRepository $faqRepo,
+        int $id,
+        CategoryRepository $cateRepo
+    ): Response {
+        $faq = $faqRepo->findBy(['category' => $id]);
+        $categories = $cateRepo->findAll();
 
         return $this->render("faq/index.html.twig", [
-            "faq" => $faq
+            "faqs" => $faq,
+            "categories" => $categories
         ]);
     }
-*/
+
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="faq_new", methods={"GET","POST"})
