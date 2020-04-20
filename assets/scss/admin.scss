@@ -4,6 +4,7 @@
 // En tête
 header{
     height : 80px;
+    background-color: white;
 
     .card-id{
         display: flex;
@@ -408,3 +409,20 @@ body{
     text-decoration: none;
 }
 
+/* ADMIN ESTIMATIONS */
+
+.icon-green {
+    color:green;
+}
+
+.icon-orange {
+    color:orange;
+}
+
+.icon-red {
+    color:red;
+}
+
+.icon-blue {
+    color:blue;
+}

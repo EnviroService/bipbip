@@ -55,10 +55,8 @@
                         </a>
                     {% endif %}
                 </article>
-            </div>
-            <article class="answer">{{faq.answer}} </article>
-            {% endfor %}
-
+                <article class="answer">{{faq.answer}} </article>
+            </div
         {% else %}
             {% for faq in faqContent %}
                 <div class="menu-faq">
@@ -73,7 +71,6 @@
                 <article class="answer">{{faq.answer}} </article>
             {% endfor %}
         {% endif %}
-
     </main>
 
 {% endblock %}

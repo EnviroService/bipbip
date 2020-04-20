@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}BipBip Mobile{% endblock %}</title>
-        <link rel="stylesheet" href="https://use.typekit.net/xdq8cqe.css">
-
+        <link href="https://fonts.googleapis.com/css?family=Century+Gothic" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/2710711f76.js" crossorigin="anonymous"></script>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -13,55 +13,80 @@
     <body>
     {% block header %}
         <header>
-            <nav id="menu">
-                <img src="/images/close-button.png" alt="Fermer le menu" class="close-button"/>
-                <ul>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que Bip Bip ?</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Organiser une collecte">Organiser une collecte</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('faq_index') }}" title="Foire aux questions">FAQ</a></li>
-                    <li class="primary-title primary-title-menu"><a href="{{ path('add_message') }}" title="Contacte-nous">Contacte-nous</a></li>
-                </ul>
-                <div class="user-infos-menu">
-                    {% if app.user %}
-                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
-                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                    </a>
-                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
-
-                        {% for role in app.user.roles %}
-                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
-                            {% endif %}
-                        {% endfor %}
-
-                    {% else %}
-                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
-                    {% endif %}
+            <div class="row mb-5">
+                <div class="col col-md-8 text-center pt-3">
+                    <a href="{{ path('home') }}" class="logo-bipbip"><img src="{{ asset('/images/logo-bipbip.png') }}"
+                                                                          alt="BipBip ton Green Mobile" /></a>
                 </div>
-            </nav>
-            <a href="{{ path('home') }}" class="logo-bipbip"><img src="/images/logo-bipbip.png" alt="logo bipbip" /></a>
+                <div class="d-none col-md-4">
+                </div>
+                <nav id="menu">
+                    <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
+                    <div class="row align-items-center justify-content-end">
+                        <div class="col col-md-5 col-lg-3">
+                            <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
+                            <div class="user-infos-menu">
+                                {% if app.user %}
+                                    <a href="{{ path('user_show', { 'id':app.user.id}) }}" class="disconnection">
+                                        <h3 class="user_name">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                    </a>
+                                    <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+
+                                    {% for role in app.user.roles %}
+                                        {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                            <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="fourth-button">Accéder à la plateforme d'administration</a>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                {% else %}
+                                    <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col col-md-5 col-lg-4">
+                            <ul>
+                                <li class="primary-title-menu-color">BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Qu'est-ce que c'est ?</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
+                                <li class="primary-title-menu-color pt-2">Deviens BipBip</li>
+                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Estime ton tel</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Acheter un tel</a></li>
+                                <li class="primary-title-menu-color pt-2">La BipBip attitude</li>
+                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Les points de collecte</a></li>
+                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Organiser une collecte</a></li>
+                                <li class="primary-title-menu"><a href="" title="Les bons plans">Les bons plans</a></li>
+                                <li class="primary-title-menu-color pt-2">BipBip Infos</li>
+                                <li class="primary-title-menu"><a href="{{ path("faq_index") }}" title="FAQ">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
             {% for message in app.flashes('success') %}
-                <div class="alert alert-success text-center">
+                <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
                     {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
             {% endfor %}
             {% for message in app.flashes('danger') %}
-                <div class="alert alert-danger text-center">
+                <div class="alert alert-danger text-center mt-1 alert-dismissible fade show">
                     {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
             {% endfor %}
             <div class="circle-buttons">
                 <div id="menu-burger">
-                    <img src="/images/menu-burger.png" alt="menu burger" />
+                    <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
                     <p>Menu</p>
                 </div>
 
                 <a href="{{ path('faq_index') }}">
-                    <div id="faq-button">
-                        <p>FAQ</p>
-                    </div>
+                        <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
                 </a>
 
             </div>
@@ -73,73 +98,72 @@
 
         {% block footer %}
         <footer>
-            <h2 class="primary-title">T'en veux plus ?</h2>
-            <div class="social-networks">
-                <a href="#" target="_blank" title="Page Facebook">
-                    <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
-                </a>
-                <a href="#" target="_blank" title="Instagram">
-                    <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
-                </a>
-                <a href="#" target="_blank" title="LinkedIn">
-                    <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
-                </a>
+            <h2 class="primary-title mt-4">Tu en veux plus ?</h2>
+            <div class="row justify-content-center mb-4">
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="Page Facebook">
+                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" class="social-networks" />
+                    </a>
+                </div>
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="Instagram">
+                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" class="social-networks" />
+                    </a>
+                </div>
+                <div class="col-2 col-md-1 text-center">
+                    <a href="#" target="_blank" title="LinkedIn">
+                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" class="social-networks" />
+                    </a>
+                </div>
             </div>
-            <div class="container links-footer">
-                <div class="row">
-                    <div class="col-sm m-3">
-                        <div class="font-weight-bold pb-2">
-                            A propos de BipBip<br>
-                        </div>
-                        <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
-                            Qui sommes-nous ?
-                        </a><br>
-                        <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
-                            Notre mission
-                        </a><br>
-                        <br>
-                        <a href="{{ path('protection') }}" title="Protection des données">
-                            Ce qu'on oublie de lire
-                        </a><br>
-                        <br>
-                        <a href="{{ path('home') }}" title="Collectes et évènements">
-                            Collectes et évènements
-                        </a>
+            <div class="row links-footer m-0 p-4">
+                <div class="col mb-4">
+                    <div class="font-weight-bold pb-2">
+                        A propos de BipBip<br>
                     </div>
-                    <div class="col-sm m-3">
-                        <div class="font-weight-bold pb-2">
-                            S'informer<br>
-                        </div>
-                        <a href="{{ path('show_collect') }}" title="Points de collecte">
-                            Points de collecte
-                        </a><br>
-                        <a href="{{ path('organisms_index') }}" title="Nos partenaires">
-                            Nos partenaires
-                        </a><br>
-                        <a href="{{ path('add_message') }}" title="Devenir partenaire">
-                            Devenir partenaire
-                        </a><br>
-                        <br>
-                        <a href="{{ path('faq_index') }}" title="FAQ">
-                            FAQ
-                        </a>
+                    <a href="{{ path('team') }}" title="Page qui-sommes-nous">
+                        Qui sommes-nous ?
+                    </a><br>
+                    <a href="{{ path('qui-sommes-nous') }}" title="Page qui-sommes-nous">
+                        Notre mission
+                    </a><br>
+                    <a href="{{ path('protection') }}" title="Protection des données">
+                        Ce qu'on oublie de lire
+                    </a><br>
+                    <a href="{{ path('home') }}" title="Collectes et évènements">
+                        Collectes et évènements
+                    </a>
+                </div>
+                <div class="col mb-4">
+                    <div class="font-weight-bold pb-2">
+                        S'informer<br>
                     </div>
-                    <div class="col-sm m-3">
-                        <div class="font-weight-bold pb-2">
-                            Besoin d'aide ?<br>
-                        </div>
-                        <a href="{{ path('home') }}" title="Comment bien choisir son smarthpone reconditionné ?">
-                            Comment bien choisir son smarthpone reconditionné ?
-                        </a><br>
-                        <br>
-                        <a href="{{ path('home') }}" title="Nos partenaires">
-                            Les grades de smartphone reconditionnés BipBip
-                        </a><br>
-                        <br>
-                        <a href="{{ path('add_message') }}" title="Contact">
-                            Nous contacter
-                        </a>
+                    <a href="{{ path('show_collect') }}" title="Points de collecte">
+                        Points de collecte
+                    </a><br>
+                    <a href="{{ path('organisms_index') }}" title="Nos partenaires">
+                        Nos partenaires
+                    </a><br>
+                    <a href="{{ path('add_message') }}" title="Devenir partenaire">
+                        Devenir partenaire
+                    </a><br>
+                    <a href="{{ path('faq_index') }}" title="FAQ">
+                        FAQ
+                    </a>
+                </div>
+                <div class="col mb-4">
+                    <div class="font-weight-bold pb-2">
+                        Besoin d'aide ?<br>
                     </div>
+                    <a href="{{ path('home') }}" title="Comment bien choisir son smarthpone reconditionné ?">
+                        Comment bien choisir son smarthpone reconditionné ?
+                    </a><br>
+                    <a href="{{ path('home') }}" title="Nos partenaires">
+                        Les grades de smartphone reconditionnés BipBip
+                    </a><br>
+                    <a href="{{ path('add_message') }}" title="Contact">
+                        Nous contacter
+                    </a>
                 </div>
             </div>
         </footer>

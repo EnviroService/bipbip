@@ -249,7 +249,7 @@ class EstimationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
 
-            return $this->render("user/choiceEnvoi.html.twig", [
+            return $this->render('user/choiceEnvoi.html.twig', [
                 'estimation' => $estimation,
                 'user' => $user
             ]);

@@ -114,22 +114,22 @@ class ApiController extends AbstractController
                     'shipperPreAlert' => 0,
                     'shipperZipCode' => $user->getPostCode(),
                 ],
-                //STRUCTURE CUSTOMERVALUE
+                //STRUCTURE CUSTOMERVALUE (client)
                 'customerValue' => [
-                    'customerAdress1' => '40 RUE JEAN JAURES',
+                    'customerAdress1' => '391 avenue Clément Ader',
                     'customerAdress2' => '',
-                    'customerCity' => 'MONFRIN',
+                    'customerCity' => 'Wambrechies',
                     'customerCivility' => 'M',
-                    'customerContactName' => 'Jean MARTIN',
+                    'customerContactName' => 'Natacha',
                     'customerCountry' => 'FR',
                     'customerCountryName' => 'FRANCE',
-                    'customerEmail' => 'jerem62026@gmail.com',
+                    'customerEmail' => 'test@gmail.com',
                     'customerMobilePhone' => '',
-                    'customerName' => 'The Journal',
+                    'customerName' => 'Bip Bip Mobile',
                     'customerName2' => '',
                     'customerPhone' => '0133333333',
                     'customerPreAlert' => 0,
-                    'customerZipCode' => '72000',
+                    'customerZipCode' => '59118',
                     'printAsSender' => 'N',
                 ],
                 //STRUCTURE RECIPIENTVALUE (destinataire)
@@ -142,8 +142,8 @@ class ApiController extends AbstractController
                     'recipientCountryName' => 'FRANCE',
                     'recipientEmail' => 'test@gmail.com',
                     'recipientMobilePhone' => '',
-                    'recipientName' => 'BipBip Mobile',
-                    'recipientName2' => '',
+                    'recipientName' => 'Enviro Services',
+                    'recipientName2' => 'Bip Bip Mobile',
                     'recipientPhone' => '0455667788',
                     'recipientPreAlert' => 0,
                     'recipientZipCode' => '59118',
@@ -189,9 +189,9 @@ class ApiController extends AbstractController
                 ],
                 //OTHERS
                 'password' => '255562',
-                'modeRetour' => '1',
+                'modeRetour' => 1,
                 'numberOfParcel' => 1,
-                'version' => '',
+                'version' => '2.0',
                 'multiparcel' => 'N'
             ];
 
@@ -234,15 +234,19 @@ class ApiController extends AbstractController
                 }
 
                 $openDir = scandir($repertory);
-                foreach ($openDir as $value) {
-                    if ($filename === $value) {
-                        $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
+
+                if (!empty($openDir)) {
+                    foreach ($openDir as $value) {
+                        if ($filename === $value) {
+                            $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
                         elle est disponible sur votre profil');
-                        return $this->redirectToRoute('user_show', [
-                            'id' => $idUser
-                        ]);
+                            return $this->redirectToRoute('user_show', [
+                                'id' => $idUser
+                            ]);
+                        }
                     }
                 }
+
                 $fichier = fopen($filenameSave, "w");
                 fwrite($fichier, $pdf);
                 fclose($fichier);
@@ -317,20 +321,20 @@ class ApiController extends AbstractController
             ],
             //STRUCTURE CUSTOMERVALUE
             'customerValue' => [
-                'customerAdress1' => '40 RUE JEAN JAURES',
+                'customerAdress1' => '391 avenue Clément Ader',
                 'customerAdress2' => '',
-                'customerCity' => 'MONFRIN',
+                'customerCity' => 'Wambrechies',
                 'customerCivility' => 'M',
-                'customerContactName' => 'Jean MARTIN',
+                'customerContactName' => 'Natacha',
                 'customerCountry' => 'FR',
                 'customerCountryName' => 'FRANCE',
-                'customerEmail' => 'jerem62026@gmail.com',
+                'customerEmail' => 'test@gmail.com',
                 'customerMobilePhone' => '0611223344',
-                'customerName' => 'The Journal',
+                'customerName' => 'BipBip Mobile',
                 'customerName2' => '',
                 'customerPhone' => '0133333333',
                 'customerPreAlert' => 0,
-                'customerZipCode' => '72000',
+                'customerZipCode' => '59118',
                 'printAsSender' => 'N',
             ],
             //STRUCTURE RECIPIENTVALUE (destinataire)
@@ -343,7 +347,7 @@ class ApiController extends AbstractController
                 'recipientCountryName' => 'FRANCE',
                 'recipientEmail' => 'test@gmail.com',
                 'recipientMobilePhone' => '',
-                'recipientName' => 'BipBip Mobile',
+                'recipientName' => 'Bip Bip Mobile',
                 'recipientName2' => '',
                 'recipientPhone' => '0655667788',
                 'recipientPreAlert' => 0,
@@ -385,33 +389,14 @@ class ApiController extends AbstractController
             //STRUCTURE SKYBILLPARAMSVALUE
             'skybillParamsValue' => [
                 'mode' => 'SLT|PDF|XML|XML2D',
-                'withReservation' => '1',
+                'withReservation' => 1,
             ],
-
-            /*'customsValue' => [
-                'articlesValue' => [
-                    'content' => '',
-                    'contentInLanguage' => '',
-                    'grossWeight' => '',
-                    'hscode' => '',
-                    'netWeight' => 2,
-                    'origin' => '',
-                    'position' => '',
-                    'quantity' => 1,
-                    'regime' => '',
-                    'value' => 100,
-                ],
-                'clearanceCleared' => 0,
-                'currency' => 'EUR',
-                'incoterm' => 'DP',
-                'numberOfItems' => 1
-            ],*/
 
             //OTHERS
             'password' => '255562',
             'modeRetour' => '3',
             'numberOfParcel' => '1',
-            'version' => '',
+            'version' => '2.0',
             'multiparcel' => 'N'
         ];
 
