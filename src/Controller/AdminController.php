@@ -605,7 +605,8 @@ class AdminController extends AbstractController
                 ->setMaxPrice($maxPrice)
                 ->setIsValidatedPayment(false)
                 ->setIsValidatedCi(false)
-                ->setImei($imei);
+                ->setImei($imei)
+                ->setStatus(0);
 
             $estimated = $maxPrice;
 

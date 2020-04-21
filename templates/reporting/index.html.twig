@@ -1,0 +1,34 @@
+{% extends 'admin/index.html.twig' %}
+{# this twig show to admin current reporting #}
+{% block title %}Reporting{% endblock %}
+
+{%  block body %}
+    <main class="container">
+        <h1 class="primary-title">Reporting</h1>
+        <p>Voici les informations de reporting envoyées chaque jour à minuit aux administrateurs.</p>
+        <p>
+            {# show phones estimated the day before #}
+            <div class="font-weight-bold">Téléphones estimés les dernières 24h :</div>
+            {% for report in toBeCollected %}
+                - {{ report.datereport | date("d/m/Y à H:i") }} : {{ report.estimation.brand }}
+                {{ report.estimation.model }} {{ report.estimation.capacity }} > estimé {{ report.estimation.estimatedPrice }} €
+                <br>
+            {% else %}
+                Aucun téléphone estimé.
+            {% endfor %}
+        </p>
+        <p>
+            {# show phones collected the day before #}
+            <div class="font-weight-bold">Téléphones collectés les dernières 24h :</div>
+            {% for report in collected %}
+                - {{ report.datereport | date("d/m/Y à H:i") }} : {{ report.estimation.brand }}
+                {{ report.estimation.model }} {{ report.estimation.capacity }} > collecté pour {{ report.estimation.estimatedPrice }} €
+                <br>
+            {% else %}
+                Aucun téléphone collecté.
+            {% endfor %}
+        </p>
+    </main>
+{%  endblock %}
+
+{% block footer %}{%  endblock %}

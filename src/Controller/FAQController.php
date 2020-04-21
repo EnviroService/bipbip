@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\FAQ;
 use App\Form\FAQType;
+use App\Repository\CategoryRepository;
 use App\Repository\FAQRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -20,14 +22,41 @@ class FAQController extends AbstractController
 
     /**
      * @param FAQRepository $faqRepo
+     * @param CategoryRepository $categoryRepo
      * @return Response
      * @Route("/", name="faq_index")
      */
-    public function index(FAQRepository $faqRepo): Response
+
+    public function index(FAQRepository $faqRepo, categoryRepository $categoryRepo) : Response
     {
+        $categories = $categoryRepo->findAll();
         $faqContent = $faqRepo->findAll();
+
         return $this->render('faq/index.html.twig', [
-            'faqContent' => $faqContent]);
+            'categories' => $categories,
+            'faqContent' => $faqContent,
+        ]);
+    }
+
+    /**
+     * @Route("/category/{id}", name="faq_category")
+     * @param FAQRepository $faqRepo
+     * @param int $id
+     * @param CategoryRepository $cateRepo
+     * @return Response
+     */
+    public function showCategory(
+        FAQRepository $faqRepo,
+        int $id,
+        CategoryRepository $cateRepo
+    ): Response {
+        $faq = $faqRepo->findBy(['category' => $id]);
+        $categories = $cateRepo->findAll();
+
+        return $this->render("faq/index.html.twig", [
+            "faqs" => $faq,
+            "categories" => $categories
+        ]);
     }
 
     /**

@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Collects;
 use App\Entity\Estimations;
 use App\Entity\User;
 use App\Repository\EstimationsRepository;
+use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,8 +73,12 @@ class ApiController extends AbstractController
      * @return Response
      * @throws SoapFault
      */
-    public function apiChronopostAe(User $user, EstimationsRepository $repository)
-    {
+    public function apiChronopostAe(
+        User $user,
+        EstimationsRepository $repository,
+        EntityManagerInterface $em,
+        OrganismsRepository $organismsRepository
+    ) {
 
         if ($this->getUser()->getId() == $user->getId()) {
             $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
@@ -98,29 +107,29 @@ class ApiController extends AbstractController
                     'shipperCountry' => 'FR',
                     'shipperCountryName' => 'FRANCE',
                     'shipperEmail' => $user->getEmail(),
-                    'shipperMobilePhone' => $user->getPhoneNumber(),
+                    'shipperMobilePhone' => '',
                     'shipperName' => $firstname,
                     'shipperName2' => $name,
                     'shipperPhone' => $user->getPhoneNumber(),
                     'shipperPreAlert' => 0,
                     'shipperZipCode' => $user->getPostCode(),
                 ],
-                //STRUCTURE CUSTOMERVALUE
+                //STRUCTURE CUSTOMERVALUE (client)
                 'customerValue' => [
-                    'customerAdress1' => '40 RUE JEAN JAURES',
+                    'customerAdress1' => '391 avenue Clément Ader',
                     'customerAdress2' => '',
-                    'customerCity' => 'MONFRIN',
+                    'customerCity' => 'Wambrechies',
                     'customerCivility' => 'M',
-                    'customerContactName' => 'Jean MARTIN',
+                    'customerContactName' => 'Natacha',
                     'customerCountry' => 'FR',
                     'customerCountryName' => 'FRANCE',
-                    'customerEmail' => 'jerem62026@gmail.com',
-                    'customerMobilePhone' => '0611223344',
-                    'customerName' => 'The Journal',
+                    'customerEmail' => 'test@gmail.com',
+                    'customerMobilePhone' => '',
+                    'customerName' => 'Bip Bip Mobile',
                     'customerName2' => '',
                     'customerPhone' => '0133333333',
                     'customerPreAlert' => 0,
-                    'customerZipCode' => '72000',
+                    'customerZipCode' => '59118',
                     'printAsSender' => 'N',
                 ],
                 //STRUCTURE RECIPIENTVALUE (destinataire)
@@ -132,9 +141,9 @@ class ApiController extends AbstractController
                     'recipientCountry' => 'FR',
                     'recipientCountryName' => 'FRANCE',
                     'recipientEmail' => 'test@gmail.com',
-                    'recipientMobilePhone' => '0655667788',
-                    'recipientName' => 'BipBip Mobile',
-                    'recipientName2' => '',
+                    'recipientMobilePhone' => '',
+                    'recipientName' => 'Enviro Services',
+                    'recipientName2' => 'Bip Bip Mobile',
                     'recipientPhone' => '0455667788',
                     'recipientPreAlert' => 0,
                     'recipientZipCode' => '59118',
@@ -172,6 +181,7 @@ class ApiController extends AbstractController
                     'length' => '30',
                     'width' => '40',
                 ],
+
                 //STRUCTURE SKYBILLPARAMSVALUE
                 'skybillParamsValue' => [
                     'mode' => 'PPR',
@@ -179,9 +189,9 @@ class ApiController extends AbstractController
                 ],
                 //OTHERS
                 'password' => '255562',
-                'modeRetour' => '1',
+                'modeRetour' => 1,
                 'numberOfParcel' => 1,
-                'version' => '',
+                'version' => '2.0',
                 'multiparcel' => 'N'
             ];
 
@@ -202,27 +212,44 @@ class ApiController extends AbstractController
                 $idUser = $user->getId();
 
                 // Récupération de l'id de l'estimation passée en GET
-                $estimation = $_GET['estimation'];
+                $estimationId = $_GET['estimation'];
                 $date = date("d_M_Y");
-                $repertory = "uploads/etiquette/";
-                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
-                $filename = "id" . $idUser . "_" . $date . "_E" . $estimation . ".pdf";
+                $repertory = "uploads/etiquettes/";
+                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+                $filename = "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+
+                if ($_GET['status'] == 2) {
+                    $estimation = $repository->find($estimationId);
+                    $estimation->setStatus(2)->setUser($user);
+                    $em->persist($estimation);
+
+                    $organism = $organismsRepository->findOneBy([
+                        'organismName' => 'Bip-Bip'
+                    ]);
+
+                    $collect = new Collects();
+                    $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
+                    $em->persist($collect);
+                    $em->flush();
+                }
 
                 $openDir = scandir($repertory);
-                foreach ($openDir as $value) {
-                    if ($filename === $value) {
-                        $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
+
+                if (!empty($openDir)) {
+                    foreach ($openDir as $value) {
+                        if ($filename === $value) {
+                            $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
                         elle est disponible sur votre profil');
-                        return $this->redirectToRoute('user_show', [
-                            'id' => $idUser
-                        ]);
+                            return $this->redirectToRoute('user_show', [
+                                'id' => $idUser
+                            ]);
+                        }
                     }
                 }
+
                 $fichier = fopen($filenameSave, "w");
                 fwrite($fichier, $pdf);
                 fclose($fichier);
-                //$set_estimation = $repository->find($estimation);
-                //$set_estimation->setStatus(1);
 
                 return new Response($pdf, 200, [
                     'Content-Disposition' => "attachment; filename=$filename"
@@ -249,12 +276,15 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/chronopost/{id}", name="api_chronopost_se")
+     * @Route("/chronopost/se/{id}", name="api_chronopost_se")
      * @return Response
      * @throws SoapFault
      */
-    public function apiChronopostSe(User $user)
-    {
+    public function apiChronopostSe(
+        User $user,
+        EstimationsRepository $repository,
+        EntityManagerInterface $em
+    ) {
 
         $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
         $clientCh = new SoapClient($wsdl);
@@ -282,7 +312,7 @@ class ApiController extends AbstractController
                 'shipperCountry' => 'FR',
                 'shipperCountryName' => 'FRANCE',
                 'shipperEmail' => $user->getEmail(),
-                'shipperMobilePhone' => "0788232290",
+                'shipperMobilePhone' => "",
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
                 'shipperPhone' => "0788232290",
@@ -291,20 +321,20 @@ class ApiController extends AbstractController
             ],
             //STRUCTURE CUSTOMERVALUE
             'customerValue' => [
-                'customerAdress1' => '40 RUE JEAN JAURES',
+                'customerAdress1' => '391 avenue Clément Ader',
                 'customerAdress2' => '',
-                'customerCity' => 'MONFRIN',
+                'customerCity' => 'Wambrechies',
                 'customerCivility' => 'M',
-                'customerContactName' => 'Jean MARTIN',
+                'customerContactName' => 'Natacha',
                 'customerCountry' => 'FR',
                 'customerCountryName' => 'FRANCE',
-                'customerEmail' => 'jerem62026@gmail.com',
+                'customerEmail' => 'test@gmail.com',
                 'customerMobilePhone' => '0611223344',
-                'customerName' => 'The Journal',
+                'customerName' => 'BipBip Mobile',
                 'customerName2' => '',
                 'customerPhone' => '0133333333',
                 'customerPreAlert' => 0,
-                'customerZipCode' => '72000',
+                'customerZipCode' => '59118',
                 'printAsSender' => 'N',
             ],
             //STRUCTURE RECIPIENTVALUE (destinataire)
@@ -316,10 +346,10 @@ class ApiController extends AbstractController
                 'recipientCountry' => 'FR',
                 'recipientCountryName' => 'FRANCE',
                 'recipientEmail' => 'test@gmail.com',
-                'recipientMobilePhone' => '0655667788',
-                'recipientName' => 'BipBip Mobile',
+                'recipientMobilePhone' => '',
+                'recipientName' => 'Bip Bip Mobile',
                 'recipientName2' => '',
-                'recipientPhone' => '0455667788',
+                'recipientPhone' => '0655667788',
                 'recipientPreAlert' => 0,
                 'recipientZipCode' => '59118',
                 'recipientCivility' => 'M',
@@ -359,13 +389,14 @@ class ApiController extends AbstractController
             //STRUCTURE SKYBILLPARAMSVALUE
             'skybillParamsValue' => [
                 'mode' => 'SLT|PDF|XML|XML2D',
-                'withReservation' => '1',
+                'withReservation' => 1,
             ],
+
             //OTHERS
             'password' => '255562',
             'modeRetour' => '3',
             'numberOfParcel' => '1',
-            'version' => '',
+            'version' => '2.0',
             'multiparcel' => 'N'
         ];
 
@@ -373,22 +404,20 @@ class ApiController extends AbstractController
         //var_dump($client_ch->__getFunctions());
         //var_dump($client_ch->__getTypes());
 
-        $results = $clientCh->shippingMultiParcelV2($params);
-        //$reservation = $results->return->reservationNumber;
-        $etiquette = $results->return->resultMultiParcelValue;
-
-        try {
-            //Objet StdClass
-            $results = $clientCh->shippingMultiParcelV2($params);
-        } catch (SoapFault $soapFault) {
-            //var_dump($soapFault);
-            echo "Request :<br>", htmlentities($clientCh->__getLastRequest()), "<br>";
-            echo "Response :<br>", htmlentities($clientCh->__getLastResponse()), "<br>";
+        if ($_GET['status'] == 2) {
+            $estimation = $repository->find($_GET['estimation']);
+            $estimation->setStatus(2)->setUser($user);
+            $em->persist($estimation);
+            $em->flush();
         }
 
-        $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
+        $clientCh->shippingMultiParcelV2($params);
+
+        $this->addFlash("success", "Félicitations, tu vas recevoir un mail contenant le numéro à 
         présenter au bureau de poste");
 
-        return new Response($etiquette);
+        return $this->redirectToRoute("user_show", [
+            'id' => $user->getId()
+        ]);
     }
 }

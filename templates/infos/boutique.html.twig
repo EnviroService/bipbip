@@ -13,14 +13,20 @@ La boutique BipBip
         </div>
         <div class="row d-flex">
             <div class="col-lg-7 col-12 mx-auto text-left">
-                <p>Victime de son succès, l'équipe BipBip te prépare ton futur téléphone !</p>
-                <p><a href="{{ path('add_message') }}" title="Contacte-nous">Envoie-nous un message</a>
-                    pour nous dire ce que tu souhaites :</p>
+                <div class="row pl-3">
+                    <p>Victime de son succès, l'équipe BipBip te prépare ton futur téléphone !</p>
+                    <p><a href="{{ path('add_message') }}" title="Contacte-nous">Envoie-nous un message</a>
+                        pour nous dire ce que tu souhaites :</p>
                     <ul class="p-3">
                         <li>-> Acheter / Louer</li>
                         <li>-> Quel téléphone ? (marque, modèle, capacité...)</li>
                     </ul>
-                <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte-nous</a>
+                </div>
+                <div class="row justify-content-center">
+                    <p>
+                        <a href="{{ path('add_message') }}" title="Lien vers la page contact" class="fourth-button">Contacte-nous</a>
+                    </p>
+                </div>
             </div>
             <div class="col-lg-5 col-12 mx-auto text-center">
                 <a href="{{ path('add_message') }}" title="Contacte-nous">

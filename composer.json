@@ -14,6 +14,7 @@
         "phpmd/phpmd": "^2.6",
         "roromix/spreadsheetbundle": "^1.0",
         "sensio/framework-extra-bundle": "^5.5",
+        "specshaper/encrypt-bundle": "^1.1",
         "specshaper/gdpr-bundle": "^2.1",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",

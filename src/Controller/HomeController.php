@@ -11,28 +11,19 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
-     * @param OrganismsRepository $organismsRepository
      * @return Response
      */
-    public function index(OrganismsRepository $organismsRepository)
+    public function index()
     {
-        $organisms = $organismsRepository->findAll();
+        return $this->render('home/index.html.twig');
+    }
 
-
-        $randomIDOrganisms = array_rand($organisms, 3);
-        if (is_array($randomIDOrganisms)) {
-            $randomOrganisms = [];
-            $randIDOrgLength = \count($randomIDOrganisms);
-            for ($i = 0; $i < $randIDOrgLength; $i++) {
-                $randomOrganisms[] = $organisms[$randomIDOrganisms[$i]];
-            }
-        } else {
-            $randomOrganisms = $organisms;
-        }
-
-        return $this->render('home/index.html.twig', [
-            'organisms' => $randomOrganisms
-        ]);
+    /**
+     * @Route("infos/team", name="team")
+     */
+    public function team()
+    {
+        return $this->render('infos/team.html.twig');
     }
 
     /**

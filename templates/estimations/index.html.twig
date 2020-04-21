@@ -23,41 +23,58 @@
                 <a class="text-right" href="{{ path('show_collect') }}">
                     Collectes à venir
                 </a>
-                
-            <div class="row align-items-center border mb-2 mt-4">
+
+            <div class="row align-items-center mb-2 mt-4">
                 {# legende #}
-                <div class="col-4 text-center">
-                    Blanc : estimation active
+                <div class="col-3 text-center">
+                    Estimation active : <i class="fas fa-mobile-alt icon-green"></i>
                 </div>
-                <div class="col-4 text-center bg-warning">
-                    Orange : + de 15 jours
+                <div class="col-3 text-center">
+                    + de 15 jours : <i class="fas fa-mobile-alt icon-orange"></i>
                 </div>
-                <div class="col-4 text-center bg-danger">
-                    Rouge : + de 30 jours
+                <div class="col-3 text-center">
+                    + de 30 jours : <i class="fas fa-mobile-alt icon-red"></i>
+                </div>
+                <div class="col-3 text-center">
+                    Envoi Chronopost : <i class="fas fa-truck icon-blue"></i>
                 </div>
 
             </div>
             <div class="row align-items-center table-head rounded-top">
                 {# titles #}
+                <div class="col-1 text-center">
+                </div>
                 <div class="col-3 text-center">
                     Nom - Prénom
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
                     Téléphone
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-1 text-center">
                     Montant
                 </div>
                 <div class="col-2 text-center">
                     Date
                 </div>
-                <div class="col-2">
+                <div class="col-3 text-center">
                 </div>
             </div>
 
             {% for estimation in estimations %}
                 <div class="row align-items-center border-bottom">
                     {# content #}
+                    <div class="col-1 text-center ">
+                    {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
+                    {% if estimation.status == 2 %}
+                        <i class="fas fa-truck icon-blue"></i>
+                    {% elseif difference.days < 15 %}
+                        <i class="fas fa-mobile-alt icon-green"></i>
+                    {% elseif difference.days > 15 and difference.days < 30 %}
+                        <i class="fas fa-mobile-alt icon-orange"></i>
+                    {% else %}
+                        <i class="fas fa-mobile-alt icon-red"></i>
+                    {% endif %}
+                    </div>
                     <div class="col-3 text-center">
                         {% if estimation.user is not null%}
                             {{  estimation.user.lastname }} {{ estimation.user.firstname }}
@@ -65,35 +82,30 @@
                             Utilisateur Anonyme
                         {% endif %}
                     </div>
-                    {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
-                    {% if difference.days < 15 %}
-                        <div class="col-3 text-center ">
-                    {% elseif difference.days > 15 and difference.days < 30 %}
-                        <div class="col-3 text-center bg-warning">
-                    {% else %}
-                        <div class="col-3 text-center bg-danger">
-                    {% endif %}
+                    <div class="col-2 text-center ">
                         {{ estimation.brand }} {{ estimation.model }}
                     </div>
-                    <div class="col-2 text-center ">
+                    <div class="col-1 text-center ">
                         {{ estimation.estimatedPrice }} €
                     </div>
                     <div class="col-2 text-center">
                         {{ estimation.estimationDate | date('d/m/Y') }}
                     </div>
+                    <div class="col-3 text-center">
                     {% if estimation.isCollected == 0 and estimation.user is null %}
-                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                        <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
                         </a>
                     {% elseif estimation.isCollected == 0 %}
-                        <a class="col-2 primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                        <a class="primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
                             Collecter
                         </a>
                     {% else %}
-                        <a class="col-2 fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                        <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
                         </a>
                     {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         </div>

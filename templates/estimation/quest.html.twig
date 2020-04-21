@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
+
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('final_estimation') }}
 {% endblock %}
+
 {% block body %}
 <main id="final_estimation">
-    <div class="container jumbotron p-3">
+    <div class="container p-3">
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="primary-title">Dernière étape</h1>
-                <h2 class="text-dark">{{ brand }}</h2>
-                <h3 class="text-dark">{{ model }}</h3>
-                <h4 class="text-dark">{{ capacity }} Go</h4>
+                <h4 class="text-dark">Modèle : {{ brand }} - {{ model }} - {{ capacity }} Go</h4>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
                 <h4>Ton téléphone a t-il été en contact avec de l'eau ?</h4>
             </div>
             <div class="bubble-info">
-                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <img class="bubble-info-img" src="{{ asset('/images/info.png') }}" alt="">
                 <div class="bubble-info-bg">
                 </div>
                 <p class="bubble-info-txt">Si ton téléphone est tombé dans l'eau, coche 'oui'</p>
@@ -42,7 +42,7 @@
                 <h4>Ton écran est-il endommagé ?</h4>
             </div>
             <div class="bubble-info">
-                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <img class="bubble-info-img" src="{{ asset('/images/info.png') }}" alt="">
                 <div class="bubble-info-bg">
                 </div>
                 <p class="bubble-info-txt">Même si l'écran ne contient qu'une petite griffe, il est considéré comme endommagé</p>
@@ -61,7 +61,7 @@
                 <h4>La coque du téléphone est-elle endommagée ?</h4>
             </div>
             <div class="bubble-info">
-                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <img class="bubble-info-img" src="{{ asset('/images/info.png') }}" alt="">
                 <div class="bubble-info-bg">
                 </div>
                 <p class="bubble-info-txt">Fissures, griffes, mauvais emboîtement, coche 'oui'</p>
@@ -80,10 +80,10 @@
                 <h4>As-tu des problèmes de charge au niveau de la batterie ?</h4>
             </div>
             <div class="bubble-info">
-                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <img class="bubble-info-img" src="{{ asset('/images/info.png') }}" alt="">
                 <div class="bubble-info-bg">
                 </div>
-                <p class="bubble-info-txt">Si tu as l'impression de devoir recherger ton téléphone tous les jours, coche 'oui'</p>
+                <p class="bubble-info-txt">Si tu as l'impression de devoir recharger ton téléphone tous les jours, coche 'oui'</p>
             </div>
         </div>
         <div class="row">
@@ -99,7 +99,7 @@
                 <h4>Tous les boutons sont-ils fonctionnels ?</h4>
             </div>
             <div class="bubble-info">
-                <img class="bubble-info-img" src="/images/info.png" alt="">
+                <img class="bubble-info-img" src="{{ asset('/images/info.png') }}" alt="">
                 <div class="bubble-info-bg">
                 </div>
                 <p class="bubble-info-txt">Si un de tes boutons ne fonctionne plus, coche 'non'</p>
@@ -115,13 +115,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                {{ form_row(form.submit, {'label': 'Valider', 'class': 'btn btn-primary'}) }}
+                {{ form_row(form.submit, {'label': 'Valider', 'attr': {'class': 'primary-button'}}) }}
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
-
-    <a class="secondary-button" href="{{ path("home") }}">Retour à l'accueil</a>
+    <div class="row">
+        <div class="col text-center">
+            <a class="secondary-button" href="{{ path("home") }}">Retour à l'accueil</a>
+        </div>
+    </div>
 
 </main>
 {% endblock %}
