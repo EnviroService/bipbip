@@ -28,8 +28,7 @@ header{
             text-align : center;
             padding: 5px;
             font-weight: 600;
-            background-color: $secondary-color;
-            opacity: 70%;
+            background-color: $primary-color;
 
             li{
                 margin-left: 10px;
@@ -73,7 +72,7 @@ header{
             margin : auto;
             font-size: 1.6rem;
             font-style: italic;
-            color: $secondary-color;
+            color: $primary-color;
             @media screen and (max-width: 960px) {
                 font-size : 1.2rem;
             }
@@ -96,7 +95,7 @@ header{
                 }
 
                 p{
-                    color : $secondary-color;
+                    color : $primary-color;
                     font-size: 0.8rem;
                     margin : 0;
                     text-align: center;
@@ -152,9 +151,9 @@ header{
         width: 100%;
         box-shadow: 5px 3px 10px rgb(135, 151, 151);
         border-radius: 5px;
-        background-color: $secondary-color;
+        background-color: $primary-color;
 
-        .estimations {
+        .bar-title {
             box-shadow: -1px 0 5px white, 1px 0 5px white;
             border-radius: 5px;
             width: 100%;
@@ -167,7 +166,7 @@ header{
                 width: 100%;
                 height: 50px;
                 text-decoration: none;
-                color: $white;
+                color: white;
                 font-weight: 500;
                 font-size: 1.1rem;
                 margin: 0;
@@ -191,107 +190,7 @@ header{
                     align-items: center;
 
                     a {
-                        color: $secondary-color;
-                        padding: 5px;
-                        border : rgb(223,216,222) 1px solid;
-                        width : 100%;
-                        text-align : center;
-                    }
-                }
-            }
-
-            .block.displayed {
-                display: block;
-            }
-        }
-
-        .management {
-            box-shadow: -1px 0 5px white, 1px 0 5px white;
-            border-radius: 5px;
-            width: 100%;
-            height: 50px;
-
-            .title {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 50px;
-                text-decoration: none;
-                color: $white;
-                font-weight: 500;
-                font-size: 1.1rem;
-                margin: 0;
-                cursor : pointer;
-                @media screen and (max-width: 960px) {
-                    font-size : 1rem;
-                }
-            }
-
-            .block {
-                display: none;
-                border-radius: 5px;
-                box-shadow: 2px 0 10px rgb(223,216,222);
-
-                div {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: white;
-
-                    a {
-                        color: $secondary-color;
-                        padding: 5px;
-                        border : rgb(223,216,222) 1px solid;
-                        width : 100%;
-                        text-align : center;
-                    }
-                }
-            }
-
-            .block.displayed {
-                display: block;
-            }
-        }
-
-        .officialDocuments {
-            box-shadow: -1px 0 5px white, 1px 0 5px white;
-            border-radius: 5px;
-            width: 100%;
-            height: 50px;
-
-            .title {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 50px;
-                text-decoration: none;
-                color: $white;
-                font-weight: 500;
-                font-size: 1.1rem;
-                margin: 0;
-                cursor : pointer;
-                @media screen and (max-width: 960px) {
-                    font-size : 1rem;
-                }
-            }
-
-            .block {
-                display: none;
-                background-color: white;
-                border-radius: 5px;
-                box-shadow: 2px 0 10px rgb(223,216,222);
-
-                div {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    a {
-                        color: $secondary-color;
+                        color: $primary-color;
                         padding: 5px;
                         border : rgb(223,216,222) 1px solid;
                         width : 100%;
@@ -388,7 +287,7 @@ body{
 }
 
 .head-table {
-    background-color: $secondary-color;
+    background-color: $primary-color;
 
     td {
         height: 60px;
@@ -409,3 +308,20 @@ body{
     text-decoration: none;
 }
 
+/* ADMIN ESTIMATIONS */
+
+.icon-green {
+    color:green;
+}
+
+.icon-orange {
+    color:orange;
+}
+
+.icon-red {
+    color:red;
+}
+
+.icon-blue {
+    color:blue;
+}

@@ -27,26 +27,25 @@
         <h1 class="titleAdmin">Bienvenue sur l'interface d'administration</h1>
         <a href="{{ path('home') }}">
             <div>
-                <img src="/images/logo-bipbip.png">
+                <img src="{{ asset('/images/logo-bipbip.png') }}" alt="Retour BipBip">
                 <p>Retour sur le site Bip Bip</p>
             </div>
         </a>
     </div>
 </header>
-
+{#
 <div id="nameSearch">
     <label for="search_nameSearch">Rechercher</label>
     <input type="text" id="search_nameSearch">
     <div class="resultSearch">
-
     </div>
 </div>
-
+#}
 
 {% if app.user.roles[0] == "ROLE_ADMIN" %}
     <nav class="menu-admin mt-2">
         <ul class="icon-menu">
-            <li class="estimations">
+            <li class="bar-title">
                 <h2 class="title">Estimations</h2>
                 <div class="block">
                     <div>
@@ -56,9 +55,8 @@
                         <a href="{{ path ('estimations_index') }}">Toutes</a>
                     </div>
                 </div>
-            </div>
-        </li>
-            <li class="management">
+            </li>
+            <li class="bar-title">
                 <h2 class="title">Gestion</h2>
                 <div class="block">
                     <div>
@@ -69,10 +67,9 @@
                         <a href="{{ path('admin_faq_index') }}">FAQ</a>
                         <a href="{{ path('users_anon') }}">Anonymisation</a>
                     </div>
-
                 </div>
             </li>
-            <li class="officialDocuments">
+            <li class="bar-title">
                 <h2 class="title">Documents</h2>
                 <div class="block">
                     <div>
@@ -88,13 +85,19 @@
 </div>
 
     {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center">
+        <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
     {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger text-center">
+        <div class="alert alert-danger text-center mt-1 alert-dismissible fade show">
             {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     {% endfor %}
 
