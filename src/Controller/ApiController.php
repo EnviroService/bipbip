@@ -216,10 +216,9 @@ class ApiController extends AbstractController
 
                 // Récupération de l'id de l'estimation passée en GET
                 $estimationId = $_GET['estimation'];
-                $date = date("d_M_Y");
                 $repertory = "uploads/etiquettes/";
-                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
-                $filename = "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+                $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
+                $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
 
                 if ($_GET['status'] == 2) {
                     $estimation = $repository->find($estimationId);
