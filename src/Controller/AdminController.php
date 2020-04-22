@@ -361,7 +361,7 @@ class AdminController extends AbstractController
                         */
             $em->flush();
 
-            $this->addFlash('success', 'mise à jour effectuée');
+            $this->addFlash('success', 'Mise à jour effectuée');
 
             return $this->render('admin/matrice.html.twig', [
                 'nbrPhoneBdd' => $nbrDePhonesBdd,
