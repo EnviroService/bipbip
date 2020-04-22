@@ -70,6 +70,9 @@ class ApiController extends AbstractController
     /**
      * @Route("/chronopost/{id}", name="api_chronopost_ae")
      * @param User $user
+     * @param EstimationsRepository $repository
+     * @param EntityManagerInterface $em
+     * @param OrganismsRepository $organismsRepository
      * @return Response
      * @throws SoapFault
      */
