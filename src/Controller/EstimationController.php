@@ -182,6 +182,11 @@ class EstimationController extends AbstractController
                 $message = "Ton téléphone a perdu trop de valeur, 
                 nous te proposons : $estimated € symbolique et le traitement des déchets";
             }
+
+            if (!empty($this->getUser())) {
+                $estimation->setUser($this->getUser());
+            }
+
             $estimation->setEstimatedPrice($estimated);
             $em->persist($estimation);
             $em->flush();
