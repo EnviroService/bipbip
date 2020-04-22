@@ -98,49 +98,54 @@
     {# show only estimations validated, and estimation non validated < 15 days #}
         {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
         {% if difference.days < 15 or estimation.isCollected == 1 %}
-            <div class="row mb-3">
-                <div class="col-3">
+            <div class="row mb-3 border-bottom pt-2">
+                <div class="col-3 font-weight-bold p-3">
                 {{ estimation.brand }} {{ estimation.model }}, {{ estimation.capacity }} Go
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-2 text-center p-3">
                     {{ estimation.maxPrice}} €
                 </div>
-                <div class="col-3">
-
-                    {% if estimation.isCollected == 1 %}
-                        <p class="text-success">
-                            Vendu
+                {% if estimation.status == 1 %}
+                    <div class="col-3 p-3">
+                    <p class="text-success">
+                        Vendu
+                    </p>
+                    </div>
+                {% elseif estimation.status == 0 %}
+                    <div class="col-3 p-3">
+                        <p class="text-warning">
+                            Non vendu
                         </p>
-                    {% endif %}
-
-                    {% if estimation.status == 0 %}
-                        <span class="text-warning">
-                            non vendu
-                        </span> -
-                        <a href="{{ path('mode_envoi', {'id': estimation.id}) }}">
+                    </div>
+                    <div class="col-4">
+                        <a class="fourth-button mb-3" href="{{ path('mode_envoi', {'id': estimation.id}) }}">
                             Revendre ce téléphone
                         </a>
-                    {% elseif estimation.status == 2 %}
+                    </div>
+                {% elseif estimation.status == 2 %}
+                    <div class="col-3 p-3">
                         <p class="text-success">
                             En cours d'envoi
                         </p>
+                    </div>
+                    <div class="col-4">
+                        <a class="primary-button mb-3 " href="">
+                            Voir l'étiquette Chronopost
+                        </a>
+                    </div>
                     {% elseif estimation.status == 3 %}
-                        <p class="text-success">
+                        <div class="col-3 p-3">
+                        <p class="text-warning">
                             Refusé
                         </p>
+                        </div>
+                    {% else %}
+                        <div class="col-3 p-3">
+                        <p class="text-success">
+                            Statut non déterminé
+                        </p>
+                        </div>
                     {% endif %}
-                </div>
-
-
-                {% if estimation.status == 2  %}
-                <div class="col-4">
-                    <a class="btn btn-info" href="">
-                        Voir l'étiquette chronnopost
-                    </a>
-                </div>
-                {% endif %}
-
-
             </div>
         {% endif %}
     {% else %}

@@ -8,14 +8,11 @@ use App\Entity\Phones;
 use App\Entity\User;
 use App\Form\EstimationType;
 use App\Form\RegistrationFormType;
-use App\Repository\EstimationsRepository;
 use App\Repository\PhonesRepository;
 use App\Security\LoginFormAuthenticator;
 use DateTime;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -182,6 +179,11 @@ class EstimationController extends AbstractController
                 $message = "Ton téléphone a perdu trop de valeur, 
                 nous te proposons : $estimated € symbolique et le traitement des déchets";
             }
+
+            if (!empty($this->getUser())) {
+                $estimation->setUser($this->getUser());
+            }
+
             $estimation->setEstimatedPrice($estimated);
             $em->persist($estimation);
             $em->flush();

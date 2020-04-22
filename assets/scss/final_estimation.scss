@@ -27,13 +27,18 @@
 
     h4 {
         margin-top: 10px;
-        font-size : 1.1rem;
+        font-size : 1.3rem;
         color : $fourth-color;
     }
 
     .form-check {
         font-style: italic;
         font-family: monospace;
+    }
+
+    .form-check-label {
+        font-size : 1.1rem;
+        padding-right: 20px;
     }
 
     .form-check-input {
