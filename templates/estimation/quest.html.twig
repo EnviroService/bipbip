@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-10 choice">
                 {{ form_start(form) }}
-                {{ form_widget(form.liquid_damage, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
+                {{ form_widget(form.liquid_damage, {'attr': {'class': 'custom-control custom-radio custom-control-inline m-3'}}) }}
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="row">
             <div class="col-10 choice">
-                {{ form_widget(form.screenCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
+                {{ form_widget(form.screenCracks, {'attr': {'class': 'custom-control custom-radio custom-control-inline m-3'}}) }}
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-10 choice">
-                {{ form_widget(form.casingCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
+                {{ form_widget(form.casingCracks, {'attr': {'class': 'custom-control custom-radio custom-control-inline m-3'}}) }}
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
         </div>
         <div class="row">
             <div class="col-10 choice">
-                {{ form_widget(form.batteryCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
+                {{ form_widget(form.batteryCracks, {'attr': {'class': 'custom-control custom-radio custom-control-inline m-3'}}) }}
             </div>
         </div>
     </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="row">
             <div class="col-10 choice">
-                {{ form_widget(form.buttonCracks, {'attr': {'class': 'mx-4 choice-box', 'placeholder': ''}}) }}
+                {{ form_widget(form.buttonCracks, {'attr': {'class': 'custom-control custom-radio custom-control-inline m-3'}}) }}
             </div>
         </div>
     </div>
@@ -115,7 +115,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                {{ form_row(form.submit, {'label': 'Valider', 'attr': {'class': 'primary-button'}}) }}
+                {{ form_row(form.submit, {'label': 'Calculer', 'attr': {'class': 'primary-button'}}) }}
                 {{ form_end(form) }}
             </div>
         </div>
