@@ -34,7 +34,7 @@
             <div class="menu-faq">
                 <article class="question">{{faq.question}}
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
+                        <a class="p-2" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
                             Modifier
                         </a>
                     {% endif %}
@@ -47,7 +47,7 @@
                 <div class="menu-faq">
                     <article class="question">{{faq.question}}
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a class="fourth-button" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
+                            <a class="p-2" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
                                 Modifier
                             </a>
                         {% endif %}
