@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié{% endblock %}
+
+{% block body %}
+    <main>
+        <section id="mdp">
+            <div>
+                <a href="{{ path('request_resetting') }}#register"></a>
+            </div>
+            <div>
+                <div>
+                    {{ form_start(form) }}
+                    {{ form_widget(form.email, { 'attr': {'placeholder' : 'Adresse mail de votre compte'} }) }}
+                    <div><input class="login" type="submit" value="Réinitialiser mon mot de passe"></div>
+                    {{ form(form) }}
+                </div>
+                <div></div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
