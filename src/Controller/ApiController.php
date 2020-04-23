@@ -220,6 +220,7 @@ class ApiController extends AbstractController
                 $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
                 $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
 
+                // statut estimation "2" correspond à une génération d'étiquette Chronopost, sauvée sur le serveur
                 if ($_GET['status'] == 2) {
                     $estimation = $repository->find($estimationId);
                     $estimation->setStatus(2)->setUser($user);
@@ -406,9 +407,10 @@ class ApiController extends AbstractController
         //var_dump($client_ch->__getFunctions());
         //var_dump($client_ch->__getTypes());
 
-        if ($_GET['status'] == 2) {
+        // statut estimation "4" correspond à une génération de code envoyé au client
+        if ($_GET['status'] == 4) {
             $estimation = $repository->find($_GET['estimation']);
-            $estimation->setStatus(2)->setUser($user);
+            $estimation->setStatus(4)->setUser($user);
             $em->persist($estimation);
             $em->flush();
         }
