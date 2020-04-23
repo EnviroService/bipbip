@@ -1,11 +1,16 @@
 {% extends 'admin/index.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}Ajouter une catégorie{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
+    <h1 class="primary-title">FAQ - Nouvelle catégorie</h1>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col col-md-6">
+            {{ include('category/_form.html.twig') }}
 
-    {{ include('category/_form.html.twig') }}
-
-    <a href="{{ path('category_index') }}">back to list</a>
+            <a class="secondary-button m-3" href="{{ path('admin_faq_index') }}">Retour</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
