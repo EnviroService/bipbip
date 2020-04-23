@@ -12,40 +12,24 @@
         <h1 class="primary-title">
             Foire Aux Questions
         </h1>
-        <div class="row">
-            {% for category in categories %}
-                <article class="category col-3 text-center ">
-                    <a class="fourth-button" href="{{ path('faq_category', {'id': category.id }) }}">
-                        {{ category.name }}
-                    </a>
-                </article>
-            {% endfor %}
+        <div class="row p-3 justify-content-center">
             {% if faqs is defined %}
-                <article class="category col-3 text-center ">
-                    <a class="fourth-button" href="{{ path('faq_index') }}">
-                        Retour à l'index
-                    </a>
-                </article>
+                <a id="all-categories" class="faq-category col-2 col-lg-1 text-center p-3 m-1 justify-content-center align-items-center" href="{{ path('faq_index') }}">
+                    Toutes les questions
+                </a>
             {% endif %}
+            {% for categ in categories %}
+                {% if category is defined and categ == category %}
+                    {% else %}
+                <a class="faq-category col-2 col-lg-1 text-center p-3 m-1 justify-content-center align-items-center" href="{{ path('faq_category', {'id': categ.id }) }}">
+                    {{ categ.name }}
+                </a>
+                {% endif %}
+            {% endfor %}
         </div>
 
-        {#
-
-        {% for category in categories %}
-            <article class="category col-3 text-center ">
-                <a class="fourth-button" href="{{ path('faq_index', { 'id': category.id } )}}"> {{ category.name }}</a>
-                {% if category.id is not null%}
-                {% endif %}
-            </article>
-
-        {% endfor %}
-
-        {% if is_granted("ROLE_ADMIN") %}
-            <a class="fourth-button add-button" href="{{ path('faq_new') }}">Ajouter</a>
-        {% endif %}
-
-        #}
         {% if faqs is defined %}
+            <h2 class="secondary-title text-center">{{ category.name }}</h2>
             {% for faq in faqs %}
             <div class="menu-faq">
                 <article class="question">{{faq.question}}
@@ -56,7 +40,8 @@
                     {% endif %}
                 </article>
                 <article class="answer">{{faq.answer}} </article>
-            </div
+            </div>
+            {% endfor %}
         {% else %}
             {% for faq in faqContent %}
                 <div class="menu-faq">
@@ -67,8 +52,8 @@
                             </a>
                         {% endif %}
                     </article>
-                </div>
                 <article class="answer">{{faq.answer}} </article>
+                </div>
             {% endfor %}
         {% endif %}
     </main>
