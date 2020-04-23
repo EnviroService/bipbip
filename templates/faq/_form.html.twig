@@ -1,10 +1,12 @@
 {{ form_start(form) }}
-<div class="offset-sm-2 col-sm-6 offset-sm-2 mx-auto">
-    {{ form_widget(form, {'label': 'questions'}) }}
+<div class="row">
+    <div class="offset-sm-2 col-sm-6 offset-sm-2 mx-auto">
+    {{ form_widget(form) }}
+        <a href="{{ path('faq_category_new') }}">Nouvelle catégorie ?</a>
+    </div>
 </div>
-<div class="offset-sm-2 col-sm-8 offset-sm-2 mx-auto">
-    {{ form_widget(form, {'label': 'Reponses'}) }}
-</div>
+<div class="row justify-content-center">
     {{ form_widget(form) }}
     <button class="primary-button">{{ button_label|default('Enregistrer') }}</button>
+</div>
 {{ form_end(form) }}

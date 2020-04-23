@@ -215,36 +215,13 @@ body{
 
 #mainFaq {
 
-    .primary-title {
-        margin-bottom : 5%;
-        width: 30%;
-    }
-
     position: relative;
-
-    .primary-button {
-        position: absolute;
-        padding: 12px 1%;
-        right: 453px;
-        bottom: 95%;
-        left: 65%;
-        text-align: center;
-        width: 275px;
-        height: 55px;
-        @media screen and (max-width: 1024px){
-            bottom: 97%;
-            left: 74%;
-            width:164px;
-            height: 45px;
-        }
-
-    }
 
     .tableFaq {
         width: 60%;
-        margin: -22px auto;
+        margin: auto;
         @media screen and (max-width: 1024px){
-            margin: 50px auto;
+            margin: auto;
             width: 80%;
         }
 

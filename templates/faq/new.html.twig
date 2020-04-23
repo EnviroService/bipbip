@@ -11,6 +11,7 @@
     <h1 class="primary-title">Créer une nouvelle question</h1>
 
     {{ include('faq/_form.html.twig') }}
-
-    <a class="fourth-button" href="{{ path('faq_index') }}">Retour à la liste</a>
+    <div class="row justify-content-center">
+        <a class="fourth-button mt-3" href="{{ path('faq_index') }}">Retour à la liste</a>
+    </div>
 {% endblock %}
