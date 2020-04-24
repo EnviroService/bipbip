@@ -2,6 +2,11 @@
 
 {% block title %}Mot de passe oublié{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('login')}}
+{% endblock %}
+
 {% block body %}
     <main>
         <section id="mdp">
@@ -11,7 +16,7 @@
             <div>
                 <div>
                     {{ form_start(form) }}
-                    {{ form_widget(form.email, { 'attr': {'placeholder' : 'Adresse mail de votre compte'} }) }}
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control m-auto', 'placeholder' : 'Adresse mail de votre compte'} }) }}
                     <div><input class="login" type="submit" value="Réinitialiser mon mot de passe"></div>
                     {{ form(form) }}
                 </div>

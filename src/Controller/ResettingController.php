@@ -50,7 +50,7 @@ class ResettingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $email = $form->getData('email');
+            $email = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
 
             $user = $entityManager->getRepository(User::class)
@@ -120,6 +120,7 @@ class ResettingController extends AbstractController
      * @param $token
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return RedirectResponse|Response
      */
 
     public function resetting(
