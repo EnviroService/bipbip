@@ -37,7 +37,7 @@
             Numéro de téléphone
         </div>
         <div class="col-5 text-left border-bottom p-2 pl-5">
-            0{{ user.phoneNumber }}
+            {{ user.phoneNumber }}
         </div>
     </div>
     <div class="row align-items-center">
@@ -129,23 +129,34 @@
                         </p>
                     </div>
                     <div class="col-4">
-                        <a class="primary-button mb-3 " href="">
+                        <a class="primary-button mb-3 " href="{{ path('show_etiquette', {'user': user.id, 'estimation': estimation.id}) }}" target="_blank">
                             Voir l'étiquette Chronopost
                         </a>
                     </div>
-                    {% elseif estimation.status == 3 %}
-                        <div class="col-3 p-3">
-                        <p class="text-warning">
-                            Refusé
-                        </p>
-                        </div>
-                    {% else %}
-                        <div class="col-3 p-3">
+                {% elseif estimation.status == 4 %}
+                    <div class="col-3 p-3">
                         <p class="text-success">
-                            Statut non déterminé
+                            En cours d'envoi
                         </p>
-                        </div>
-                    {% endif %}
+                    </div>
+                    <div class="col-4">
+                        <a class="primary-button mb-3 " href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation.id, 'status': 4}) }}">
+                            Recevoir le code Chronopost
+                        </a>
+                    </div>
+                {% elseif estimation.status == 3 %}
+                    <div class="col-3 p-3">
+                    <p class="text-warning">
+                        Refusé
+                    </p>
+                    </div>
+                {% else %}
+                    <div class="col-3 p-3">
+                    <p class="text-success">
+                        Statut non déterminé
+                    </p>
+                    </div>
+                {% endif %}
             </div>
         {% endif %}
     {% else %}

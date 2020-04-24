@@ -13,6 +13,7 @@ use App\Security\LoginFormAuthenticator;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -260,5 +261,19 @@ class EstimationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/user/{user}/estimation/{estimation}", name="show_etiquette")
+     * @param User $user
+     * @param Estimations $estimation
+     * @return BinaryFileResponse
+     */
+    public function showEtiquette(
+        User $user,
+        Estimations $estimation
+    ) {
+        $filename = 'uploads/etiquettes/id'. $user->getId().'_E'. $estimation->getId() .'.pdf';
+        return $this->file($filename);
     }
 }
