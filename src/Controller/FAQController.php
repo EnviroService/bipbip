@@ -41,21 +41,22 @@ class FAQController extends AbstractController
     /**
      * @Route("/category/{id}", name="faq_category")
      * @param FAQRepository $faqRepo
-     * @param int $id
+     * @param Category $category
      * @param CategoryRepository $cateRepo
      * @return Response
      */
     public function showCategory(
         FAQRepository $faqRepo,
-        int $id,
+        Category $category,
         CategoryRepository $cateRepo
     ): Response {
-        $faq = $faqRepo->findBy(['category' => $id]);
+        $faq = $faqRepo->findBy(['category' => $category->getId()]);
         $categories = $cateRepo->findAll();
 
         return $this->render("faq/index.html.twig", [
             "faqs" => $faq,
-            "categories" => $categories
+            "categories" => $categories,
+            'category' => $category,
         ]);
     }
 

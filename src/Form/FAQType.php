@@ -13,13 +13,15 @@ class FAQType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('category', null, ['choice_label' => 'name'
-            ])
             ->add('question', TextareaType::class, [
-                'label' => 'Questions'
+                'label' => 'Question'
             ])
             ->add('answer', TextareaType::class, [
-                'label' => 'Réponses'
+                'label' => 'Réponse'
+            ])
+            ->add('category', null, [
+                'choice_label' => 'name',
+                'label' => 'Catégorie',
             ])
         ;
     }
