@@ -18,8 +18,8 @@ class CollectsType extends AbstractType
     {
         $builder
             ->add('dateCollect', DateTimeType::class, [
-                'label' => 'Date de collecte',
-                'widget' => 'single_text',
+                'label' => 'Date et heure de collecte',
+                'date_widget' => 'single_text',
             ])
             ->add(
                 'collector',
