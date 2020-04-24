@@ -108,7 +108,7 @@ class ResettingController extends AbstractController
         $now = new DateTime();
         $interval = $now->getTimestamp() - $passewordRequestedAt->getTimestamp();
 
-        $daySeconds = 60 * 10;
+        $daySeconds = 60 * 30;
         $response = $interval > $daySeconds ? false : $response = true;
 
         return $response;

@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Réinitialisation{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('login')}}
+{% endblock %}
 
 {% block body %}
     <main>
-        <h1>Renouvellement du mot de passe</h1>
-        {{form_start(form)}}
-        {{form_row(form.password.first)}}
-        {{form_row(form.password.second)}}
-        <button class=""  type="submit">Envoyer</button>
-        {{form_end(form)}}
+        <h1 class="primary-title">Renouvellement du mot de passe</h1>
+        <div class="container m-auto col-8 col-sm-6 col-lg-3" id="new-mdp">
+            {{form_start(form)}}
+            {{form_row(form.password.first, { 'attr': {'class': 'form-control m-auto mb-4', 'placeholder' : 'Nouveau mot de passe'} })}}
+            {{form_row(form.password.second, { 'attr': {'class': 'form-control m-auto mb-4', 'placeholder' : 'Confirmer mot de passe'} })}}
+            <div class="row mt-4 justify-content-center">
+                <button class="third-button" type="submit">Envoyer</button>
+            </div>
+            {{form_end(form)}}
+        </div>
     </main>
 {% endblock %}

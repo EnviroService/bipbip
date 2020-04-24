@@ -1,8 +1,35 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bipbip Mobile</title>
+    <link href="https://fonts.googleapis.com/css?family=Century+Gothic" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            font-family: Avenir Next, serif;
+        }
 
-{% block title %}{% endblock %}
+        main {
+            font-family: Avenir Next, serif;
+            margin:30px 20px;
+        }
 
-{% block body %}
+        .header {
+            margin: 50px 0;
+        }
+
+        .email {
+            width: 100%;
+            margin: 30px 0 80px 0;
+
+        }
+    </style>
+</head>
+<body>
     <main>
         <div>
 
@@ -22,12 +49,28 @@
                     </button>
                 </div>
             {% endfor %}
-            <p>
+
+            <div class="header">
+                <div>
+                    <h1 class="primary-title"> Bipbip ton green Mobile</h1>
+                </div>
+            </div>
+
+            <p class="email">
                 Bonjour, <br>
-                Cliquez sur ce lien pour changer votre mot de passe.
+                Nous avons bien reçu ta demande de changement de mot de passe, <br>
+                Clique sur ce lien pour changer ton mot de passe.
                 {# pour que le lien fonctionne, il est indispensable que le lien soit absolu. #}
                 <a href="{{ absolute_url (path ('resetting', {'id': user.id, 'token': user.token}) ) }}">Changer le mot de passe</a>
             </p>
         </div>
+
+        <div class="footer">
+            <p>ENVIRO SERVICES FRANCE/ Bipbip Mobile</p>
+            <p>391 Avenue Clément Ader <p>
+            <p>59118 Wambrechies <p>
+            <p>03 20 00 00 00</p>
+        </div>
     </main>
-{% endblock %}
+</body>
+</html>

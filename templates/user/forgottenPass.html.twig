@@ -10,17 +10,16 @@
 {% block body %}
     <main>
         <section id="mdp">
-            <div>
-                <a href="{{ path('request_resetting') }}#register"></a>
-            </div>
-            <div>
-                <div>
+            <h1 class="primary-title">Renouvellement du mot de passe</h1>
+            <div class="container">
+                <div class="w-50 m-auto mt-4">
                     {{ form_start(form) }}
-                    {{ form_widget(form.email, { 'attr': {'class': 'form-control m-auto', 'placeholder' : 'Adresse mail de votre compte'} }) }}
-                    <div><input class="login" type="submit" value="Réinitialiser mon mot de passe"></div>
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control m-auto mb-4', 'placeholder' : 'Votre email'} }) }}
+                    <div class="row mt-4 justify-content-center">
+                        <input class="third-button" type="submit" value="Réinitialiser">
+                    </div>
                     {{ form(form) }}
                 </div>
-                <div></div>
             </div>
         </section>
     </main>
