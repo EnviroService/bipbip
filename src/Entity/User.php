@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -99,6 +100,18 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="user")
      */
     private $estimations;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime
+     */
+    private $passwordRequestedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $token;
 
     public function __construct()
     {
@@ -330,6 +343,30 @@ class User implements UserInterface
                 $estimation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+    public function setPasswordRequestedAt($passwordRequestedAt)
+    {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+
+        return $this;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token)
+    {
+        $this->token = $token;
 
         return $this;
     }
