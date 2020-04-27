@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('faq_delete', {'id': faq.id}) }}" onsubmit="return confirm('Vous êtes sûr de vouloir supprimer cette question?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('Supprimer' ~ faq.id) }}">
-    <button class="secondary-button">Supprimer</button>
+    <button class="secondary-button m-2">Supprimer</button>
 </form>

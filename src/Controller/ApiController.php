@@ -70,6 +70,9 @@ class ApiController extends AbstractController
     /**
      * @Route("/chronopost/{id}", name="api_chronopost_ae")
      * @param User $user
+     * @param EstimationsRepository $repository
+     * @param EntityManagerInterface $em
+     * @param OrganismsRepository $organismsRepository
      * @return Response
      * @throws SoapFault
      */
@@ -213,11 +216,11 @@ class ApiController extends AbstractController
 
                 // Récupération de l'id de l'estimation passée en GET
                 $estimationId = $_GET['estimation'];
-                $date = date("d_M_Y");
                 $repertory = "uploads/etiquettes/";
-                $filenameSave = $repertory . "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
-                $filename = "id" . $idUser . "_" . $date . "_E" . $estimationId . ".pdf";
+                $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
+                $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
 
+                // statut estimation "2" correspond à une génération d'étiquette Chronopost, sauvée sur le serveur
                 if ($_GET['status'] == 2) {
                     $estimation = $repository->find($estimationId);
                     $estimation->setStatus(2)->setUser($user);
@@ -404,16 +407,17 @@ class ApiController extends AbstractController
         //var_dump($client_ch->__getFunctions());
         //var_dump($client_ch->__getTypes());
 
-        if ($_GET['status'] == 2) {
+        // statut estimation "4" correspond à une génération de code envoyé au client
+        if ($_GET['status'] == 4) {
             $estimation = $repository->find($_GET['estimation']);
-            $estimation->setStatus(2)->setUser($user);
+            $estimation->setStatus(4)->setUser($user);
             $em->persist($estimation);
             $em->flush();
         }
 
         $clientCh->shippingMultiParcelV2($params);
 
-        $this->addFlash("success", "Félicitations, tu vas recevoir un sms contenant le numéro à 
+        $this->addFlash("success", "Félicitations, tu vas recevoir un mail contenant le numéro à 
         présenter au bureau de poste");
 
         return $this->redirectToRoute("user_show", [

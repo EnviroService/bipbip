@@ -7,18 +7,18 @@
                 {% if message %}
                 <p class="text-danger">{{ message }}</p>
                 {% else %}
-                <h2 class="text-dark">Ton téléphone a une valeur de :</h2>
-                <h3 class="secondary-button">{{ estimation.estimatedPrice }} Euros</h3>
+                <h2 class="text-dark">Ton téléphone a une valeur de</h2>
+                <h3 class="primary-title">{{ estimation.estimatedPrice }} €</h3>
                 {% endif %}
                 {% if app.user %}
                 <div class="jumbotron">
                     <h4>Pour finaliser la vente de ton téléphone, </h4>
-                    <a class="btn btn-primary" href="{{ path("mode_envoi", {'id': estimation.id  }) }}">Choisis une collecte</a>
+                    <a class="primary-button" href="{{ path("mode_envoi", {'id': estimation.id  }) }}">Choisis ton mode de dépôt</a>
                 </div>
                 {% else %}
                 <div class="jumbotron">
                     <h4>Pour finaliser la vente de ton téléphone, crée ton compte et accède aux lieux de collecte</h4>
-                    <a class="btn btn-primary" href="{{ path("estimation_register_user", {'estimation': estimation.id}) }}">Créer mon compte</a>
+                    <a class="primary-button" href="{{ path("estimation_register_user", {'estimation': estimation.id}) }}">Créer mon compte</a>
                 </div>
                 {% endif %}
 

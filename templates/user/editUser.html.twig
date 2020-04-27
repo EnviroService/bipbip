@@ -62,9 +62,12 @@
         {{ form_widget(form.organism) }}
             </div>
         </div>
-        <button class="primary-button mb-1">{{ button_label|default('Modifier') }}</button>
+        <div class="row text-center">
+            <div class="col pt-2">
+        <button class="primary-button mr-3">{{ button_label|default('Modifier') }}</button>
         {{ form_end(form ) }}
-
-    <a href="{{ path('user_show', {'id':user.id}) }}" class="fourth-button">Annuler</a>
+    <a href="{{ path('user_show', {'id':user.id}) }}" class="third-button">Annuler</a>
+            </div>
+        </div>
     </main>
 {% endblock %}

@@ -1,5 +1,4 @@
 var Encore = require('@symfony/webpack-encore');
-
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
@@ -7,7 +6,6 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-
     /*
      * ENTRY CONFIG
      *
@@ -36,13 +34,14 @@ Encore
     .addEntry('modal_infos', './assets/js/modal_infos.js')
     .addEntry('bdcVueAdmin', './assets/scss/bdcVueAdmin.scss')
     .addEntry('admin', './assets/scss/admin.scss')
+    .addEntry('upload', './assets/js/upload.js')
+    .addEntry('matrice_upload', './assets/js/matrice_upload.js')
+    .addEntry('flash_m', './assets/js/flash_m.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
-
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
-
     /*
      * FEATURE CONFIG
      *
@@ -55,29 +54,21 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
-
     // enables @babel/preset-env polyfills
     .configureBabel(() => {}, {
         useBuiltIns: 'usage',
         corejs: 3
     })
-
     // enables Sass/SCSS support
     .enableSassLoader()
-
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
-
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes()
-
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
-
-    // uncomment if you use API Platform admin (composer req api-admin)
-    //.enableReactPreset()
-    //.addEntry('admin', './assets/js/adminHomePage.js')
-
-
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
+// uncomment to get integrity="..." attributes on your script & link tags
+// requires WebpackEncoreBundle 1.4 or higher
+//.enableIntegrityHashes()
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
+// uncomment if you use API Platform admin (composer req api-admin)
+//.enableReactPreset()
+//.addEntry('admin', './assets/js/adminHomePage.js')
 module.exports = Encore.getWebpackConfig();

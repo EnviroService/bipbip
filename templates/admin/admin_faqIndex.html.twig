@@ -9,8 +9,7 @@
 
 {% block body %}
     <main id="mainFaq">
-        <h1 class="primary-title"> Foire Aux Questions </h1>
-        <a class="primary-button addFaq" href="{{ path('faq_new') }}">Ajouter</a>
+        <h1 class="primary-title mb-2"> Foire Aux Questions </h1>
 
         <table class="tableFaq">
 
@@ -18,7 +17,7 @@
                <tr>
                    <td>Questions</td>
                    <td></td>
-                   <td></td>
+                   <td><a class="badge-secondary p-3" href="{{ path('faq_new') }}">Ajouter</a></td>
                </tr>
             </thead>
 

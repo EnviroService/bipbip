@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\FAQ;
 use App\Entity\Organisms;
 use App\Entity\Phones;
 use App\Entity\User;
+use App\Form\CategoryType;
 use App\Form\EstimationsType;
 use App\Form\EstimationType;
 use App\Form\OrganismsType;
@@ -42,6 +44,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 
 class AdminController extends AbstractController
@@ -77,7 +80,6 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/collector/register", name="register_collector")
-     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param GuardAuthenticatorHandler $guardHandler
@@ -361,7 +363,7 @@ class AdminController extends AbstractController
                         */
             $em->flush();
 
-            $this->addFlash('success', 'mise à jour effectuée');
+            $this->addFlash('success', 'Mise à jour effectuée');
 
             return $this->render('admin/matrice.html.twig', [
                 'nbrPhoneBdd' => $nbrDePhonesBdd,
@@ -457,6 +459,31 @@ class AdminController extends AbstractController
         $faqContent = $faqRepo->findAll();
         return $this->render('admin/admin_faqIndex.html.twig', [
             'faqContent' => $faqContent]);
+    }
+
+    /**
+     * @Route("/faq/newcategory", name="faq_category_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
+     */
+    public function new(Request $request): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_faq_index');
+        }
+
+        return $this->render('category/new.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
