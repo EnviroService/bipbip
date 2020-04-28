@@ -115,7 +115,7 @@ class ResettingController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/{token}", name="resetting")
+     * @Route("reset/{id}/{token}", name="resetting")
      * @param User $user
      * @param $token
      * @param Request $request
