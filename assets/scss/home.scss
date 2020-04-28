@@ -34,10 +34,22 @@
        }
      }
 
-    .img-steps {
+    .img-home {
         width: 70%;
         max-width: 150px;
         height: auto;
+    }
+
+    .img-constat {
+        height: 100px;
+        width: auto;
+        @include media-breakpoint-up(sm) {
+            height: 150px;
+        }
+        @include media-breakpoint-up(md) {
+            height: 170px;
+        }
+
     }
 
     .combien-vaut {
