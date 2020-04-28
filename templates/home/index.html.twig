@@ -9,7 +9,7 @@
 
 {% block body %}
     <main class="home">
-       <div class="row p-3 header bg-white">
+       <div class="row pl-3 pr-3 pt-3 header bg-white">
            <div class="col-7 col-sm-6 offset-md-2 col-md-4 offset-lg-4 col-lg-3 p-3 text-center">
                <h5 class="header-text"><span class="color-primary">BipBip rachète ton tél et en fait</span> le 1<sup>er</sup> mobile recyclé et connecté
                <span class="color-third">aux bons plans de ta région</span></h5>
@@ -19,47 +19,29 @@
            </div>
        </div>
 
-        <div class="row justify-content-center steps">
-            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
-                <img src="{{ asset('images/step-estime.png') }}" alt="Estime ton tél" class="img-fluid img-steps">
-                <a href="{{ path('new_estimation') }}" class="small-button">Estime ton tél</a>
+        <div class="row justify-content-center p-3">
+            <div class="col col-md-4 text-center">
+                <a href="{{ path('new_estimation') }}">
+                <img src="{{ asset('images/btn-vends.png') }}" alt="Vends ton tél" class="img-fluid img-steps">
+                </a>
             </div>
-            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
-                <img src="{{ asset('images/step-vends.png') }}" alt="Vends ton tél" class="img-fluid img-steps">
-                <a href="{{ path('new_estimation') }}" class="small-button">Vends ton tél</a>
-            </div>
-
-            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
-                <img src="{{ asset('images/step-achete.png') }}" alt="Achète un tél" class="img-fluid img-steps">
-                <a href="{{ path('boutique') }}" class="small-button">Achète un tél</a>
+            <div class="col col-md-4 text-center">
+                <a href="{{ path('boutique') }}">
+                <img src="{{ asset('images/btn-achete.png') }}" alt="Achète un tél" class="img-fluid img-steps">
+                </a>
             </div>
         </div>
 
+        <h1 class="row justify-content-center primary-title">Le constat !</h1>
         <div class="row mt-4 align-items-center">
-            <div class="offset-1 col-3 col-md-2 offset-xl-2 p-3">
-                <img src="{{ asset('images/qui-sommes-nous.png') }}" alt="Qui sommes-nous" class="img-fluid pb-4">
+            <div class="col">
+                <img src="{{ asset('images/qui-sommes-nous.png') }}" alt="Qui sommes-nous" class="img-fluid">
             </div>
-            <div class="col-8 col-xl-6 pr-3">
-                <p>BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
-                    Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en te faisant gagner de l'argent.
-                </p>
-                <div class="m-auto bubble-text">
-                    <p>En savoir plus ?</p>
-                </div>
+            <div class="col">
+                <img src="{{ asset('images/qui-sommes-nous.png') }}" alt="Qui sommes-nous" class="img-fluid">
             </div>
-        </div>
-        <div class="row mt-4 align-items-center">
-            <div class="offset-1 col-3 col-md-2 offset-xl-2 p-3">
-                <img src="{{ asset('images/ta-planete.png') }}" alt="La planète" class="img-fluid pb-4">
-            </div>
-            <div class="col-8 col-xl-6 pr-3">
-                <p>BipBip a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler
-                    tous les téléphones usagés ou unitilisés à l'aide des associations étudiantes qui nous accueillent et nous
-                    accompagnent en ouvrant des points de collecte. C'est l'occaion pour nos partenaires de collecte
-                    et partenaires locaux de se faire connapitre davantage dans notre région.</p>
-                <div class="m-auto bubble-text">
-                    <p>En savoir plus ?</p>
-                </div>
+            <div class="col">
+                <img src="{{ asset('images/ta-planete.png') }}" alt="La planète" class="img-fluid">
             </div>
         </div>
 
