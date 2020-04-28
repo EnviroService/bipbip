@@ -94,4 +94,22 @@
             height: auto;
         }
     }
+
+    .logos {
+        img {
+            width: 100%;
+            height: auto;
+            @include media-breakpoint-up(md) {
+                max-width: 120px;
+            }
+        }
+    }
+
+    .photography {
+        background-color: $sixth-color;
+        img {
+            width: 80%;
+            height: auto;
+        }
+    }
 }
