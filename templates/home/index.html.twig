@@ -32,7 +32,8 @@
             </div>
         </div>
 
-        <h1 class="primary-title">Le constat !</h1>
+        <section>
+        <h2 class="primary-title">Le constat !</h2>
         <div class="row justify-content-center">
             <div class="col col-sm-3 text-center">
                 <img src="{{ asset('images/constat-1.png') }}"
@@ -50,6 +51,83 @@
                      class="img-fluid img-constat">
             </div>
         </div>
+        </section>
+
+        <section class="comment-marche mt-3 pb-3">
+            <h2 class="primary-title">Comment ça marche ?</h2>
+            <div class="row">
+                <div class="col-12 col-md-6 text-center">
+                    <iframe src="https://www.youtube.com/embed/JDeWXwma_Z4"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+                <div class="col-12 col-md-6 font-weight-bold">
+                    <div class="row align-items-center p-1">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/1.png') }}" alt="1">
+                        </div>
+                        <div class="col-10">
+                            Teste ton téléphone sur
+                                <a href="{{ path('new_estimation') }}">
+                                    <span class="explain-text-color">notre site</span>
+                                </a>
+                                ou sur notre
+                                <a href="{{ path('home') }}">
+                                    <span class="explain-text-color">appli</span>
+                                </a>
+                                et découvre notre offre de rachat
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-1">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/2.png') }}" alt="2">
+                        </div>
+                        <div class="col-10">
+                            Après la création de ton compte
+                                <a href="{{ path('show_collect') }}"><span class="explain-text-color">
+                            choisis un point de collecte</span></a>
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-1">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/3.png') }}" alt="3">
+                        </div>
+                        <div class="col-10">
+                            Présente-toi au RDV muni de ta pièce d'identité
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-1">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/4.png') }}" alt="4">
+                        </div>
+                        <div class="col-10">
+                            Notre expert vérifie ton smartphone, procède à l'effacement de tes données, te
+                                fournit un bon de cession et procède au paiement.
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-1">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/5.png') }}" alt="5">
+                        </div>
+                        <div class="col-10">
+                                <span class="explain-text-color">Récupère ton argent<br>
+                                Fais un don</span> de la valeur de ton tél pour une association<br>
+                                <span class="explain-text-color">profite d'un bon de réduction</span> sur l'achat
+                                d'un bipbip mobile
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-2 text-center">
+                            <img src="{{ asset('images/coche.png') }}" alt="Bonne action" class="img-fluid">
+                        </div>
+                        <div class="col-10">
+                            Tu as fait une bonne action pour ta planète !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="combien-vaut mt-4">
             <h2 class="primary-title">Combien vaut ton mobile ?</h2>
@@ -81,66 +159,5 @@
             </div>
         </section>
 
-        <section class="comment-marche pt-3">
-            <h2 class="primary-title">Comment ça marche ?</h2>
-            <div class="row align-items-center mt-2">
-                <div class="col-3 col-lg-2 text-center">
-                    <img src="{{ asset('images/1.png') }}" alt="1">
-                </div>
-                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
-                    <p class="h4">Teste ton téléphone sur
-                        <a href="{{ path('new_estimation') }}">
-                            <span class="explain-text-color">notre site</span>
-                        </a>
-                        ou sur notre
-                        <a href="{{ path('home') }}">
-                            <span class="explain-text-color">appli</span>
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <div class="row align-items-center mt-2">
-                <div class="col-3 col-lg-2 text-center">
-                    <img src="{{ asset('images/2.png') }}" alt="2">
-                </div>
-                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
-                    <p class="h4">Après la création de ton compte <span class="explain-text-color">
-                            choisis un point de collecte</span>
-                    </p>
-                </div>
-            </div>
-            <div class="row align-items-center mt-2">
-                <div class="col-3 col-lg-2 text-center">
-                    <img src="{{ asset('images/3.png') }}" alt="3">
-                </div>
-                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
-                    <p class="h4">Présente-toi au point de collecte muni de ta  <span class="explain-text-color">
-                            pièce d'identité</span> et de ton smartphone avec l'appli pumpkin
-                    </p>
-                </div>
-            </div>
-            <div class="row align-items-center mt-2">
-                <div class="col-3 col-lg-2 text-center">
-                    <img src="{{ asset('images/4.png') }}" alt="4">
-                </div>
-                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
-                    <p class="h4">Une fois l'expertise faite, tu recevras instantanément ton argent et ton bon de cession
-                    </p>
-                </div>
-            </div>
-            <div class="row align-items-center mt-3">
-                <div class="col-4 col-md-4 text-center">
-                    <img src="{{ asset('images/coche.png') }}" alt="4">
-                </div>
-                <div class="col-5 col-md-4 p-3">
-                    <p class="h4">
-                        Tu as gagné de l'argent et tu fais <span class="explain-text-color">une bonne action pour ta planète !</span>
-                    </p>
-                </div>
-                <div class="col-3 col-md-2 col-xl-1 text-center">
-                    <img src="{{ asset('images/planete.png') }}" alt="Planète" class="img-fluid">
-                </div>
-            </div>
-        </section>
     </main>
 {% endblock %}
