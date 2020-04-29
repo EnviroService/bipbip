@@ -79,11 +79,18 @@
 
     .logos {
         img {
-            width: 100%;
+            width: 30px;
+            padding: 2px;
             height: auto;
             @include media-breakpoint-up(md) {
-                max-width: 120px;
+                width: 70px;
             }
+        }
+
+        p {
+            font-size: 0.7rem;
+            line-height: 0.7rem;
+            font-weight: 600;
         }
     }
 

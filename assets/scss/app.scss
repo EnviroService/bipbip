@@ -345,12 +345,23 @@ footer {
 
     .links-footer{
         background-color: $secondary-color;
-        color: white;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        @include media-breakpoint-up(md) {
+            font-size: 0.7rem;
+            line-height: 1rem;
+        }
+
+        img {
+            height: 50px;
+            width: auto;
+            @include media-breakpoint-up(md) {
+                height: 70px;
+            }
+        }
 
         a{
-            color: white;
+            color: black;
         }
     }
 }
