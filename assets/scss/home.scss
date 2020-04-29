@@ -52,24 +52,6 @@
 
     }
 
-    .combien-vaut {
-        .explain-text {
-            font-size: 1.3rem;
-        }
-
-        .recolted-text {
-            font-size: 2rem;
-            font-weight: 900;
-            @include media-breakpoint-up(md) {
-                font-size: 2.7rem;
-            }
-        }
-
-        .img-phone {
-            height: 250px;
-        }
-    }
-
     .comment-marche {
         background-color:$fifth-color ;
         .explain-text-color {
@@ -108,8 +90,44 @@
     .photography {
         background-color: $sixth-color;
         img {
-            width: 80%;
+            width: 100%;
             height: auto;
+            @include media-breakpoint-up(md) {
+                width: 70%;
+            }
+        }
+    }
+
+    #bipbip-logo {
+        margin-top: -10px;
+        width: 40%;
+        height: auto;
+    }
+
+    .phones-collected {
+        background-color: $secondary-color;
+        .explain-text {
+            font-size: 1.3rem;
+        }
+
+        .recolted-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            @include media-breakpoint-up(md) {
+                font-size: 2.7rem;
+            }
+        }
+
+        .recolted-text {
+            margin-top: -1.3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .img-phone {
+            margin-top: -40%;
+            margin-left: 20px;
+            height: 180px;
         }
     }
 }

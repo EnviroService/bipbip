@@ -154,8 +154,8 @@
             </div>
         </section>
 
-        <section class="photography pt-3 pb-3">
-            <div class="row text-center">
+        <section class="photography pt-3 pb-3 pt-md-0 pb-md-0">
+            <div class="row text-center pr-2 align-content-center pl-md-5 p-md-5">
                 <div class="col">
                     <img src="{{ asset('images/photo-1.png') }}"
                          alt="Smartphones contrôlés et certifiés localement">
@@ -171,15 +171,20 @@
             </div>
         </section>
 
-        <section class="combien-vaut mt-4">
-            <h2 class="primary-title">La seconde vie selon</h2>
-
-            <div class="row justify-content-center m-0 p-0 pt-5 pb-5 bg-secondary-color">
-                <div class="col-6 col-md-4 col-xl-3 text-center">
-                    <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" class="img-phone">
+        <section>
+            <div class="row">
+                <div class="offset-4 col offset-md-5 col-md-7 text-center pb-2">
+                    <h2 class="primary-title">La seconde vie selon</h2>
+                    <img src="{{ asset('images/bipbip-title.png') }}" alt="BipBip" id="bipbip-logo">
                 </div>
-                <div class="col-6 col-md-4 col-xl-3 text-center">
-                    <p class="recolted-text pt-5">1520 tél collectés</p>
+            </div>
+            <div class="row justify-content-center phones-collected">
+                <div class="col-4 offset-md-2 col-md-3 text-right">
+                    <img src="{{ asset('images/perso-bipbip-2.png') }}" alt="Téléphones collectés" class="img-phone">
+                </div>
+                <div class="col-8 col-md-7 text-center">
+                    <p class="recolted-number pt-2">1520</p>
+                    <p class="recolted-text">téléphones<br>collectés<br> par nos bippers</p>
                 </div>
             </div>
         </section>

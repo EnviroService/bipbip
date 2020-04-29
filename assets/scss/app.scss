@@ -20,6 +20,7 @@ body{
     color : black;
     font-size : 1rem;
     background-image: url("../images/fond.png");
+    background-size: contain;
     background-repeat: repeat;
 }
 
@@ -40,25 +41,21 @@ a{
     }
 }
 
-.bg-secondary-color{
-    background-color: $secondary-color;
-}
-
 /* TITLES */
 
 .primary-title{
     font-family: $primary-font, sans-serif;
     padding:20px;
-    font-size : 1.3rem;
+    font-size : 1.1rem;
     font-stretch: expanded;
     font-weight: 900;
     text-align : center;
     margin : auto;
     @include media-breakpoint-up(sm) {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
     @include media-breakpoint-up(md) {
-        font-size : 2.2rem;
+        font-size : 1.9rem;
     }
 }
 
@@ -347,7 +344,7 @@ footer {
     }
 
     .links-footer{
-        background-color: $third-color;
+        background-color: $secondary-color;
         color: white;
         font-size: 1.4rem;
         line-height: 1.8rem;
