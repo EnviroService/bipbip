@@ -19,18 +19,20 @@
            </div>
        </div>
 
-        <div class="row justify-content-center p-3">
-            <div class="col col-md-4 text-center">
-                <a href="{{ path('new_estimation') }}">
-                <img src="{{ asset('images/btn-vends.png') }}" alt="Vends ton tél" class="img-fluid img-home">
-                </a>
+        <section>
+            <div class="row justify-content-center p-3">
+                <div class="col col-md-4 text-center">
+                    <a href="{{ path('new_estimation') }}">
+                    <img src="{{ asset('images/btn-vends.png') }}" alt="Vends ton tél" class="img-fluid img-home">
+                    </a>
+                </div>
+                <div class="col col-md-4 text-center">
+                    <a href="{{ path('boutique') }}">
+                    <img src="{{ asset('images/btn-achete.png') }}" alt="Achète un tél" class="img-fluid img-home">
+                    </a>
+                </div>
             </div>
-            <div class="col col-md-4 text-center">
-                <a href="{{ path('boutique') }}">
-                <img src="{{ asset('images/btn-achete.png') }}" alt="Achète un tél" class="img-fluid img-home">
-                </a>
-            </div>
-        </div>
+        </section>
 
         <section>
         <h2 class="primary-title">Le constat !</h2>
@@ -189,5 +191,24 @@
             </div>
         </section>
 
+        <section class="logos-bas">
+            <div class="row justify-content-center p-3">
+                <div class="col-4 col-md-3 text-center">
+                    <img src="{{ asset('images/logos-economique.png') }}" alt="Economique">
+                    <p>Economique</p>
+                    <p class="small-text">Gagne facilement de l'argent en faisant une bonne action</p>
+                </div>
+                <div class="col-4 col-md-3 text-center">
+                    <img src="{{ asset('images/logos-profitable.png') }}" alt="Profitable">
+                    <p>Profitable</p>
+                    <p class="small-text">Vends, achète et recycle en toute sécurité avec notre partenaire Pumkin</p>
+                </div>
+                <div class="col-4 col-md-3 text-center">
+                    <img src="{{ asset('images/logos-environnemental.png') }}" alt="Environnemental">
+                    <p>Environnemental</p>
+                    <p class="small-text">Une bonne action pour ta planète</p>
+                </div>
+            </div>
+        </section>
     </main>
 {% endblock %}
