@@ -20,6 +20,7 @@ body{
     color : black;
     font-size : 1rem;
     background-image: url("../images/fond.png");
+    background-size: contain;
     background-repeat: repeat;
 }
 
@@ -40,25 +41,21 @@ a{
     }
 }
 
-.bg-secondary-color{
-    background-color: $secondary-color;
-}
-
 /* TITLES */
 
 .primary-title{
     font-family: $primary-font, sans-serif;
     padding:20px;
-    font-size : 1.7rem;
+    font-size : 1.1rem;
     font-stretch: expanded;
     font-weight: 900;
     text-align : center;
     margin : auto;
-    @media screen and (min-width: 768px) {
-        font-size: 1.8rem;
+    @include media-breakpoint-up(sm) {
+        font-size: 1.5rem;
     }
-    @media screen and (min-width: 1025px) {
-        font-size : 2.3rem;
+    @include media-breakpoint-up(md) {
+        font-size : 1.9rem;
     }
 }
 
@@ -264,16 +261,16 @@ header{
             align-items: center;
             background-color: white;
             box-shadow: 5px 3px 10px silver;
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             position: fixed;
-            right: 2vw;
-            top: 2vh;
+            right: 15%;
+            top: 2%;
             z-index: 5;
 
             img {
-                width: 40%;
+                width: 50%;
             }
 
             p {
@@ -292,7 +289,7 @@ header{
                 min-height: 40px;
                 height: 40px;
                 position: absolute;
-                top: 50px;
+                top: 30px;
                 right: 50px;
 
                 img {
@@ -347,13 +344,24 @@ footer {
     }
 
     .links-footer{
-        background-color: $third-color;
-        color: white;
-        font-size: 1.4rem;
-        line-height: 1.8rem;
+        background-color: $secondary-color;
+        font-size: 0.7rem;
+        line-height: 1rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1rem;
+            line-height: 1.4rem;
+        }
+
+        img {
+            height: 50px;
+            width: auto;
+            @include media-breakpoint-up(md) {
+                height: 70px;
+            }
+        }
 
         a{
-            color: white;
+            color: black;
         }
     }
 }

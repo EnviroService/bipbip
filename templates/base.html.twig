@@ -11,61 +11,73 @@
         {% endblock %}
     </head>
     <body>
+    <div class="container-fluid">
     {% block header %}
         <header>
-            <div class="row mb-5">
-                <div class="col col-md-8 text-center pt-3">
-                    <a href="{{ path('home') }}" class="logo-bipbip"><img src="{{ asset('/images/logo-bipbip.png') }}"
+            <div class="row pb-3 bg-white">
+                <div class="col-8 col-md-6 pt-3 text-center">
+                    <a href="{{ path('home') }}" class="logo-bipbip pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
                 </div>
-                <div class="d-none col-md-4">
-                </div>
-                <nav id="menu">
-                    <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
-                    <div class="row align-items-center justify-content-end">
-                        <div class="col col-md-5 col-lg-3">
-                            <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
-                            <div class="user-infos-menu">
-                                {% if app.user %}
-                                    <a href="{{ path('user_show', { 'id':app.user.id}) }}">
-                                        <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                                        {% for role in app.user.roles %}
-                                            {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
-                                                <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
-                                            {% else %}
-                                                <p class="primary-title-menu">Mon profil</p>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </a>
-                                    <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+                <div class="col-4 col-md-6">
+                    <nav id="menu">
+                        <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
+                        <div class="row align-items-center justify-content-end">
+                            <div class="col col-md-5 col-lg-3">
+                                <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
+                                <div class="user-infos-menu">
+                                    {% if app.user %}
+                                        <a href="{{ path('user_show', { 'id':app.user.id}) }}">
+                                            <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                            {% for role in app.user.roles %}
+                                                {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                                    <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
+                                                {% else %}
+                                                    <p class="primary-title-menu">Mon profil</p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </a>
+                                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
-                                {% else %}
-                                    <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
-                                {% endif %}
+                                    {% else %}
+                                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col col-md-5 col-lg-4">
+                                <ul>
+                                    <li class="primary-title-menu-color">BipBip</li>
+                                    <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
+                                    <li class="primary-title-menu"><a href="{{ path("team") }}" title="Description Bip Bip">Notre team</a></li>
+                                    <li class="primary-title-menu-color pt-2">#Je suis BipBip</li>
+                                    <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vends ton tél</a></li>
+                                    <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Achète un BipBip</a></li>
+                                    <li class="primary-title-menu-color pt-2">BipBip a besoin de toi</li>
+                                    <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Collecteurs / bippeurs</a></li>
+                                    <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Devenir site de collecte</a></li>
+                                    <li class="primary-title-menu"><a href="{{ path("organisms_index") }}" title="Nos partenaires">Nos partenaires</a></li>
+                                    <li class="primary-title-menu-color pt-2">BipBip Infos</li>
+                                    <li class="primary-title-menu"><a href="{{ path("faq_index") }}" title="FAQ">FAQ</a></li>
+                                    <li class="primary-title-menu-color pt-2">Parlons BipBip</li>
+                                    <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Contact">Contacte-nous</a></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col col-md-5 col-lg-4">
-                            <ul>
-                                <li class="primary-title-menu-color">BipBip</li>
-                                <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("team") }}" title="Description Bip Bip">Notre team</a></li>
-                                <li class="primary-title-menu-color pt-2">#Je suis BipBip</li>
-                                <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vends ton tél</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Achète un BipBip</a></li>
-                                <li class="primary-title-menu-color pt-2">BipBip a besoin de toi</li>
-                                <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Collecteurs / bippeurs</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Organiser une collecte">Devenir site de collecte</a></li>
-                                <li class="primary-title-menu"><a href="{{ path("organisms_index") }}" title="Nos partenaires">Nos partenaires</a></li>
-                                <li class="primary-title-menu-color pt-2">BipBip Infos</li>
-                                <li class="primary-title-menu"><a href="{{ path("faq_index") }}" title="FAQ">FAQ</a></li>
-                                <li class="primary-title-menu-color pt-2">Parlons BipBip</li>
-                                <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Contact">Contacte-nous</a></li>
-                            </ul>
+                    </nav>
+                    <div class="circle-buttons">
+                        <div id="menu-burger">
+                            <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
+                            <p>Menu</p>
                         </div>
-                    </div>
-                </nav>
-            </div>
 
+                        <a href="{{ path('faq_index') }}">
+                            <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
                     {{ message }}
@@ -82,16 +94,6 @@
                         </button>
                 </div>
             {% endfor %}
-            <div class="circle-buttons">
-                <div id="menu-burger">
-                    <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
-                    <p>Menu</p>
-                </div>
-
-                <a href="{{ path('faq_index') }}">
-                        <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
-                </a>
-
             </div>
         </header>
         {% endblock %}
@@ -101,7 +103,7 @@
 
         {% block footer %}
         <footer>
-            <h2 class="primary-title mt-4">Tu en veux plus ?</h2>
+            <h2 class="primary-title">Tu en veux plus ?</h2>
             <div class="row justify-content-center mb-4">
                 <div class="col-2 col-md-1 text-center">
                     <a href="#" target="_blank" title="Page Facebook">
@@ -119,7 +121,10 @@
                     </a>
                 </div>
             </div>
-            <div class="row links-footer m-0 p-4">
+            <div class="row links-footer justify-content-center pt-3">
+                <div class="col-12 text-center">
+                    <img src="{{ asset('images/bipbip-footer.png') }}" alt="BipBip">
+                </div>
                 <div class="col mb-4">
                     <div class="font-weight-bold pb-2">
                         A propos de BipBip<br>
@@ -179,6 +184,7 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
         {% endblock %}
+    </div>
     </body>
 
 </html>

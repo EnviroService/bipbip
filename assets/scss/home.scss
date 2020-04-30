@@ -2,94 +2,184 @@
 @import '~bootstrap/scss/bootstrap';
 
 .home {
+    margin:0;
+    .header {
+       .header-text {
+           font-size: 1rem;
+           font-weight: 600;
+           text-transform: uppercase;
 
-    a{
-        text-decoration: none;
+           .color-primary {
+               color: $primary-color;
+           }
 
-        &:hover{
-            text-decoration: none;
-        }
-    }
+           .color-third {
+               color: $third-color;
+           }
 
-   .header {
-       .color-font {
-           color : $primary-color;
-           font-weight : bold;
+           sup {
+               text-transform: none;
+           }
        }
 
        img {
-           margin-top: -30%;
+           margin-top: -35%;
+           max-height: 170px;
+
            @include media-breakpoint-up(md) {
-               margin-top: -40%;
+               margin-top: -10%;
            }
            @include media-breakpoint-up(xl) {
-               margin-top: -90%;
+               margin-top: -10%;
            }
        }
-    }
+     }
 
-    .img-steps {
+    .img-home {
         width: 70%;
+        max-width: 150px;
         height: auto;
     }
 
-    .bubble-text {
-        position: relative;
-        width: 210px;
-        height: 3rem;
-        padding: 8px;
-        background: $primary-color;
-        font-family: $secondary-font, sans-serif;
-        color: white;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: center;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
+    .img-constat {
+        height: 100px;
+        width: auto;
+        @include media-breakpoint-up(sm) {
+            height: 150px;
+        }
+        @include media-breakpoint-up(md) {
+            height: 170px;
+        }
+
     }
 
-    .bubble-text:after {
-        content: '';
-        position: absolute;
-        border-style: solid;
-        border-width: 5px 0 5px 18px;
-        border-color: transparent $primary-color;
-        display: block;
-        width: 0;
-        z-index: 1;
-        right: -12px;
-        top: 31px;
+    .comment-marche {
+        background-color:$fifth-color;
+        @include media-breakpoint-down(sm) {
+            font-size: 0.9rem;
+        }
+        font-weight: 700;
+
+        .explain-text-color {
+            color: $primary-color;
+        }
+
+        iframe {
+            width: 300px;
+            height: 169px;
+            @include media-breakpoint-up(sm) {
+                width: 360px;
+                height:202px;
+            }
+            @include media-breakpoint-up(lg) {
+                width: 480px;
+                height:270px;
+            }
+        }
+
+        img {
+            width: 35px;
+            height: auto;
+        }
     }
 
-    .combien-vaut {
+    .logos {
+        img {
+            height: 30px;
+            width: auto;
+            padding: 2px;
+            justify-content: center;
+            @include media-breakpoint-up(md) {
+                height: 70px;
+            }
+        }
+
+        p {
+            padding-top: 5px;
+            font-size: 0.6rem;
+            line-height: 0.7rem;
+            font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .photography {
+        background-color: $sixth-color;
+        img {
+            width: 100%;
+            height: auto;
+            @include media-breakpoint-up(md) {
+                width: 70%;
+            }
+        }
+    }
+
+    #bipbip-logo {
+        margin-top: -10px;
+        width: 40%;
+        height: auto;
+    }
+
+    .phones-collected {
+        background-color: $secondary-color;
         .explain-text {
             font-size: 1.3rem;
         }
 
-        .recolted-text {
-            font-size: 2rem;
+        .recolted-number {
+            font-size: 2.5rem;
             font-weight: 900;
             @include media-breakpoint-up(md) {
                 font-size: 2.7rem;
             }
+            @include media-breakpoint-up(lg) {
+                font-size: 3.1rem;
+            }
+        }
+
+        .recolted-text {
+            margin-top: -1.3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 1.3rem;
+            }
         }
 
         .img-phone {
-            height: 250px;
+            margin-top: -40%;
+            margin-left: 20px;
+            height: 180px;
+            @include media-breakpoint-up(md) {
+                height: 220px;
+            }
         }
     }
 
-    .comment-marche {
-        .explain-text-color {
-            color: $primary-color;
-            font-weight: bold;
+    .logos-bas {
+        img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 5px;
         }
 
-        .border-bottom-color {
-            border-bottom: solid $primary-color;
-            border-bottom-width: 14px;
+        p {
+            font-size: 0.8rem;
+            font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 1.3rem;
+            }
+        }
+
+        .small-text {
+            margin-top: -1rem;
+            font-size: 0.6rem;
+            @include media-breakpoint-up(md) {
+                font-size: 0.8rem;
+                font-weight: 100;
+            }
         }
     }
 }
