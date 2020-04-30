@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 .home {
+    margin:0;
     .header {
        .header-text {
            font-size: 1rem;
@@ -53,7 +54,12 @@
     }
 
     .comment-marche {
-        background-color:$fifth-color ;
+        background-color:$fifth-color;
+        @include media-breakpoint-down(sm) {
+            font-size: 0.9rem;
+        }
+        font-weight: 700;
+
         .explain-text-color {
             color: $primary-color;
         }
@@ -79,18 +85,23 @@
 
     .logos {
         img {
-            width: 30px;
+            height: 30px;
+            width: auto;
             padding: 2px;
-            height: auto;
+            justify-content: center;
             @include media-breakpoint-up(md) {
-                width: 70px;
+                height: 70px;
             }
         }
 
         p {
-            font-size: 0.7rem;
+            padding-top: 5px;
+            font-size: 0.6rem;
             line-height: 0.7rem;
             font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 0.8rem;
+            }
         }
     }
 

@@ -345,11 +345,11 @@ footer {
 
     .links-footer{
         background-color: $secondary-color;
-        font-size: 1rem;
-        line-height: 1.4rem;
+        font-size: 0.7rem;
+        line-height: 1rem;
         @include media-breakpoint-up(md) {
-            font-size: 0.7rem;
-            line-height: 1rem;
+            font-size: 1rem;
+            line-height: 1.4rem;
         }
 
         img {

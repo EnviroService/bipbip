@@ -11,8 +11,9 @@
         {% endblock %}
     </head>
     <body>
+    <div class="container-fluid">
     {% block header %}
-        <header class="container-fluid">
+        <header>
             <div class="row pb-3 bg-white">
                 <div class="col-8 col-md-6 pt-3 text-center">
                     <a href="{{ path('home') }}" class="logo-bipbip pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
@@ -63,9 +64,20 @@
                             </div>
                         </div>
                     </nav>
+                    <div class="circle-buttons">
+                        <div id="menu-burger">
+                            <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
+                            <p>Menu</p>
+                        </div>
+
+                        <a href="{{ path('faq_index') }}">
+                            <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
+                        </a>
+
+                    </div>
                 </div>
             </div>
-
+            <div class="row">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
                     {{ message }}
@@ -82,16 +94,6 @@
                         </button>
                 </div>
             {% endfor %}
-            <div class="circle-buttons">
-                <div id="menu-burger">
-                    <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
-                    <p>Menu</p>
-                </div>
-
-                <a href="{{ path('faq_index') }}">
-                        <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
-                </a>
-
             </div>
         </header>
         {% endblock %}
@@ -119,10 +121,10 @@
                     </a>
                 </div>
             </div>
-            <div class="row links-footer justify-content-center pt-3 m-0">
-                <img src="{{ asset('images/bipbip-footer.png') }}"alt="BipBip">
-            </div>
-            <div class="row links-footer p-3 m-0">
+            <div class="row links-footer justify-content-center pt-3">
+                <div class="col-12 text-center">
+                    <img src="{{ asset('images/bipbip-footer.png') }}" alt="BipBip">
+                </div>
                 <div class="col mb-4">
                     <div class="font-weight-bold pb-2">
                         A propos de BipBip<br>
@@ -182,6 +184,7 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
         {% endblock %}
+    </div>
     </body>
 
 </html>
