@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vends ton tél - BipBip{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main class="home">
+       <div class="row pt-3 header">
+           <div class="offset-2 col-6 offset-md-3 col-md-5 offset-lg-4 col-lg-4 offset-xl-3 col-xl-4">
+               <h4><span class="color-font">BipBip rachète ton tél et en fait</span> le 1er mobile recyclé et connecté
+               <span class="color-font">aux bons plans de ta région</span></h4>
+           </div>
+           <div class="col-3 offset-md-1 col-md-2">
+               <img src="{{ asset('images/perso-bipbip.png') }}" alt="BipBip rachète ton tél" class="img-fluid">
+           </div>
+       </div>
+
+        <div class="row justify-content-center steps">
+            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
+                <img src="{{ asset('images/step-estime.png') }}" alt="Estime ton tél" class="img-fluid img-steps">
+                <a href="{{ path('new_estimation') }}" class="small-button">Estime ton tél</a>
+            </div>
+            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
+                <img src="{{ asset('images/step-vends.png') }}" alt="Vends ton tél" class="img-fluid img-steps">
+                <a href="{{ path('new_estimation') }}" class="small-button">Vends ton tél</a>
+            </div>
+
+            <div class="col-3 m-2 m-sm-3 p-1 p-sm-2 border border-dark text-center bg-white">
+                <img src="{{ asset('images/step-achete.png') }}" alt="Achète un tél" class="img-fluid img-steps">
+                <a href="{{ path('boutique') }}" class="small-button">Achète un tél</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 align-items-center">
+            <div class="offset-1 col-3 col-md-2 offset-xl-2 p-3">
+                <img src="{{ asset('images/qui-sommes-nous.png') }}" alt="Qui sommes-nous" class="img-fluid pb-4">
+            </div>
+            <div class="col-8 col-xl-6 pr-3">
+                <p>BipBip est une marque qui organise des colllectes de téléphones dans la région des Hauts de France.
+                    Nous avons pour but la dépollution et le recyclage des mobiles dans notre région en te faisant gagner de l'argent.
+                </p>
+                <div class="m-auto bubble-text">
+                    <p>En savoir plus ?</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 align-items-center">
+            <div class="offset-1 col-3 col-md-2 offset-xl-2 p-3">
+                <img src="{{ asset('images/ta-planete.png') }}" alt="La planète" class="img-fluid pb-4">
+            </div>
+            <div class="col-8 col-xl-6 pr-3">
+                <p>BipBip a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler
+                    tous les téléphones usagés ou unitilisés à l'aide des associations étudiantes qui nous accueillent et nous
+                    accompagnent en ouvrant des points de collecte. C'est l'occaion pour nos partenaires de collecte
+                    et partenaires locaux de se faire connapitre davantage dans notre région.</p>
+                <div class="m-auto bubble-text">
+                    <p>En savoir plus ?</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="combien-vaut mt-4">
+            <h2 class="primary-title">Combien vaut ton mobile ?</h2>
+            <div class="row justify-content-center p-2">
+                <div class="col-8 text-center">
+                    <p class="explain-text">A l'aide de l'application <span class="font-weight-bold">BipBip Test</span>,<br>
+                        ton mobile sera évalué avec expertise pour donner le meilleur de lui-même</p>
+                </div>
+            </div>
+            <div class="row justify-content-center p-5">
+                <div class="col col-lg-3 text-center">
+                    <a href="{{ path('home') }}" class="primary-button">
+                        Je télécharge l'appli
+                    </a>
+                </div>
+                <div class="col col-lg-3 text-center p-1">
+                    <a href="{{ path('estimations_new') }}" class="primary-button">
+                        Estimation en ligne
+                    </a>
+                </div>
+            </div>
+            <div class="row justify-content-center m-0 p-0 pt-5 pb-5 bg-secondary-color">
+                <div class="col-6 col-md-4 col-xl-3 text-center">
+                    <img src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" class="img-phone">
+                </div>
+                <div class="col-6 col-md-4 col-xl-3 text-center">
+                    <p class="recolted-text pt-5">1520 tél collectés</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="comment-marche pt-3">
+            <h2 class="primary-title">Comment ça marche ?</h2>
+            <div class="row align-items-center mt-2">
+                <div class="col-3 col-lg-2 text-center">
+                    <img src="{{ asset('images/1.png') }}" alt="1">
+                </div>
+                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
+                    <p class="h4">Teste ton téléphone sur
+                        <a href="{{ path('new_estimation') }}">
+                            <span class="explain-text-color">notre site</span>
+                        </a>
+                        ou sur notre
+                        <a href="{{ path('home') }}">
+                            <span class="explain-text-color">appli</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-3 col-lg-2 text-center">
+                    <img src="{{ asset('images/2.png') }}" alt="2">
+                </div>
+                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
+                    <p class="h4">Après la création de ton compte <span class="explain-text-color">
+                            choisis un point de collecte</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-3 col-lg-2 text-center">
+                    <img src="{{ asset('images/3.png') }}" alt="3">
+                </div>
+                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
+                    <p class="h4">Présente-toi au point de collecte muni de ta  <span class="explain-text-color">
+                            pièce d'identité</span> et de ton smartphone avec l'appli pumpkin
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-2">
+                <div class="col-3 col-lg-2 text-center">
+                    <img src="{{ asset('images/4.png') }}" alt="4">
+                </div>
+                <div class="col-9 col-lg-10 p-3 pr-5 border-bottom-color">
+                    <p class="h4">Une fois l'expertise faite, tu recevras instantanément ton argent et ton bon de cession
+                    </p>
+                </div>
+            </div>
+            <div class="row align-items-center mt-3">
+                <div class="col-4 col-md-4 text-center">
+                    <img src="{{ asset('images/coche.png') }}" alt="4">
+                </div>
+                <div class="col-5 col-md-4 p-3">
+                    <p class="h4">
+                        Tu as gagné de l'argent et tu fais <span class="explain-text-color">une bonne action pour ta planète !</span>
+                    </p>
+                </div>
+                <div class="col-3 col-md-2 col-xl-1 text-center">
+                    <img src="{{ asset('images/planete.png') }}" alt="Planète" class="img-fluid">
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
