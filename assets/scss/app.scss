@@ -24,6 +24,22 @@ body{
     background-repeat: repeat;
 }
 
+@mixin bg($color) {
+    background-color: $color;
+}
+
+.primary-bg {
+    @include bg($primary-color)
+}
+
+.secondary-bg {
+    @include bg($secondary-color)
+}
+
+.fifth-bg {
+    @include bg($fifth-color)
+}
+
 main{
     min-height : 70vh;
     @media screen and (min-width: 768px){
@@ -44,7 +60,7 @@ a{
 /* TITLES */
 
 .primary-title{
-    font-family: $primary-font, sans-serif;
+    font-family: $secondary-font, sans-serif;
     padding:20px;
     font-size : 1.1rem;
     font-stretch: expanded;
@@ -106,30 +122,6 @@ a{
     }
 }
 
-.small-button {
-    display: inline-block;
-    font-family: $secondary-font, sans-serif;
-    background-color : $primary-color;
-    font-weight: bold;
-    text-align : center;
-    color : white;
-    font-size : 0.8rem;
-    width: 80%;
-    max-height: 3rem;
-    border-radius: 25px;
-    margin : 0;
-    padding : 10px;
-
-    @media screen and (min-width: 768px) {
-        font-size: 1.2rem;
-    }
-
-    &:hover {
-        color: white;
-        text-decoration: none;
-    }
-}
-
 .primary-button{
     @include button($primary-color)
 }
@@ -146,10 +138,35 @@ a{
     @include button($fourth-color)
 }
 
+.small-button {
+    display: inline-block;
+    font-family: $secondary-font, sans-serif;
+    background-color : $primary-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align : center;
+    color : white;
+    font-size : 1rem;
+    width: 80px;
+    max-height: 3rem;
+    border-radius: 25px;
+    margin : 0;
+    padding: 2px;
+
+    @media screen and (min-width: 768px) {
+        font-size: 1.2rem;
+    }
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+    }
+}
+
 /* HEADER NAV */
 
 header{
-    .logo-bipbip{
+    .logo-title{
         img{
             width : 60%;
             @include media-breakpoint-up(sm) {
@@ -319,6 +336,19 @@ header{
         }
     }
 }
+
+/* VENDS */
+
+.blue-arrow {
+    font-size: 3rem;
+    color: $primary-color;
+}
+
+#tel-collectes {
+    height: 200px;
+    width: auto;
+}
+
 
 /* TEAM */
 
