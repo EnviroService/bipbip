@@ -57,6 +57,11 @@ a{
     }
 }
 
+.explain-text-color {
+    color: $primary-color;
+    font-weight: bold;
+}
+
 /* TITLES */
 
 .primary-title{
@@ -75,6 +80,20 @@ a{
     }
 }
 
+.primary-title-left {
+    font-family: $secondary-font, sans-serif;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-stretch: expanded;
+    font-weight: 900;
+    @include media-breakpoint-up(sm) {
+        font-size: 1.5rem;
+    }
+    @include media-breakpoint-up(md) {
+        font-size: 1.9rem;
+    }
+}
+
 .secondary-title{
     text-transform : uppercase;
     font-size : 1.1rem;
@@ -82,6 +101,22 @@ a{
     color : $primary-color;
     padding : 1%;
     margin-left: 20px;
+}
+
+.secondary-round-title {
+    font-family: $secondary-font, sans-serif;
+    padding:20px;
+    font-size : 1.1rem;
+    font-weight: 900;
+    text-align : center;
+    background-color: $secondary-color;
+    border-radius: 25px;
+    @include media-breakpoint-up(sm) {
+        font-size: 1.5rem;
+    }
+    @include media-breakpoint-up(md) {
+        font-size : 1.9rem;
+    }
 }
 
 /* BUTTONS */
@@ -345,8 +380,24 @@ header{
 }
 
 #tel-collectes {
-    height: 200px;
+    height: 250px;
     width: auto;
+    @include media-breakpoint-up(md) {
+        margin-top: -80px;
+        height: 380px;
+    }
+}
+
+#photo-processus {
+    max-height: 250px;
+    float: left;
+}
+
+.border-right-screen {
+    border-right: none;
+    @include media-breakpoint-up(sm) {
+        border-right: solid $secondary 1px;
+    }
 }
 
 
