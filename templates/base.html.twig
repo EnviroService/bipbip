@@ -14,10 +14,21 @@
     <div class="container-fluid">
     {% block header %}
         <header>
+            {% set currentPath = path(app.request.attributes.get('_route'),
+                app.request.attributes.get('_route_params')) %}
+            {% if currentPath == '/vends/' %}
+            <div class="row pb-3 secondary-bg">
+                {% else %}
             <div class="row pb-3 bg-white">
+                {% endif %}
                 <div class="col-8 col-md-6 pt-3 text-center">
-                    <a href="{{ path('home') }}" class="logo-bipbip pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
+                    {% if currentPath == '/vends/' %}
+                    <a href="{{ path('home') }}" class="logo-title pl-1"><img src="{{ asset('/images/vends_title.png') }}"
+                                                                          alt="Vends ton tél" /></a>
+                    {% else %}
+                    <a href="{{ path('home') }}" class="logo-title pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-md-6">
                     <nav id="menu">
@@ -50,7 +61,7 @@
                                     <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Description Bip Bip">Notre mission</a></li>
                                     <li class="primary-title-menu"><a href="{{ path("team") }}" title="Description Bip Bip">Notre team</a></li>
                                     <li class="primary-title-menu-color pt-2">#Je suis BipBip</li>
-                                    <li class="primary-title-menu"><a href="{{ path("new_estimation") }}" title="Estimer son téléphone">Vends ton tél</a></li>
+                                    <li class="primary-title-menu"><a href="{{ path("vends") }}" title="Vends ton téléphone">Vends ton tél</a></li>
                                     <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Acheter un téléphone">Achète un BipBip</a></li>
                                     <li class="primary-title-menu-color pt-2">BipBip a besoin de toi</li>
                                     <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Collecteurs / bippeurs</a></li>
