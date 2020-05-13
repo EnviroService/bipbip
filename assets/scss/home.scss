@@ -142,6 +142,10 @@
             @include media-breakpoint-up(md) {
                 font-size: 1.3rem;
             }
+
+            a{
+                color: $primary-color;
+            }
         }
 
         .img-phone {

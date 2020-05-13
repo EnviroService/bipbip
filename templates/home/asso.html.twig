@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devenir site de collecte{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1 class="primary-title">Pourquoi organiser une collecte?</h1>
+        <p>Texte en construction</p>
+        <p>
+            Les avantages : <br>
+            -   	Accéder au monde étudiant à travers nos associations partenaires <br>
+            -   	Adhérer à un projet favorisant l’emploi local et le recyclage <br>
+            -   	Vous garantir l’exclusivité lors de l’installation <br>
+            -   	Vous garantir l’installation de votre application en fonction du kit <br>
+            -   	Apposer notre logo sur vos supports de communication <br>
+            -   	Développer votre publicité et votre business
+        </p>
+        <p>
+            Tu souhaites soutenir le projet en organisant une collecte proche de chez toi? Pas de problème !
+            <br>
+            J'organise une collecte
+            {{ include ('includeForm.html.twig')}}
+        </p>
+        <p>
+            Les points de collectes <br>
+            * Carte avec les lieux de collectes <br>
+            * Calendrier <br>
+            Rendez-vous dans points de collecte pour rencontrer notre équipe ainsi que nos différents étudiants de la région !
+            N’oublie pas d’estimer ton téléphone avant de venir nous voir via l’application pour une estimation précise ou sur notre site internet pour une estimation approximative.
+
+        </p>
+
+    </main>
+{% endblock %}
