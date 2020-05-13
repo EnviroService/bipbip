@@ -38,13 +38,13 @@ class BdcController extends AbstractController
             $this->addFlash('success', 'Signature ajoutée au document');
 
             return $this->redirectToRoute('bdc_pdf', [
-                'id' => $estimation,
+                'id' => $estimation->getId(),
             ]);
         } else {
             $this->addFlash('danger', 'Signature non reconnue');
 
             return $this->redirectToRoute('bdc_show', [
-                'id' => $estimation,
+                'id' => $estimation->getId(),
             ]);
         }
     }
