@@ -19,6 +19,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class BdcController extends AbstractController
 {
     /**
+     * @Route("/signature/{id}", name="generate_signature")
+     * @IsGranted("ROLE_COLLECTOR")
+     * @param Estimations $estimation
+     * @return RedirectResponse
+     */
+    public function signature(Estimations $estimation)
+    {
+        if (isset($_POST['imgBase64'])) {
+            define('UPLOAD_DIR', 'uploads/signatures/');
+            $img = $_POST['imgBase64'];
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $data = base64_decode($img);
+            $file = UPLOAD_DIR . 'user' . $estimation->getUser()->getId() . '.png';
+            file_put_contents($file, $data);
+
+            $this->addFlash('success', 'Signature ajoutée au document');
+
+            return $this->redirectToRoute('bdc_pdf', [
+                'id' => $estimation,
+            ]);
+        } else {
+            $this->addFlash('danger', 'Signature non reconnue');
+
+            return $this->redirectToRoute('bdc_show', [
+                'id' => $estimation,
+            ]);
+        }
+    }
+
+    /**
      * @Route("/", name="bdc_index")
      * @IsGranted("ROLE_ADMIN")
      */
