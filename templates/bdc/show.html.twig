@@ -3,6 +3,17 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('bdc') }}
+    <link rel="stylesheet" href=
+    "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src=
+            "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+    <script src=
+            "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
 {% endblock %}
 {%  block body %}
 <main class="container">
@@ -14,7 +25,7 @@
     <h1 class="primary-title">Etape 5 : signature du client</h1>
     <div class="row">
             <div class="col-3">
-                <img width="200px; margin-top:30px;" src="/images/logo-bipbip.png" alt="BipBip Mobile">
+                <img width="200px; margin-top:30px;" src="{{ asset('images/logo-bipbip.png') }}" alt="BipBip Mobile">
             </div>
             <div class="col-9">
                 <h1 style="font-size: 1.7rem; text-align: center;
@@ -153,8 +164,42 @@
         <div class="row">
             <div class="col-12 mx-auto text-center form p-4">
                 <p>Signer ici</p>
-                <canvas id="canvas" class="border border-success border-5"></canvas>
+                <canvas id="canvas" class="border border-success"></canvas>
+                <div class="col-md-offset-4 col-md-4 col--md-offset-4 top">
+
+                    <div id="img" style="display:none;">
+                        <img src="" id="newimg" class="top" />
+                    </div>
+                </div>
                 <p>(<span id="bt-clear">effacer</span>)</p>
+
+                <script>
+                    $(function() {
+                        $("#geeks").click(function() {
+                            html2canvas($("#canvas"), {
+                                onrendered: function(canvas) {
+                                    var imgsrc = canvas.toDataURL("image/png");
+                                    console.log(imgsrc);
+                                    $("#newimg").attr('src', imgsrc);
+                                    $("#img").show();
+                                    var dataURL = canvas.toDataURL();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "script.php",
+                                        data: {
+                                            imgBase64: dataURL
+                                        }
+                                    }).done(function(o) {
+                                        console.log('saved');
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+                <button id="geeks" type="button"
+                        class="primary-button top">
+                    Valider la signature image</button>
                 <a href="{{ path('bdc_pdf', { 'id': estimation.id}) }}" title="Envoyer la signature" class="primary-button">Valider la signature</a>
             </div>
         </div>

@@ -38,7 +38,7 @@ class CanvasObject {
         };
         this.lastPosition = this.mousePosition;
         this.clearButton = document.getElementById('bt-clear');
-        this.canvas.width = 600;
+        this.canvas.width = 300;
         this.canvas.height = 300;
     }
 
