@@ -27,8 +27,14 @@
                 (<span id="bt-clear">effacer</span>)
             </div>
             <div class="col-12 text-center" id="img" style="display:none;">
-                Signature ajoutée, patientez pendant la génération du bon de cession...
+                Signature ajoutée, vous pouvez générer le bon de cession.
             </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <button id="signature" class="btn btn-warning">
+                Valider la signature
+            </button>
         </div>
 
         <div class="row">
@@ -36,7 +42,7 @@
                 <a href="{{ path('bdc_show', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                <a id="signature" class="btn btn-success" href="{{ path('bdc_pdf', {'id': estimation.id}) }}">
+                <a id="generate" class="btn btn-success"  style="display:none;" href="{{ path('bdc_pdf', {'id': estimation.id}) }}">
                     Générer le bon de cession ->
                 </a>
             </div>
@@ -55,6 +61,7 @@
                         console.log(imgsrc);
                         $("#newimg").attr('src', imgsrc);
                         $("#img").show();
+                        $("#generate").show();
                         var dataURL = canvas.toDataURL();
                         $.ajax({
                             type: "POST",

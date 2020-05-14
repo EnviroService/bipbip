@@ -142,12 +142,11 @@ class BdcController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('bdc/bdc.html.twig', [
-            'IMEI' => "355 402 092 374 478",
-            'estimation' => $estimation
+            'estimation' => $estimation,
         ]);
 
         // Create Filename
-        $clientId = $this->getUser()->getId();
+        $clientId = $estimation->getUser()->getId();
         $estimationId = $estimation->getId();
         $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 
