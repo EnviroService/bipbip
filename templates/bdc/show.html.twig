@@ -1,19 +1,8 @@
 {% extends 'admin/index.html.twig' %}
-{% block title %}PDF estimation{% endblock %}
+{% block title %}BipBip - Bon de cession{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('bdc') }}
-    <link rel="stylesheet" href=
-    "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src=
-            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    </script>
-    <script src=
-            "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-    </script>
-    <script src=
-            "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
 {% endblock %}
 {%  block body %}
 <main class="container">
@@ -22,7 +11,7 @@
             5 sur 7
         </div>
     </div>
-    <h1 class="primary-title">Etape 5 : signature du client</h1>
+    <h1 class="primary-title">Etape 5 : lecture du bon de cession du client</h1>
     <div class="row">
             <div class="col-3">
                 <img width="200px; margin-top:30px;" src="{{ asset('images/logo-bipbip.png') }}" alt="BipBip Mobile">
@@ -162,33 +151,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <p>Signer ici</p>
-                <canvas id="canvas" class="border border-success"></canvas>
-                <div class="col-md-offset-4 col-md-4 col--md-offset-4 top">
-
-                {#    <div id="img" style="display:none;">
-                        <img src="" id="newimg" class="top" />
-                    </div>
-                #}
-                </div>
-                <p>(<span id="bt-clear">effacer</span>)</p>
-
-                <button id="signature" type="button"
-                        class="primary-button top">
-                    Valider la signature image</button>
-                <a href="{{ path('generate_signature', { 'id': estimation.id}) }}" id="signature" title="Envoyer la signature" class="primary-button">Valider la signature</a>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-4 mx-auto text-left form p-4">
                 <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
-                    <input type="submit" name="submit" class="btn btn-success" value="Générer le bon de cession ->">
-                </form>
+                <a class="btn btn-success" href="{{ path('generate_signature', {'id': estimation.id}) }}">
+                    Faire signer le client ->
+                </a>
             </div>
         </div>
     <div class="js-estimation" data-estimation="{{ estimation.id }}">
@@ -197,29 +166,4 @@
 {%  endblock %}
 {%  block javascripts %}
     {{ encore_entry_script_tags('signature') }}
-    <script>
-        $(function() {
-            $("#signature").click(function() {
-                html2canvas($("#canvas"), {
-                    onrendered: function(canvas) {
-                        var estimation = document.querySelector('.estimation');
-                        var imgsrc = canvas.toDataURL("image/png");
-                        console.log(imgsrc);
-                        $("#newimg").attr('src', imgsrc);
-                        $("#img").show();
-                        var dataURL = canvas.toDataURL();
-                        $.ajax({
-                            type: "POST",
-                            url: 'admin/bdc/signature/' + estimation,
-                            data: {
-                                imgBase64: dataURL
-                            }
-                        }).done(function(o) {
-                            console.log('saved');
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 {% endblock %}

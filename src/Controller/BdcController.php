@@ -22,7 +22,7 @@ class BdcController extends AbstractController
      * @Route("/signature/{id}", name="generate_signature")
      * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
-     * @return RedirectResponse
+     * @return Response
      */
     public function signature(Estimations $estimation)
     {
@@ -32,19 +32,14 @@ class BdcController extends AbstractController
             $img = str_replace('data:image/png;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
             $data = base64_decode($img);
-            $file = UPLOAD_DIR . 'user' . $estimation->getUser()->getId() . '.png';
+            $file = UPLOAD_DIR . 'user'. $estimation->getUser()->getId(). '.png';
             file_put_contents($file, $data);
 
-            $this->addFlash('success', 'Signature ajoutée au document');
-
-            return $this->redirectToRoute('bdc_pdf', [
-                'id' => $estimation->getId(),
-            ]);
+            return $this->redirectToRoute('generate_signature');
         } else {
-            $this->addFlash('danger', 'Signature non reconnue');
-
-            return $this->redirectToRoute('bdc_show', [
+            return $this->render('bdc/signature.html.twig', [
                 'id' => $estimation->getId(),
+                'estimation' => $estimation,
             ]);
         }
     }
