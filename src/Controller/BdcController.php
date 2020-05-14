@@ -31,11 +31,15 @@ class BdcController extends AbstractController
             $img = $_POST['imgBase64'];
             $img = str_replace('data:image/png;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
-            $data = base64_decode($img);
-            $file = UPLOAD_DIR . 'user'. $estimation->getUser()->getId(). '.png';
-            file_put_contents($file, $data);
+            if ((is_string($img))) {
+                $data = base64_decode($img);
+                $file = UPLOAD_DIR . 'user'. $estimation->getUser()->getId(). '.png';
+                file_put_contents($file, $data);
+            }
 
-            return $this->redirectToRoute('generate_signature');
+            return $this->redirectToRoute('generate_signature', [
+                'id' => $estimation->getId(),
+            ]);
         } else {
             return $this->render('bdc/signature.html.twig', [
                 'id' => $estimation->getId(),
