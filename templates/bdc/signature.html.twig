@@ -3,12 +3,6 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('bdc') }}
-    <script src=
-            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    </script>
-    <script src=
-            "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
 {% endblock %}
 {%  block body %}
     <main class="container">
@@ -51,6 +45,12 @@
 {%  endblock %}
 {%  block javascripts %}
     {{ encore_entry_script_tags('signature') }}
+    <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src=
+            "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
     <script>
         $(function() {
             $("#signature").click(function() {
