@@ -1,5 +1,5 @@
 {% extends 'admin/index.html.twig' %}
-{% block title %}PDF estimation{% endblock %}
+{% block title %}BipBip - Bon de cession{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('bdc') }}
@@ -11,10 +11,10 @@
             5 sur 7
         </div>
     </div>
-    <h1 class="primary-title">Etape 5 : signature du client</h1>
+    <h1 class="primary-title">Etape 5 : lecture du bon de cession du client</h1>
     <div class="row">
             <div class="col-3">
-                <img width="200px; margin-top:30px;" src="/images/logo-bipbip.png" alt="BipBip Mobile">
+                <img width="200px; margin-top:30px;" src="{{ asset('images/logo-bipbip.png') }}" alt="BipBip Mobile">
             </div>
             <div class="col-9">
                 <h1 style="font-size: 1.7rem; text-align: center;
@@ -151,24 +151,17 @@
         </div>
 
         <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <p>Signer ici</p>
-                <canvas id="canvas" class="border border-success border-5"></canvas>
-                <p>(<span id="bt-clear">effacer</span>)</p>
-                <a href="{{ path('bdc_pdf', { 'id': estimation.id}) }}" title="Envoyer la signature" class="primary-button">Valider la signature</a>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-4 mx-auto text-left form p-4">
                 <a href="{{ path('takePhoto', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
             </div>
             <div class="col-8 mx-auto text-right form p-4">
-                <form action="{{ path('bdc_pdf', {'id': estimation.id}) }}" method="post" enctype="multipart/form-data">
-                    <input type="submit" name="submit" class="btn btn-success" value="Générer le bon de cession ->">
-                </form>
+                <a class="btn btn-success" href="{{ path('generate_signature', {'id': estimation.id}) }}">
+                    Faire signer le client ->
+                </a>
             </div>
         </div>
+    <div class="js-estimation" data-estimation="{{ estimation.id }}">
+    </div>
 </main>
 {%  endblock %}
 {%  block javascripts %}

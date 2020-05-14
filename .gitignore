@@ -38,5 +38,7 @@ yarn-error.log
 /public/uploads/CI/
 /public/uploads/etiquettes/
 /public/uploads/signatures/
+/public/uploads/barcodes/
+/public/*.png
 
 ###< User files ###
