@@ -104,12 +104,7 @@ class UserController extends AbstractController
                 $repo[] = $publicCollect;
             }
         } else {
-            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-            $publicOrganismsId = [];
-            foreach ($publicOrganisms as $publicOrganism) {
-                $publicOrganismsId [] = $publicOrganism->getId();
-            }
-            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+            $repo = $collectsRepository->findBy([], ["dateCollect" => "ASC"]);
         }
 
         $now = new DateTime('now');
