@@ -374,9 +374,28 @@ header{
 
 /* VENDS */
 
+.title-vends {
+    background-color: $secondary-color;
+    img {
+        height: 80px;
+        width: auto;
+    }
+}
+
 .blue-arrow {
     font-size: 3rem;
     color: $primary-color;
+}
+
+.comment-marche-vends {
+    background-color: $fifth-color;
+    font-weight: 700;
+    font-size: 1rem;
+
+    img {
+        width: 25px;
+        height: auto;
+    }
 }
 
 #tel-collectes {

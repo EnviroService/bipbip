@@ -14,21 +14,10 @@
     <div class="container-fluid">
     {% block header %}
         <header>
-            {% set currentPath = path(app.request.attributes.get('_route'),
-                app.request.attributes.get('_route_params')) %}
-            {% if currentPath == '/vends/' %}
-            <div class="row pb-3 secondary-bg">
-                {% else %}
             <div class="row pb-3 bg-white">
-                {% endif %}
                 <div class="col-8 col-md-6 pt-3 text-center">
-                    {% if currentPath == '/vends/' %}
-                    <a href="{{ path('home') }}" class="logo-title pl-1"><img src="{{ asset('/images/vends_title.png') }}"
-                                                                          alt="Vends ton tél" /></a>
-                    {% else %}
                     <a href="{{ path('home') }}" class="logo-title pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
-                    {% endif %}
                 </div>
                 <div class="col-4 col-md-6">
                     <nav id="menu">
