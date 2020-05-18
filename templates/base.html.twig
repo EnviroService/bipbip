@@ -38,16 +38,14 @@
                                 <img class="d-none d-sm-block" src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
                                 <div class="user-infos-menu">
                                     {% if app.user %}
-                                        <a href="{{ path('user_show', { 'id':app.user.id}) }}">
                                             <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                                             {% for role in app.user.roles %}
-                                                {% if role == "ROLE_COLLECTOR" or role == "ROLE_ADMIN" %}
+                                                {% if role == 'ROLE_COLLECTOR' or role == 'ROLE_ADMIN' %}
                                                     <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
                                                 {% else %}
-                                                    <p class="primary-title-menu">Mon profil</p>
+                                                    <a class="primary-title-menu" href="{{ path('user_show', {'id': app.user.id}) }}">Mon profil</a>
                                                 {% endif %}
                                             {% endfor %}
-                                        </a>
                                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
                                     {% else %}

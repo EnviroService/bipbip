@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 .home {
+    font-family: $primary-font;
     margin:0;
     .header {
        .header-text {
@@ -23,21 +24,13 @@
        }
 
        img {
-           margin-top: -35%;
-           max-height: 170px;
-
-           @include media-breakpoint-up(md) {
-               margin-top: -10%;
-           }
-           @include media-breakpoint-up(xl) {
-               margin-top: -10%;
-           }
+           max-height: 250px;
        }
      }
 
     .img-home {
-        width: 70%;
-        max-width: 150px;
+        width: 80%;
+        max-width: 200px;
         height: auto;
     }
 
@@ -55,33 +48,30 @@
 
     .comment-marche {
         background-color:$fifth-color;
-        @include media-breakpoint-down(sm) {
+        font-weight: 700;
+        font-size: 0.7rem;
+        @include media-breakpoint-down(md) {
+            background-color:white;
             font-size: 0.9rem;
         }
-        font-weight: 700;
 
-        iframe {
-            width: 300px;
-            height: 169px;
-            @include media-breakpoint-up(sm) {
-                width: 360px;
-                height:202px;
-            }
+        .video {
+            width: 70%;
+            height: auto;
             @include media-breakpoint-up(lg) {
-                width: 480px;
-                height:270px;
+                width: 100%;
             }
         }
 
         img {
-            width: 35px;
+            width: 25px;
             height: auto;
         }
     }
 
     .logos {
         img {
-            height: 30px;
+            height: 50px;
             width: auto;
             padding: 2px;
             justify-content: center;
@@ -92,30 +82,21 @@
 
         p {
             padding-top: 5px;
-            font-size: 0.6rem;
+            font-size: 0.8rem;
             line-height: 0.7rem;
             font-weight: 600;
-            @include media-breakpoint-up(md) {
-                font-size: 0.8rem;
-            }
         }
     }
 
     .photography {
         background-color: $sixth-color;
         img {
-            width: 100%;
+            width: 60%;
             height: auto;
-            @include media-breakpoint-up(md) {
-                width: 70%;
+            @include media-breakpoint-up(sm) {
+                width: 100%;
             }
         }
-    }
-
-    #bipbip-logo {
-        margin-top: -10px;
-        width: 40%;
-        height: auto;
     }
 
     .phones-collected {
@@ -146,16 +127,24 @@
             a{
                 color: $primary-color;
             }
+            .font-weight-bold {
+                font-weight: 900;
+            }
         }
 
         .img-phone {
-            margin-top: -40%;
-            margin-left: 20px;
-            height: 180px;
+            margin-top: -20%;
+            height: 160px;
             @include media-breakpoint-up(md) {
-                height: 220px;
+                margin-top: -20%;
+                height: 240px;
             }
         }
+    }
+
+    #bipbip-logo {
+        height: 40px;
+        width: auto;
     }
 
     .logos-bas {
