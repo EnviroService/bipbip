@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 .home {
+    font-family: $primary-font;
     margin:0;
     .header {
        .header-text {
@@ -23,21 +24,13 @@
        }
 
        img {
-           margin-top: -35%;
-           max-height: 170px;
-
-           @include media-breakpoint-up(md) {
-               margin-top: -10%;
-           }
-           @include media-breakpoint-up(xl) {
-               margin-top: -10%;
-           }
+           max-height: 250px;
        }
      }
 
     .img-home {
-        width: 70%;
-        max-width: 150px;
+        width: 80%;
+        max-width: 200px;
         height: auto;
     }
 
@@ -55,26 +48,20 @@
 
     .comment-marche {
         background-color:$fifth-color;
-        @include media-breakpoint-down(sm) {
+        font-weight: 700;
+        font-size: 0.7rem;
+        @include media-breakpoint-down(md) {
+            background-color:white;
             font-size: 0.9rem;
         }
-        font-weight: 700;
 
         iframe {
-            width: 300px;
-            height: 169px;
-            @include media-breakpoint-up(sm) {
-                width: 360px;
-                height:202px;
-            }
-            @include media-breakpoint-up(lg) {
-                width: 480px;
-                height:270px;
-            }
+            width: 90%;
+            height: auto;
         }
 
         img {
-            width: 35px;
+            width: 25px;
             height: auto;
         }
     }
