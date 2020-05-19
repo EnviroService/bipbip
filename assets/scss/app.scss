@@ -190,6 +190,11 @@ a{
     @include button($fourth-color)
 }
 
+.grey-button{
+    @include button($grey-color);
+    color: black;
+}
+
 .small-button {
     display: inline-block;
     font-family: $secondary-font, sans-serif;
@@ -397,6 +402,11 @@ header{
         height: 80px;
         width: auto;
     }
+}
+
+.img-fleche {
+    height: 30px;
+    width: auto;
 }
 
 .blue-arrow {

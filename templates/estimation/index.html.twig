@@ -5,11 +5,12 @@
         <div class="col col-lg-8">
 
             <div class="title-vends row justify-content-center p-3">
-                <img src="{{ asset('images/vends_title.png') }}" alt="Vends ton tél">
+                <img src="{{ asset('images/estim_title.png') }}" alt="Estime ton tél">
             </div>
             <div class="row">
                 <div class="col-12">
-                    <h1 class="primary-title text-left"><span class="blue-arrow">→</span> Voici quelques questions...</h1>
+                    <h1 class="primary-title text-left">
+                        <img class="img-fleche mr-lg-2" src="{{ asset('images/fleche_droite.png') }}" alt="→">Voici quelques questions...</h1>
                     <p>Pour nous aider à estimer la valeur de ton téléphone, sois honnête sur sa description pour en
                     connaître sa valeur réelle</p>
                 </div>
@@ -17,36 +18,36 @@
 
             <section class="brand">
                 <div class="row">
-                    <div class="col-12 text-center p-3">
+                    <div class="col-12 text-center p-5">
                         <span class="estim-round-bubble">Quelle est la marque de ton mobile&#8239;?</span>
                     </div>
                     {% for brand in brands %}
                         <div class="col mx-auto text-center p-1">
-                    <a href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                    <a class="grey-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="row">
                     <div class="col-12 mx-auto text-center form p-4">
-                        <a href="{{ path("autres") }}">Autre marque</a>
+                        <a class="grey-button" href="{{ path("autres") }}">Autre marque</a>
                     </div>
                 </div>
             </section>
 
             <section class="model">
                 <div class="row">
-                    <div class="col-12 text-center p-3">
+                    <div class="col-12 text-center p-5">
                         <span class="estim-round-bubble">Quel est le modèle&#8239;?</span>
                     </div>
                     {% for brand in brands %}
                         <div class="col mx-auto text-center p-1">
-                            <a href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                            <a class="grey-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="row">
                     <div class="col-12 mx-auto text-center form p-4">
-                        <a href="{{ path("autres") }}">Autre modèle</a>
+                        <a class="grey-button" href="{{ path("autres") }}">Autre modèle</a>
                     </div>
                 </div>
             </section>
