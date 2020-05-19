@@ -403,7 +403,18 @@ header{
     width: auto;
     @include media-breakpoint-up(md) {
         margin-top: -80px;
-        height: 380px;
+        margin-bottom: -40px;
+        height: 360px;
+    }
+    @include media-breakpoint-up(lg) {
+        margin-top: -60px;
+        margin-bottom: -40px;
+        height: 340px;
+    }
+    @include media-breakpoint-up(xl) {
+        margin-top: -80px;
+        margin-bottom: -40px;
+        height: 360px;
     }
 }
 
