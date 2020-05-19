@@ -119,6 +119,23 @@ a{
     }
 }
 
+.estim-round-bubble {
+    font-family: $secondary-font;
+    padding: 10px;
+    font-size : 1rem;
+    font-weight: 900;
+    color: white;
+    text-align : center;
+    background-color: #41A1AB;
+    border-radius: 25px;
+    @include media-breakpoint-up(sm) {
+        font-size : 1.4rem;
+    }
+    @include media-breakpoint-up(lg) {
+        font-size : 1.7rem;
+    }
+}
+
 /* BUTTONS */
 
 @mixin button($color){
@@ -134,7 +151,7 @@ a{
     max-width: 230px;
     border-radius: 25px;
     margin : auto;
-    padding : 12px;
+    padding : 10px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);

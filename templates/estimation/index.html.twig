@@ -1,23 +1,56 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <h1 class="primary-title">Estime ton tél</h1>
-                <h4 class="text-dark">Choisis la marque</h4>
+
+    <div class="row justify-content-center">
+        <div class="col col-lg-8">
+
+            <div class="title-vends row justify-content-center p-3">
+                <img src="{{ asset('images/vends_title.png') }}" alt="Vends ton tél">
             </div>
-        </div>
-        <div class="row">
-            {% for brand in brands %}
-                <div class="col mx-auto text-center p-1">
-            <a class="primary-button" href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="primary-title text-left"><span class="blue-arrow">→</span> Voici quelques questions...</h1>
+                    <p>Pour nous aider à estimer la valeur de ton téléphone, sois honnête sur sa description pour en
+                    connaître sa valeur réelle</p>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-12 mx-auto text-center form p-4">
-                <a class="third-button" href="{{ path("autres") }}">Autre marque</a>
             </div>
+
+            <section class="brand">
+                <div class="row">
+                    <div class="col-12 text-center p-3">
+                        <span class="estim-round-bubble">Quelle est la marque de ton mobile&#8239;?</span>
+                    </div>
+                    {% for brand in brands %}
+                        <div class="col mx-auto text-center p-1">
+                    <a href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-12 mx-auto text-center form p-4">
+                        <a href="{{ path("autres") }}">Autre marque</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="model">
+                <div class="row">
+                    <div class="col-12 text-center p-3">
+                        <span class="estim-round-bubble">Quel est le modèle&#8239;?</span>
+                    </div>
+                    {% for brand in brands %}
+                        <div class="col mx-auto text-center p-1">
+                            <a href="{{ path('estimation_brand', {'brand':brand}) }}">{{ brand }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-12 mx-auto text-center form p-4">
+                        <a href="{{ path("autres") }}">Autre modèle</a>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </div>
 {% endblock %}
