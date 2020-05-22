@@ -11,23 +11,12 @@
     <main class="home">
 
         <div class="row justify-content-center">
+            <div class="col-2 bg-white"></div>
             <div class="col col-lg-8">
 
-                <div class="row pl-3 pr-3 pt-3 header bg-white">
-                    <div class="col-7 p-3 text-center">
-                        <img src="{{ asset('images/bipbiprachete.png') }}"
-                             alt="BipBip rachète ton tél et en fait le premier mobile recyclé et connecté aux bons plans de ta région"
-                             class="img-fluid">
-                        {# <h5 class="header-text"><span class="color-primary">BipBip rachète ton tél et en fait</span> le 1<sup>er</sup> mobile recyclé et connecté
-                            <span class="color-third">aux bons plans de ta région</span></h5> #}
-                    </div>
-                    <div class="col-5 p-3">
-                        <img src="{{ asset('images/photo-home.png') }}" alt="BipBip rachète ton tél" class="img-fluid">
-                    </div>
-                </div>
 
                 <section>
-                    <div class="row justify-content-center p-3">
+                    <div class="row justify-content-center p-3 bg-white">
                         <div class="col col-md-4 text-center">
                             <a href="{{ path('vends') }}">
                                 <img src="{{ asset('images/btn-vends.png') }}" alt="Vends ton tél" class="img-fluid img-home">
@@ -42,6 +31,19 @@
                         </div>
                     </div>
                 </section>
+
+                <div class="row pl-3 pr-3 pt-3 header bg-white">
+                    <div class="col-7 p-3 text-center">
+                        <img src="{{ asset('images/bipbiprachete.png') }}"
+                             alt="BipBip rachète ton tél et en fait le premier mobile recyclé et connecté aux bons plans de ta région"
+                             class="img-fluid">
+                        {# <h5 class="header-text"><span class="color-primary">BipBip rachète ton tél et en fait</span> le 1<sup>er</sup> mobile recyclé et connecté
+                            <span class="color-third">aux bons plans de ta région</span></h5> #}
+                    </div>
+                    <div class="col-5 p-3">
+                        <img src="{{ asset('images/photo-home.png') }}" alt="BipBip rachète ton tél" class="img-fluid">
+                    </div>
+                </div>
 
                 <section>
                     <h2 class="primary-title">Le constat !</h2>
@@ -230,7 +232,9 @@
                         </div>
                     </div>
                 </section>
+
             </div>
+            <div class="col-2 bg-white"></div>
         </div>
     </main>
 {% endblock %}
