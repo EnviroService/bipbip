@@ -11,12 +11,11 @@
     <main class="home">
 
         <div class="row justify-content-center">
-            <div class="col-2 bg-white"></div>
-            <div class="col col-lg-8">
-
+            <div class="col-2"></div>
+            <div class="col col-lg-8 bg-white">
 
                 <section>
-                    <div class="row justify-content-center p-3 bg-white">
+                    <div class="row justify-content-center p-3">
                         <div class="col col-md-4 text-center">
                             <a href="{{ path('vends') }}">
                                 <img src="{{ asset('images/btn-vends.png') }}" alt="Vends ton tél" class="img-fluid img-home">
@@ -32,7 +31,7 @@
                     </div>
                 </section>
 
-                <div class="row pl-3 pr-3 pt-3 header bg-white">
+                <div class="row pl-3 pr-3 pt-3 header">
                     <div class="col-7 p-3 text-center">
                         <img src="{{ asset('images/bipbiprachete.png') }}"
                              alt="BipBip rachète ton tél et en fait le premier mobile recyclé et connecté aux bons plans de ta région"
@@ -46,7 +45,9 @@
                 </div>
 
                 <section>
-                    <h2 class="primary-title">Le constat !</h2>
+                    <div class="row">
+                        <h2 class="primary-title">Le constat</h2>
+                    </div>
                     <div class="row justify-content-center">
                         <div class="col col-sm-3 text-center">
                             <img src="{{ asset('images/constat-1.png') }}"
@@ -144,7 +145,7 @@
                 </section>
 
                 <section>
-                    <div class="logos bg-white pt-3 pb-2 pt-lg-5 pb-lg-4 row text-center justify-content-center">
+                    <div class="logos pt-3 pb-2 pt-lg-5 pb-lg-4 row text-center justify-content-center">
                         <div class="col-4 col-sm">
                             <img src="{{ asset('images/5logos-2vie.png') }}"
                                  alt="Offre une 2ème vie à ton tél">
@@ -174,23 +175,6 @@
                 </section>
 
                 <section>
-                    <div class="photography row text-center pr-2 align-content-center pl-md-5 p-md-5 pt-3 pb-3 pt-md-0 pb-md-0">
-                        <div class="col-12 col-sm">
-                            <img src="{{ asset('images/photo-1.png') }}"
-                                 alt="Smartphones contrôlés et certifiés localement">
-                        </div>
-                        <div class="col-12 col-sm">
-                            <img src="{{ asset('images/photo-2.png') }}"
-                                 alt="Emploi local et énergie étudiante">
-                        </div>
-                        <div class="col-12 col-sm">
-                            <img src="{{ asset('images/photo-3.png') }}"
-                                 alt="Sécurité et confidentialité">
-                        </div>
-                    </div>
-                </section>
-
-                <section>
                     <div class="row justify-content-center phones-collected">
                         <div class="col-6 offset-sm-2 col-sm-3 text-right">
                             <img src="{{ asset('images/phones-vert-rouge.png') }}" alt="Téléphones collectés" class="img-phone">
@@ -204,16 +188,18 @@
                     </div>
                 </section>
 
-                <section class="logos-bas">
+                <section class="seconde-vie">
                     <div class="row">
                         <div class="col-12">
                             <h2 class="primary-title">La seconde vie selon
                                 <img src="{{ asset('images/bipbip-title.png') }}"
                                      alt="BipBip"
                                      id="bipbip-logo"></h2>
-
                         </div>
                     </div>
+                </section>
+
+                <section class="logos-bas">
                     <div class="row justify-content-center p-3">
                         <div class="col-6 col-sm col-md-3 text-center">
                             <img src="{{ asset('images/logos-economique.png') }}" alt="Economique">
@@ -233,8 +219,25 @@
                     </div>
                 </section>
 
+                <section>
+                    <div class="photography row text-center pr-2 align-content-center pl-md-5 p-md-5 pt-3 pb-3 pt-md-0 pb-md-0">
+                        <div class="col-12 col-sm">
+                            <img src="{{ asset('images/photo-1.png') }}"
+                                 alt="Smartphones contrôlés et certifiés localement">
+                        </div>
+                        <div class="col-12 col-sm">
+                            <img src="{{ asset('images/photo-2.png') }}"
+                                 alt="Emploi local et énergie étudiante">
+                        </div>
+                        <div class="col-12 col-sm">
+                            <img src="{{ asset('images/photo-3.png') }}"
+                                 alt="Sécurité et confidentialité">
+                        </div>
+                    </div>
+                </section>
+
             </div>
-            <div class="col-2 bg-white"></div>
+            <div class="col-2"></div>
         </div>
     </main>
 {% endblock %}
