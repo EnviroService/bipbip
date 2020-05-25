@@ -16,7 +16,7 @@
 /* GENERAL */
 
 body{
-    font-family: $primary-font;
+    font-family: $primary-font, sans-serif;
     color : black;
     font-size : 1rem;
     background-image: url("../images/fond.png");
@@ -369,33 +369,35 @@ header{
             bottom : 5vh;
             z-index : 5;
         }
+
+// SCROLL
+        #myBtn {
+            display: flex; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            bottom: 37px; /* Place the button at the bottom of the page */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: black; /* Set a background color */
+            opacity: 0.5;
+            color: white; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 12px; /* Rounded corners */
+            font-size: 16px; /* Increase font size */
+        }
+
+        #myBtn:hover {
+            background-color: $primary-color;
+        }
     }
 }
 
 /* VENDS */
 
-.title-vends {
-    background-color: $secondary-color;
-    img {
-        height: 80px;
-        width: auto;
-    }
-}
-
 .blue-arrow {
     font-size: 3rem;
     color: $primary-color;
-}
-
-.comment-marche-vends {
-    background-color: $fifth-color;
-    font-weight: 700;
-    font-size: 1rem;
-
-    img {
-        width: 25px;
-        height: auto;
-    }
 }
 
 #tel-collectes {
@@ -403,18 +405,7 @@ header{
     width: auto;
     @include media-breakpoint-up(md) {
         margin-top: -80px;
-        margin-bottom: -40px;
-        height: 360px;
-    }
-    @include media-breakpoint-up(lg) {
-        margin-top: -60px;
-        margin-bottom: -40px;
-        height: 340px;
-    }
-    @include media-breakpoint-up(xl) {
-        margin-top: -80px;
-        margin-bottom: -40px;
-        height: 360px;
+        height: 380px;
     }
 }
 
@@ -450,7 +441,7 @@ header{
 
 footer {
     .social-networks {
-        width: 50px;
+        max-width: 90%;
         height: auto;
     }
 
@@ -475,4 +466,5 @@ footer {
             color: black;
         }
     }
+
 }
