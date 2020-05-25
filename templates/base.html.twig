@@ -69,8 +69,10 @@
                         <a href="{{ path('faq_index') }}">
                             <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
                         </a>
-                        <button id="myBtn" onclick="topFunction()" title="Go to top">
-                            <script>
+
+                       <div class="col-lg">
+                           <button onclick="topFunction()" title="Go to top">
+                               <script>
                                 mybutton = document.getElementById('myBtn');
 
                                 // When the user scrolls down 20px from the top of the document, show the button
@@ -91,8 +93,9 @@
                                 }
 
                             </script>
-                            <img src="{{ asset('images/scroll_icone.png') }}" alt="scroll">
+                            <img id="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
                         </button>
+                       </div>
                     </div>
                 </div>
             </div>

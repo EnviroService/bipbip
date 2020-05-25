@@ -371,26 +371,27 @@ header{
         }
 
 // SCROLL
-        #myBtn {
-            display: flex; /* Hidden by default */
-            position: fixed; /* Fixed/sticky position */
-            bottom: 37px; /* Place the button at the bottom of the page */
-            z-index: 99; /* Make sure it does not overlap */
-            border: none; /* Remove borders */
-            outline: none; /* Remove outline */
-            background-color: black; /* Set a background color */
-            opacity: 0.5;
-            color: white; /* Text color */
-            cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px; /* Some padding */
-            border-radius: 12px; /* Rounded corners */
-            font-size: 16px; /* Increase font size */
-        }
+     #myBtn {
+         display: flex; /* Hidden by default */
+         position: fixed; /* Fixed/sticky position */
+         right: 5vw;
+         bottom: 3vh; /* Place the button at the bottom of the page */
+         z-index: 99; /* Make sure it does not overlap */
+         border: none; /* Remove borders */
+         outline: none; /* Remove outline */
+         opacity: 0.9;
+         cursor: pointer; /* Add a mouse pointer on hover */
+         border-radius: 12px; /* Rounded corners */
+         width : 80px;
+         height : 80px;
+     }
 
         #myBtn:hover {
-            background-color: $primary-color;
+            background-color: white;
+            opacity: 0.9;
         }
     }
+/*
 }
 
 /* VENDS */
@@ -445,7 +446,7 @@ footer {
         height: auto;
     }
 
-    .links-footer{
+    .links-footer {
         background-color: $secondary-color;
         font-size: 0.7rem;
         line-height: 1rem;
@@ -462,9 +463,9 @@ footer {
             }
         }
 
-        a{
+        a {
             color: black;
         }
     }
-
+}
 }
