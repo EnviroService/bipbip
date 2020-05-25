@@ -16,14 +16,14 @@
                 </div>
             </div>
 
-            <section class="brand">
+            <section id="brand">
                 <div class="row">
                     <div class="col-12 text-center p-5">
                         <span class="estim-round-bubble">Quelle est la marque de ton mobile&#8239;?</span>
                     </div>
                     {% for brand in brands %}
                         <div class="col mx-auto text-center p-1">
-                    <p class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</p>
+                    <a class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -34,14 +34,23 @@
                 </div>
             </section>
 
+            <section>
+                <div class="row">
+                    <div class="col-12 mx-auto text-center p-4">
+                        <div id="patience"></div>
+                    </div>
+                </div>
+            </section>
+
             <section id="model" style="display:none;">
+                {% block models %}
                 <div class="row">
                     <div class="col-12 text-center p-5">
                         <span class="estim-round-bubble">Quel est le modèle&#8239;?</span>
                     </div>
                     {% for model in models %}
                         <div class="col mx-auto text-center p-1">
-                            <a class="grey-button" href="{{ path('estimation_brand', {'brand':model.model}) }}">{{ model.model }}</a>
+                            <a class="grey-button" href="{{ path('estimation_capacity', {'capacity':model.capacity}) }}">{{ model.capacity }}</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -50,6 +59,7 @@
                         <a class="grey-button" href="{{ path("autres") }}">Autre modèle</a>
                     </div>
                 </div>
+                {% endblock %}
             </section>
 
         </div>
@@ -61,22 +71,23 @@
             "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
     </script>
     <script>
-        // au clic sur une marque ça lance le processus
+        // au clic sur une marque
         $('.brand').click(function(){
-        const brand = $(this).attr('id');
-        // et ça lance
-        $.ajax({
-            type: "POST",
-            url: "{{ path('model_id') }}",
-            data: {brand: brand},
-            success : function(data){
-                console.log(data);
-                const models = data;
-                // et ça show le modele
-                $('#model').show();
-                // $('#model').load("{{ path('new_estimation') }}",models);
-            },
-        });
+            $('#patience').html('<img src="{{ asset('images/ajax-loader.gif') }}">');
+            const brand = $(this).attr('id');
+            // ça va chercher les modeles en requête json
+            $.ajax({
+                type: "POST",
+                url: "{{ path('model_id') }}",
+                data: {brand: brand},
+                success : function(models){
+                    console.log(models);
+                    // et ça show le modele
+                    $('#model').show();
+                    $('#model').append("<p>ici on affiche les modèles<br>" +
+                        "Test : {% for model in models %}{{ model }}{% endfor %}</p>");
+                },
+            });
         });
     </script>
 {% endblock %}

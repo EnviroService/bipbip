@@ -39,13 +39,6 @@ class EstimationController extends AbstractController
     {
         // find Brands distinct
         $brands = $phones->findBrandDistinct();
-        // find Models distinct
-        if (isset($_POST['brand'])) {
-            $brand = $_POST['brand'];
-        }
-        if (isset($models)) {
-            var_dump($models);
-        }
 
         return $this->render("estimation/index.html.twig", [
             "brands" => $brands,
@@ -54,7 +47,7 @@ class EstimationController extends AbstractController
     }
 
     /**
-     * @Route("modelId", name="model_id")
+     * @Route("/modelId", name="model_id")
      * @param PhonesRepository $phones
      * @param Request $request
      * @return JsonResponse
@@ -65,7 +58,10 @@ class EstimationController extends AbstractController
             $brand = $request->request->get('brand');
             $models = $phones->findModelDistinct($brand);
 
-            return new JsonResponse($models);
+            return new JsonResponse([
+                'models' => $models,
+                //'html' => $this->renderView('estimation/models.html.twig'),
+                ]);
         }
     }
 
