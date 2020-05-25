@@ -69,25 +69,6 @@
         }
     }
 
-    .logos {
-        img {
-            height: 50px;
-            width: auto;
-            padding: 2px;
-            justify-content: center;
-            @include media-breakpoint-up(md) {
-                height: 70px;
-            }
-        }
-
-        p {
-            padding-top: 5px;
-            font-size: 0.8rem;
-            line-height: 0.7rem;
-            font-weight: 600;
-        }
-    }
-
     .photography {
         background-color: $sixth-color;
         img {

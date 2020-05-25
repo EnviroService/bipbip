@@ -394,6 +394,27 @@ header{
     }
 }
 
+/* 5 PICTOS */
+
+.logos {
+    img {
+        height: 50px;
+        width: auto;
+        padding: 2px;
+        justify-content: center;
+        @include media-breakpoint-up(md) {
+            height: 70px;
+        }
+    }
+
+    p {
+        padding-top: 5px;
+        font-size: 0.8rem;
+        line-height: 0.7rem;
+        font-weight: 600;
+    }
+}
+
 /* VENDS */
 
 .title-vends {
@@ -471,6 +492,13 @@ header{
             width: 195px;
         }
     }
+}
+
+/* CONTACT */
+
+#faq-btn {
+    height: 50px;
+    width: auto;
 }
 
 /* FOOTER */
