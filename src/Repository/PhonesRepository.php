@@ -35,6 +35,25 @@ class PhonesRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findBrandDistinct()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('DISTINCT p.brand')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findModelDistinct($brand)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('DISTINCT p.model')
+            ->andWhere('p.brand = :brand')
+            ->setParameter('brand', $brand)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Phones

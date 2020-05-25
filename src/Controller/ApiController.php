@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -91,11 +92,10 @@ class ApiController extends AbstractController
 
             $firstname = $user->getFirstname();
             $name = $user->getLastname();
-
             $params = [
                 //STRUCTURE HEADER VALUE
                 'headerValue' => [
-                    'accountNumber' => '19869502',
+                    'accountNumber' => $_ENV['account_chrono'],
                     'idEmit' => 'CHRFR',
                     'identWebPro' => '',
                     'subAccount' => '',
@@ -126,11 +126,11 @@ class ApiController extends AbstractController
                     'customerContactName' => 'Natacha',
                     'customerCountry' => 'FR',
                     'customerCountryName' => 'FRANCE',
-                    'customerEmail' => 'test@gmail.com',
+                    'customerEmail' => $_ENV['mail_Natacha'],
                     'customerMobilePhone' => '',
                     'customerName' => 'Bip Bip Mobile',
                     'customerName2' => '',
-                    'customerPhone' => '0133333333',
+                    'customerPhone' => $_ENV['mobile_Natacha'],
                     'customerPreAlert' => 0,
                     'customerZipCode' => '59118',
                     'printAsSender' => 'N',
@@ -143,18 +143,18 @@ class ApiController extends AbstractController
                     'recipientContactName' => 'Natacha',
                     'recipientCountry' => 'FR',
                     'recipientCountryName' => 'FRANCE',
-                    'recipientEmail' => 'test@gmail.com',
+                    'recipientEmail' => $_ENV['mail_Natacha'],
                     'recipientMobilePhone' => '',
                     'recipientName' => 'Enviro Services',
                     'recipientName2' => 'Bip Bip Mobile',
-                    'recipientPhone' => '0455667788',
+                    'recipientPhone' => $_ENV['mobile_Natacha'],
                     'recipientPreAlert' => 0,
                     'recipientZipCode' => '59118',
                     'recipientCivility' => 'M',
                 ],
                 //STRUCTURE REFVALUE
                 'refValue' => [
-                    'customerSkybillNumber' => '123456789',
+                    'customerSkybillNumber' => '',
                     'PCardTransactionNumber' => '',
                     'recipientRef' => 24,
                     'shipperRef' => 000000000000001,
@@ -178,11 +178,11 @@ class ApiController extends AbstractController
                     'shipDate' => date('c'),
                     'shipHour' => date('G'),
                     'skybillRank' => 1,
-                    'weight' => 2,
+                    'weight' => 0.150,
                     'weightUnit' => 'KGM',
-                    'height' => '10',
-                    'length' => '30',
-                    'width' => '40',
+                    'height' => '5',
+                    'length' => '25',
+                    'width' => '10',
                 ],
 
                 //STRUCTURE SKYBILLPARAMSVALUE
@@ -191,7 +191,7 @@ class ApiController extends AbstractController
                     'withReservation' => 0,
                 ],
                 //OTHERS
-                'password' => '255562',
+                'password' => $_ENV['mdp'],
                 'modeRetour' => 1,
                 'numberOfParcel' => 1,
                 'version' => '2.0',
@@ -300,7 +300,7 @@ class ApiController extends AbstractController
         $params = [
             //STRUCTURE HEADER VALUE
             'headerValue' => [
-                'accountNumber' => '19869502',
+                'accountNumber' => $_ENV['account_chrono'],
                 'idEmit' => 'CHRFR',
                 'identWebPro' => '',
                 'subAccount' => '',
@@ -318,7 +318,7 @@ class ApiController extends AbstractController
                 'shipperMobilePhone' => "",
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
-                'shipperPhone' => "0788232290",
+                'shipperPhone' => $user->getPhoneNumber(),
                 'shipperPreAlert' => 0,
                 'shipperZipCode' => $user->getPostCode(),
             ],
@@ -331,11 +331,11 @@ class ApiController extends AbstractController
                 'customerContactName' => 'Natacha',
                 'customerCountry' => 'FR',
                 'customerCountryName' => 'FRANCE',
-                'customerEmail' => 'test@gmail.com',
-                'customerMobilePhone' => '0611223344',
+                'customerEmail' => $_ENV['mail_Natacha'],
+                'customerMobilePhone' => '',
                 'customerName' => 'BipBip Mobile',
                 'customerName2' => '',
-                'customerPhone' => '0133333333',
+                'customerPhone' => $_ENV['mobile_Natacha'],
                 'customerPreAlert' => 0,
                 'customerZipCode' => '59118',
                 'printAsSender' => 'N',
@@ -348,18 +348,18 @@ class ApiController extends AbstractController
                 'recipientContactName' => 'Natacha',
                 'recipientCountry' => 'FR',
                 'recipientCountryName' => 'FRANCE',
-                'recipientEmail' => 'test@gmail.com',
+                'recipientEmail' => $_ENV['mail_Natacha'],
                 'recipientMobilePhone' => '',
                 'recipientName' => 'Bip Bip Mobile',
                 'recipientName2' => '',
-                'recipientPhone' => '0655667788',
+                'recipientPhone' => $_ENV['mobile_Natacha'],
                 'recipientPreAlert' => 0,
                 'recipientZipCode' => '59118',
                 'recipientCivility' => 'M',
             ],
             //STRUCTURE REFVALUE
             'refValue' => [
-                'customerSkybillNumber' => '123456789',
+                'customerSkybillNumber' => '',
                 'PCardTransactionNumber' => '',
                 'recipientRef' => 24,
                 'shipperRef' => 000000000000001,
@@ -383,11 +383,11 @@ class ApiController extends AbstractController
                 'shipDate' => date('c'),
                 'shipHour' => date('G'),
                 'skybillRank' => 1,
-                'weight' => 2,
+                'weight' => 0.150,
                 'weightUnit' => 'KGM',
-                'height' => '10',
-                'length' => '30',
-                'width' => '40',
+                'height' => '5',
+                'length' => '25',
+                'width' => '10',
             ],
             //STRUCTURE SKYBILLPARAMSVALUE
             'skybillParamsValue' => [
@@ -396,7 +396,7 @@ class ApiController extends AbstractController
             ],
 
             //OTHERS
-            'password' => '255562',
+            'password' => $_ENV['mdp'],
             'modeRetour' => '3',
             'numberOfParcel' => '1',
             'version' => '2.0',

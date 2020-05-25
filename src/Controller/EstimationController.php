@@ -14,6 +14,7 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,21 +30,39 @@ class EstimationController extends AbstractController
 {
     /**
      * @Route("/", name="new_estimation")
-     * @param EntityManagerInterface $em
+     * @param PhonesRepository $phones
+     * @param string|null $brand
+     * @param array|null $models
      * @return Response
      */
-    public function index(EntityManagerInterface $em): Response
+    public function index(PhonesRepository $phones, ?string $brand, ?array $models): Response
     {
-        $queryBuilder = $em->getRepository(Phones::class)->findAll();
-        $brands = [];
-        foreach ($queryBuilder as $phone) {
-            array_push($brands, $phone->getBrand());
-        }
-        $brands = array_unique($brands);
+        // find Brands distinct
+        $brands = $phones->findBrandDistinct();
 
         return $this->render("estimation/index.html.twig", [
-            "brands" => $brands
+            "brands" => $brands,
+            "models" => $models,
         ]);
+    }
+
+    /**
+     * @Route("/modelId", name="model_id")
+     * @param PhonesRepository $phones
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function modelId(PhonesRepository $phones, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $brand = $request->request->get('brand');
+            $models = $phones->findModelDistinct($brand);
+
+            return new JsonResponse([
+                'models' => $models,
+                //'html' => $this->renderView('estimation/models.html.twig'),
+                ]);
+        }
     }
 
     /**
