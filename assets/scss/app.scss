@@ -483,8 +483,8 @@ footer {
 
     .links-footer{
         background-color: $secondary-color;
-        font-size: 0.7rem;
-        line-height: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
         @include media-breakpoint-up(md) {
             font-size: 1rem;
             line-height: 1.4rem;
