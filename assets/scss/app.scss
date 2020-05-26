@@ -352,30 +352,11 @@ header{
             }
         }
 
-        @media screen and (min-width: 768px) {
+        @include media-breakpoint-up(sm) {
 
             #menu-burger {
-                align-self: flex-start;
-                border-radius: 5px;
-                background-color : $primary-color;
-                box-shadow: 5px 3px 10px $primary-color;
-                width: 120px;
-                min-height: 40px;
-                height: 40px;
-                position: absolute;
-                top: 30px;
-                right: 50px;
-
-                img {
-                    display: none;
-                }
-
-                p{
-                    display: inline;
-                    font-size : 1.1rem;
-                    color : white;
-                    margin-bottom : 0;
-                }
+                right: 5%;
+                top: 5%;
             }
         }
 
@@ -414,6 +395,27 @@ header{
         }
     }
 /*
+}
+
+/* 5 PICTOS */
+
+.logos {
+    img {
+        height: 50px;
+        width: auto;
+        padding: 2px;
+        justify-content: center;
+        @include media-breakpoint-up(md) {
+            height: 70px;
+        }
+    }
+
+    p {
+        padding-top: 5px;
+        font-size: 0.8rem;
+        line-height: 0.7rem;
+        font-weight: 600;
+    }
 }
 
 /* VENDS */
@@ -473,6 +475,13 @@ header{
     }
 }
 
+/* CONTACT */
+
+#faq-btn {
+    height: 50px;
+    width: auto;
+}
+
 /* FOOTER */
 
 footer {
@@ -483,8 +492,8 @@ footer {
 
     .links-footer {
         background-color: $secondary-color;
-        font-size: 0.7rem;
-        line-height: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
         @include media-breakpoint-up(md) {
             font-size: 1rem;
             line-height: 1.4rem;

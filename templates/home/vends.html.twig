@@ -150,34 +150,7 @@
                     </div>
                 </section>
 
-                <section>
-                    <div class="logos bg-white pt-3 pb-2 pt-lg-5 pb-lg-4 row text-center justify-content-center">
-                        <div class="col-4 col-sm border-right border-secondary">
-                            <img src="{{ asset('images/5logos-2vie.png') }}"
-                                 alt="Offre une 2ème vie à ton tél">
-                            <p>Offre une 2ème vie à ton tél</p>
-                        </div>
-                        <div class="col-4 col-sm border-right border-secondary">
-                            <img src="{{ asset('images/5logos-region.png') }}"
-                                 alt="Collecté dans ta région">
-                            <p>Collecté dans ta région</p>
-                        </div>
-                        <div class="col-4 col-sm border-right-screen">
-                            <img src="{{ asset('images/5logos-garantie.png') }}"
-                                 alt="Garantie 12 mois minimum">
-                            <p>Garantie 12 mois minimum</p>
-                        </div>
-                        <div class="col-4 col-sm border-right border-secondary pt-2">
-                            <img src="{{ asset('images/5logos-origine.png') }}"
-                                 alt="Reconditionné avec les pièces d'origine">
-                            <p>Reconditionné avec les pièces d'origine</p>
-                        </div>
-                        <div class="col-4 col-sm pt-2">
-                            <img src="{{ asset('images/5logos-neuf.png') }}"
-                                 alt="Qualité fonctionnelle et esthétique proche du neuf&nbsp;!">
-                            <p>Qualité fonctionnelle et esthétique proche du neuf&nbsp;!</p>
-                        </div>
-                    </div>
-                </section>
+        {% include('home/5pictos.html.twig') %}
+
     </main>
 {% endblock %}
