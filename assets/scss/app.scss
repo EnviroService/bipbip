@@ -259,6 +259,31 @@ header{
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-family: $primary-font;
+
+        .smallLogoMenu{
+            img{
+                width: 60px;
+                height: 50px;
+                margin: 40px auto;
+            }
+        }
+
+        .laCommuDiv{
+            margin-top: 50px;
+            .laCommu {
+                color: $third-color;
+            }
+        }
+        @media screen and (max-width: 570px) {
+            .laCommuDiv{
+                margin-top: 5px;
+            }
+        }
+
+        .logoSociaux{
+            height: 30px;
+        }
 
         .close-button{
             z-index : 9999;
@@ -277,16 +302,14 @@ header{
 
         ul{
             .primary-title-menu-color {
-                font-family: $third-font;
                 color: $primary-color;
                 font-size: 1.6rem;
             }
 
             .primary-title-menu {
-                font-family: $third-font;
                 font-weight: lighter;
                 font-size: 1.2rem;
-                color : black;
+                color : $primary-color;
             }
         }
 
