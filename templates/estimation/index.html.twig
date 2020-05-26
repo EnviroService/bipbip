@@ -23,7 +23,7 @@
                     </div>
                     {% for brand in brands %}
                         <div class="col mx-auto text-center p-1">
-                    <a class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</a>
+                    <p class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</p>
                         </div>
                     {% endfor %}
                 </div>
@@ -48,11 +48,8 @@
                     <div class="col-12 text-center p-5">
                         <span class="estim-round-bubble">Quel est le modèle&#8239;?</span>
                     </div>
-                    {% for model in models %}
-                        <div class="col mx-auto text-center p-1">
-                            <a class="grey-button" href="{{ path('estimation_capacity', {'capacity':model.capacity}) }}">{{ model.capacity }}</a>
+                        <div id="model-js" class="col mx-auto text-center p-1">
                         </div>
-                    {% endfor %}
                 </div>
                 <div class="row">
                     <div class="col-12 mx-auto text-center form p-4">
@@ -73,19 +70,24 @@
     <script>
         // au clic sur une marque
         $('.brand').click(function(){
-            $('#patience').html('<img src="{{ asset('images/ajax-loader.gif') }}">');
             const brand = $(this).attr('id');
             // ça va chercher les modeles en requête json
             $.ajax({
                 type: "POST",
                 url: "{{ path('model_id') }}",
                 data: {brand: brand},
-                success : function(models){
+                dataType:"json",
+                success: function(models){
                     console.log(models);
+                    $.each(models, function(models, model) {
+                        console.log(model)
+                    });
                     // et ça show le modele
                     $('#model').show();
-                    $('#model').append("<p>ici on affiche les modèles<br>" +
-                        "Test : {% for model in models %}{{ model }}{% endfor %}</p>");
+                    $('#model-js').empty();
+                    $('#model-js').append('<img src="{{ asset('images/ajax-loader.gif') }}">');
+                    $('#model-js').append("<p>ici on affiche les modèles<br>Test : ");
+                    $('#model-js').append(models);
                 },
             });
         });

@@ -59,8 +59,8 @@ class EstimationController extends AbstractController
             $models = $phones->findModelDistinct($brand);
 
             return new JsonResponse([
-                'models' => $models,
-                //'html' => $this->renderView('estimation/models.html.twig'),
+                'models' => json_encode($models),
+                'Content-Type' => 'application/json',
                 ]);
         }
     }
