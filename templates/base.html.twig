@@ -16,7 +16,7 @@
             <div class="col col-lg-8 bg-white">
     {% block header %}
         <header>
-            <div class="row pb-3 bg-white">
+            <div class="row pb-3">
                 <div class="col-8 col-md-6 pt-3 text-center">
                     <a href="{{ path('home') }}" class="logo-title pl-1"><img src="{{ asset('/images/logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
@@ -150,20 +150,20 @@
         {% block footer %}
         <footer>
             <h2 class="primary-title">Tu en veux plus ?</h2>
-            <div class="d-flex flex-row justify-content-center mt-2 mb-4">
-                <div class="col-2 col-md-1 ml-4 mr-5 text-center">
+            <div class="row social-networks justify-content-center mt-2 mb-4">
+                <div class="col-3 col-1-md text-center">
                     <a href="#" target="_blank" title="Page Facebook">
-                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" class="social-networks" />
+                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
                     </a>
                 </div>
-                <div class="col-2 col-md-1 ml-4 mr-5 text-center">
+                <div class="col-3 col-1-md text-center">
                     <a href="#" target="_blank" title="Instagram">
-                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" class="social-networks" />
+                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
                     </a>
                 </div>
-                <div class="col-2 col-md-1 ml-4 mr-5 text-center">
+                <div class="col-3 col-1-md text-center">
                     <a href="#" target="_blank" title="LinkedIn">
-                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" class="social-networks" />
+                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
                     </a>
                 </div>
             </div>

@@ -222,10 +222,10 @@ a{
 
 /* HEADER NAV */
 
-header{
-    .logo-title{
-        img{
-            width : 60%;
+header {
+    .logo-title {
+        img {
+            width: 60%;
             @include media-breakpoint-up(sm) {
                 width: 50%;
             }
@@ -237,62 +237,64 @@ header{
 
     /* MENU */
 
-    #menu{
+    #menu {
 
-        a{
+        a {
             color: black;
             text-decoration: none;
 
-            &:hover{
+            &:hover {
                 color: black;
                 text-decoration: none;
             }
         }
 
-        display : none;
-        z-index : 9998;
-        background : #FFFFFF;
-        padding : 1em 2em;
-        width : 100%;
-        height : 100%;
+        display: none;
+        z-index: 9998;
+        background: #FFFFFF;
+        padding: 1em 2em;
+        width: 100%;
+        height: 100%;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-family: $primary-font;
 
-        .smallLogoMenu{
-            img{
+        .smallLogoMenu {
+            img {
                 width: 60px;
                 height: 50px;
                 margin: 40px auto;
             }
         }
 
-        .laCommuDiv{
+        .laCommuDiv {
             margin-top: 50px;
+
             .laCommu {
                 color: $third-color;
             }
         }
+
         @media screen and (max-width: 570px) {
-            .laCommuDiv{
+            .laCommuDiv {
                 margin-top: 5px;
             }
         }
 
-        .logoSociaux{
+        .logoSociaux {
             height: 30px;
         }
 
-        .close-button{
-            z-index : 9999;
-            width : 50%;
-            max-width : 50px;
-            position : absolute;
-            top : 3%;
-            right : 3%;
-            cursor : pointer;
+        .close-button {
+            z-index: 9999;
+            width: 50%;
+            max-width: 50px;
+            position: absolute;
+            top: 3%;
+            right: 3%;
+            cursor: pointer;
         }
 
         #phone-menu {
@@ -300,7 +302,7 @@ header{
             height: auto;
         }
 
-        ul{
+        ul {
             .primary-title-menu-color {
                 color: $primary-color;
                 font-size: 1.6rem;
@@ -309,47 +311,47 @@ header{
             .primary-title-menu {
                 font-weight: lighter;
                 font-size: 1.2rem;
-                color : $primary-color;
+                color: $primary-color;
             }
         }
 
-        .user-infos-menu{
+        .user-infos-menu {
             text-align: center;
 
-            h3{
-                color : $primary-color;
-                font-size : 1.2rem;
+            h3 {
+                color: $primary-color;
+                font-size: 1.2rem;
             }
 
-            a{
-                display : block;
-                width : 200px;
-                margin : 10px auto 10px auto;
-                font-size : 1.2rem;
+            a {
+                display: block;
+                width: 200px;
+                margin: 10px auto 10px auto;
+                font-size: 1.2rem;
             }
 
-            .disconnection{
-                color : darkred;
-                margin : auto;
+            .disconnection {
+                color: darkred;
+                margin: auto;
                 font-style: italic;
                 font-size: 1.1rem;
             }
 
-            .connect{
-                color : $primary-color;
+            .connect {
+                color: $primary-color;
                 font-weight: 500;
             }
         }
     }
 
-    #menu.displayed{
-        display : block;
+    #menu.displayed {
+        display: block;
     }
 
-    .circle-buttons{
-        display : flex;
+    .circle-buttons {
+        display: flex;
         justify-content: space-between;
-        cursor : pointer;
+        cursor: pointer;
 
         #menu-burger {
             display: flex;
@@ -383,41 +385,40 @@ header{
             }
         }
 
-        #faq-button{
-            display : flex;
-            justify-content : center;
-            align-items : center;
-            border-radius : 50%;
-            width : 70px;
-            height : 70px;
-            position : fixed;
-            left : 5vw;
-            bottom : 5vh;
-            z-index : 5;
+        #faq-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            left: 5vw;
+            bottom: 5vh;
+            z-index: 5;
         }
 
-// SCROLL
-     #myBtn {
-         display: flex; /* Hidden by default */
-         position: fixed; /* Fixed/sticky position */
-         right: 5vw;
-         bottom: 3vh; /* Place the button at the bottom of the page */
-         z-index: 99; /* Make sure it does not overlap */
-         border: none; /* Remove borders */
-         outline: none; /* Remove outline */
-         opacity: 0.9;
-         cursor: pointer; /* Add a mouse pointer on hover */
-         border-radius: 12px; /* Rounded corners */
-         width : 80px;
-         height : 80px;
-     }
+        // SCROLL
+        #myBtn {
+            display: flex; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            right: 5vw;
+            bottom: 3vh; /* Place the button at the bottom of the page */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            opacity: 0.9;
+            cursor: pointer; /* Add a mouse pointer on hover */
+            border-radius: 12px; /* Rounded corners */
+            width: 80px;
+            height: 80px;
+        }
 
         #myBtn:hover {
             background-color: white;
             opacity: 0.9;
         }
     }
-/*
 }
 
 /* 5 PICTOS */
@@ -459,6 +460,20 @@ header{
 .blue-arrow {
     font-size: 3rem;
     color: $primary-color;
+}
+
+.comment-marche-vends {
+    background-color:$fifth-color;
+    font-weight: 700;
+    font-size: 0.8rem;
+    @include media-breakpoint-up(md) {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 25px;
+        height: auto;
+    }
 }
 
 #tel-collectes {
@@ -509,11 +524,9 @@ header{
 
 footer {
     .social-networks {
-        max-width: 100%;
-        max-height: 100%;
         img{
-            width: 100%;
-            height: 100%;
+            width: 50px;
+            height: auto;
         }
     }
 
@@ -538,5 +551,4 @@ footer {
             color: black;
         }
     }
-}
 }
