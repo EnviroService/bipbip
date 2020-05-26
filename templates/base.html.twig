@@ -24,10 +24,15 @@
                 <div class="col-4 col-md-6">
                     <nav id="menu">
                         <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
-                        <div class="row align-items-center justify-content-end">
-                            <div class="col-8 col-sm-5 col-lg-3">
-                                <img class="d-none d-sm-block" src="{{ asset('images/perso-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
-                                <div class="user-infos-menu">
+                        <div class="row justify-content-around">
+                            <div class="col-8 col-sm-5 col-lg-3 text-center">
+                                <div class="row smallLogoMenu align-content-around">
+                                    <img src="{{ asset('images/silhouette.png') }}" alt="">
+                                    <img src="{{ asset('images/bulle-contact.png') }}" alt="">
+                                    <img src="{{ asset('images/shopping-cart.png') }}" alt="">
+                                </div>
+                                <img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
+                                <div class="user-infos-menu mt-5 d-none d-sm-block">
                                     {% if app.user %}
                                             <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
                                             {% for role in app.user.roles %}
@@ -40,24 +45,41 @@
                                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
                                     {% else %}
-                                        <a href="{{ path('app_login') }}" class="connect"> Se connecter / s'inscrire</a>
+                                        <a href="{{ path('app_login') }}" class="primary-button"> Se connecter</a>
+                                        <a href="{{ path('app_register') }}" class="secondary-button"> S'inscrire</a>
                                     {% endif %}
                                 </div>
+                                <div class="laCommuDiv">
+                                    <p class="laCommu">
+                                        Rejoins la commu'
+                                    </p>
+                                </div>
+                                <div class="">
+                                    <a href="#"><img src="{{ asset('images/logo-fb.png') }}" class="logoSociaux" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/logo-insta.png') }}" class="logoSociaux" alt=""></a>
+                                    <a href="#"><img src="{{ asset('images/logo-linkedin.png') }}" class="logoSociaux" alt=""></a>
+                                </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-lg-5">
+
+
+
+                            <div class="col-12 col-sm-6 col-lg-5 mt-5">
                                 <ul>
-                                    <li class="primary-title-menu-color">BipBip</li>
-                                    <li class="primary-title-menu"><a href="{{ path("histoire") }}" title="Notre histoire">Notre histoire</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("qui-sommes-nous") }}" title="Notre solution">Notre solution</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("team") }}" title="Description Bip Bip">Notre team</a></li>
-                                    <li class="primary-title-menu-color pt-2">#Je suis BipBip</li>
-                                    <li class="primary-title-menu"><a href="{{ path("vends") }}" title="Vends ton téléphone">Vends ton tél</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("boutique") }}" title="Achète un BipBip">Achète un BipBip</a></li>
-                                    <li class="primary-title-menu-color pt-2">BipBip a besoin de toi</li>
-                                    <li class="primary-title-menu"><a href="{{ path("show_collect") }}" title="Les points de collecte">Collecteurs / bippeurs</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("asso") }}" title="Organiser une collecte">Asso, école, entreprise, mairie : devenir site de collecte</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("organisms_index") }}" title="Nos partenaires">Nos partenaires : Startup innovante et engagée pour la région ?</a></li>
-                                    <li class="primary-title-menu"><a href="{{ path("add_message") }}" title="Parrain">Parrain</a></li>
+                                    <li class=""><h3 class="font-weight-bold">BipBip</h3></li>
+                                    <li><a href="{{ path("histoire") }}" title="Notre histoire" class="primary-title-menu">Notre histoire</a></li>
+                                    <li><a href="{{ path("qui-sommes-nous") }}" title="Notre solution" class="primary-title-menu">Notre solution</a></li>
+                                    <li><a href="{{ path("team") }}" title="Description Bip Bip" class="primary-title-menu">Notre team</a></li>
+                                    <li class="pt-3"><h3 class="font-weight-bold">#Je suis BipBip</h3></li>
+                                    <li><a href="{{ path("vends") }}" title="Vends ton téléphone" class="primary-title-menu">Vends ton tél</a></li>
+                                    <li><a href="{{ path("boutique") }}" title="Achète un BipBip" class="primary-title-menu">Achète un BipBip</a></li>
+                                    <li class="pt-3"><h3 class="font-weight-bold">BipBip a besoin de toi</h3></li>
+                                    <li><a href="{{ path("show_collect") }}" title="Les points de collecte" class="primary-title-menu">Collecteurs / bippeurs</a></li>
+                                    <li><a href="{{ path("asso") }}" title="Organiser une collecte" class="primary-title-menu">Asso, école, entreprise, mairie : devenir site de collecte</a></li>
+                                    <li><a href="{{ path("organisms_index") }}" title="Nos partenaires" class="primary-title-menu">Nos partenaires : Startup innovante et engagée pour la région ?</a></li>
+                                    <li><a href="{{ path("add_message") }}" title="Parrain" class="primary-title-menu">Parrain</a></li>
+                                    <li class="pt-3"><h3 class="font-weight-bold">Parlons BipBip</h3></li>
+                                    <li><a href="{{ path("add_message") }}" title="Contacte nous" class="primary-title-menu">Contacte nous</a></li>
+                                    <li><a href="#" title="Presse kit" class="primary-title-menu">Presse kit</a></li>
                                 </ul>
                             </div>
                         </div>
