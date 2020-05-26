@@ -92,6 +92,14 @@ class ApiController extends AbstractController
 
             $firstname = $user->getFirstname();
             $name = $user->getLastname();
+
+            // Création d'un nom de fichier pour la sauvegarde.
+            $idUser = $user->getId();
+            $estimationId = $_GET['estimation'];
+            $repertory = "uploads/etiquettes/";
+            $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
+            $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
+
             $params = [
                 //STRUCTURE HEADER VALUE
                 'headerValue' => [
@@ -113,7 +121,7 @@ class ApiController extends AbstractController
                     'shipperMobilePhone' => '',
                     'shipperName' => $firstname,
                     'shipperName2' => $name,
-                    'shipperPhone' => $user->getPhoneNumber(),
+                    'shipperPhone' => '0' . $user->getPhoneNumber(),
                     'shipperPreAlert' => 0,
                     'shipperZipCode' => $user->getPostCode(),
                 ],
@@ -128,7 +136,7 @@ class ApiController extends AbstractController
                     'customerCountryName' => 'FRANCE',
                     'customerEmail' => $_ENV['mail_Natacha'],
                     'customerMobilePhone' => '',
-                    'customerName' => 'Bip Bip Mobile',
+                    'customerName' => 'Bip Bip',
                     'customerName2' => '',
                     'customerPhone' => $_ENV['mobile_Natacha'],
                     'customerPreAlert' => 0,
@@ -146,7 +154,7 @@ class ApiController extends AbstractController
                     'recipientEmail' => $_ENV['mail_Natacha'],
                     'recipientMobilePhone' => '',
                     'recipientName' => 'Enviro Services',
-                    'recipientName2' => 'Bip Bip Mobile',
+                    'recipientName2' => 'Bip Bip',
                     'recipientPhone' => $_ENV['mobile_Natacha'],
                     'recipientPreAlert' => 0,
                     'recipientZipCode' => '59118',
@@ -156,8 +164,8 @@ class ApiController extends AbstractController
                 'refValue' => [
                     'customerSkybillNumber' => '',
                     'PCardTransactionNumber' => '',
-                    'recipientRef' => 24,
-                    'shipperRef' => 000000000000001,
+                    'recipientRef' => 'E-' . $estimationId . '/' . date_format(new DateTime("now"), "d_m_Y"),
+                    'shipperRef' => 'U-' . $idUser,
                 ],
                 //STRUCTURE SKYBILLVALUE
                 'skybillValue' => [
@@ -210,15 +218,6 @@ class ApiController extends AbstractController
 
                 //récupération de l'étiquette en base64
                 $pdf = $results->return->resultMultiParcelValue->pdfEtiquette;
-
-                // Création d'un nom de fichier pour la sauvegarde.
-                $idUser = $user->getId();
-
-                // Récupération de l'id de l'estimation passée en GET
-                $estimationId = $_GET['estimation'];
-                $repertory = "uploads/etiquettes/";
-                $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
-                $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
 
                 // statut estimation "2" correspond à une génération d'étiquette Chronopost, sauvée sur le serveur
                 if ($_GET['status'] == 2) {
@@ -318,7 +317,7 @@ class ApiController extends AbstractController
                 'shipperMobilePhone' => "",
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
-                'shipperPhone' => $user->getPhoneNumber(),
+                'shipperPhone' => '0' . $user->getPhoneNumber(),
                 'shipperPreAlert' => 0,
                 'shipperZipCode' => $user->getPostCode(),
             ],
@@ -333,7 +332,7 @@ class ApiController extends AbstractController
                 'customerCountryName' => 'FRANCE',
                 'customerEmail' => $_ENV['mail_Natacha'],
                 'customerMobilePhone' => '',
-                'customerName' => 'BipBip Mobile',
+                'customerName' => 'BipBip',
                 'customerName2' => '',
                 'customerPhone' => $_ENV['mobile_Natacha'],
                 'customerPreAlert' => 0,
@@ -350,7 +349,7 @@ class ApiController extends AbstractController
                 'recipientCountryName' => 'FRANCE',
                 'recipientEmail' => $_ENV['mail_Natacha'],
                 'recipientMobilePhone' => '',
-                'recipientName' => 'Bip Bip Mobile',
+                'recipientName' => 'Bip Bip',
                 'recipientName2' => '',
                 'recipientPhone' => $_ENV['mobile_Natacha'],
                 'recipientPreAlert' => 0,
@@ -361,8 +360,8 @@ class ApiController extends AbstractController
             'refValue' => [
                 'customerSkybillNumber' => '',
                 'PCardTransactionNumber' => '',
-                'recipientRef' => 24,
-                'shipperRef' => 000000000000001,
+                'recipientRef' => 'E-' . $_GET['estimation'] . '/' . date_format(new DateTime("now"), "d_m_Y"),
+                'shipperRef' => 'U-' . $user->getId(),
             ],
             //STRUCTURE SKYBILLVALUE
             'skybillValue' => [
