@@ -35,8 +35,9 @@
     }
 
     .img-constat {
-        height: 100px;
-        width: auto;
+        height: 30vh;
+        width: 60%;
+        margin-bottom: 40px;
         @include media-breakpoint-up(sm) {
             height: 150px;
         }
