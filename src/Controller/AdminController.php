@@ -511,6 +511,7 @@ class AdminController extends AbstractController
 
      /**
      * @Route("/modify/{id}", name="modify_estimationBrand")
+      * @IsGranted("ROLE_COLLECTOR")
      * @param EntityManagerInterface $em
      * @param int $id
      * @return Response
