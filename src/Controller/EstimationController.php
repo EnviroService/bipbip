@@ -21,6 +21,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
+// User veut estimer son tel
+
 /**
  * Class EstimationController
  * @package App\Controller
@@ -45,7 +47,7 @@ class EstimationController extends AbstractController
             "models" => $models,
         ]);
     }
-
+// selectionne sa marque
     /**
      * @Route("/modelId", name="model_id")
      * @param PhonesRepository $phones
@@ -64,7 +66,7 @@ class EstimationController extends AbstractController
                 ]);
         }
     }
-
+// selectionne son modèle
     /**
      * @Route("/{brand}", name="estimation_brand")
      * @param string $brand
@@ -86,7 +88,7 @@ class EstimationController extends AbstractController
             "brand" => $brand
         ]);
     }
-
+// selectionne sa capacité
     /**
      * @Route("/{brand}/{model}", name="estimation_capacity")
      * @param string $brand
@@ -108,7 +110,7 @@ class EstimationController extends AbstractController
             "capacities" => $capacities
         ]);
     }
-
+// Le user répond au différente question et l'estimation est faite grace à l'upload de la matrice
     /**
      * @Route("/{brand}/{model}/{capacity}/quest", name="estimation_quest")
      * @param Request $request
@@ -223,7 +225,7 @@ class EstimationController extends AbstractController
             "form" => $form->createView()
         ]);
     }
-
+// création du compte user, sécurisation mot de passe, message flash confirmation.
     /**
      * @Route("/user/register/{estimation}", name="estimation_register_user")
      * @param Estimations $estimation
@@ -270,7 +272,7 @@ class EstimationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-
+//choisi son type d'envoi :
             return $this->render('user/choiceEnvoi.html.twig', [
                 'estimation' => $estimation,
                 'user' => $user
@@ -281,7 +283,7 @@ class EstimationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-
+// génération l'étiquette de Chronopost
     /**
      * @Route("/user/{user}/estimation/{estimation}", name="show_etiquette")
      * @param User $user

@@ -64,7 +64,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Les différentes collectes classées par date chronologique
     /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
@@ -121,7 +121,7 @@ class UserController extends AbstractController
             'collector' => $organism
         ]);
     }
-
+// le user choisie sa collecte et un mail de confirmation lui est envoyé
     /**
      * @Route("/choice/{collect}", name="choice")
      * @ParamConverter("collect" , class="App\Entity\Collects", options={"id"="collect"})
@@ -172,7 +172,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("collect_confirm");
     }
-
+// Confirmation inscription collecte
     /**
      * @Route("/confirm/collect/", name="collect_confirm")
      * @return Response
@@ -256,7 +256,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('collectors_index');
     }
-
+// Profil du user
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
@@ -274,7 +274,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home');
         }
     }
-
+// Modifie les informations du profil
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
