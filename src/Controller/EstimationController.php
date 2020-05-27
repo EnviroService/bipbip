@@ -60,7 +60,6 @@ class EstimationController extends AbstractController
 
             return new JsonResponse([
                 'models' => json_encode($models),
-                'Content-Type' => 'application/json',
                 ]);
         }
     }

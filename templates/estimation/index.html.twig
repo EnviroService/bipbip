@@ -22,7 +22,7 @@
                         <span class="estim-round-bubble">Quelle est la marque de ton mobile&#8239;?</span>
                     </div>
                     {% for brand in brands %}
-                        <div class="col mx-auto text-center p-1">
+                        <div class="col-12 col-sm mx-auto text-center p-2">
                     <p class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</p>
                         </div>
                     {% endfor %}
@@ -30,14 +30,6 @@
                 <div class="row">
                     <div class="col-12 mx-auto text-center form p-4">
                         <a class="grey-button" href="{{ path("autres") }}">Autre marque</a>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div class="row">
-                    <div class="col-12 mx-auto text-center p-4">
-                        <div id="patience"></div>
                     </div>
                 </div>
             </section>
@@ -70,7 +62,10 @@
     <script>
         // au clic sur une marque
         $('.brand').click(function(){
+            // on récupère la marque cliquée
             const brand = $(this).attr('id');
+            // on affiche un gif de recherche
+            $('#model-js').append('<img src="{{ asset('images/ajax-loader.gif') }}">');
             // ça va chercher les modeles en requête json
             $.ajax({
                 type: "POST",
@@ -79,15 +74,17 @@
                 dataType:"json",
                 success: function(models){
                     console.log(models);
-                    $.each(models, function(models, model) {
-                        console.log(model)
+                    $.each(models, function(key, element) {
+                        console.log(element);
                     });
                     // et ça show le modele
                     $('#model').show();
+                    // si on choisit une nouvelle marque ça vide les modèles précédents
                     $('#model-js').empty();
-                    $('#model-js').append('<img src="{{ asset('images/ajax-loader.gif') }}">');
-                    $('#model-js').append("<p>ici on affiche les modèles<br>Test : ");
-                    $('#model-js').append(models);
+                    $('#model-js').html("<p>Liste des modèles</p>");
+                    $.each(models, function(key, element) {
+                        $('#model-js').append(element);
+                    });
                 },
             });
         });
