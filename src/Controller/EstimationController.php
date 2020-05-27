@@ -65,6 +65,25 @@ class EstimationController extends AbstractController
     }
 
     /**
+     * @Route("/capacityId", name="capacity_id")
+     * @param PhonesRepository $phones
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function capacityId(PhonesRepository $phones, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $brand = $request->request->get('brand');
+            $model = $request->request->get('model');
+            $capacities = $phones->findCapacityDistinct($brand, $model);
+
+            return new JsonResponse([
+                'capacities' => json_encode($capacities),
+            ]);
+        }
+    }
+
+    /**
      * @Route("/{brand}", name="estimation_brand")
      * @param string $brand
      * @param EntityManagerInterface $em
