@@ -100,14 +100,6 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("boutique", name="boutique")
-     */
-    public function boutique()
-    {
-        return $this->render('infos/boutique.html.twig');
-    }
-
-    /**
      * @Route("histoire", name="histoire")
      */
     public function histoire()
