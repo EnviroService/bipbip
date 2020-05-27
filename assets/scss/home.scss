@@ -34,17 +34,32 @@
         height: auto;
     }
 
-    .img-constat {
-        height: 100px;
-        width: auto;
-        @include media-breakpoint-up(sm) {
-            height: 150px;
+    .constat{
+        p {
+            color: $primary-color;
         }
-        @include media-breakpoint-up(md) {
-            height: 170px;
+        .accroche_primaire{
+            color: $third-color;
+
+            .mot_cle{
+                font-size: 32px;
+            }
         }
 
+        .img-constat {
+            height: 30vh;
+            width: 50%;
+            margin-bottom: 40px;
+            @include media-breakpoint-up(sm) {
+                height: 150px;
+            }
+            @include media-breakpoint-up(md) {
+                height: 170px;
+            }
+
+        }
     }
+
 
     .comment-marche {
         background-color:$fifth-color;
