@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_row(form.brand) }}
+    {{ form_row(form.model) }}
+    {{ form_row(form.capacity) }}
+    {{ form_row(form.couleur) }}
+    {{ form_row(form.etat) }}
+    {{ form_row(form.prix) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.isPromo) }}
+    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

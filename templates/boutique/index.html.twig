@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique index{% endblock %}
+
+{% block body %}
+    <h1>Boutique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Couleur</th>
+                <th>Etat</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>DateAjout</th>
+                <th>IsPromo</th>
+                <th>IsSold</th>
+                <th>DateSold</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for boutique in boutiques %}
+            <tr>
+                <td>{{ boutique.id }}</td>
+                <td>{{ boutique.brand }}</td>
+                <td>{{ boutique.model }}</td>
+                <td>{{ boutique.capacity }}</td>
+                <td>{{ boutique.couleur }}</td>
+                <td>{{ boutique.etat }}</td>
+                <td>{{ boutique.prix }}</td>
+                <td>{{ boutique.image }}</td>
+                <td>{{ boutique.dateAjout ? boutique.dateAjout|date('Y-m-d') : '' }}</td>
+                <td>{{ boutique.isPromo ? 'Yes' : 'No' }}</td>
+                <td>{{ boutique.isSold ? 'Yes' : 'No' }}</td>
+                <td>{{ boutique.dateSold ? boutique.dateSold|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('boutique_show', {'id': boutique.id}) }}">show</a>
+                    <a href="{{ path('boutique_edit', {'id': boutique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('boutique_new') }}">Create new</a>
+{% endblock %}
