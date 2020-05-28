@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Toutes les estimations en fonction du collecteur
 /**
  * @Route("admin/estimations")
  */

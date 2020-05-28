@@ -23,6 +23,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectorController extends AbstractController
 {
 
+// Vérification du téléphone et de l'IMEI par le collecteur
+
     /**
      * @Route("/verify/estim/{id}", name="verifyEstim", methods={"GET","POST"})
      * @IsGranted("ROLE_COLLECTOR")
@@ -75,7 +77,7 @@ class CollectorController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Vérifie les infos du users
     /**
      * @Route("/verify/user/{id}", name="verifyUser", methods={"GET","POST"})
      * @IsGranted("ROLE_COLLECTOR")
@@ -132,7 +134,7 @@ class CollectorController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Permet d'uploader la CNI du user et de la stocker dans uploads/CI, crée un bon de cession stocker dans uploads/BDC
     /**
      * @Route("/capture/{id}", name="takePhoto")
      * @IsGranted("ROLE_COLLECTOR")
@@ -210,7 +212,7 @@ class CollectorController extends AbstractController
             'estimation' => $estimation,
         ]);
     }
-
+// Création du bdc récapitulatif entre le user et le collecteur
     /**
      * @Route("/show/{id}", name="bdc_show")
      * @IsGranted("ROLE_COLLECTOR")
@@ -256,13 +258,14 @@ class CollectorController extends AbstractController
         return $this->redirectToRoute('adminIndex');
     }
 
+    // route to go to payment
     /**
      * @Route("/pay/{id}", name="bdc_pay")
      * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return Response
      */
-    // route to go to payment
+
     public function pay(Estimations $estimation)
     {
         // if collector, verify that estimation belongs to collector's organism
@@ -326,7 +329,7 @@ class CollectorController extends AbstractController
             ->setIsValidatedPayment(true)
             ->setIsCollected(true)
             ->setStatus(1);
-      
+
         // Adding of a line in reporting table
         $reporting = new Reporting();
         $reporting

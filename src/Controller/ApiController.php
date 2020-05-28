@@ -48,7 +48,7 @@ class ApiController extends AbstractController
             }
         }
     }
-
+// Le user choisi d'envoyer par chronopost
     /**
      * @Route("/envoi-chronopost", name="envoi_chronopost")
      */
@@ -67,7 +67,7 @@ class ApiController extends AbstractController
             'estimation' => $estimation
         ]);
     }
-
+// Lien API chronopost avec envoi
     /**
      * @Route("/chronopost/{id}", name="api_chronopost_ae")
      * @param User $user
@@ -276,7 +276,7 @@ class ApiController extends AbstractController
             'id' => $id
         ]);
     }
-
+// Lien avec l'API chronopost Sans envoi : génération du code
     /**
      * @Route("/chronopost/se/{id}", name="api_chronopost_se")
      * @return Response

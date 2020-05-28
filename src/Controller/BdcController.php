@@ -18,6 +18,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BdcController extends AbstractController
 {
+
+   // Permet de faire signer le user et d'enregistrer sa signature
     /**
      * @Route("/signature/{id}", name="generate_signature")
      * @IsGranted("ROLE_COLLECTOR")
@@ -87,7 +89,7 @@ class BdcController extends AbstractController
             'estimationIds' => $estimationIds,
         ]);
     }
-  
+
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @IsGranted("ROLE_COLLECTOR")

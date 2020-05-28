@@ -119,7 +119,7 @@ class AdminController extends AbstractController
             'registrationCollectorForm' => $form->createView(),
         ]);
     }
-
+// Upload de la matrice
     /**
      * @Route("/matrice", name="matrice_upload")
      * @param Request $request
@@ -511,6 +511,7 @@ class AdminController extends AbstractController
 
      /**
      * @Route("/modify/{id}", name="modify_estimationBrand")
+      * @IsGranted("ROLE_COLLECTOR")
      * @param EntityManagerInterface $em
      * @param int $id
      * @return Response
