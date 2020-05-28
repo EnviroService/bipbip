@@ -55,6 +55,19 @@ class PhonesRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findCapacityDistinct($brand, $model)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('DISTINCT p.capacity')
+            ->andWhere('p.brand = :brand')
+            ->andWhere('p.model = :model')
+            ->setParameter('brand', $brand)
+            ->setParameter('model', $model)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Phones
     {

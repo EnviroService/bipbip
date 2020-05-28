@@ -61,12 +61,30 @@ class EstimationController extends AbstractController
             $models = $phones->findModelDistinct($brand);
 
             return new JsonResponse([
-                'models' => $models,
-                //'html' => $this->renderView('estimation/models.html.twig'),
+                'models' => json_encode($models),
                 ]);
         }
     }
 // selectionne son modèle
+    /**
+     * @Route("/capacityId", name="capacity_id")
+     * @param PhonesRepository $phones
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function capacityId(PhonesRepository $phones, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $brand = $request->request->get('brand');
+            $model = $request->request->get('model');
+            $capacities = $phones->findCapacityDistinct($brand, $model);
+
+            return new JsonResponse([
+                'capacities' => json_encode($capacities),
+            ]);
+        }
+    }
+
     /**
      * @Route("/{brand}", name="estimation_brand")
      * @param string $brand
