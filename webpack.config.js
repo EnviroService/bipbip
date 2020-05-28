@@ -38,6 +38,7 @@ Encore
     .addEntry('matrice_upload', './assets/js/matrice_upload.js')
     .addEntry('flash_m', './assets/js/flash_m.js')
     .addEntry('boutique', './assets/scss/boutique.scss')
+    .addEntry('histoire', './assets/scss/histoire.scss')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
     // will require an extra script tag for runtime.js
