@@ -31,6 +31,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/user/add/{estimation}", name="user_add")
      * @param Request $request
@@ -185,7 +186,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+// Permet a l'admin de lister ces collecteurs
     /**
      * @Route("/admin/collectors", name="collectors_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -213,7 +214,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+// Permet a l'admin d'editer un collecteur et de le modifier
     /**
      * @Route("/admin/collectors/{id}/edit", name="collectors_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -238,7 +239,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             ]);
     }
-
+// Permet a l'admin de supprimer les collecteurs
     /**
      * @Route("/admin/collectors/{id}", name="collectors_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")

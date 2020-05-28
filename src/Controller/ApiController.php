@@ -21,6 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
+    //Permet au user de trouver un point de collecte ou d'envoyer en Chrono
     /**
      * @Route("/mode-envoi/{id}", name="mode_envoi")
      * @param Estimations $estimation

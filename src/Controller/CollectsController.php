@@ -16,6 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CollectsController extends AbstractController
 {
+
+    // Permet de lister les collectes
+
     /**
      * @Route("/", name="collects_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -29,6 +32,7 @@ class CollectsController extends AbstractController
             'collects' => $collectsValid
         ]);
     }
+// Permet a l'admin d'ajouter une collecte
 
     /**
      * @Route("/new", name="collects_new", methods={"GET","POST"})
@@ -88,7 +92,7 @@ class CollectsController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Permet a l'admin de supprimer des collectes
     /**
      * @Route("/{id}", name="collects_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")

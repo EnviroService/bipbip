@@ -135,6 +135,7 @@ class CollectorController extends AbstractController
         ]);
     }
 // Permet d'uploader la CNI du user et de la stocker dans uploads/CI, crée un bon de cession stocker dans uploads/BDC
+
     /**
      * @Route("/capture/{id}", name="takePhoto")
      * @IsGranted("ROLE_COLLECTOR")
@@ -213,6 +214,7 @@ class CollectorController extends AbstractController
         ]);
     }
 // Création du bdc récapitulatif entre le user et le collecteur
+
     /**
      * @Route("/show/{id}", name="bdc_show")
      * @IsGranted("ROLE_COLLECTOR")
@@ -259,6 +261,7 @@ class CollectorController extends AbstractController
     }
 
     // route to go to payment
+
     /**
      * @Route("/pay/{id}", name="bdc_pay")
      * @IsGranted("ROLE_COLLECTOR")
@@ -292,6 +295,7 @@ class CollectorController extends AbstractController
             'estimation' => $estimation,
         ]);
     }
+    // Route to confirm picture of identity Card
 
     /**
      * @Route("/end/{id}", name="bdc_end")
@@ -301,7 +305,6 @@ class CollectorController extends AbstractController
      * @return Response
      * @throws Exception
      */
-    // route to confirm picture of identity Card
     public function end(Estimations $estimation, EntityManagerInterface $em)
     {
         // if collector, verify that estimation belongs to collector's organism
