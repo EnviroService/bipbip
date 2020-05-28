@@ -1,0 +1,79 @@
+@import "app";
+@import "vars";
+
+#title{
+    img{
+        width: 100%;
+    }
+}
+#container{
+
+
+    #infoBipbip{
+        background-image: url("../images/fond.png");
+        font-weight: bold;
+
+        p{
+            font-size: 1.6rem;
+        }
+
+        .blueText{
+            color: $primary-color;
+            a{
+                text-decoration-line: underline;
+                color: $primary-color;
+            }
+            a:hover{
+                color: #718C00;
+            }
+        }
+    }
+
+    #telephone{
+        h2{
+            border-bottom: 1px solid black;
+        }
+        #telephonePromo{
+            .priceContener{
+                .price{
+                    h3{
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        #allPhones{
+            background-image: url("../images/fond.png");
+            .phone{
+                border: 1px solid black;
+                border-radius: 10px;
+
+                .priceContent{
+                    position: relative;
+                    top: 13px;
+
+                    .price{
+                        border: 1px solid black;
+                        border-radius: 17px;
+                        padding: 8px;
+                        background-color: $primary-color;
+                        color: #FFFFFF;
+                        font-weight: bold;
+                        font-size: 21px;
+                    }
+                }
+
+            }
+        }
+
+        #textAsso{
+            .textBlue{
+                color: $primary-color;
+            }
+        }
+
+    }
+}

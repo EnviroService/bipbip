@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+La boutique BipBip
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('boutique') }}
+{% endblock %}
+{% block body %}
+
+    <div class="row" id="title">
+        <img src="{{ asset('/images/achete_un_bipbip_fond_vert.png') }}" alt="">
+    </div>
+
+    <main class="container" id="container">
+
+        {% include 'home/5pictos.html.twig' %}
+
+        <div class="row" id="infoBipbip">
+            <div class="col-12 mx-auto mt-5 mb-5 text-center">
+                <p>
+                    Au plus nous collectons de téléphone, plus les prix des green mobiles pourront être avantageux
+                    tout en gardant sa qualité absolue !
+                </p>
+                <p class="blueText">
+                    On compte sur toi pour collecter un MAXIMUM de téléphones ! <br>
+                    <span>
+                        <a href="#">Rejoins notre communauté de Bipers</a>
+                    </span>
+                </p>
+                <p class="secondary-round-title p-2 mt-5">
+                    Voici la liste des modèles disponibles
+                </p>
+            </div>
+        </div>
+
+        <div class="container mt-5" id="telephone">
+            <h2 class="text-center">Offre du moment</h2>
+            <div class="row" id="telephonePromo">
+                <div class="col-4">
+                    <img src="https://via.placeholder.com/250x500" alt="">
+                </div>
+                <div class="col-5 text-center">
+                    <div class="mt-5 mb-5">
+                        <h4>APPLE</h4>
+                        <h5>Iphone 10 XS</h5>
+                        <h6>156 GO</h6>
+                    </div>
+                    <div class="">
+                        <p>
+                            descrition
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa delectus dicta dolorem
+                            dolores error excepturi fugiat fugit hic ipsum neque nesciunt, non officia quaerat quo rem veniam,
+                            vero voluptate.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-3 text-center priceContener mt-5">
+                    <div class="price">
+                        <h3>
+                            125 €
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-center mt-5">Tous les BipBip disponibles</h2>
+
+            <div class="row" id="allPhones">
+              {#  {% for phone in phones %} #}
+                <div class="col-6 col-sm-4 col-md-3">
+                    <div class="phone text-center">
+                        <figure>
+                            <img src="https://via.placeholder.com/110x110" alt="">
+                        </figure>
+                        <div>
+                            <p class="mb-0">APPLE</p>
+                            <p>Iphone X</p>
+                        </div>
+                        <div class="priceContent">
+                            <span class="price">200 €</span>
+                        </div>
+                    </div>
+                </div>
+               {# {% endif %} #}
+            </div>
+
+            <div class="row mt-5 text-center" id="textAsso">
+                <div class="">
+                    <p>
+                        Quand tu recevras ton green mobile, poste une photo sur Instagram en le mettant bien en avant
+                        dans son emballage ouvert <span class="textBlue">#jesuisbipbip</span> et grâce à toi, 1 € sera reversé
+                        à <span class="textBlue">une asso</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}
