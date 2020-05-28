@@ -511,6 +511,64 @@ header {
     width: auto;
 }
 
+/* LIVAISON */
+
+#chronopost-logo {
+    max-width: 150px;
+}
+
+.small-blue-text {
+    color: $primary-color;
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.small-black-text {
+    color: black;
+    font-size: 0.7rem;
+    font-weight: 100;
+}
+
+.livraison-dark {
+    background-color: $secondary-color;
+    color: white;
+    font-weight: 900;
+}
+
+.livraison-soft {
+    background-color: lighten($secondary-color, 10%);
+    font-weight: 900;
+}
+
+.border-lat {
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+}
+
+.border-top-liv {
+    border-top: solid black 2px;
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+}
+
+.border-bottom-liv {
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+    border-bottom: solid black 2px;
+}
+
+.accessoire {
+    max-width: 150px;
+    max-height: 150px;
+    background-color: $primary-color;
+    border-radius: 75px;
+}
+
+.blue-text {
+    color: $primary-color;
+    font-weight: 900;
+}
+
 /* FOOTER */
 
 footer {
