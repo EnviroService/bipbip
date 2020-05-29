@@ -37,11 +37,11 @@ La boutique BipBip
         <div class="container mt-5" id="telephone">
             <h2 class="text-center">Offre du moment</h2>
             <div class="row" id="telephonePromo">
-                <div class="col-4">
-                    <img src="https://via.placeholder.com/250x500" alt="">
+                <div class="col-12 col-sm-5 text-center">
+                    <img src="https://via.placeholder.com/250x500" class="w-auto" alt="">
                 </div>
-                <div class="col-5 text-center">
-                    <div class="mt-5 mb-5">
+                <div class="col-sm-7 text-center">
+                    <div class="text-center mt-5 mb-5">
                         <h4>APPLE</h4>
                         <h5>Iphone 10 XS</h5>
                         <h6>156 GO</h6>
@@ -57,8 +57,7 @@ La boutique BipBip
                         </p>
                     </div>
                 </div>
-
-                <div class="col-3 text-center priceContener mt-5">
+                <div class="col-12 text-center priceContener">
                     <div class="price">
                         <h3>
                             125 €
@@ -70,22 +69,23 @@ La boutique BipBip
             <h2 class="text-center mt-5">Tous les BipBip disponibles</h2>
 
             <div class="row" id="allPhones">
-              {#  {% for phone in phones %} #}
+                {% for phone in phones %}
                 <div class="col-6 col-sm-4 col-md-3">
                     <div class="phone text-center">
                         <figure>
-                            <img src="https://via.placeholder.com/110x110" alt="">
+                            <img src="{{ asset(phone.image) }}" alt="">
                         </figure>
                         <div>
-                            <p class="mb-0">APPLE</p>
-                            <p>Iphone X</p>
+                            <p class="mb-0">{{ phone.brand }}</p>
+                            <p>{{ phone.model }}</p>
+                            <p>Etat: {{ phone.etat }}</p>
                         </div>
                         <div class="priceContent">
-                            <span class="price">200 €</span>
+                            <span class="price">{{ phone.prix | number_format(2, '.', ',') }} €</span>
                         </div>
                     </div>
                 </div>
-               {# {% endif %} #}
+                {% endfor %}
             </div>
 
             <div class="row mt-5 text-center" id="textAsso">
