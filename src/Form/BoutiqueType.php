@@ -62,7 +62,8 @@ class BoutiqueType extends AbstractType
                 'attr' => [
 
                 ],
-                'label' => 'Image'
+                'label' => 'Image',
+                'data_class' => null
             ])
             ->add('isPromo', ChoiceType::class, [
                 'attr' => [
@@ -71,8 +72,8 @@ class BoutiqueType extends AbstractType
                 'label' => 'Le téléphone est-il en promotion?',
                 'required' => true,
                 'choices' => [
-                    'oui' => 'oui',
-                    'non' => 'non'
+                    'oui' => true,
+                    'non' => false
                 ],
                 'expanded' => true
             ])
