@@ -3,64 +3,42 @@
 {% block title %}Boutique{% endblock %}
 
 {% block body %}
-    <h1>Boutique</h1>
+    <h1 class="mb-5 text-center">Boutique</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ boutique.id }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ boutique.brand }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ boutique.model }}</td>
-            </tr>
-            <tr>
-                <th>Capacity</th>
-                <td>{{ boutique.capacity }}</td>
-            </tr>
-            <tr>
-                <th>Couleur</th>
-                <td>{{ boutique.couleur }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ boutique.etat }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ boutique.prix }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ boutique.image }}</td>
-            </tr>
-            <tr>
-                <th>DateAjout</th>
-                <td>{{ boutique.dateAjout ? boutique.dateAjout|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsPromo</th>
-                <td>{{ boutique.isPromo ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>IsSold</th>
-                <td>{{ boutique.isSold ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>DateSold</th>
-                <td>{{ boutique.dateSold ? boutique.dateSold|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="contenu">
+                <div class="content d-flex">
+                    <div class="image col-3">
+                        <img src="{{ asset(boutique.image) }}" class="mr-5" alt="">
+                    </div>
+                    <div class="info col-2">
+                        <h2>{{ boutique.brand }}</h2>
+                        <h3>{{ boutique.model }}</h3>
+                        <h4>{{ boutique.capacity }} Go</h4>
+                    </div>
+                    <div class="description col-6">
+                        <h4>Description</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at blanditiis deserunt, eius esse
+                            et eveniet explicabo fugiat, itaque laborum minima nisi repudiandae sint ut, voluptatem.
+                            A aliquid in voluptates. </p>
+                        <p>Prix: {{ boutique.prix }} €</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('boutique_index') }}">back to list</a>
 
-    <a href="{{ path('boutique_edit', {'id': boutique.id}) }}">edit</a>
+    <a href="{{ path('boutique') }}" class="btn btn-info">Retour</a>
 
-    {{ include('boutique/_delete_form.html.twig') }}
+    {% if app.user %}
+        {% for role in app.user.roles %}
+            {% if role == "ROLE_ADMIN" %}
+                <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">edit</a>
+                {{ include('boutique/_delete_form.html.twig') }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
 {% endblock %}
