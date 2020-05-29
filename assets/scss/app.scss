@@ -166,7 +166,7 @@ a{
 }
 
 .primary-button{
-    @include button($primary-color)
+    @include button($primary-color);
 }
 
 .secondary-button{
@@ -297,9 +297,8 @@ header {
         }
 
         ul {
-            .primary-title-menu-color {
-                color: $primary-color;
-                font-size: 1.6rem;
+            .primary-title-menu-black {
+                font-weight: 900;
             }
 
             .primary-title-menu {
