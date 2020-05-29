@@ -4,50 +4,37 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('histoire') }}
 {% endblock %}
 
 {% block body %}
     <main class="home">
-
-        <div class="title-vends row justify-content-center p-3">
-            <img src="{{ asset('images/bandeau-Notre solution.png') }}" alt="Vends ton tél">
+        <div class="title-vends">
+            <img class="img-fluid" src="{{ asset('images/vends_title.png') }}" alt="NotreSolution">
         </div>
 
-        <section>
-            <div class="row justify-content-center">
-                <p>Bipbip est la solution innovante et environnementale pour la région... on te fait un dessin ?</p>
-                <img src="{{ asset('images/schema-solution.png') }}" alt="solution">
-            </div>
-        </section>
-
-
+        <div class="row justify-content-center m-4">
+            <p>Bipbip est la solution innovante et environnementale pour la région... on te fait un dessin ?</p>
+            <img class="img-fluid" src="{{ asset('images/schema-solution.png') }}" alt="solution">
+        </div>
 
         <div class="row">
-            <div class="col-12 mx-auto text-left form p-4">
-                <h1 class="primary-title">Notre mission recyclage local</h1>
-                <p>Bip Bip Mobile a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler
-                    tous les téléphones usagés ou inutilisés à l'aide des associations étudiantes qui nous accueillent
-                    et nous accompagnent lors des points de collecte. C'est l'occasion pour nos partenaires locaux
-                    de se faire connaître davantage dans notre région.</p>
-                <h1 class="primary-title">Quelques chiffres</h1>
+            <div class="col-12 mx-auto text-justify p-3 mt-5">
+                <p>Bip Bip Mobile a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler tous les téléphones
+                    usagés ou inutilisés à l'aide des associations étudiantes qui nous accueillent et nous accompagnent lors des points de collecte.</br>
+                    C'est l'occasion pour nos partenaires locaux de se faire connaître davantage dans notre région.</p>
+
                 <ul>
-                    <li>Le recyclage des téléphones dans le monde</li>
-                    <p>720 millions de téléphones portables sont jetés chaque année dans le monde selon
-                        le cabinet ABI search qui estime que cela représente 60% des 1,2 milliards d'unités
-                        vendues annuellement. Le taux de recyclage des téléphones mobiles en France était de 15%
-                    en 2015 avec un objectif de 30% en 2020.</p>
-                    <li>Le recyclage des téléphones en France</li>
-                    <p>En 2015, selon la fédération française des télécoms, 1,5 million de téléphones ont été collectés
-                    par les opérateurs français (500 000 en 2009), ce qui correspond à un taux de recyclage de 15%.</p>
-                    <p>Le taux de recyclage des téléphones mobiles en France était de 15% en 2015 avec un objectif de
-                    30% en 2020.</p>
-                    <p>A partir de 50.000 téléphones portables, on peut recycler 1 Kg d'or et 10 Kg d'argent sans
-                    compter de nombreux métaux rares !</p>
+                    <li class="text-justify list-unstyled m-1">Notre équipe d’experts en télécommunication a la volonté d’offrir un smartphone reconditionné qui propose :</li>
+                    <li class="mt-1">- De réduire l’impact environnemental de la production des téléphones</li>
+                    <li>- Le MEILLEUR compromis entre la qualité et le coût</li>
+                    <li>- Des contenus digitaux régionaux développés par des entreprises proches de chez toi</li>
                 </ul>
-                {#<img src="{{ asset('images/infos-bipbip.png') }}" alt="Chiffres BipBip" class="d-block float-none mx-auto">
-            #}</div>
+                <p>La marque déposée pour ce 1er téléphone « HAUTS DE FRANCE » est BipBip.</p>
+            </div>
         </div>
+
+        {% include('home/5pictos.html.twig') %}
 
     </main>
 {% endblock %}
