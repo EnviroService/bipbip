@@ -104,18 +104,26 @@ a{
 }
 
 .secondary-round-title {
-    font-family: $secondary-font, sans-serif;
-    padding:20px;
-    font-size : 1.1rem;
+    border-radius: 10px;
+    background-color: $primary-color;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.estim-round-bubble {
+    font-family: $secondary-font;
+    padding: 10px;
+    font-size : 1rem;
     font-weight: 900;
+    color: white;
     text-align : center;
-    background-color: $secondary-color;
+    background-color: #41A1AB;
     border-radius: 25px;
     @include media-breakpoint-up(sm) {
-        font-size: 1.5rem;
+        font-size : 1.4rem;
     }
-    @include media-breakpoint-up(md) {
-        font-size : 1.9rem;
+    @include media-breakpoint-up(lg) {
+        font-size : 1.7rem;
     }
 }
 
@@ -134,7 +142,7 @@ a{
     max-width: 230px;
     border-radius: 25px;
     margin : auto;
-    padding : 12px;
+    padding : 7px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
@@ -151,8 +159,8 @@ a{
     }
     @media screen and (min-width: 768px) {
         font-size: 1.2rem;
-        padding : 15px;
-        min-width: 200px;
+        padding : 10px;
+        min-width: 150px;
         max-width: 300px;
     }
 }
@@ -171,6 +179,11 @@ a{
 
 .fourth-button{
     @include button($fourth-color)
+}
+
+.grey-button{
+    @include button($grey-color);
+    color: black;
 }
 
 .small-button {
@@ -200,10 +213,10 @@ a{
 
 /* HEADER NAV */
 
-header{
-    .logo-title{
-        img{
-            width : 60%;
+header {
+    .logo-title {
+        img {
+            width: 60%;
             @include media-breakpoint-up(sm) {
                 width: 50%;
             }
@@ -215,37 +228,64 @@ header{
 
     /* MENU */
 
-    #menu{
+    #menu {
 
-        a{
+        a {
             color: black;
             text-decoration: none;
 
-            &:hover{
+            &:hover {
                 color: black;
                 text-decoration: none;
             }
         }
 
-        display : none;
-        z-index : 9998;
-        background : #FFFFFF;
-        padding : 1em 2em;
-        width : 100%;
-        height : 100%;
+        display: none;
+        z-index: 9998;
+        background: #FFFFFF;
+        padding: 1em 2em;
+        width: 100%;
+        height: 100%;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        font-family: $primary-font;
 
-        .close-button{
-            z-index : 9999;
-            width : 50%;
-            max-width : 50px;
-            position : absolute;
-            top : 3%;
-            right : 3%;
-            cursor : pointer;
+        .smallLogoMenu {
+            img {
+                width: 60px;
+                height: 50px;
+                margin: 40px auto;
+            }
+        }
+
+        .laCommuDiv {
+            margin-top: 50px;
+
+            .laCommu {
+                color: $third-color;
+            }
+        }
+
+        @media screen and (max-width: 570px) {
+            .laCommuDiv {
+                margin-top: 5px;
+            }
+        }
+
+        .logoSociaux {
+            height: 30px;
+        }
+
+        .close-button {
+            z-index: 9999;
+            width: 50%;
+            max-width: 50px;
+            position: absolute;
+            top: 3%;
+            right: 3%;
+            cursor: pointer;
         }
 
         #phone-menu {
@@ -253,58 +293,56 @@ header{
             height: auto;
         }
 
-        ul{
+        ul {
             .primary-title-menu-color {
-                font-family: $third-font;
                 color: $primary-color;
                 font-size: 1.6rem;
             }
 
             .primary-title-menu {
-                font-family: $third-font;
                 font-weight: lighter;
                 font-size: 1.2rem;
-                color : black;
+                color: $primary-color;
             }
         }
 
-        .user-infos-menu{
+        .user-infos-menu {
             text-align: center;
 
-            h3{
-                color : $primary-color;
-                font-size : 1.2rem;
+            h3 {
+                color: $primary-color;
+                font-size: 1.2rem;
             }
 
-            a{
-                display : block;
-                width : 200px;
-                margin : 10px auto 10px auto;
-                font-size : 1.2rem;
+            a {
+                display: block;
+                width: 200px;
+                margin: 10px auto 10px auto;
+                font-size: 1.2rem;
             }
 
-            .disconnection{
-                color : darkred;
-                margin : auto;
+            .disconnection {
+                color: darkred;
+                margin: auto;
                 font-style: italic;
                 font-size: 1.1rem;
             }
 
-            .connect{
-                color : $primary-color;
+            .connect {
+                color: $primary-color;
                 font-weight: 500;
             }
         }
     }
 
-    #menu.displayed{
-        display : block;
+    #menu.displayed {
+        display: block;
     }
 
-    .circle-buttons{
-        display : flex;
+    .circle-buttons {
+        display: flex;
         justify-content: space-between;
-        cursor : pointer;
+        cursor: pointer;
 
         #menu-burger {
             display: flex;
@@ -330,53 +368,103 @@ header{
             }
         }
 
-        @media screen and (min-width: 768px) {
+        @include media-breakpoint-up(sm) {
 
             #menu-burger {
-                align-self: flex-start;
-                border-radius: 5px;
-                background-color : $primary-color;
-                box-shadow: 5px 3px 10px $primary-color;
-                width: 120px;
-                min-height: 40px;
-                height: 40px;
-                position: absolute;
-                top: 30px;
-                right: 50px;
-
-                img {
-                    display: none;
-                }
-
-                p{
-                    display: inline;
-                    font-size : 1.1rem;
-                    color : white;
-                    margin-bottom : 0;
-                }
+                right: 5%;
+                top: 5%;
             }
         }
 
-        #faq-button{
-            display : flex;
-            justify-content : center;
-            align-items : center;
-            border-radius : 50%;
-            width : 70px;
-            height : 70px;
-            position : fixed;
-            left : 5vw;
-            bottom : 5vh;
-            z-index : 5;
+        #faq-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            left: 5vw;
+            bottom: 5vh;
+            z-index: 5;
         }
+
+        // SCROLL
+        #myBtn {
+            display: flex; /* Hidden by default */
+            position: fixed; /* Fixed/sticky position */
+            right: 5vw;
+            bottom: 3vh; /* Place the button at the bottom of the page */
+            z-index: 99; /* Make sure it does not overlap */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            opacity: 0.9;
+            cursor: pointer; /* Add a mouse pointer on hover */
+            border-radius: 12px; /* Rounded corners */
+            width: 80px;
+            height: 80px;
+        }
+
+        #myBtn:hover {
+            background-color: white;
+            opacity: 0.9;
+        }
+    }
+}
+
+/* 5 PICTOS */
+
+.logos {
+    img {
+        height: 50px;
+        width: auto;
+        padding: 2px;
+        justify-content: center;
+        @include media-breakpoint-up(md) {
+            height: 70px;
+        }
+    }
+
+    p {
+        padding-top: 5px;
+        font-size: 0.8rem;
+        line-height: 0.7rem;
+        font-weight: 600;
     }
 }
 
 /* VENDS */
 
+.title-vends {
+    background-color: $secondary-color;
+    img {
+        height: 80px;
+        width: auto;
+    }
+}
+
+.img-fleche {
+    height: 30px;
+    width: auto;
+}
+
 .blue-arrow {
     font-size: 3rem;
     color: $primary-color;
+}
+
+.comment-marche-vends {
+    background-color:$fifth-color;
+    font-weight: 700;
+    font-size: 0.8rem;
+    @include media-breakpoint-up(md) {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 25px;
+        height: auto;
+    }
 }
 
 #tel-collectes {
@@ -416,18 +504,85 @@ header{
     }
 }
 
+/* CONTACT */
+
+#faq-btn {
+    height: 50px;
+    width: auto;
+}
+
+/* LIVAISON */
+
+#chronopost-logo {
+    max-width: 150px;
+}
+
+.small-blue-text {
+    color: $primary-color;
+    font-size: 0.7rem;
+    font-style: italic;
+}
+
+.small-black-text {
+    color: black;
+    font-size: 0.7rem;
+    font-weight: 100;
+}
+
+.livraison-dark {
+    background-color: $secondary-color;
+    color: white;
+    font-weight: 900;
+}
+
+.livraison-soft {
+    background-color: lighten($secondary-color, 10%);
+    font-weight: 900;
+}
+
+.border-lat {
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+}
+
+.border-top-liv {
+    border-top: solid black 2px;
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+}
+
+.border-bottom-liv {
+    border-left: solid black 2px;
+    border-right: solid black 2px;
+    border-bottom: solid black 2px;
+}
+
+.accessoire {
+    max-width: 150px;
+    max-height: 150px;
+    background-color: $primary-color;
+    border-radius: 75px;
+}
+
+.blue-text {
+    color: $primary-color;
+    font-weight: 900;
+}
+
 /* FOOTER */
 
 footer {
     .social-networks {
-        max-width: 90%;
-        height: auto;
+        img{
+            width: 50px;
+            height: auto;
+        }
     }
 
-    .links-footer{
+    .links-footer {
         background-color: $secondary-color;
-        font-size: 0.7rem;
-        line-height: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
         @include media-breakpoint-up(md) {
             font-size: 1rem;
             line-height: 1.4rem;
@@ -441,7 +596,7 @@ footer {
             }
         }
 
-        a{
+        a {
             color: black;
         }
     }

@@ -100,10 +100,42 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("boutique", name="boutique")
+     * @Route("histoire", name="histoire")
      */
-    public function boutique()
+    public function histoire()
     {
-        return $this->render('infos/boutique.html.twig');
+        return $this->render('infos/histoire.html.twig');
+    }
+
+    /**
+     * @Route("recrute", name="recrute")
+     */
+    public function recrute()
+    {
+        return $this->render('infos/recrute.html.twig');
+    }
+
+    /**
+     * @Route("livraisons", name="livraisons")
+     */
+    public function livraisons()
+    {
+        return $this->render('infos/livraisons.html.twig');
+    }
+
+    /**
+     * @Route("presse", name="presse")
+     */
+    public function presse()
+    {
+        return $this->render('infos/presse.html.twig');
+    }
+
+    /**
+     * @Route("bonsplans", name="bonsplans")
+     */
+    public function bonsplans()
+    {
+        return $this->render('bonsplans/index.html.twig');
     }
 }

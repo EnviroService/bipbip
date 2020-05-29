@@ -18,6 +18,40 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BdcController extends AbstractController
 {
+
+   // Permet de faire signer le user et d'enregistrer sa signature
+
+    /**
+     * @Route("/signature/{id}", name="generate_signature")
+     * @IsGranted("ROLE_COLLECTOR")
+     * @param Estimations $estimation
+     * @return Response
+     */
+    public function signature(Estimations $estimation)
+    {
+        if (isset($_POST['imgBase64'])) {
+            define('UPLOAD_DIR', 'uploads/signatures/');
+            $img = $_POST['imgBase64'];
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            if ((is_string($img))) {
+                $data = base64_decode($img);
+                $file = UPLOAD_DIR . 'user'. $estimation->getUser()->getId(). '.png';
+                file_put_contents($file, $data);
+            }
+
+            return $this->redirectToRoute('generate_signature', [
+                'id' => $estimation->getId(),
+            ]);
+        } else {
+            return $this->render('bdc/signature.html.twig', [
+                'id' => $estimation->getId(),
+                'estimation' => $estimation,
+            ]);
+        }
+    }
+// Permet a l'admin de stocker l'ensemble des bons de cessions
+
     /**
      * @Route("/", name="bdc_index")
      * @IsGranted("ROLE_ADMIN")
@@ -57,7 +91,8 @@ class BdcController extends AbstractController
             'estimationIds' => $estimationIds,
         ]);
     }
-  
+// Permet la génération d'un pdf
+
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @IsGranted("ROLE_COLLECTOR")
@@ -112,12 +147,11 @@ class BdcController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('bdc/bdc.html.twig', [
-            'IMEI' => "355 402 092 374 478",
-            'estimation' => $estimation
+            'estimation' => $estimation,
         ]);
 
         // Create Filename
-        $clientId = $this->getUser()->getId();
+        $clientId = $estimation->getUser()->getId();
         $estimationId = $estimation->getId();
         $filename = date("Ymd") . "C" . $clientId . "P" . $estimationId . ".pdf";
 

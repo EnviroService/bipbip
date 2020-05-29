@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class FAQController extends AbstractController
 {
+// Permet de voir toutes les questions et toutes les catégories
 
     /**
      * @param FAQRepository $faqRepo
@@ -59,7 +60,7 @@ class FAQController extends AbstractController
             'category' => $category,
         ]);
     }
-
+// Permet a l'admin d'ajouter
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="faq_new", methods={"GET","POST"})
@@ -97,7 +98,7 @@ class FAQController extends AbstractController
             'f_a_q' => $fAQ,
         ]);
     }
-
+// Permet a l'admin de modifier le texte de la FAQ
     /**
      * @Route("/edit/{id}", name="faq_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -122,7 +123,7 @@ class FAQController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Permet a l'admin de supprimer une question de la faq
     /**
      * @Route("/{id}", name="faq_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")

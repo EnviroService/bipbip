@@ -49,35 +49,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/home", name="home_admin", methods={"GET"})
-     * @param Request $request
-     * @param UserRepository $userRepository
-     * @param EntityManagerInterface $em
-     * @return JsonResponse|Response
-     */
-    public function searchBar(
-        Request $request,
-        UserRepository $userRepository,
-        EntityManagerInterface $em
-    ) {
-        if ($request->isXmlHttpRequest()) {
-            $data = $_GET['users'];
-            $result = $userRepository->findSearch($data);
-            $json = [];
-
-            foreach ($result as $user) {
-                $lastname = $user->getLastname();
-                $firstname = $user->getFirstname();
-                $id = $user->getId();
-                $json[] = ['lastname' => $lastname, 'firstname' => $firstname, 'id' => $id];
-            }
-            $json = json_encode($json);
-            return new JsonResponse($json, 200, [], true);
-        }
-        return $this->render('admin/index.html.twig');
-    }
-
+// Permet a l'admin d'ajouter des collecteurs
     /**
      * @Route("/collector/register", name="register_collector")
      * @param Request $request
@@ -119,7 +91,7 @@ class AdminController extends AbstractController
             'registrationCollectorForm' => $form->createView(),
         ]);
     }
-
+// Permet a l'admin de charger la nouvelle matrice en format csv
     /**
      * @Route("/matrice", name="matrice_upload")
      * @param Request $request
@@ -381,6 +353,7 @@ class AdminController extends AbstractController
         'form' => $form->createView()
                 ]);
     }
+// Permet a l'admin de voir ces partenaires
 
      /** @Route("/organisms", name="admin_organisms_index", methods={"GET"})
       *  @param OrganismsRepository $organismsRepository
@@ -406,7 +379,7 @@ class AdminController extends AbstractController
             'organism' => $organism,
         ]);
     }
-
+// Permet a l'admin de modifier ces partenaires
     /**
      * @Route("/organism/edit/{id}", name="admin_organism_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -447,6 +420,7 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+// Permet a l'admin de voir l'ensemble des questions/ réponses
 
     /**
      * @param FAQRepository $faqRepo
@@ -460,6 +434,7 @@ class AdminController extends AbstractController
         return $this->render('admin/admin_faqIndex.html.twig', [
             'faqContent' => $faqContent]);
     }
+// Permet a l'admin d'ajouter une nouvelle categorie
 
     /**
      * @Route("/faq/newcategory", name="faq_category_new", methods={"GET","POST"})
@@ -697,7 +672,7 @@ class AdminController extends AbstractController
 
         ]);
     }
-
+// Permet a l'admin de nettoyer les données aprés 3 ans d'inactivitée.
     /**
      * @Route("/anon", name="users_anon")
      * @param UserRepository $users

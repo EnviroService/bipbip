@@ -14,11 +14,14 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+
+// User veut estimer son tel
 
 /**
  * Class EstimationController
@@ -29,21 +32,57 @@ class EstimationController extends AbstractController
 {
     /**
      * @Route("/", name="new_estimation")
-     * @param EntityManagerInterface $em
+     * @param PhonesRepository $phones
+     * @param string|null $brand
+     * @param array|null $models
      * @return Response
      */
-    public function index(EntityManagerInterface $em): Response
+    public function index(PhonesRepository $phones, ?string $brand, ?array $models): Response
     {
-        $queryBuilder = $em->getRepository(Phones::class)->findAll();
-        $brands = [];
-        foreach ($queryBuilder as $phone) {
-            array_push($brands, $phone->getBrand());
-        }
-        $brands = array_unique($brands);
+        // find Brands distinct
+        $brands = $phones->findBrandDistinct();
 
         return $this->render("estimation/index.html.twig", [
-            "brands" => $brands
+            "brands" => $brands,
+            "models" => $models,
         ]);
+    }
+// selectionne sa marque
+    /**
+     * @Route("/modelId", name="model_id")
+     * @param PhonesRepository $phones
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function modelId(PhonesRepository $phones, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $brand = $request->request->get('brand');
+            $models = $phones->findModelDistinct($brand);
+
+            return new JsonResponse([
+                'models' => json_encode($models),
+                ]);
+        }
+    }
+// selectionne son modèle
+    /**
+     * @Route("/capacityId", name="capacity_id")
+     * @param PhonesRepository $phones
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function capacityId(PhonesRepository $phones, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $brand = $request->request->get('brand');
+            $model = $request->request->get('model');
+            $capacities = $phones->findCapacityDistinct($brand, $model);
+
+            return new JsonResponse([
+                'capacities' => json_encode($capacities),
+            ]);
+        }
     }
 
     /**
@@ -67,7 +106,7 @@ class EstimationController extends AbstractController
             "brand" => $brand
         ]);
     }
-
+// selectionne sa capacité
     /**
      * @Route("/{brand}/{model}", name="estimation_capacity")
      * @param string $brand
@@ -89,7 +128,7 @@ class EstimationController extends AbstractController
             "capacities" => $capacities
         ]);
     }
-
+// Le user répond aux différentes questions et l'estimation est faite grace à l'upload de la matrice
     /**
      * @Route("/{brand}/{model}/{capacity}/quest", name="estimation_quest")
      * @param Request $request
@@ -204,7 +243,7 @@ class EstimationController extends AbstractController
             "form" => $form->createView()
         ]);
     }
-
+// création du compte user, sécurisation mot de passe, message flash confirmation.
     /**
      * @Route("/user/register/{estimation}", name="estimation_register_user")
      * @param Estimations $estimation
@@ -251,7 +290,7 @@ class EstimationController extends AbstractController
                 $authenticator,
                 'main' // firewall name in security.yaml
             );
-
+//choisi son type d'envoi :
             return $this->render('user/choiceEnvoi.html.twig', [
                 'estimation' => $estimation,
                 'user' => $user
@@ -262,7 +301,7 @@ class EstimationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
-
+// génération l'étiquette de Chronopost
     /**
      * @Route("/user/{user}/estimation/{estimation}", name="show_etiquette")
      * @param User $user

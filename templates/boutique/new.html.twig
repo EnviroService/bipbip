@@ -1,0 +1,11 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Admin - Ajout téléphone{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau téléphone</h1>
+
+    {{ include('boutique/_form.html.twig') }}
+
+    <a href="{{ path('boutique_index') }}" class="secondary-button">Retour à la liste</a>
+{% endblock %}

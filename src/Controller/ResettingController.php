@@ -24,6 +24,7 @@ use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
 class ResettingController extends AbstractController
 {
+    // Mot de passe perdu -> envoi de mail -> gestion du temps.
     /**
      * @Route("/request", name="request_resetting")
      * @param Request $request

@@ -17,6 +17,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    // Sécurisation du login/ logout
     /**
      * @Route("/login", name="app_login")
      * @param AuthenticationUtils $authenticationUtils
@@ -45,6 +46,8 @@ class SecurityController extends AbstractController
     {
         throw new Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
+
+    // Permet de creer un nouveau compte sécurisé
 
     /**
      * @Route("/register", name="app_register")

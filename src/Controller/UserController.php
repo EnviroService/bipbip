@@ -31,6 +31,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/user/add/{estimation}", name="user_add")
      * @param Request $request
@@ -64,7 +65,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+// Les différentes collectes classées par date chronologique
     /**
      * @Route("/showCollects", name="show_collect")
      * @param CollectsRepository $collectsRepository
@@ -104,12 +105,7 @@ class UserController extends AbstractController
                 $repo[] = $publicCollect;
             }
         } else {
-            $publicOrganisms = $organismsRepository->findBy(['organismStatus' => 'Collecteur public']);
-            $publicOrganismsId = [];
-            foreach ($publicOrganisms as $publicOrganism) {
-                $publicOrganismsId [] = $publicOrganism->getId();
-            }
-            $repo = $collectsRepository->findBy(['collector' => $publicOrganismsId], ["collector" => "ASC"]);
+            $repo = $collectsRepository->findBy([], ["dateCollect" => "ASC"]);
         }
 
         $now = new DateTime('now');
@@ -126,7 +122,7 @@ class UserController extends AbstractController
             'collector' => $organism
         ]);
     }
-
+// le user choisie sa collecte et un mail de confirmation lui est envoyé
     /**
      * @Route("/choice/{collect}", name="choice")
      * @ParamConverter("collect" , class="App\Entity\Collects", options={"id"="collect"})
@@ -177,7 +173,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("collect_confirm");
     }
-
+// Confirmation inscription collecte
     /**
      * @Route("/confirm/collect/", name="collect_confirm")
      * @return Response
@@ -190,7 +186,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+// Permet a l'admin de lister ces collecteurs
     /**
      * @Route("/admin/collectors", name="collectors_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -218,7 +214,7 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
+// Permet a l'admin d'editer un collecteur et de le modifier
     /**
      * @Route("/admin/collectors/{id}/edit", name="collectors_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -243,7 +239,7 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             ]);
     }
-
+// Permet a l'admin de supprimer les collecteurs
     /**
      * @Route("/admin/collectors/{id}", name="collectors_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
@@ -261,7 +257,7 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('collectors_index');
     }
-
+// Profil du user
     /**
      * @Route("/{id}", name="user_show", methods={"GET"})
      * @IsGranted("ROLE_USER")
@@ -279,7 +275,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('home');
         }
     }
-
+// Modifie les informations du profil
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")

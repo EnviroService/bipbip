@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Transport et frais de livraison - BipBip{% endblock %}
+
+{% block body %}
+    <div class="title-vends row justify-content-center p-3">
+        <img src="{{ asset('images/vends_title.png') }}" alt="Vends ton tél">
+    </div>
+    <div class="row">
+        <div class="col-12 p-4">
+            <h2 class="primary-title">Transport et frais de livraison</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ asset('images/chronopost-logo.png') }}" alt="Chronopost" class="img-fluid" id="chronopost-logo">
+        </div>
+        <div class="col-3 text-center border-top-liv p-3">
+            <p class="font-weight-bold pt-2">Standard<br>
+                <span class="small-blue-text">à domicile</span></p>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center border-top-liv p-3">
+            <p class="font-weight-bold">Point relais<br>
+                <span class="small-blue-text">Livraison dans le point Chrono relais de votre choix</span></p>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center livraison-dark">
+        <div class="col-4">
+            <p class="my-auto">Délais de préparation</p>
+        </div>
+        <div class="col-3 text-center small-black-text bg-white border-lat">
+            <p class="my-auto">Toutes les commandes passées avant 15h sont préparées et expédiées le jour même (du Lundi au Vendredi)</p>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center small-black-text bg-white border-lat">
+            <p class="my-auto">Toutes les commandes passées avant 15h sont préparées et expédiées le jour même (du Lundi au Vendredi)</p>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-4">
+        </div>
+        <div class="col-3 text-center bg-white border-lat">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center bg-white border-lat">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center livraison-soft">
+        <div class="col-4">
+            <p class="my-auto">Délais de livraison</p>
+        </div>
+        <div class="col-3 text-center bg-white p-2 border-lat">
+            <p class="my-auto">Sous 24h/48h*</p>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center bg-white p-2 border-lat">
+            <p class="my-auto">Sous 24h/48h*</p>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-4">
+        </div>
+        <div class="col-3 text-center bg-white border-lat">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center bg-white border-lat">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center livraison-dark">
+        <div class="col-4">
+            <p class="my-auto">Frais de port</p>
+        </div>
+        <div class="col-3 text-center bg-white border-lat text-dark">
+            <p>4,90 €</p>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center bg-white border-lat text-dark">
+            <p>Gratuit</p>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-4">
+        </div>
+        <div class="col-3 text-center bg-white border-bottom-liv">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col-3 text-center bg-white border-bottom-liv">
+            &nbsp;
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col text-right">
+            <p class="small-black-text">* Délais moyens observés sur la France Métropolitaine.<br>
+                Livraison en France uniquement (hors DOM TOM)</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 p-4">
+            <h2 class="primary-title">Accessoires</h2>
+            <p class="text-justify">Tous nos smartphones sont livrés avec des accessoires neufs homologués CE.
+                Vous trouverez avec votre smartphone :</p>
+        </div>
+    </div>
+    <div class="row justify-content-around p-4">
+        <div class="col p-4 text-center accessoire">
+            <img src="https://via.placeholder.com/100" alt="Prise">
+        </div>
+        <div class="col p-4 text-center accessoire">
+            <img src="https://via.placeholder.com/100" alt="Câble">
+        </div>
+        <div class="col p-4 text-center accessoire">
+            <img src="https://via.placeholder.com/100" alt="Ecouteurs">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 p-4">
+            <h2 class="primary-title">Garanties</h2>
+            <p class="text-justify">Tous nos smartphones sont garantis 1 an. Nous gérons nous même la garantie
+                dans notre atelier dans les Hauts-de-France. En cas de besoin, il suffit de nous écrire à
+                <span class="blue-text">sav@bipbip-mobile.com</span> et votre demande sera immédiatement traitées par nos services .</p>
+            <p class="text-justify">Vous pouvez souscrire une extension de garantie d’1 an supplémentaire (soit 2 ans de
+                garantie au total) pour <span class="blue-text">29.00€ TTC</span>.</p>
+        </div>
+    </div>
+
+    {% include('home/5pictos.html.twig') %}
+
+{% endblock %}

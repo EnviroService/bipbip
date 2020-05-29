@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 .home {
+    font-family: $primary-font;
     margin:0;
     .header {
        .header-text {
@@ -23,99 +24,74 @@
        }
 
        img {
-           margin-top: -35%;
-           max-height: 170px;
-
-           @include media-breakpoint-up(md) {
-               margin-top: -10%;
-           }
-           @include media-breakpoint-up(xl) {
-               margin-top: -10%;
-           }
+           max-height: 250px;
        }
      }
 
     .img-home {
-        width: 70%;
-        max-width: 150px;
+        width: 80%;
+        max-width: 200px;
         height: auto;
     }
 
-    .img-constat {
-        height: 100px;
-        width: auto;
-        @include media-breakpoint-up(sm) {
-            height: 150px;
+    .constat{
+        p {
+            color: $primary-color;
         }
-        @include media-breakpoint-up(md) {
-            height: 170px;
+        .accroche_primaire{
+            color: $third-color;
+
+            .mot_cle{
+                font-size: 32px;
+            }
         }
 
+        .img-constat {
+            height: 150px;
+            margin-bottom: 40px;
+            @include media-breakpoint-up(sm) {
+                height: 150px;
+            }
+            @include media-breakpoint-up(md) {
+                height: 170px;
+            }
+
+        }
     }
+
 
     .comment-marche {
         background-color:$fifth-color;
-        @include media-breakpoint-down(sm) {
+        font-weight: 700;
+        font-size: 0.7rem;
+        @include media-breakpoint-down(md) {
+            background-color:white;
             font-size: 0.9rem;
         }
-        font-weight: 700;
 
-        iframe {
-            width: 300px;
-            height: 169px;
-            @include media-breakpoint-up(sm) {
-                width: 360px;
-                height:202px;
-            }
-            @include media-breakpoint-up(lg) {
-                width: 480px;
-                height:270px;
-            }
-        }
-
-        img {
-            width: 35px;
+        .video {
+            width: 70%;
             height: auto;
+            @include media-breakpoint-up(lg) {
+                width: 100%;
+            }
         }
-    }
 
-    .logos {
         img {
-            height: 30px;
-            width: auto;
-            padding: 2px;
-            justify-content: center;
-            @include media-breakpoint-up(md) {
-                height: 70px;
-            }
-        }
-
-        p {
-            padding-top: 5px;
-            font-size: 0.6rem;
-            line-height: 0.7rem;
-            font-weight: 600;
-            @include media-breakpoint-up(md) {
-                font-size: 0.8rem;
-            }
+            width: 25px;
+            height: auto;
         }
     }
 
     .photography {
         background-color: $sixth-color;
         img {
-            width: 100%;
+            width: 60%;
             height: auto;
-            @include media-breakpoint-up(md) {
-                width: 70%;
+            @include media-breakpoint-up(sm) {
+                width: 100%;
             }
         }
-    }
-
-    #bipbip-logo {
-        margin-top: -10px;
-        width: 40%;
-        height: auto;
     }
 
     .phones-collected {
@@ -142,16 +118,28 @@
             @include media-breakpoint-up(md) {
                 font-size: 1.3rem;
             }
+
+            a{
+                color: $primary-color;
+            }
+            .font-weight-bold {
+                font-weight: 900;
+            }
         }
 
         .img-phone {
-            margin-top: -40%;
-            margin-left: 20px;
-            height: 180px;
+            margin-top: -20%;
+            height: 160px;
             @include media-breakpoint-up(md) {
-                height: 220px;
+                margin-top: -20%;
+                height: 240px;
             }
         }
+    }
+
+    #bipbip-logo {
+        height: 40px;
+        width: auto;
     }
 
     .logos-bas {

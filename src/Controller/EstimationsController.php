@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// Toutes les estimations en fonction du collecteur
 /**
  * @Route("admin/estimations")
  */
@@ -51,7 +52,7 @@ class EstimationsController extends AbstractController
             ]);
         }
     }
-
+// Pour l'admin  : estimations a collecter
     /**
      * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -66,7 +67,7 @@ class EstimationsController extends AbstractController
             'pageTitle' => 'Estimations à collecter'
         ]);
     }
-
+// Estimations collectées
     /**
      * @Route("/collected", name="estimations_collected_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -81,7 +82,7 @@ class EstimationsController extends AbstractController
             'pageTitle' => 'Estimations collectées'
         ]);
     }
-
+// Estimations inachevées
     /**
      * @Route("/unfinished", name="estimations_unfinished_index", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
@@ -178,7 +179,7 @@ class EstimationsController extends AbstractController
         $this->addFlash('danger', $message);
         return $this->redirectToRoute('home');
     }
-
+// Permet d'effacer une estimation
     /**
      * @Route("/{id}", name="estimations_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")

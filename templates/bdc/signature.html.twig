@@ -1,0 +1,80 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}Bipbip - Signature du client{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bdc') }}
+{% endblock %}
+{%  block body %}
+    <main class="container">
+        <div class="progress mt-4">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="7" style="width: 71%">
+                5 sur 7
+            </div>
+        </div>
+        <h1 class="primary-title">Etape 5 bis : signature du client</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-6 text-center p-4 border border-success">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="col-12 text-center">
+                (<span id="bt-clear">effacer</span>)
+            </div>
+            <div class="col-12 text-center" id="img" style="display:none;">
+                Signature ajoutée, vous pouvez générer le bon de cession.
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <button id="signature" class="btn btn-warning">
+                Valider la signature
+            </button>
+        </div>
+
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('bdc_show', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4">
+                <a id="generate" class="btn btn-success"  style="display:none;" href="{{ path('bdc_pdf', {'id': estimation.id}) }}">
+                    Générer le bon de cession ->
+                </a>
+            </div>
+        </div>
+    </main>
+{%  endblock %}
+{%  block javascripts %}
+    {{ encore_entry_script_tags('signature') }}
+    <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src=
+            "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
+    <script>
+        $(function() {
+            $("#signature").click(function() {
+                html2canvas($("#canvas"), {
+                    onrendered: function(canvas) {
+                        var imgsrc = canvas.toDataURL("image/png");
+                        const estimation = {{ estimation.id }};
+                        console.log(imgsrc);
+                        $("#newimg").attr('src', imgsrc);
+                        $("#img").show();
+                        $("#generate").show();
+                        var dataURL = canvas.toDataURL();
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/bdc/signature/' + estimation,
+                            data: {
+                                imgBase64: dataURL,
+                            },
+                        }).done(function(o) {
+                            console.log('saved');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

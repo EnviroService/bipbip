@@ -3,15 +3,21 @@
 {% block body %}
     <main class="container">
         <div class="row">
-            <div class="col-lg-6 col-sm-8 mx-auto p-3">
+            <div class="col-lg-8 col-sm-8 mx-auto p-3">
                 <h1 class="primary-title">Contacte-nous</h1>
                 <div class="row align-items-end">
-                    <div class="col-8">
-                        <p>Salut toi ! Alors comme ça tu veux papoter ?</p>
-                        <p>Avant de nous poser une question, vérifie que la réponse ne se trouve pas dans la FAQ !</p>
+                    <div class="col-12">
+                        <p class="text-justify">Salut toi ! Alors comme ça tu veux papoter ?</p>
+                        <p class="text-justify">Avant de te fatiguer à nous écrire un message, jette un coup d'oeil dans la FAQ !</p>
                     </div>
-                    <div class="col-4">
-                        <a href="{{ path('faq_index') }}" class="primary-button">FAQ</a>
+                    <div class="col-8">
+                        <p>A bientôt,<br>
+                        L'équipe BipBip !</p>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ path('faq_index') }}">
+                            <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-btn">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -48,5 +54,8 @@
                 {{ form_row(form.save, {'label': 'Envoyer le message', 'attr': {'class': 'fourth-button'}}) }}
             </div>
         {{ form_end(form) }}
+
+        {% include('home/5pictos.html.twig') %}
+
     </main>
 {% endblock %}
