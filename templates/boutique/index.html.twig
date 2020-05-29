@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
-{% block title %}Boutique index{% endblock %}
+{% block title %}Boutique admin{% endblock %}
 
 {% block body %}
-    <h1>Boutique index</h1>
+    <h1>Boutique</h1>
 
-    <table class="table">
+    <table class="table text-center">
         <thead>
-            <tr>
+            <tr class="bg-light">
                 <th>Id</th>
                 <th>Brand</th>
                 <th>Model</th>
@@ -15,7 +15,6 @@
                 <th>Couleur</th>
                 <th>Etat</th>
                 <th>Prix</th>
-                <th>Image</th>
                 <th>DateAjout</th>
                 <th>IsPromo</th>
                 <th>IsSold</th>
@@ -33,14 +32,13 @@
                 <td>{{ boutique.couleur }}</td>
                 <td>{{ boutique.etat }}</td>
                 <td>{{ boutique.prix }}</td>
-                <td>{{ boutique.image }}</td>
-                <td>{{ boutique.dateAjout ? boutique.dateAjout|date('Y-m-d') : '' }}</td>
+                <td>{{ boutique.dateAjout ? boutique.dateAjout|date('d-m-Y') : '' }}</td>
                 <td>{{ boutique.isPromo ? 'Yes' : 'No' }}</td>
                 <td>{{ boutique.isSold ? 'Yes' : 'No' }}</td>
-                <td>{{ boutique.dateSold ? boutique.dateSold|date('Y-m-d') : '' }}</td>
+                <td>{{ boutique.dateSold ? boutique.dateSold|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('boutique_show', {'id': boutique.id}) }}">show</a>
-                    <a href="{{ path('boutique_edit', {'id': boutique.id}) }}">edit</a>
+                    <a href="{{ path('boutique_show', {'id': boutique.id}) }}" class="btn btn-info mb-2">show</a>
+                    <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -51,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('boutique_new') }}">Create new</a>
+    <a href="{{ path('boutique_new') }}" class="btn btn-dark">Create new</a>
 {% endblock %}

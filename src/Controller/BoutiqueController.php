@@ -17,14 +17,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class BoutiqueController extends AbstractController
 {
     /**
-     * @Route("/", name="boutique_index", methods={"GET"})
+     * @Route("/admin", name="boutique_index", methods={"GET"})
      * @param BoutiqueRepository $boutiqueRepository
      * @return Response
      */
     public function index(BoutiqueRepository $boutiqueRepository): Response
     {
+        return $this->render('boutique/index.html.twig', [
+            'boutiques' => $boutiqueRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/", name="boutique", methods={"GET"})
+     * @param BoutiqueRepository $boutiqueRepository
+     * @return Response
+     */
+    public function boutique(BoutiqueRepository $boutiqueRepository): Response
+    {
+
         return $this->render('boutique/boutique.html.twig', [
             'phones' => $boutiqueRepository->findAll(),
+            'promos' => $boutiqueRepository->findBy(['isPromo' => true])
         ]);
     }
 
@@ -97,7 +111,22 @@ class BoutiqueController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $image = $form->get('image')->getData();
+
+            $extension = pathinfo($_FILES['boutique']['name']['image'], PATHINFO_EXTENSION);
+            $name = $boutique->getBrand() . '_'
+                . str_replace(' ', '_', $boutique->getModel()) . '_'
+                . $boutique->getId();
+
+            $directory = 'uploads/boutique/';
+            $filename = $directory . $name . ".$extension";
+
+            move_uploaded_file($image, $filename);
+
+            $boutique->setImage($filename);
+            $entityManager->persist($boutique);
+            $entityManager->flush();
 
             return $this->redirectToRoute('boutique_index');
         }

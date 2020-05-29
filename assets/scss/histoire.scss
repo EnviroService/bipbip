@@ -1,6 +1,35 @@
 @import "vars";
 @import '~bootstrap/scss/bootstrap';
 
+.home {
+  font-family: $primary-font;
+  margin: 0;
+
+  .header {
+    .header-text {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      .color-primary {
+        color: $primary-color;
+      }
+
+      .color-third {
+        color: $third-color;
+      }
+
+      sup {
+        text-transform: none;
+      }
+    }
+
+    img {
+      max-height: 250px;
+    }
+  }
+}
+
 .videoNatacha {
   width: 80%;
   @include media-breakpoint-up(lg) {
@@ -35,4 +64,6 @@
     }
 
   }
+
+
 }
