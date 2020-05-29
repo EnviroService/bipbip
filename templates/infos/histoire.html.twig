@@ -2,40 +2,79 @@
 
 {% block title %}Notre histoire - BipBip{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('histoire') }}
+{% endblock %}
+
 {% block body %}
+
+    <div class="title-vends row justify-content-center p-3">
+        <img src="{{ asset('/images/bandeauNotreHistoire.png') }}" alt="Notre_histoire">
+    </div>
+
+    <div class="col-12 col-lg-8 mx-auto form p-4">
+        <img src="{{ asset('images/video.png') }}" alt="video" class="videoNatacha">
+    </div>
+
+
     <main class="container">
         <div class="row">
-            <div class="col-12 col-lg-8 mx-auto form p-4">
-                <h1 class="primary-title">Notre histoire</h1>
-                <p>L'idée : <br>
-                    Amener sur Lille des points de collectes de smartphone qui vont permettre de <br>
-                    - Faire un geste pour l'environnement <br>
-                    - Mettre de l'argent facilement dans ta poche grâce à un circuit de distribution avec peu d'intermédiare
-                    <br>
-                    - Créer de l'emploi régional à l'aide de l'énergie étudiante de la Métropole Lilloise
-                </p>
-                <p>L'étape suivante : <br>
-                    Donner vie à des BipBip mobile en mettant en oeuvre des actions locales ! <br>
-                    Au plus nous collectons de téléphones, plus les prix de nos BipBip mobile pourront être avantageux tout en gardant sa qualité absolue !
-                    <br>
-                    On compte sur toi pour collecter un MAXIMUM de téléphones et de mettre la machine en marche!
-                </p>
-                <div>
-                    <p>
-                        Chiffres clés
-                        <br>
-                        X <br>
-                        Téléphones en hibernation connues
-                    </p>
-                    <p>
-                        X <br>
-                        Etudiants souhaitant agir et s'enrichir (nos bippers)
-                    </p>
-                    <p>
-                        X <br>
-                        Startup innovantes qui gagnent à être
+            <div class="col-12 col-lg-10 col-sm-3 mx-auto form p-4">
+                <div class="d-flex flex-row justify-content-around ">
+                    <div class="col-2 col-lg-2 col-sm-2">
+                        <img class="logo" src="{{ asset('images/btn-achete.png') }}" alt="logo">
+                    </div>
+                    <div class="text col-6 col-lg-6 text-left col-sm-2">
+                        <p>
+                            Amener sur Lille des points de collectes de smartphone qui vont permettre de <br>
+                            - Faire un geste pour l'environnement <br>
+                            - Mettre de l'argent facilement dans ta poche grâce à un circuit de distribution avec peu d'intermédiare
+                            <br>
+                            - Créer de l'emploi régional à l'aide de l'énergie étudiante de la Métropole Lilloise
+                        </p>
+                        <p><strong>L'étape suivante : <br></strong>
+                            Donner vie à des BipBip mobile en mettant en oeuvre des actions locales ! <br>
+                        </p>
+                    </div>
+                </div>
+                <p>Au plus nous collectons de téléphones, plus les prix de nos BipBip mobile pourront être avantageux tout en gardant sa qualité absolue !<br></p>
+                <p>On compte sur toi pour collecter un <strong>MAXIMUM</strong> de téléphones et de mettre la machine en marche!</p>
+            </div>
+            <section class="constat">
+                <div class="row text-center">
+                    <h2 class="primary-title col-12">Le constat</h2>
+                    <p class="col-12">
+                        Il y a dans les Hauts-de-France…
                     </p>
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-3 text-center">
+                        <img src="{{ asset('images/constat-1.png') }}"
+                             alt="2 téléphones portables en hibernation par personne"
+                             class="img-fluid img-constat">
+                        <p>
+                            <span class="accroche_primaire"><span class="mot_cle">XXX</span><br></span> de téléphones en hibernation dans les tiroirs de notre région
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-3 text-center">
+                        <img src="{{ asset('images/constat-2.png') }}"
+                             alt="115000 étudiants dans la métropole Lilloise"
+                             class="img-fluid img-constat">
+                        <p class="">
+                            <span class="accroche_primaire"><span class="mot_cle">115 000</span><br> étudiants</span> dans la métropole lilloise, souhaitant agir et s’enrichir en devenant bipers
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-3 text-center">
+                        <img src="{{ asset('images/constat-3.png') }}"
+                             alt="17 incubateurs / accélérateurs de startup dansles Hauts de France"
+                             class="img-fluid img-constat">
+                        <p>
+                            <span class="accroche_primaire"><span class="mot_cle">662</span><br>  Starts-up innovantes</span> et qui souhaitent se développer dans notre région
+                        </p>
+                    </div>
+                </div>
+            </section>
             </div>
         </div>
     </main>
