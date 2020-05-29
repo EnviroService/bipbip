@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    // Permet de contacter bipbip
+
     /**
      * @Route("contact/", name="add_message")
      * @param Request $request

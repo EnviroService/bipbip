@@ -20,6 +20,7 @@ class BdcController extends AbstractController
 {
 
    // Permet de faire signer le user et d'enregistrer sa signature
+
     /**
      * @Route("/signature/{id}", name="generate_signature")
      * @IsGranted("ROLE_COLLECTOR")
@@ -49,6 +50,7 @@ class BdcController extends AbstractController
             ]);
         }
     }
+// Permet a l'admin de stocker l'ensemble des bons de cessions
 
     /**
      * @Route("/", name="bdc_index")
@@ -89,6 +91,7 @@ class BdcController extends AbstractController
             'estimationIds' => $estimationIds,
         ]);
     }
+// Permet la génération d'un pdf
 
     /**
      * @Route("/pdf/{id}", name="bdc_pdf")

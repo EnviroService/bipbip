@@ -128,7 +128,7 @@ class EstimationController extends AbstractController
             "capacities" => $capacities
         ]);
     }
-// Le user répond au différente question et l'estimation est faite grace à l'upload de la matrice
+// Le user répond aux différentes questions et l'estimation est faite grace à l'upload de la matrice
     /**
      * @Route("/{brand}/{model}/{capacity}/quest", name="estimation_quest")
      * @param Request $request

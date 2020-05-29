@@ -33,14 +33,6 @@
         </a>
     </div>
 </header>
-{#
-<div id="nameSearch">
-    <label for="search_nameSearch">Rechercher</label>
-    <input type="text" id="search_nameSearch">
-    <div class="resultSearch">
-    </div>
-</div>
-#}
 
 {% if app.user.roles[0] == "ROLE_ADMIN" %}
     <nav class="menu-admin mt-2">
@@ -80,9 +72,6 @@
         </ul>
     </nav>
 {% endif %}
-<div>
-    <section class="resultSearch"></section>
-</div>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success text-center mt-1 alert-dismissible fade show">

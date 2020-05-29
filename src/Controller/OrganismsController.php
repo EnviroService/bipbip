@@ -31,7 +31,7 @@ class OrganismsController extends AbstractController
         return $this->render('organisms/index.html.twig', [
             'organisms' => $organismsRepository->findBy([], ["organismName" => "ASC"])]);
     }
-
+// Permet a l'admin d'ajouter des partenaires
     /**
      * @Route("/new", name="organisms_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
@@ -80,7 +80,7 @@ class OrganismsController extends AbstractController
                 'organism' => $organism,
             ]);
     }
-
+// Permet a l'admin d'effacer ces partenaires
     /**
      * @Route("/{id}", name="organisms_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
