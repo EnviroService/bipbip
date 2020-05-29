@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Notre solution{% endblock %}
+{% block title %}BipBip - Ton Green Mobile{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
 
 {% block body %}
-    <main class="container">
+    <main class="home">
+
+        <div class="title-vends row justify-content-center p-3">
+            <img src="{{ asset('images/bandeau-Notre solution.png') }}" alt="Vends ton tél">
+        </div>
+
+        <section>
+            <div class="row justify-content-center">
+                <p>Bipbip est la solution innovante et environnementale pour la région... on te fait un dessin ?</p>
+                <img src="{{ asset('images/schema-solution.png') }}" alt="solution">
+            </div>
+        </section>
+
+
+
         <div class="row">
             <div class="col-12 mx-auto text-left form p-4">
                 <h1 class="primary-title">Notre mission recyclage local</h1>
@@ -29,5 +48,6 @@
                 {#<img src="{{ asset('images/infos-bipbip.png') }}" alt="Chiffres BipBip" class="d-block float-none mx-auto">
             #}</div>
         </div>
+
     </main>
 {% endblock %}
