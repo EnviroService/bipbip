@@ -166,7 +166,7 @@ a{
 }
 
 .primary-button{
-    @include button($primary-color)
+    @include button($primary-color);
 }
 
 .secondary-button{
@@ -216,12 +216,15 @@ a{
 header {
     .logo-title {
         img {
-            width: 60%;
+            height: 80px;
             @include media-breakpoint-up(sm) {
-                width: 50%;
+                height: 100px;
             }
-            @include media-breakpoint-up(xl) {
-                width: 40%;
+            @include media-breakpoint-up(md) {
+                height: 120px;
+            }
+            @include media-breakpoint-up(lg) {
+                height: 160px;
             }
         }
     }
@@ -294,9 +297,8 @@ header {
         }
 
         ul {
-            .primary-title-menu-color {
-                color: $primary-color;
-                font-size: 1.6rem;
+            .primary-title-menu-black {
+                font-weight: 900;
             }
 
             .primary-title-menu {
