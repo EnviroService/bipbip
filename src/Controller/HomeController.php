@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
+use App\Repository\CollectsRepository;
 use App\Repository\OrganismsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -137,5 +139,19 @@ class HomeController extends AbstractController
     public function bonsplans()
     {
         return $this->render('bonsplans/index.html.twig');
+    }
+
+    /**
+     * @Route("bipers", name="bipers")
+     * @return Response
+     */
+    public function collectorBipers(CollectsRepository $collectsRepo)
+    {
+        $form = $this->createForm(ContactType::class);
+
+        return $this->render('home/collectorBipers.html.twig', [
+            'form' => $form->createView(),
+            'collects' => $collectsRepo->findByDateValid()
+        ]);
     }
 }
