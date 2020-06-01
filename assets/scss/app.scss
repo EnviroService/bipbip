@@ -67,7 +67,19 @@ a{
 }
 
 /* TITLES */
-
+.title-page {
+    background-color: $secondary-color;
+    width: 100%;
+    height: auto;
+    h1 {
+        font-size: 2.1rem;
+        font-weight: 200;
+        font-family: $fourth-font;
+        color: white;
+        padding: 48px;
+        font-style: italic;
+    }
+}
 .primary-title{
     font-family: $secondary-font, sans-serif;
     padding:20px;
@@ -115,7 +127,7 @@ a{
 }
 
 .third-title{
-    font-size : 1.4rem;
+    font-size : 1.5rem;
     font-family: $fourth-font;
     font-weight: 200;
     color : black;
