@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Collecteur / Bipers
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bipers') }}
+{% endblock %}
+{% block body %}
+
+<div class="row" id="title">
+    <img src="{{ asset('/images/achete_un_bipbip_fond_vert.png') }}" alt="">
+</div>
+
+<main class="container mt-5">
+
+    <div class="row" id="bipers">
+            <div class="text-center">
+                <img src="{{ asset('/images/phone-bipers.png') }}" alt="">
+            </div>
+            <div class="content-text">
+                <h3 class="text-center title_inter">
+                    Pourquoi devenir Bipers ?
+                </h3>
+                <ul>
+                    <li>- Adhérer à un projet favorisant l’emploi local et le recyclage</li>
+                    <li>- Accéder à notre réseau partenaire</li>
+                    <li>- Communiquer sur nos évènements associatifs</li>
+                    <li>- Etre formé au métier de testeur téléphonique</li>
+                    <li>- Acquérir de nouvelles compétences pour ton CV</li>
+                    <li>- Pouvoir financer tes projets</li>
+                </ul>
+            </div>
+    </div>
+
+
+    <div class="row" id="plaquettes">
+        <div class="col-12">
+            <h3 class="title_inter">
+                Devenir site de collecte
+            </h3>
+            <div class="plaquettes">
+                plaquettes Partenaires
+            </div>
+        </div>
+
+        <div class="jumbotron mt-5 formulaire">
+            <h3 class="text-center title_inter">
+                Tu veux organiser une collecte?
+            </h3>
+            <div>
+                {{ form_start(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="collectes">
+        <div class="col-sm-12">
+            <h3 class="text-center title_inter">
+                Les points de collectes
+            </h3>
+            <div>
+                <p>
+                    Voici les collectes actuellement organisées par BipBip :
+                </p>
+                <div>
+                    <table>
+                        <thead>
+                            <tr class="text-center head_row">
+                                <th class="head_tab">Partenaire de collecte</th>
+                                <th class="head_tab">Adresse</th>
+                                <th class="head_tab">Date de collecte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for collect in collects %}
+                            <tr>
+                                <td class="body_tab text-center">{{ collect.collector.organismName }}</td>
+                                <td class="body_tab text-center">
+                                    {{ collect.collector.organismAddress }},
+                                    {{ collect.collector.organismPostcode }}
+                                    {{ collect.collector.organismCity }}
+                                </td>
+                                <td class="body_tab text-center">{{ collect.dateCollect.date | date('d/m/Y') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row text-center mt-5">
+                    <div class="ml-auto mr-auto">
+                        <p class="text-center w-auto">
+                            Aucune collecte ne te convient ?<br>
+                            Pas de soucis !
+                        </p>
+                        <a href="" class="secondary-button">Propose un lieu ou une date ici !</a>
+                        <div class="content_image mt-5">
+                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
+                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
+                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+{% endblock %}

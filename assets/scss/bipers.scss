@@ -1,0 +1,56 @@
+@import "app";
+@import "vars";
+
+#title{
+    img{
+        width: 100%;
+    }
+}
+
+.title_inter{
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#bipers{
+    justify-content: center;
+    align-items: center;
+}
+
+#plaquettes{
+    .plaquettes{
+        width: 90%;
+        height: 200px;
+        background-color: lightgray;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .formulaire{
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+}
+
+#collectes{
+    table{
+        width: 100%;
+        .head_row{
+            background-color: $primary-color;
+            .head_tab{
+                height: 60px;
+                vertical-align: middle;
+                margin: 0 5px;
+            }
+        }
+
+        .body_tab{
+            height: 50px;
+            border-bottom: 1px solid lightgray;
+            vertical-align: middle;
+        }
+    }
+
+
+}
