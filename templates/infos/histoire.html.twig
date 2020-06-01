@@ -9,38 +9,66 @@
 
 {% block body %}
 <main class="home">
-    <div class="title-vends row">
-        <img class="img-fluid" src="{{ asset('/images/bandeauNotreHistoire.png') }}" alt="Notre_histoire">
-    </div>
-    <div class="row justify-content-center">
-        <div class="p-4 w-50">
-            <img src="{{ asset('images/video.png') }}" alt="video" class="videoNatacha">
+    <div id="notreHistoire">
+        <div class="title-page">
+            <h1>Notre histoire</h1>
         </div>
-    </div>
-        <div class="row">
-            <div class="col-12 col-md-4 text-center">
-                <img class="img-fluid" src="{{ asset('images/idee-notrehistoire.png') }}" alt="logo">
-            </div>
-            <div class="col-12 col-md-8 text-justify p-3">
-                        <p>
-                            Amener sur Lille des points de collectes de smartphone qui vont permettre de: <br>
-                            - Faire un geste pour l'environnement. <br>
-                            - Mettre de l'argent facilement dans ta poche grâce à un circuit de distribution avec peu d'intermédaire.
-                            <br>
-                            - Créer de l'emploi régional à l'aide de l'énergie étudiante de la Métropole Lilloise.
-                        </p>
-                        <p><strong>L'étape suivante : <br></strong>
-                            Donner vie à des BipBip mobile en mettant en oeuvre des actions locales ! <br>
-                        </p>
-            </div>
-
-            <div class="col-12 text-justify p-5 ml-5">
-                    <p>Au plus nous collectons de téléphones, plus les prix de nos BipBip mobile pourront être avantageux tout en gardant sa qualité absolue !<br></p>
-                    <p>On compte sur toi pour collecter un <strong>MAXIMUM</strong> de téléphones et de mettre la machine en marche!</p>
+        <div class="row justify-content-center">
+            <div class="p-4 w-50">
+                <img src="{{ asset('images/video.png') }}" alt="video" class="videoNatacha">
             </div>
         </div>
+            <div class="row mb-5">
+                <div class="col-12 col-md-4 text-center">
+                    <img class="img-fluid" src="{{ asset('images/idee-notrehistoire.png') }}" alt="logo">
+                </div>
+                <div class="col-12 col-md-8 text-justify p-3">
+                            <p>
+                                Amener sur Lille des points de collectes de smartphone qui vont permettre de: <br>
+                                - Faire un geste pour l'environnement. <br>
+                                - Mettre de l'argent facilement dans ta poche grâce à un circuit de distribution avec peu d'intermédaire.
+                                <br>
+                                - Créer de l'emploi régional à l'aide de l'énergie étudiante de la Métropole Lilloise.
+                            </p>
+                            <p><strong>L'étape suivante : <br></strong>
+                                Donner vie à des BipBip mobile en mettant en oeuvre des actions locales ! <br>
+                            </p>
+                </div>
 
-                {{ include('home/constat.html.twig') }}
+                <div class="col-12 text-justify p-5 ml-5">
+                        <p>Au plus nous collectons de téléphones, plus les prix de nos BipBip mobile pourront être avantageux tout en gardant sa qualité absolue !<br></p>
+                        <p>On compte sur toi pour collecter un <strong>MAXIMUM</strong> de téléphones et de mettre la machine en marche!</p>
+                </div>
 
-    </main>
+                    {{ include('home/constat.html.twig') }}
+            </div>
+    </div>
+    <div id="solution">
+        <div class="title-page">
+            <h1>Notre solution</h1>
+        </div>
+
+        <div class="row justify-content-center m-4">
+            <p>Bipbip est la solution innovante et environnementale pour la région... on te fait un dessin ?</p>
+            <img class="img-fluid w-75 mt-3" src="{{ asset('images/schema-solution.png') }}" alt="solution">
+        </div>
+
+        <div class="row m-2">
+            <div class="col-12 mx-auto text-justify p-3 mt-5">
+                <p>Bip Bip Mobile a pour mission de faire le ménage dans les Hauts-de-France en proposant de recycler tous les téléphones
+                    usagés ou inutilisés à l'aide des associations étudiantes qui nous accueillent et nous accompagnent lors des points de collecte.</br>
+                    C'est l'occasion pour nos partenaires locaux de se faire connaître davantage dans notre région.</p>
+
+                <ul>
+                    <li class="text-justify list-unstyled m-1">Notre équipe d’experts en télécommunication a la volonté d’offrir un smartphone reconditionné qui propose :</li>
+                    <li class="mt-1">- De réduire l’impact environnemental de la production des téléphones</li>
+                    <li>- Le MEILLEUR compromis entre la qualité et le coût</li>
+                    <li>- Des contenus digitaux régionaux développés par des entreprises proches de chez toi</li>
+                </ul>
+                <p>La marque déposée pour ce 1er téléphone « HAUTS DE FRANCE » est BipBip.</p>
+            </div>
+        </div>
+        {% include('home/5pictos.html.twig') %}
+    </div>
+</main>
 {% endblock %}
