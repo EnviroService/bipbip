@@ -12,7 +12,11 @@
     font-family: Lobster Hand;
     src: url('LobsterHand.otf') format('opentype');
 }
-
+@font-face
+{
+    font-family: Hand;
+    src: url('Hand_Of_Sean_Demo.ttf') format('truetype');
+}
 /* GENERAL */
 
 body{
@@ -108,6 +112,15 @@ a{
     background-color: $primary-color;
     color: #FFFFFF;
     font-weight: bold;
+}
+
+.third-title{
+    font-size : 1.4rem;
+    font-family: $fourth-font;
+    font-weight: 200;
+    color : black;
+    padding : 1%;
+
 }
 
 .estim-round-bubble {
