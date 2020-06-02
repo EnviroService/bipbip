@@ -13,15 +13,25 @@
             Foire Aux Questions
         </h1>
         <div class="row p-3 justify-content-center">
-            {% if faqs is defined %}
-                <a id="all-categories" class="faq-category col-2 col-lg-1 text-center p-3 m-1 justify-content-center align-items-center" href="{{ path('faq_index') }}">
+            {% if category is defined %}
+            <a class="faq-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+               href="{{ path('faq_index') }}">
+            {% else %}
+                <a class="faq-category selected-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                   href="{{ path('faq_index') }}">
+            {% endif %}
                     Toutes les questions
                 </a>
-            {% endif %}
+
             {% for categ in categories %}
                 {% if category is defined and categ == category %}
-                    {% else %}
-                <a class="faq-category col-2 col-lg-1 text-center p-3 m-1 justify-content-center align-items-center" href="{{ path('faq_category', {'id': categ.id }) }}">
+                    <a class="faq-category selected-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                       href="{{ path('faq_category', {'id': categ.id }) }}">
+                        {{ categ.name }}
+                    </a>
+                        {% else %}
+                <a class="faq-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                   href="{{ path('faq_category', {'id': categ.id }) }}">
                     {{ categ.name }}
                 </a>
                 {% endif %}
