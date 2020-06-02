@@ -18,12 +18,12 @@
         }
     }
 
-    .add{
-        width : 150px;
-        padding : 5px;
-        position : absolute;
-        right : -4vw;
-        top : 20px;
+    .add {
+        width: 150px;
+        padding: 5px;
+        position: absolute;
+        right: -4vw;
+        top: 20px;
         background-color: $primary-color;
         @media screen and (max-width: 1024px) {
             top: 12px;
@@ -31,6 +31,20 @@
             width: 100px;
             padding: 5px;
         }
+    }
+        .add2{
+            width : 150px;
+            padding : 5px;
+            position : absolute;
+            right : -4vw;
+            top : 0;
+            background-color: $primary-color;
+            @media screen and (max-width: 1024px) {
+                top: 0;
+                right: -3vw;
+                width: 100px;
+                padding: 5px;
+            }
     }
 
     .container{
@@ -80,11 +94,11 @@
         width : 150px;
         padding : 5px;
         position: absolute;
-        right : 6vw;
-        top : 20px;
+        right : 5vw;
+        top: 3px;
         @media screen and (max-width: 1024px){
-            right : -3vw;
-            top: 12px;
+            right : -23vw;
+
             width: 100px;
             padding : 5px;
         }
