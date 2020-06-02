@@ -12,8 +12,25 @@
             </div>
         </div>
         <h1 class="primary-title">Etape 5 bis : signature du client</h1>
+        <div class="row justify-content-center m-3">
+            <div class="col-6 text-center p-4 border border-success">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="col-12 text-center" id="img" style="display:none;">
+                Signature ajoutée, vous pouvez générer le bon de cession.
+            </div>
+        </div>
 
-        <div class="row justify-content-center">
+        <div class="d-flex flex-row justify-content-center m-3">
+            <div>
+                <button id="bt-clear" class="third-button m-5">Effacer</button>
+            </div>
+            <div>
+                <button id="signature" class="third-button btn-warning m-5">Valider la signature</button>
+            </div>
+        </div>
+
+       {# <div class="row justify-content-center">
             <div class="col-6 text-center p-4 border border-success">
                 <canvas id="canvas"></canvas>
             </div>
@@ -30,6 +47,7 @@
                 Valider la signature
             </button>
         </div>
+        #}
 
         <div class="row">
             <div class="col-4 mx-auto text-left form p-4">
