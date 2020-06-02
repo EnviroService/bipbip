@@ -6,6 +6,7 @@ use App\Entity\Boutique;
 use App\Form\BoutiqueType;
 use App\Repository\BoutiqueRepository;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +47,7 @@ class BoutiqueController extends AbstractController
      * @Route("/new", name="boutique_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -104,6 +106,7 @@ class BoutiqueController extends AbstractController
      * @param Request $request
      * @param Boutique $boutique
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Boutique $boutique): Response
     {
@@ -142,6 +145,7 @@ class BoutiqueController extends AbstractController
      * @param Request $request
      * @param Boutique $boutique
      * @return Response
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Boutique $boutique): Response
     {
