@@ -495,11 +495,28 @@ header {
 }
 
 #tel-collectes {
-    height: 250px;
+    height: 200px;
     width: auto;
     @include media-breakpoint-up(md) {
         margin-top: -80px;
-        height: 380px;
+        height: 280px;
+    }
+}
+
+.blue-cadre {
+    margin-top: -20px;
+    width: 160px;
+    padding: 15px;
+    background-color: white;
+    border: solid 5px $primary-color;
+    border-radius: 15px;
+    color: $primary-color;
+    font-size: 1.1rem;
+    font-weight: 900;
+    line-height: 1.4rem;
+
+    #number {
+        font-size : 2rem;
     }
 }
 
