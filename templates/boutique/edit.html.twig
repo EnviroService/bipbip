@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Boutique{% endblock %}
+{% block title %}Editer tél{% endblock %}
 
 {% block body %}
-    <h1>Edit Boutique</h1>
+    <h1>Editer le téléphone</h1>
 
-    {{ include('boutique/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('boutique/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('boutique_index') }}">back to list</a>
+    <a href="{{ path('boutique_index') }}" class="btn btn-dark mt-3">Retour à la liste</a>
 
     {{ include('boutique/_delete_form.html.twig') }}
 {% endblock %}

@@ -4,8 +4,9 @@
     {{ form_row(form.capacity) }}
     {{ form_row(form.couleur) }}
     {{ form_row(form.etat) }}
+    {{ form_row(form.description) }}
     {{ form_row(form.prix) }}
     {{ form_row(form.image) }}
     {{ form_row(form.isPromo) }}
-    <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-info">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
