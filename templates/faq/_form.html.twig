@@ -1,8 +1,10 @@
 {{ form_start(form) }}
-<div class="row">
+<div class="row ">
     <div class="offset-sm-2 col-sm-6 offset-sm-2 mx-auto">
     {{ form_widget(form) }}
-        <a href="{{ path('faq_category_new') }}">Nouvelle catégorie ?</a>
+        <div class="row justify-content-center">
+            <a class="third-button m-3" href="{{ path('faq_category_new') }}">Nouvelle catégorie ?</a>
+        </div>
     </div>
 </div>
 <div class="row justify-content-center">
