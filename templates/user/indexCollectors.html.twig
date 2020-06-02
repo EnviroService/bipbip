@@ -27,20 +27,20 @@
             </div>
             {% for collector in collectors %}
                 <div class="row align-items-center border-bottom">
-                    <div class="col-4 text-center">
+                    <div class="col-3 text-center">
                         <a href="{{ path('collectors_show', {'id' : collector.id}) }}">{{ collector.lastname }} {{ collector.firstname }}</a>
                     </div>
-                    <div class="col-4 text-center">
+                    <div class="col-3 text-center">
                         {% if collector.organism is null %}
                             Pas d'organisme associé
                         {% else %}
                             {{ collector.organism.organismName }}
                         {% endif %}
                     </div>
-                    <div class="col-2">
+                    <div class="col-3 text-center">
                         <a href="{{ path('collectors_edit', {'id': collector.id}) }}" class="fourth-button">Editer</a>
                     </div>
-                    <div class="col-2 delete-btn">
+                    <div class="col-3 delete-btn text-center">
                         {{ include('user/_delete_collector_form.html.twig') }}
                     </div>
                 </div>
