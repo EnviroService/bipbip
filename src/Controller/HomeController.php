@@ -148,9 +148,13 @@ class HomeController extends AbstractController
     public function collectorBipers(CollectsRepository $collectsRepo)
     {
         $form = $this->createForm(ContactType::class);
+        $directory = "uploads/plaquette/";
+        $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
+        $filenameSave = $directory . $filename;
 
         return $this->render('home/collectorBipers.html.twig', [
             'form' => $form->createView(),
+            'plaquette' => $filenameSave,
             'collects' => $collectsRepo->findByDateValid()
         ]);
     }
