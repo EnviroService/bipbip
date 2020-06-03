@@ -16,16 +16,16 @@
             <div class="col col-lg-8 bg-white">
     {% block header %}
         <header>
-            <div class="row pb-3">
+            <div class="row pb-3 ">
                 <div class="col-8 col-sm-12 pt-4 text-center">
                     <a href="{{ path('home') }}" class="logo-title "><img src="{{ asset('/images/logo-bipbip.png') }}"
                                                                           alt="BipBip ton Green Mobile" /></a>
                 </div>
-                <div class="col-4 col-md-6">
+                <div class="col-6 col-md-6 col-lg-12">
                     <nav id="menu">
                         <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
-                        <div class="row justify-content-around">
-                            <div class="col-8 col-sm-5 col-lg-3 text-center">
+                        <div class="row justify-content-center pl-2 pr-2 pb-5">
+                            <div class="col-12 col-sm-6 col-lg-5 mt-lg-5 text-center">
                                 <div class="row smallLogoMenu align-content-around">
                                     <div class="col">
                                         {% if app.user %}
@@ -33,8 +33,7 @@
                                         {% else %}
                                             <a href="{{ path('app_login') }}">
                                         {% endif %}
-                                            <img src="{{ asset('images/silhouette.png') }}" alt="Profil">
-                                        </a>
+                                            <img src="{{ asset('images/silhouette.png') }}" alt="Profil"></a>
                                     </div>
                                     <div class="col">
                                         <a href="{{ path('add_message') }}">
@@ -81,13 +80,13 @@
 
 
 
-                            <div class="col-12 col-sm-6 col-lg-5 mt-5">
+                            <div class="text-menu col-10 mt-1 ml-3 col-sm-6 pl-lg-5 mt-lg-5">
                                 <ul>
-                                    <li><h3 class="primary-title-menu-black">BipBip</h3></li>
+                                    <li><h3 class="primary-title-menu-black pt-3">BipBip</h3></li>
                                     <li><a href="{{ path("histoire") }}" title="Notre histoire" class="primary-title-menu">Notre histoire</a></li>
                                     <li><a href="{{ "/histoire/#solution" }}" title="Notre solution" class="primary-title-menu">Notre solution</a></li>
                                     <li><a href="{{ path("team") }}" title="Description Bip Bip" class="primary-title-menu">Notre team</a></li>
-                                    <li class="pt-3"><h3 class="primary-title-menu-black">#Je suis BipBip</h3></li>
+                                    <li class="pt-3"><h3 class="primary-title-menu-black">#BipBipAttitude</h3></li>
                                     <li><a href="{{ path("vends") }}" title="Vends ton téléphone" class="primary-title-menu">Vends ton tél</a></li>
                                     <li><a href="{{ path("boutique") }}" title="Achète un BipBip" class="primary-title-menu">Achète un BipBip</a></li>
                                     <li class="pt-3"><h3 class="primary-title-menu-black">BipBip a besoin de toi</h3></li>

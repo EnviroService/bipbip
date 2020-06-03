@@ -274,7 +274,6 @@ header {
     /* MENU */
 
     #menu {
-
         a {
             color: black;
             text-decoration: none;
@@ -288,7 +287,7 @@ header {
         display: none;
         z-index: 9998;
         background: #FFFFFF;
-        padding: 1em 2em;
+        padding: 1em 0;
         width: 100%;
         height: 100%;
         position: fixed;
@@ -301,9 +300,21 @@ header {
             img {
                 width: 60px;
                 height: 50px;
-                margin: 40px auto;
+                margin: 20px auto;
+                @media screen and (max-width: 768px) {
+                    width: 30px;
+                    height: 30px;
+                    margin: 5px auto;
+                }
             }
         }
+        .text-menu{
+            @media screen and (max-width: 768px) {
+                margin-left: 35px;
+                margin-top: 25px;
+            }
+        }
+
 
         .laCommuDiv {
             margin-top: 50px;
@@ -340,13 +351,16 @@ header {
 
         ul {
             .primary-title-menu-black {
-                font-weight: 900;
+                font-weight: 800;
             }
 
             .primary-title-menu {
                 font-weight: lighter;
                 font-size: 1.2rem;
                 color: $primary-color;
+                @media screen and (max-width: 768px) {
+                    font-size: 1rem;
+                }
             }
         }
 
