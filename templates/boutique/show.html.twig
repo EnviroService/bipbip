@@ -8,7 +8,7 @@
     <div class="container mb-5">
         <div class="row">
             <div class="contenu">
-                <div class="content d-flex">
+                <div class="content d-flex bg-info">
                     <div class="image col-3">
                         <img src="{{ asset(boutique.image) }}" class="mr-5" alt="">
                     </div>
@@ -19,9 +19,7 @@
                     </div>
                     <div class="description col-6">
                         <h4>Description</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at blanditiis deserunt, eius esse
-                            et eveniet explicabo fugiat, itaque laborum minima nisi repudiandae sint ut, voluptatem.
-                            A aliquid in voluptates. </p>
+                        <p>{{ boutique.description }}</p>
                         <p>Prix: {{ boutique.prix }} €</p>
                     </div>
                 </div>
@@ -29,13 +27,12 @@
         </div>
     </div>
 
-
-    <a href="{{ path('boutique') }}" class="btn btn-info">Retour</a>
+    <a href=javascript:history.go(-1) class="btn btn-info">Retour</a>
 
     {% if app.user %}
         {% for role in app.user.roles %}
             {% if role == "ROLE_ADMIN" %}
-                <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">edit</a>
+                <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">Modifier</a>
                 {{ include('boutique/_delete_form.html.twig') }}
             {% endif %}
         {% endfor %}
