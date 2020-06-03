@@ -221,6 +221,9 @@ a{
 .grey-button{
     @include button($grey-color);
     color: black;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .small-button {
