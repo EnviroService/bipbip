@@ -25,6 +25,7 @@ use App\Security\LoginFormAuthenticator;
 use App\Service\UploaderHelper;
 use DateInterval;
 use \DateTime;
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use PhpParser\Builder\Class_;
@@ -39,6 +40,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -97,8 +99,8 @@ class AdminController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws DBALException
+     * @throws ExceptionInterface
      */
     public function newMatrice(
         Request $request,
@@ -382,7 +384,6 @@ class AdminController extends AbstractController
 // Permet a l'admin de modifier ces partenaires
     /**
      * @Route("/organism/edit/{id}", name="admin_organism_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @param UploaderHelper $uploaderHelper
