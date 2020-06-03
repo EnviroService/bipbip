@@ -15,13 +15,15 @@
 #bipers{
     justify-content: center;
     align-items: center;
+    img{
+        height: 440px;
+    }
 }
 
 #plaquettes{
     .plaquettes{
         width: 90%;
-        height: 200px;
-        background-color: lightgray;
+        height: 100px;
         margin-left: auto;
         margin-right: auto;
     }

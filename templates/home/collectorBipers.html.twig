@@ -10,7 +10,7 @@
 {% block body %}
 
 <div class="row" id="title">
-    <img src="{{ asset('/images/achete_un_bipbip_fond_vert.png') }}" alt="">
+    <h1 class="title-page"><span>Collecteurs / Bipers</span></h1>
 </div>
 
 <main class="container mt-5">
@@ -36,23 +36,14 @@
 
 
     <div class="row" id="plaquettes">
-        <div class="col-12">
+        <div class="col-12 text-center">
             <h3 class="title_inter">
                 Devenir site de collecte
             </h3>
             <div class="plaquettes">
-                plaquettes Partenaires
+                <a href="{{ plaquette }}" class="btn btn-info">Voir la plaquette</a>
             </div>
-        </div>
 
-        <div class="jumbotron mt-5 formulaire">
-            <h3 class="text-center title_inter">
-                Tu veux organiser une collecte?
-            </h3>
-            <div>
-                {{ form_start(form) }}
-                {{ form_end(form) }}
-            </div>
         </div>
     </div>
 
@@ -96,22 +87,18 @@
                             Aucune collecte ne te convient ?<br>
                             Pas de soucis !
                         </p>
-                        <a href="" class="secondary-button">Propose un lieu ou une date ici !</a>
+                        <a href="{{ path('add_message') }}" class="secondary-button">Propose un lieu<br>ou une date ici !</a>
                         <div class="content_image mt-5">
-                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
-                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
-                            <img src="https://via.placeholder.com/150" alt="" class="m-1">
+                            <a href="/images/5.png"><img src="/images/5.png" alt="" class="m-1"></a>
+                            <a href="/images/5.png"><img src="/images/5.png" alt="" class="m-1"></a>
+                            <a href="/images/5.png"><img src="/images/5.png" alt="" class="m-1"></a>
                         </div>
                     </div>
-
-
                 </div>
-
 
             </div>
         </div>
     </div>
-
 
 </main>
 

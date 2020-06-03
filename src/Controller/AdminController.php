@@ -25,6 +25,7 @@ use App\Security\LoginFormAuthenticator;
 use App\Service\UploaderHelper;
 use DateInterval;
 use \DateTime;
+use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use PhpParser\Builder\Class_;
@@ -39,6 +40,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -97,8 +99,8 @@ class AdminController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return Response
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws DBALException
+     * @throws ExceptionInterface
      */
     public function newMatrice(
         Request $request,
@@ -382,7 +384,6 @@ class AdminController extends AbstractController
 // Permet a l'admin de modifier ces partenaires
     /**
      * @Route("/organism/edit/{id}", name="admin_organism_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @param Organisms $organism
      * @param UploaderHelper $uploaderHelper
@@ -484,194 +485,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/modify/{id}", name="modify_estimationBrand")
-     * @param EntityManagerInterface $em
-     * @param int $id
-     * @return Response
-     */
-    public function modifyEstimationBrand(
-        EntityManagerInterface $em,
-        int $id
-    ) {
-        $queryBuilder = $em->getRepository(Phones::class)->findAll();
-        $brands = [];
-        foreach ($queryBuilder as $phone) {
-            array_push($brands, $phone->getBrand());
-        }
-        $brands = array_unique($brands);
 
-        return $this->render("admin/modifyEstimation.html.twig", [
-            'brands' => $brands,
-            'id' => $id
-        ]);
-    }
-
-    /**
-     * @Route("/modify/{id}/{brand}", name="modify_estimationModel")
-     * @param int $id
-     * @param string $brand
-     * @param EntityManagerInterface $em
-     * @return Response
-     */
-    public function modifyEstimationModel(EntityManagerInterface $em, int $id, string $brand)
-    {
-        $queryBuilder = $em->getRepository(Phones::class)->findByBrand($brand);
-        $models = [];
-        foreach ($queryBuilder as $brand) {
-            array_push($models, $brand->getModel());
-        }
-        $models = array_unique($models);
-
-
-        return $this->render("admin/modifyEstimationModel.html.twig", [
-            "models" => $models,
-            "brand" => $brand,
-            "id" => $id
-        ]);
-    }
-
-    /**
-     * @Route("/modify/{id}/{brand}/{model}", name="modify_estimation_capacity")
-     * @param string $brand
-     * @param int $id
-     * @param string $model
-     * @param EntityManagerInterface $em
-     * @return Response
-     */
-    public function modifyEstimationCapacity(
-        string $brand,
-        string $model,
-        int $id,
-        EntityManagerInterface $em
-    ): Response {
-        $queryBuilder = $em->getRepository(Phones::class)->findByModel($model);
-        $capacities = [];
-        foreach ($queryBuilder as $model) {
-            array_push($capacities, $model->getCapacity());
-        }
-
-        return $this->render("admin/modifyEstimationCapacity.html.twig", [
-            "model" => $model,
-            "brand" => $brand,
-            "capacities" => $capacities,
-            "id" => $id
-        ]);
-    }
-
-    /**
-     * @Route("/admin/modify/{id}/{brand}/{model}/{capacity}/quest", name="modify_estimation_quest")
-     * @param Request $request
-     * @param string $brand
-     * @param string $model
-     * @param int $capacity
-     * @param int $id
-     * @param PhonesRepository $phone
-     * @param EntityManagerInterface $em
-     * @param EstimationsRepository $estimationsRepo
-     * @return Response
-     * @throws Exception
-     */
-    public function modifyEstimationQuest(
-        Request $request,
-        string $brand,
-        string $model,
-        int $capacity,
-        int $id,
-        PhonesRepository $phone,
-        EntityManagerInterface $em,
-        EstimationsRepository $estimationsRepo
-    ): Response {
-        $phone = $phone->findOneBy(['model' => $model,
-            'capacity' => $capacity
-        ]);
-        $maxPrice = $phone->getMaxPrice();
-        $liquidDamage = $phone->getPriceLiquidDamage();
-        $screenCracks = $phone->getPriceScreenCracks();
-        $casingCracks = $phone->getPriceCasingCracks();
-        $bateryPrice = $phone->getPriceBattery();
-        $buttonPrice = $phone->getPriceButtons();
-        $estimation = $estimationsRepo->findOneBy(['id' => $id]);
-        $form = $this->createForm(EstimationsType::class, $estimation, ['method' => Request::METHOD_POST]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $imei = $data->getImei();
-            $estimation->setEstimationDate(new DateTime('now'))
-                ->setIsCollected(false)
-                ->setBrand($brand)
-                ->setModel($model)
-                ->setCapacity($capacity)
-                ->setColor("all")
-                ->setMaxPrice($maxPrice)
-                ->setIsValidatedPayment(false)
-                ->setIsValidatedCi(false)
-                ->setImei($imei)
-                ->setStatus(0);
-
-            $estimated = $maxPrice;
-
-            if ($form['liquidDamage']->getData() === "1") {
-                $estimation->setLiquidDamage($liquidDamage);
-                $estimated -= $liquidDamage;
-            } else {
-                $estimation->setLiquidDamage(0);
-            }
-
-            if ($form['screenCracks']->getData() === "1") {
-                $estimation->setScreenCracks($screenCracks);
-                $estimated -= $screenCracks;
-            } else {
-                $estimation->setScreenCracks(0);
-            }
-
-            if ($form['casingCracks']->getData() === "1") {
-                $estimation->setCasingCracks($casingCracks);
-                $estimated -= $casingCracks;
-            } else {
-                $estimation->setCasingCracks(0);
-            }
-
-            if ($form['batteryCracks']->getData() === "1") {
-                $estimation->setBatteryCracks($bateryPrice);
-                $estimated -= $bateryPrice;
-            } else {
-                $estimation->setBatteryCracks(0);
-            }
-
-            if ($form['buttonCracks']->getData() === "1") {
-                $estimation->setButtonCracks($buttonPrice);
-                $estimated -= $buttonPrice;
-            } else {
-                $estimation->setButtonCracks(0);
-            }
-            $message = "";
-            if ($estimated < 1) {
-                $estimated = 1;
-                $message = "Ton téléphone a perdu trop de valeur, 
-                mais nous pouvons te le reprendre $estimated euros symbolique";
-            }
-            $estimation->setEstimatedPrice($estimated);
-            $em->persist($estimation);
-            $em->flush();
-
-            return $this->render('admin/final_modify_price.html.twig', [
-                'estimation' => $estimation,
-                'phone' => $phone,
-                'message' => $message,
-                'id' => $id
-            ]);
-        }
-        return $this->render("admin/modifyEstimationQuest.html.twig", [
-            "model" => $model,
-            "brand" => $brand,
-            "capacity" => $capacity,
-            "phone" => $phone,
-            "form" => $form->createView()
-
-        ]);
-    }
 // Permet a l'admin de nettoyer les données aprés 3 ans d'inactivitée.
     /**
      * @Route("/anon", name="users_anon")
