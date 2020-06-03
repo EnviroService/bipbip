@@ -84,7 +84,7 @@ class ResettingController extends AbstractController
 
                 $request->getSession()->getFlashBag()->add('success', "Un mail va vous être envoyé afin que
                 vous puissiez renouveller votre mot de passe.
-                Le lien sera valide 24H");
+                Le lien sera valide 24h");
 
                 $mailer->send($mailUser);
             }
