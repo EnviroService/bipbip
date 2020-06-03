@@ -69,23 +69,29 @@ a{
 /* TITLES */
 .title-page {
     background-color: $secondary-color;
-    height: 115px;
-    width: auto;
-    h1 {
-        font-size: 2.5rem;
-        width: 100%;
-        font-weight: 400;
-        font-family: $fourth-font;
-        color: white;
-        margin: 35px 0 0 354px;
-        background-image: url("../../public/images/feuille-bipbip-title.png");
-        background-repeat: no-repeat;
-        position: absolute;
-        @media screen and (min-width: 768px){
-            min-height : 65vh;
+    font-family: $fourth-font;
+    padding: 30px;
+    color: white;
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 400;
+        span {
+            background-image: url("../../public/images/feuille-bipbip-title.png");
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: 32px;
+            padding-bottom: 5px;
+            padding-right: 30px;
+            @include media-breakpoint-up(sm) {
+                background-size: 48px;
+                padding-bottom: 12px;
+                padding-right: 50px;
+                font-size: 2.5rem;
+            }
         }
-    }
 }
+
 .primary-title{
     font-family: $secondary-font, sans-serif;
     padding:20px;
@@ -215,6 +221,9 @@ a{
 .grey-button{
     @include button($grey-color);
     color: black;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .small-button {
@@ -522,6 +531,10 @@ header {
     @include media-breakpoint-up(md) {
         margin-top: -80px;
         height: 280px;
+    }
+    @include media-breakpoint-up(lg) {
+        margin-top: -40px;
+        height: 200px;
     }
 }
 
