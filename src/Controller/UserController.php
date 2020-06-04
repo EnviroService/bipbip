@@ -150,7 +150,7 @@ class UserController extends AbstractController
             // mail for user
             if (!empty($collect->getDateCollect())) {
                 $day = $collect->getDateCollect()->format("d/m/y");
-                $hour = $collect->getDateCollect()->format("h:i");
+                $hour = $collect->getDateCollect()->format("H:i");
                 $emailExp = (new Email())
                     ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
                     ->to(new Address($user->getEmail(), $user
