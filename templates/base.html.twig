@@ -29,7 +29,7 @@
                                 <div class="row smallLogoMenu align-content-around">
                                     <div class="col">
                                         {% if app.user %}
-                                            <a href="{{ path('user_show', {'id': app.user.id}) }}">
+                                            <a href="{{ path('user_show') }}">
                                         {% else %}
                                             <a href="{{ path('app_login') }}">
                                         {% endif %}
@@ -56,7 +56,7 @@
                                                 {% if role == 'ROLE_COLLECTOR' or role == 'ROLE_ADMIN' %}
                                                     <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
                                                 {% else %}
-                                                    <a class="primary-title-menu" href="{{ path('user_show', {'id': app.user.id}) }}">Mon profil</a>
+                                                    <a class="primary-title-menu" href="{{ path('user_show') }}">Mon profil</a>
                                                 {% endif %}
                                             {% endfor %}
                                         <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
