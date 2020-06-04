@@ -8,11 +8,7 @@
 
 {% block body %}
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center" id="successMessage">
-            {{ message}}
-        </div>
-    {% endfor %}
+
     {{ include ('admin/_form.html.twig') }}
 
     {% if nbrPhoneBdd is defined %}
