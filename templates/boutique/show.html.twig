@@ -6,23 +6,24 @@
     <h1 class="mb-5 text-center">Boutique</h1>
 
     <div class="container mb-5">
-        <div class="row">
-            <div class="contenu">
-                <div class="content d-flex">
-                    <div class="image col-3">
-                        <img src="{{ asset(boutique.image) }}" class="mr-5" alt="">
-                    </div>
-                    <div class="info col-2">
+        <div class="row border align-items-center">
+            <div class="image col-12 col-md-5 text-center mt-3">
+                <img src="{{ asset(boutique.image) }}" class="mr-5 ml-auto mr-auto" alt="">
+            </div>
+            <div class="col-12 col-md-5 text-center mt-3">
+                <div class="row">
+                    <div class="info col-12 col-md-12 border-bottom">
                         <h2>{{ boutique.brand }}</h2>
                         <h3>{{ boutique.model }}</h3>
                         <h4>{{ boutique.capacity }} Go</h4>
                     </div>
-                    <div class="description col-6">
+                    <div class="description col-12 col-md-12 p-2">
                         <h4>Description</h4>
-                        <p>{{ boutique.description }}</p>
+                        <p class="border-bottom">{{ boutique.description }}</p>
                         <p>Prix: {{ boutique.prix }} €</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
