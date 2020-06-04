@@ -49,7 +49,7 @@
                         </a>
                     {% endif %}
                 </article>
-                <article class="answer">{{faq.answer}} </article>
+                <article class="answer">{{faq.answer | nl2br }} </article>
             </div>
             {% endfor %}
         {% else %}
