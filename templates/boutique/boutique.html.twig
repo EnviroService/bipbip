@@ -39,7 +39,7 @@ La boutique BipBip
             <div class="row" id="telephonePromo">
                 {% for promo in promos %}
                     <div class="col-12 col-sm-5 text-center border-left mt-5">
-                        <img src="{{ asset(promo.image) }}" alt="">
+                        <img src="{{ asset(promo.image) }}" alt="téléphone">
                     </div>
                     <div class="col-sm-7 text-center">
                         <div class="text-center mt-5 mb-5">
@@ -49,12 +49,10 @@ La boutique BipBip
                         </div>
                         <div class="">
                             <p>
-                                descrition
+                                description
                             </p>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus culpa delectus dicta dolorem
-                                dolores error excepturi fugiat fugit hic ipsum neque nesciunt, non officia quaerat quo rem veniam,
-                                vero voluptate.
+                                {{ promo.description }}
                             </p>
                         </div>
                     </div>
@@ -100,7 +98,7 @@ La boutique BipBip
                 <div class="">
                     <p>
                         Quand tu recevras ton green mobile, poste une photo sur Instagram en le mettant bien en avant
-                        dans son emballage ouvert <span class="textBlue">#jesuisbipbip</span> et grâce à toi, 1 € sera reversé
+                        dans son emballage ouvert <span class="textBlue">#BipBipAttitude</span> et grâce à toi, 1 € sera reversé
                         à <span class="textBlue">une asso</span>
                     </p>
                 </div>
