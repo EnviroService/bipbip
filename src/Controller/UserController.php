@@ -259,21 +259,16 @@ class UserController extends AbstractController
     }
 // Profil du user
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/", name="user_show")
      * @IsGranted("ROLE_USER")
-     * @param User $user
      * @return Response
      */
-    public function showUser(User $user): Response
+    public function showUser(): Response
     {
-        if (($this->getUser()->getId()) == $user->getId()) {
-            return $this->render('user/showUser.html.twig', [
-                'user' => $user,
-            ]);
-        } else {
-            $this->addFlash('danger', 'Tu ne peux pas accèder au compte d\'un autre utilisateur');
-            return $this->redirectToRoute('home');
-        }
+
+        return $this->render('user/showUser.html.twig', [
+            'user' => $this->getUser(),
+        ]);
     }
 // Modifie les informations du profil
     /**
@@ -292,9 +287,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_show', [
-                'id' => $user->getId(),
-            ]);
+            return $this->redirectToRoute('user_show');
         }
         return $this->render('user/editUser.html.twig', [
             'user' => $user,

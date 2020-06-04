@@ -35,11 +35,11 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> User files ###
-/public/uploads/BDC/
-/public/uploads/CI/
-/public/uploads/etiquettes/
-/public/uploads/signatures/
-/public/uploads/barcodes/
+/public/uploads/BDC/*
+/public/uploads/CI/*
+/public/uploads/etiquettes/*
+/public/uploads/signatures/*
+/public/uploads/barcodes/*
 /public/*.png
 
 ###< User files ###

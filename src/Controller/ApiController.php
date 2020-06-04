@@ -243,9 +243,7 @@ class ApiController extends AbstractController
                         if ($filename === $value) {
                             $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
                         elle est disponible sur votre profil');
-                            return $this->redirectToRoute('user_show', [
-                                'id' => $idUser
-                            ]);
+                            return $this->redirectToRoute('user_show');
                         }
                     }
                 }
@@ -267,15 +265,11 @@ class ApiController extends AbstractController
             les étiquettes vous appartenant sont disponibles');
             $id = $this->getUser()->getId();
 
-            return $this->redirectToRoute("user_show", [
-                'id' => $id
-            ]);
+            return $this->redirectToRoute("user_show");
         }
         $id = $this->getUser()->getId();
 
-        return $this->redirectToRoute("user_show", [
-            'id' => $id
-        ]);
+        return $this->redirectToRoute("user_show");
     }
 // Lien avec l'API chronopost Sans envoi : génération du code
     /**
@@ -420,8 +414,6 @@ class ApiController extends AbstractController
         $this->addFlash("success", "Félicitations, tu vas recevoir un mail contenant le numéro à 
         présenter au bureau de poste");
 
-        return $this->redirectToRoute("user_show", [
-            'id' => $user->getId()
-        ]);
+        return $this->redirectToRoute("user_show");
     }
 }

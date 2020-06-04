@@ -28,7 +28,7 @@
                 <p class="mb-1">Où puis-je avoir accès à ces données ?</p>
                 <small class="text-muted">Depuis
                     {% if app.user.id is defined %}
-                    <a href="{{ path('user_show', { id:app.user.id}) }}">ton compte client</a>
+                    <a href="{{ path('user_show') }}">ton compte client</a>
                     {% else %}
                     ton compte client si tu es connecté
                     {% endif %}
