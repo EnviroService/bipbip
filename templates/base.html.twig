@@ -12,8 +12,16 @@
     </head>
     <body>
     <div class="container-fluid">
+        {# Tout le site version User apparaît en colonne centrée 8/12 en grand écran, #}
+
+        {% if '/admin/' in app.request.uri  %}
+        <div class="row justify-content-center">
+            <div class="col col-lg-12 bg-white">
+        {% else %}
         <div class="row justify-content-center">
             <div class="col col-lg-8 bg-white">
+        {% endif %}
+
     {% block header %}
         <header>
             <div class="row pb-3 ">
