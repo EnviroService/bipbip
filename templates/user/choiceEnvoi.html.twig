@@ -3,25 +3,7 @@
 {% block body %}
 
     <div class="container col-10 d-flex flex-wrap justify-content-between mt-5">
-        <div class="card col-5 mt-2 mb-2 border-dark">
-            <img src="{{ asset('/images/echange-tel.png') }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title text-center">
-                    DEPOT
-                </h5>
-                <p class="card-text text-center">
-                    En cliquant sur "Trouver un point de collecte", tu seras redirigé vers
-                    la page te proposant différentes collectes disponibles
-                </p>
-                <p class="text-center">
-                    <a class="primary-button m-auto" href="{{ path('show_collect') }}">
-                        Trouver un point de collecte
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="card col-5 mt-2 mb-2 border-dark justify-content-center">
+        <div class="card col-12 col-md-5 mt-2 mb-2 border-dark justify-content-center">
             <img src="{{ asset('/images/chronopost-colis.png') }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title text-center">
@@ -32,12 +14,31 @@
                     coller sur ton colis et l'envoyer directement à notre dépot.
                 </p>
                 <p class="text-center">
-                    <a class="primary-button m-auto" href="{{ path('envoi_chronopost', {'user': user, 'id': estimation.id} ) }}">
+                    <a class="primary-button button-chrono mt-1" href="{{ path('envoi_chronopost', {'user': user, 'id': estimation.id} ) }}">
                         Envoi par Chronopost
                     </a>
                 </p>
             </div>
         </div>
+        <div class="card col-12 col-md-5 mt-2 mb-2 border-dark justify-content-center">
+            <img src="{{ asset('/images/echange-tel.png') }}" class="card-img-top mt-3" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center">
+                    DEPOT
+                </h5>
+                <p class="card-text text-center">
+                    En cliquant sur "Trouver un point de collecte", tu seras redirigé vers
+                    la page te proposant différentes collectes disponibles
+                </p>
+                <p class="text-center">
+                    <a class="primary-button button-depot m-auto" href="{{ path('show_collect') }}">
+                        Trouver un point de collecte
+                    </a>
+                </p>
+            </div>
+        </div>
+
+
         <div class="col-12">
             <p class="card-text text-danger text-center font-italic mt-3 mb-5">
                 Le paiement sera

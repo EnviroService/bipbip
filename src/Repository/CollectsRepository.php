@@ -23,7 +23,7 @@ class CollectsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('c')
             ->where('c.dateCollect > current_date()')
-            ->orderBy('c.dateCollect', 'DESC');
+            ->orderBy('c.dateCollect', 'ASC');
 
         $query = $qb->getQuery();
 
