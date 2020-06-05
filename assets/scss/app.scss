@@ -195,7 +195,7 @@ a{
         text-decoration: none;
     }
     @media screen and (min-width: 768px) {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding : 10px;
         min-width: 150px;
         max-width: 300px;
@@ -209,7 +209,26 @@ a{
 .secondary-button{
     @include button($secondary-color)
 }
-
+.button-depot{
+    width: 150px;
+    height: 45px;
+    margin-top: 2px;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+        width: 75px;
+        height: 72px;
+    }
+}
+.button-chrono{
+    width: 150px;
+    height: 45px;
+    margin-top: 2px;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+        width: 75px;
+        height: 72px;
+    }
+}
 .third-button{
     @include button($third-color)
 }
@@ -452,7 +471,7 @@ header {
             display: flex; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
             right: 5vw;
-            bottom: 3vh; /* Place the button at the bottom of the page */
+            bottom: 4.5vh; /* Place the button at the bottom of the page */
             z-index: 99; /* Make sure it does not overlap */
             border: none; /* Remove borders */
             outline: none; /* Remove outline */
