@@ -40,9 +40,14 @@
                 </div>
                 {% if estimation.status == 1 %}
                     <div class="col-3 p-3">
-                    <p class="text-success">
-                        Vendu
-                    </p>
+                        <p class="text-success">
+                            Vendu
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <a class="primary-button mb-3 " href="{{ path('showBDC', {id: estimation.id}) }}" target="_blank">
+                            Voir bon Cession
+                        </a>
                     </div>
                 {% elseif estimation.status == 0 %}
                     <div class="col-3 p-3">

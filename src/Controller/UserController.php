@@ -14,6 +14,7 @@ use App\Repository\OrganismsRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use phpDocumentor\Reflection\Types\Integer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -312,6 +313,37 @@ class UserController extends AbstractController
         return $this->render('user/editUser.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/showBDC/{id}", name="showBDC")
+     * @param string $id
+     */
+    public function showBDC(string $id)
+    {
+
+        // Ouverture du dossier de BDC.
+        $files = scandir('uploads/BDC/');
+        $repertory = '/../uploads/BDC/';
+
+        $fichier = "";
+        // Boucle sur chaques fichiers.
+        foreach ($files as $file) {
+            // Récupération du nom de fichier pour obtenir l'id de l'estimation présente juste apres la lettre P.
+            $name = strrchr($file, 'P');
+            // On explode la chaine de caractere en tableau pour séparer l'extension et récupérer juste "P...".
+            // On supprime également le caractere 'P'.
+            $explode = explode(".", str_replace("P", "", $name));
+            $repertoryId = $explode[0];
+
+            if ($repertoryId == $id) {
+                $fichier = $repertory . $file;
+            }
+        }
+
+        return new Response($fichier, 200, [
+            'Content-Type' => 'application/pdf'
         ]);
     }
 }
