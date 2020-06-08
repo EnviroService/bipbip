@@ -173,6 +173,24 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("collect_confirm");
     }
+
+    // Désinscription collecte
+
+    /**
+     * @Route("/resetCollect/", name="reset_collect")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function resetCollect(EntityManagerInterface $em)
+    {
+        $user = $this->getUser();
+        $user->setCollect(null);
+        $em->persist($user);
+        $em->flush();
+
+        return $this->redirectToRoute('user_show');
+    }
+
 // Confirmation inscription collecte
     /**
      * @Route("/confirm/collect/", name="collect_confirm")
