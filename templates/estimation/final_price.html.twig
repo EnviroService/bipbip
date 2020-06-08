@@ -17,8 +17,9 @@
                 </div>
                 {% else %}
                 <div class="jumbotron">
-                    <h4>Pour finaliser la vente de ton téléphone, crée ton compte et accède aux lieux de collecte</h4>
+                    <h4>Pour finaliser la vente de ton téléphone, crée ton compte ou connecte toi et accède aux lieux de collecte</h4>
                     <a class="primary-button" href="{{ path("estimation_register_user", {'estimation': estimation.id}) }}">Créer mon compte</a>
+                    <a class="primary-button" href="{{ path("app_login") }}">Connecte toi</a>
                 </div>
                 {% endif %}
 

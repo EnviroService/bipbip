@@ -18,7 +18,7 @@
             <p>Adresse : {{ user.collect.collector.organismAddress }}, {{ user.collect.collector.organismPostcode }}
                 {{ user.collect.collector.organismCity }}</p>
             <p>Téléphone : {{ user.collect.collector.organismPhone }}</p>
-            <p><a href="{{ path('reset_collect') }}">Se désinscrire de cette collecte</a></p>
+            <p><a href="{{ path('reset_collect') }}" class="font-weight-bold">Se désinscrire de cette collecte</a></p>
         {% else %}
             <p>Tu n'es inscrit à aucune collecte.</p>
         {% endif %}

@@ -16,6 +16,9 @@
             <div class="row">
             <div class="offset-sm-2 col-sm-8 offset-sm-2">
                 <p>Afin d'accéder aux points de collecte te concernant, appartiens-tu à un des organismes de la liste ci-dessous ?</p>
+                <p class="font-italic">
+                    Aucun organisme? pas d'inquiétude il y a des collectes public et également la possibilité d'envoyer par chronopost
+                </p>
                 {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de BipBip Mobile :', 'label_attr': {'class': 'label-registration-form'} }) }}
                 <p class="contact-link">Tu souhaites que ton entreprise ou ton école organise une collecte ? N'hésite pas à nous envoyer un message en <a href="{{ path('add_message') }}" class="font-italic" target="_blank">cliquant ici !</a></p>
             </div>

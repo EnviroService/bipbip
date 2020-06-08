@@ -119,7 +119,9 @@ class UserController extends AbstractController
         }
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
-            'collector' => $organism
+            'collector' => $organism,
+            'user' => $this->getUser(),
+            'id' => $_GET['id']
         ]);
     }
 // le user choisie sa collecte et un mail de confirmation lui est envoyé

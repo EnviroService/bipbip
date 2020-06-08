@@ -80,6 +80,9 @@
                     {% if app.user.roles is defined %}
                         <div class="col-sm-2 p-0">
                             <a class="primary-button" href="{{ path('choice', {collect: collect.id }) }}">J'y vais !</a>
+                            <a class="primary-button button-chrono mt-1" href="{{ path('envoi_chronopost', {'user': user, 'id': id} ) }}">
+                                Envoie
+                            </a>
                         </div>
                     {% else %}
                         <div class="col-sm-2">
