@@ -53,6 +53,7 @@ class RegistrationFormType extends AbstractType
                         ->orderBy('o.organismName', 'ASC')
                        ;
                 },
+                'placeholder' => '-- Aucun --',
                 'required' => false,
                 'choice_label' => 'organismName',
                 'expanded' => false,
