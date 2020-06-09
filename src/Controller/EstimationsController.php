@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Form\EstimationsType;
+use App\Repository\CollectsRepository;
 use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
@@ -59,11 +60,13 @@ class EstimationsController extends AbstractController
      * @param EstimationsRepository $eRepo
      * @return Response
      */
-    public function indexUncollected(EstimationsRepository $eRepo): Response
+    public function indexUncollected(EstimationsRepository $eRepo, CollectsRepository $collectsRepo): Response
     {
         $estimations = $eRepo->findByUncollected();
+
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            //'collect' => $collects,
             'pageTitle' => 'Estimations à collecter'
         ]);
     }
