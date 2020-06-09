@@ -319,15 +319,14 @@ class UserController extends AbstractController
     /**
      * @Route("/showBDC/{id}", name="showBDC")
      * @param string $id
+     * @return Response
      */
     public function showBDC(string $id)
     {
-
         // Ouverture du dossier de BDC.
         $files = scandir('uploads/BDC/');
-        $repertory = '/../uploads/BDC/';
+        $repertory = 'uploads/BDC/';
 
-        $fichier = "";
         // Boucle sur chaques fichiers.
         foreach ($files as $file) {
             // Récupération du nom de fichier pour obtenir l'id de l'estimation présente juste apres la lettre P.
@@ -335,14 +334,18 @@ class UserController extends AbstractController
             // On explode la chaine de caractere en tableau pour séparer l'extension et récupérer juste "P...".
             // On supprime également le caractere 'P'.
             $explode = explode(".", str_replace("P", "", $name));
+            // La valeur de l'id estimation se trouve en clé 0 de chaques tableaux
             $repertoryId = $explode[0];
 
+            // Verification entre id estimation et id present dans les uploads
+            // Si on trouve l'id, on récupére le contenu du fichier
             if ($repertoryId == $id) {
                 $fichier = $repertory . $file;
+                $pdf = file_get_contents($fichier);
             }
         }
 
-        return new Response($fichier, 200, [
+        return new Response($pdf, 200, [
             'Content-Type' => 'application/pdf'
         ]);
     }
