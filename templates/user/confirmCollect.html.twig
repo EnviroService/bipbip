@@ -20,9 +20,15 @@
             <dd class="col-sm-9 p-3">Elle sera nécessaire pour que nous puissions valider le contrat de cession.</dd>
 
         </dl>
+        <div class="jumbotron text-center">
+            <h4>Rappel de l'adresse</h4>
+            <p>Tu a rendez vous avec <span class="font-weight-bold">{{ collect.collector.organismName }}</span></p>
+            <p><span class="d-block mb-3">A cette adresse:</span> {{ collect.collector.organismAddress }}, {{ collect.collector.organismPostCode }} {{ collect.collector.organismCity }}</p>
+            <p>le {{ collect.dateCollect | date('d/m/Y') }} à {{ collect.dateCollect | date('H:i') }}</p>
+        </div>
         <div class="row">
             <ul class="col-7 mx-auto text-left">
-                <li>Un collecteur t'accueillera pour procéder à la collecte.</li>
+                <li>Un collecteur de {{ collect.collector.organismName }} t'accueillera pour procéder à la collecte.</li>
                 <li class="mt-1">Les informations fournies seront vérifiées et la vente signée.</li>
                 <li class="mt-3">Grâce à Pumpkin, tu pourras être payé immédiatement !</li>
             </ul>

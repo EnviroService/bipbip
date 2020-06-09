@@ -174,7 +174,9 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->redirectToRoute("collect_confirm");
+        return $this->redirectToRoute("collect_confirm", [
+            'collectId' => $collect->getId()
+        ]);
     }
 
     // Désinscription collecte
@@ -195,16 +197,22 @@ class UserController extends AbstractController
     }
 
 // Confirmation inscription collecte
+
     /**
      * @Route("/confirm/collect/", name="collect_confirm")
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
-    public function collectConfirm()
+    public function collectConfirm(CollectsRepository $collectsRepo)
     {
         $user = $this->getUser();
+        $collectId = $_GET['collectId'];
+        $collect = $collectsRepo->findOneBy(['id' => $collectId]);
+
 
         return $this->render('user/confirmCollect.html.twig', [
             'user' => $user,
+            'collect' => $collect
         ]);
     }
 // Permet a l'admin de lister ces collecteurs
