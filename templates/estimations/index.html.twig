@@ -65,7 +65,7 @@
                     {# content #}
                     <div class="col-1 text-center ">
                     {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
-                    {% if estimation.status == 2 %}
+                    {% if estimation.status == 2 or estimation.status == 4 %}
                         <i class="fas fa-truck icon-blue"></i>
                     {% elseif difference.days < 15 %}
                         <i class="fas fa-mobile-alt icon-green"></i>

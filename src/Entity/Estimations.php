@@ -102,6 +102,12 @@ class Estimations
     private $imei;
 
     /**
+     **Status selon le stade de l'estimation:
+     * ** 0 => estimation effectuée.
+     * ** 1 => estimation finalisée et payée.
+     * ** 2 => estimation envoyée par chronopost avec étiquette.
+     * ** 3 =>
+     * ** 4 => estimation envoyées par chronopost avec un code recu par message.
      * @ORM\Column(type="integer")
      */
     private $status;
