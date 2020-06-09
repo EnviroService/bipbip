@@ -72,6 +72,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $lastname = strtoupper($form->get('lastname')->getData());
+            $user->setLastname($lastname);
             $user->setRoles(['ROLE_COLLECTOR']);
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
