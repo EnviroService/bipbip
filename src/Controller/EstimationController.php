@@ -281,7 +281,7 @@ class EstimationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             $firstname = $user->getFirstname();
-            $this->addFlash('success', "Compte créé, bienvenue $firstname.");
+            $this->addFlash('success', "Compte créé, bienvenue $firstname !");
 
 
             $guardHandler->authenticateUserAndHandleSuccess(
