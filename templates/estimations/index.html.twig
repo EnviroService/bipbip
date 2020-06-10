@@ -43,8 +43,9 @@
             <div class="row align-items-center table-head rounded-top">
                 {# titles #}
                 <div class="col-1 text-center">
+                    Status
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
                     Nom - Prénom
                 </div>
                 <div class="col-2 text-center">
@@ -56,14 +57,19 @@
                 <div class="col-2 text-center">
                     Date
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
+                    Collecteur
+                </div>
+                <div class="col-2 text-center">
+                    Action
                 </div>
             </div>
 
             {% for estimation in estimations %}
                 <div class="row align-items-center border-bottom">
                     {# content #}
-                    <div class="col-1 text-center ">
+
+                    <div class="col-1 text-center">
                     {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
                     {% if estimation.status == 2 or estimation.status == 4 %}
                         <i class="fas fa-truck icon-blue"></i>
@@ -75,28 +81,39 @@
                         <i class="fas fa-mobile-alt icon-red"></i>
                     {% endif %}
                     </div>
-                    <div class="col-3 text-center">
+
+                    <div class="col-2 text-center">
                         {% if estimation.user is not null%}
                             {{  estimation.user.lastname }} {{ estimation.user.firstname }}
                         {% else %}
                             Utilisateur Anonyme
                         {% endif %}
                     </div>
-                    <div class="col-2 text-center ">
+
+                    <div class="col-2 text-center">
                         {{ estimation.brand }} {{ estimation.model }}
                     </div>
-                    <div class="col-1 text-center ">
+
+                    <div class="col-1 text-center">
                         {{ estimation.estimatedPrice }} €
                     </div>
+
                     <div class="col-2 text-center">
                         {{ estimation.estimationDate | date('d/m/Y') }}
                     </div>
 
-{% if estimation.user.collect is not null %}
-                    <div class="col-2 text-center">
-                        {{ estimation.user.collect.collector.organismName }}
+                    {% if estimation.user.collect is not null %}
+                    <div class="col-2 text-center mt-1 mb-1">
+                        <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
+                        {{ estimation.user.collect.collector.organismAddress }}<br>
+                        {{ estimation.user.collect.collector.organismPostCode }}
+                        {{ estimation.user.collect.collector.organismCity }}
                     </div>
-{% endif %}
+                    {% else %}
+                        <div class="col-2 text-center">
+                            non inscrit
+                        </div>
+                    {% endif %}
 
                     <div class="col-2 text-center">
                     {% if estimation.isCollected == 0 and estimation.user is null %}
