@@ -20,10 +20,10 @@
 
             <h1 class="third-title text-center">{{ pageTitle }}</h1>
             <div class="text-right">
-                <a class="third-button text-right" href="{{ path('show_collect') }}">
+                <a class="third-button text-right" href="{{ path('collects_index') }}">
                     Collectes à venir
                 </a>
-
+            </div>
             <div class="row align-items-center mb-2 mt-4">
                 {# legende #}
                 <div class="col-2 text-center">
@@ -76,11 +76,11 @@
                     {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
                     {% if estimation.status == 2 or estimation.status == 4 %}
                         <i class="fas fa-truck icon-blue"></i>
-                    {% elseif difference.days < 15 %}
+                    {% elseif difference.days < 15 and estimation.status != 1 %}
                         <i class="fas fa-mobile-alt icon-green"></i>
                     {% elseif difference.days > 15 and difference.days < 30 %}
                         <i class="fas fa-mobile-alt icon-orange"></i>
-                    {% elseif estimation.status == 1 %}
+                    {% elseif estimation.status == 1 or estimation.isCollected == 1 %}
                         <i class="far fa-handshake icon-green"></i>
                     {% else %}
                         <i class="fas fa-mobile-alt icon-red"></i>
@@ -137,6 +137,10 @@
                         <a class="primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
                             Collecter
                         </a>
+                    {% elseif estimation.isCollected == 1 %}
+                        <p class="text-success">
+                            Acheté
+                        </p>
                     {% else %}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
