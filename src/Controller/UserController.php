@@ -150,11 +150,14 @@ class UserController extends AbstractController
         $collect = $repository->findOneBy(['id' => $collect]);
         if (!empty($collect)) {
             $estimation = $estimationsRepo->find($_GET['estimation']);
-            $estimation->setStatus(5); // Estimation enregistrée à une collecte.
+            if ($estimation != null) {
+                $estimation->setStatus(5); // Estimation enregistrée à une collecte.
+                $em->persist($estimation);
+            }
+
             $organism = $collect->getCollector();
             $user->setCollect($collect);
             $em->persist($user);
-            $em->persist($estimation);
             $em->flush();
 
             // mail for user
