@@ -26,16 +26,19 @@
 
             <div class="row align-items-center mb-2 mt-4">
                 {# legende #}
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
+                    Vendu : <i class="far fa-handshake icon-green"></i>
+                </div>
+                <div class="col-2 text-center">
                     Estimation active : <i class="fas fa-mobile-alt icon-green"></i>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
                     + de 15 jours : <i class="fas fa-mobile-alt icon-orange"></i>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-2 text-center">
                     + de 30 jours : <i class="fas fa-mobile-alt icon-red"></i>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     Envoi Chronopost : <i class="fas fa-truck icon-blue"></i>
                 </div>
 
@@ -77,6 +80,8 @@
                         <i class="fas fa-mobile-alt icon-green"></i>
                     {% elseif difference.days > 15 and difference.days < 30 %}
                         <i class="fas fa-mobile-alt icon-orange"></i>
+                    {% elseif estimation.status == 1 %}
+                        <i class="far fa-handshake icon-green"></i>
                     {% else %}
                         <i class="fas fa-mobile-alt icon-red"></i>
                     {% endif %}
@@ -102,17 +107,25 @@
                         {{ estimation.estimationDate | date('d/m/Y') }}
                     </div>
 
-                    {% if estimation.user.collect is not null %}
-                    <div class="col-2 text-center mt-1 mb-1">
-                        <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
-                        {{ estimation.user.collect.collector.organismAddress }}<br>
-                        {{ estimation.user.collect.collector.organismPostCode }}
-                        {{ estimation.user.collect.collector.organismCity }}
-                    </div>
-                    {% else %}
-                        <div class="col-2 text-center">
-                            non inscrit
+                    {% if estimation.user is not null %}
+                        {% if estimation.user.collect is not null %}
+                        <div class="col-2 text-center mt-1 mb-1">
+                            <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
+                            {{ estimation.user.collect.collector.organismAddress }}<br>
+                            {{ estimation.user.collect.collector.organismPostCode }}
+                            {{ estimation.user.collect.collector.organismCity }}<br>
+                            le {{ estimation.user.collect.dateCollect | date('d/m/Y') }}
+                            à {{ estimation.user.collect.dateCollect | date('H:i') }}
                         </div>
+                        {% else %}
+                            <div class="col-2 text-center">
+                                non inscrit
+                            </div>
+                        {% endif %}
+                        {% else %}
+                            <div class="col-2 text-center">
+                                non inscrit
+                            </div>
                     {% endif %}
 
                     <div class="col-2 text-center">

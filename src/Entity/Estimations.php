@@ -118,6 +118,11 @@ class Estimations
      */
     private $reporting;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collects", inversedBy="estimations")
+     */
+    private $collect;
+
 
     public function getId(): ?int
     {
@@ -353,6 +358,18 @@ class Estimations
         if ($reporting->getEstimation() !== $this) {
             $reporting->setEstimation($this);
         }
+
+        return $this;
+    }
+
+    public function getCollect(): ?Collects
+    {
+        return $this->collect;
+    }
+
+    public function setCollect(?Collects $collect): self
+    {
+        $this->collect = $collect;
 
         return $this;
     }

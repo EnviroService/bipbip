@@ -34,9 +34,15 @@ class Collects
      */
     private $clients;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Estimations", mappedBy="collect")
+     */
+    private $estimations;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
+        $this->estimations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,6 +99,37 @@ class Collects
             // set the owning side to null (unless already changed)
             if ($client->getCollect() === $this) {
                 $client->setCollect(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Estimations[]
+     */
+    public function getEstimations(): Collection
+    {
+        return $this->estimations;
+    }
+
+    public function addEstimation(Estimations $estimation): self
+    {
+        if (!$this->estimations->contains($estimation)) {
+            $this->estimations[] = $estimation;
+            $estimation->setCollect($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstimation(Estimations $estimation): self
+    {
+        if ($this->estimations->contains($estimation)) {
+            $this->estimations->removeElement($estimation);
+            // set the owning side to null (unless already changed)
+            if ($estimation->getCollect() === $this) {
+                $estimation->setCollect(null);
             }
         }
 

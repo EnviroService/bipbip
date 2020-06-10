@@ -129,6 +129,7 @@ class UserController extends AbstractController
         ]);
     }
 // le user choisie sa collecte et un mail de confirmation lui est envoyé
+
     /**
      * @Route("/choice/{collect}", name="choice")
      * @ParamConverter("collect" , class="App\Entity\Collects", options={"id"="collect"})
@@ -136,6 +137,7 @@ class UserController extends AbstractController
      * @param CollectsRepository $repository
      * @param Collects $collect
      * @param MailerInterface $mailer
+     * @param EstimationsRepository $estimationsRepo
      * @return RedirectResponse
      * @throws TransportExceptionInterface
      */
@@ -152,6 +154,8 @@ class UserController extends AbstractController
             $estimation = $estimationsRepo->find($_GET['estimation']);
             if ($estimation != null) {
                 $estimation->setStatus(5); // Estimation enregistrée à une collecte.
+                $collect->addEstimation($estimation);
+                $em->persist($collect);
                 $em->persist($estimation);
             }
 
@@ -195,10 +199,30 @@ class UserController extends AbstractController
     /**
      * @Route("/resetCollect/", name="reset_collect")
      * @param EntityManagerInterface $em
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
-    public function resetCollect(EntityManagerInterface $em)
+    public function resetCollect(EntityManagerInterface $em, CollectsRepository $collectsRepo)
     {
+        $user = $this->getUser();
+        $estimationsUser = $user->getEstimations();
+        $collect = $collectsRepo->find($_GET['collect']);
+
+        if ($collect) {
+            $estimationsCollect = $collect->getEstimations();
+            foreach ($estimationsCollect as $estimationCollect) {
+                $idEstimationCollect = $estimationCollect->getId();
+                foreach ($estimationsUser as $estimation) {
+                    if ($idEstimationCollect == $estimation->getId()) {
+                        $collect->removeEstimation($estimation);
+                        $estimation->setStatus(0);
+                        $em->persist($estimation);
+                        $em->persist($collect);
+                    }
+                }
+            }
+        }
+
         $user = $this->getUser();
         $user->setCollect(null);
         $em->persist($user);
