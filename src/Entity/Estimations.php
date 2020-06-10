@@ -106,8 +106,9 @@ class Estimations
      * ** 0 => estimation effectuée.
      * ** 1 => estimation finalisée et payée.
      * ** 2 => estimation envoyée par chronopost avec étiquette.
-     * ** 3 =>
+     * ** 3 => Estimation refusée par BipBip.
      * ** 4 => estimation envoyées par chronopost avec un code recu par message.
+     * ** 5 => estimation inscrit à une collecte.
      * @ORM\Column(type="integer")
      */
     private $status;

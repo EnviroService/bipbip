@@ -25,6 +25,7 @@
             <p>Tu a rendez vous avec <span class="font-weight-bold">{{ collect.collector.organismName }}</span></p>
             <p><span class="d-block mb-3">A cette adresse:</span> {{ collect.collector.organismAddress }}, {{ collect.collector.organismPostCode }} {{ collect.collector.organismCity }}</p>
             <p>le {{ collect.dateCollect | date('d/m/Y') }} à {{ collect.dateCollect | date('H:i') }}</p>
+            <p>Pour le <span class="font-weight-bold">{{ estimation.brand }} {{ estimation.model }}</span> de {{ estimation.capacity }} Go</p>
         </div>
         <div class="row">
             <ul class="col-7 mx-auto text-left">

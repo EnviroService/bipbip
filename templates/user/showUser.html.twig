@@ -88,6 +88,12 @@
                         Refusé
                     </p>
                     </div>
+                {% elseif estimation.status == 5 %}
+                    <div class="col-3 p-3">
+                        <p class="text-success">
+                            Enregistré à une collecte
+                        </p>
+                    </div>
                 {% else %}
                     <div class="col-3 p-3">
                     <p class="text-success">

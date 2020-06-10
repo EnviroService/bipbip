@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\CollectsRepository;
+use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
 use DateTime;
@@ -74,8 +75,10 @@ class UserController extends AbstractController
      * @return Response
      * @throws Exception
      */
-    public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
-    {
+    public function searchCollect(
+        CollectsRepository $collectsRepository,
+        OrganismsRepository $organismsRepository
+    ) {
         if (!empty($this->getUser())) {
             $organism = $this->getUser()->getOrganism();
         } else {
@@ -140,14 +143,18 @@ class UserController extends AbstractController
         EntityManagerInterface $em,
         CollectsRepository $repository,
         Collects $collect,
-        MailerInterface $mailer
+        MailerInterface $mailer,
+        EstimationsRepository $estimationsRepo
     ) {
         $user = $this->getUser();
         $collect = $repository->findOneBy(['id' => $collect]);
         if (!empty($collect)) {
+            $estimation = $estimationsRepo->find($_GET['estimation']);
+            $estimation->setStatus(5); // Estimation enregistrée à une collecte.
             $organism = $collect->getCollector();
             $user->setCollect($collect);
             $em->persist($user);
+            $em->persist($estimation);
             $em->flush();
 
             // mail for user
@@ -175,7 +182,8 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute("collect_confirm", [
-            'collectId' => $collect->getId()
+            'collectId' => $collect->getId(),
+            'estimation' => $estimation->getId()
         ]);
     }
 
@@ -203,16 +211,18 @@ class UserController extends AbstractController
      * @param CollectsRepository $collectsRepo
      * @return Response
      */
-    public function collectConfirm(CollectsRepository $collectsRepo)
+    public function collectConfirm(CollectsRepository $collectsRepo, EstimationsRepository $estimationsRepo)
     {
         $user = $this->getUser();
         $collectId = $_GET['collectId'];
+        $estimationId = $_GET['estimation'];
         $collect = $collectsRepo->findOneBy(['id' => $collectId]);
-
+        $estimation = $estimationsRepo->findOneBy(['id' => $estimationId]);
 
         return $this->render('user/confirmCollect.html.twig', [
             'user' => $user,
-            'collect' => $collect
+            'collect' => $collect,
+            'estimation' => $estimation
         ]);
     }
 // Permet a l'admin de lister ces collecteurs
