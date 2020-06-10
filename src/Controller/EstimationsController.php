@@ -48,7 +48,7 @@ class EstimationsController extends AbstractController
                 ]);
         } else {
             return $this->render('estimations/index.html.twig', [
-            'estimations' => $eRepo->findBy([], ['id' => "ASC"]),
+            'estimations' => $eRepo->findBy([], ['id' => "DESC"]),
             'pageTitle' => 'Toutes les estimations'
             ]);
         }
