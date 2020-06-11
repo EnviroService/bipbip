@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Collects;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -28,6 +30,31 @@ class CollectsRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
 
         return $query->execute();
+    }
+
+    public function findByTomorowCollect()
+    {
+        $dayCollects = [];
+        $interval = new DateInterval('P1D');
+        $today = new DateTime('now');
+        $tomorow = date_add($today, $interval)->format('Y-m-d');
+
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.dateCollect >= :demain')
+            ->setParameter('demain', $tomorow);
+
+        $result = $qb->getQuery()->execute();
+
+        foreach ($result as $collecte) {
+            $date = $collecte->getDateCollect();
+            $today = new DateTime();
+            $diff = date_diff($date, $today)->d;
+
+            if ($diff == 0) {
+                array_push($dayCollects, $collecte);
+            }
+        }
+        return $dayCollects;
     }
 
     // /**
