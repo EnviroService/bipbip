@@ -5,20 +5,25 @@ namespace App\Command;
 
 use App\Repository\CollectsRepository;
 use DateTime;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 
 class PayPerDay extends Command
 {
     protected static $defaultName = 'app.payperday';
 
     private $collectes;
+    private $mailer;
 
-    public function __construct(CollectsRepository $collectsRepo)
+    public function __construct(CollectsRepository $collectsRepo, MailerInterface $mailer)
     {
         parent::__construct(null);
         $this->collectes = $collectsRepo->findByTomorowCollect();
+        $this->mailer = $mailer;
     }
 
     protected function configure()
@@ -63,7 +68,22 @@ class PayPerDay extends Command
                 "$total" . "€"
             ]);
         }
-
         fclose($handle);
+
+        $email = (new TemplatedEmail())
+            ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+            ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile')) // For Paul
+            ->addTo(new Address('github-prod@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
+            ->replyTo('github-test@bipbip-mobile.fr')
+            ->subject("Téléphones à collectés aujourd'hui")
+            ->htmlTemplate(
+                'contact/mailAutoToBeCollected.html.twig'
+            )
+            ->context([
+                'collects' => $this->collectes
+            ])
+            ->attachFromPath($directory . $fileName);
+
+        $this->mailer->send($email);
     }
 }
