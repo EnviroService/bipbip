@@ -35,25 +35,26 @@ class CollectsRepository extends ServiceEntityRepository
     public function findByTomorowCollect()
     {
         $dayCollects = [];
-        $interval = new DateInterval('P1D');
         $today = new DateTime('now');
-        $tomorow = date_add($today, $interval)->format('Y-m-d');
+        $tomorow = new DateTime('+1 day');
+        //$today = date_format($today, 'Y-m-d');
+        $tomorow = date_format($tomorow, 'Y-m-d');
 
         $qb = $this->createQueryBuilder('c')
-            ->where('c.dateCollect >= :demain')
+            ->where('c.dateCollect > :demain')
             ->setParameter('demain', $tomorow);
 
         $result = $qb->getQuery()->execute();
 
         foreach ($result as $collecte) {
             $date = $collecte->getDateCollect();
-            $today = new DateTime();
-            $diff = date_diff($date, $today)->d;
+            $diff = $date->diff($today)->d;
 
             if ($diff == 0) {
                 array_push($dayCollects, $collecte);
             }
         }
+
         return $dayCollects;
     }
 

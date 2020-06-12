@@ -14,7 +14,6 @@ class PayPerDay extends Command
     protected static $defaultName = 'app.payperday';
 
     private $collectes;
-    private $dayCollects = [];
 
     public function __construct(CollectsRepository $collectsRepo)
     {
@@ -30,6 +29,41 @@ class PayPerDay extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $directory = "public/uploads/";
+        $fileName = "dayCollects.csv";
+        $handle = fopen($directory . $fileName, 'w');
+        fputcsv($handle, [
+            'date de collecte',
+            'organisme',
+            'nombre de telephone',
+            'montant total'
+        ]);
 
+        foreach ($this->collectes as $collecte) {
+            $dateCollecte = $collecte->getDateCollect()->format('d-m-Y');
+            $organisme = $collecte->getCollector();
+            $lieu =
+                $organisme->getOrganismAddress()
+                . " "
+                . $organisme->getOrganismPostCode()
+                . " "
+                . $organisme->getOrganismCity();
+            $estimations = $collecte->getEstimations();
+
+            $totalPrice = [];
+            foreach ($estimations as $estimation) {
+                array_push($totalPrice, $estimation->getEstimatedPrice());
+            }
+            $total = array_sum($totalPrice);
+
+            fputcsv($handle, [
+                $dateCollecte,
+                $organisme->getOrganismName(),
+                $lieu,
+                "$total" . "€"
+            ]);
+        }
+
+        fclose($handle);
     }
 }
