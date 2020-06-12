@@ -266,6 +266,8 @@ class EstimationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $lastname = strtoupper($form->get('lastname')->getData());
+            $user->setLastname($lastname);
             $user->setRoles(['ROLE_USER']);
             $user->setSignupDate(new DateTime('now'));
             $user->setSigninDate(new DateTime('now'));
@@ -281,7 +283,7 @@ class EstimationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             $firstname = $user->getFirstname();
-            $this->addFlash('success', "Compte créé, bienvenue $firstname.");
+            $this->addFlash('success', "Compte créé, bienvenue $firstname !");
 
 
             $guardHandler->authenticateUserAndHandleSuccess(

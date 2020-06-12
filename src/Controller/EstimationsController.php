@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Estimations;
 use App\Form\EstimationsType;
+use App\Repository\CollectsRepository;
 use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 // Toutes les estimations en fonction du collecteur
 /**
@@ -22,10 +25,78 @@ class EstimationsController extends AbstractController
     /**
      * @Route("/", name="estimations_index", methods={"GET"})
      * @param EstimationsRepository $eRepo
+     * @param CollectsRepository $collectsRepository
      * @return Response
      */
-    public function index(EstimationsRepository $eRepo): Response
+    public function index(EstimationsRepository $eRepo, CollectsRepository $collectsRepository): Response
     {
+        $collectes = $collectsRepository->findByTomorowCollect();
+        //$response = new StreamedResponse();
+        //$dayCollects = [];
+        $directory = "uploads/";
+        $fileName = "dayCollects.csv";
+        $handle = fopen($directory . $fileName, 'w+');
+        fputcsv($handle, [
+            'date de collecte',
+            'organisme',
+            'nombre de telephone',
+            'montant total'
+        ]);
+
+        foreach ($collectes as $collecte) {
+            $dateCollecte = $collecte->getDateCollect()->format('d-m-Y');
+            $organisme = $collecte->getCollector();
+            $lieu =
+                $organisme->getOrganismAddress()
+                . " "
+                . $organisme->getOrganismPostCode()
+                . " "
+                . $organisme->getOrganismCity();
+            $estimations = $collecte->getEstimations();
+
+            foreach ($estimations as $estim) {
+                dd($estim->getModel());
+            }
+            //dd($estimations);
+
+            fputcsv($handle, [
+                $dateCollecte,
+                $organisme->getOrganismName(),
+                $lieu,
+                ""
+            ]);
+        }
+        fclose($handle);
+
+        /*foreach ($collectes as $collecte) {
+
+        }*/
+        //dd($collectes);
+/*
+
+
+
+            foreach ($collectes as $collecte) {
+            $date = $collecte->getDateCollect();
+            $today = new DateTime();
+            $diff = date_diff($date, $today)->d;
+
+            if ($diff == 0) {
+                array_push($dayCollects, $collecte);
+            }
+        }
+
+        foreach ($dayCollects as $collect) {
+            $collector = $collect->getCollector();
+            dd($collector);
+        }
+*/
+
+            //die();
+
+
+
+
         if ($this->getUser()->getRoles()[0] == 'ROLE_COLLECTOR') {
             $organismUsers = $this->getUser()->getOrganism()->getUsers()->getValues();
             $estimationIds = [];
@@ -47,7 +118,7 @@ class EstimationsController extends AbstractController
                 ]);
         } else {
             return $this->render('estimations/index.html.twig', [
-            'estimations' => $eRepo->findBy([], ['id' => "ASC"]),
+            'estimations' => $eRepo->findBy([], ['id' => "DESC"]),
             'pageTitle' => 'Toutes les estimations'
             ]);
         }
@@ -59,11 +130,13 @@ class EstimationsController extends AbstractController
      * @param EstimationsRepository $eRepo
      * @return Response
      */
-    public function indexUncollected(EstimationsRepository $eRepo): Response
+    public function indexUncollected(EstimationsRepository $eRepo, CollectsRepository $collectsRepo): Response
     {
         $estimations = $eRepo->findByUncollected();
+
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            //'collect' => $collects,
             'pageTitle' => 'Estimations à collecter'
         ]);
     }

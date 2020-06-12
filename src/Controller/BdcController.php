@@ -10,6 +10,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -98,9 +103,10 @@ class BdcController extends AbstractController
      * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
      * @return RedirectResponse
+     * @throws TransportExceptionInterface
      */
     // route to generate a PDF from estimation
-    public function showPDF(Estimations $estimation)
+    public function showPDF(Estimations $estimation, MailerInterface $mailer)
     {
         // if collector, verify that estimation belongs to collector's organism
         // unless redirect him to estimations_index
@@ -177,6 +183,24 @@ class BdcController extends AbstractController
         // Prepare flash message
         $message = "Le bon de cession a été généré";
         $this->addFlash('success', $message);
+
+        $user = $estimation->getUser();
+        $emailExp = (new Email())
+            ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+            ->to(new Address($user->getEmail(), $user
+                    ->getFirstname() . ' ' . $user->getLastname()))
+            ->replyTo('github-test@bipbip-mobile.fr')
+            ->subject('Voici ton bon de cession')
+            ->attachFromPath($pdfFilepath)
+            ->html($this->renderView(
+                'contact/envoiBDC.html.twig',
+                [
+                    'user' => $user,
+                    'estimation' => $estimation
+                ]
+            ));
+        $mailer->send($emailExp);
+
 
         return $this->redirectToRoute('bdc_pay', [
             'id' => $estimation->getId(),

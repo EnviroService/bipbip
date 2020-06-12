@@ -1,0 +1,13 @@
+{% block body %}
+    <p>Salut {{ user.firstname }} !</p>
+    <p>Merci d'avoir choisi BipBip pour recycler ton téléphone</p>
+    <p>Tu trouvera en pièce jointe ton bon de cession.</p>
+    <p>Pour rappel, tu a recyclé ce téléphone: </p>
+    <ul>
+        <li>Marque : {{ estimation.brand }}</li>
+        <li>Modéle : {{ estimation.model }}</li>
+        <li>Capacité : {{ estimation.capacity }} Go</li>
+    </ul>
+    <p>Pour une valeur de <span class="font-weight-bold">{{ estimation.estimatedPrice }} €</span></p>
+    <p>A bientôt sur BipBip Mobile !</p>
+{% endblock %}

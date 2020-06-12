@@ -17,8 +17,19 @@
             <p>Chez : {{ user.collect.collector.organismName }}</p>
             <p>Adresse : {{ user.collect.collector.organismAddress }}, {{ user.collect.collector.organismPostcode }}
                 {{ user.collect.collector.organismCity }}</p>
-            <p>Téléphone : {{ user.collect.collector.organismPhone }}</p>
-            <p><a href="{{ path('reset_collect') }}">Se désinscrire de cette collecte</a></p>
+            <p>Téléphone : 0{{ user.collect.collector.organismPhone }}</p>
+            <p>Pour les téléphones suivants:</p>
+            {% for estimation in user.collect.estimations %}
+                <div>
+                    <p>
+                            _ {{ estimation.brand }}
+                        {{ estimation.model }}
+                        de {{ estimation.capacity }} Go
+                        pour une valeur de: {{ estimation.estimatedPrice }} €
+                    </p>
+                </div>
+            {% endfor %}
+            <p><a href="{{ path('reset_collect', {collect: user.collect.id }) }}" class="font-weight-bold">Se désinscrire de cette collecte</a></p>
         {% else %}
             <p>Tu n'es inscrit à aucune collecte.</p>
         {% endif %}
@@ -40,9 +51,14 @@
                 </div>
                 {% if estimation.status == 1 %}
                     <div class="col-3 p-3">
-                    <p class="text-success">
-                        Vendu
-                    </p>
+                        <p class="text-success">
+                            Vendu
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <a class="primary-button mb-3 " href="{{ path('showBDC', {id: estimation.id}) }}" target="_blank">
+                            Voir bon Cession
+                        </a>
                     </div>
                 {% elseif estimation.status == 0 %}
                     <div class="col-3 p-3">
@@ -82,6 +98,12 @@
                     <p class="text-warning">
                         Refusé
                     </p>
+                    </div>
+                {% elseif estimation.status == 5 %}
+                    <div class="col-3 p-3">
+                        <p class="text-success">
+                            Enregistré à une collecte
+                        </p>
                     </div>
                 {% else %}
                     <div class="col-3 p-3">

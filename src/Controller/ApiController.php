@@ -267,7 +267,6 @@ class ApiController extends AbstractController
 
             return $this->redirectToRoute("user_show");
         }
-        $id = $this->getUser()->getId();
 
         return $this->redirectToRoute("user_show");
     }

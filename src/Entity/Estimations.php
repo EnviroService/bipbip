@@ -102,6 +102,13 @@ class Estimations
     private $imei;
 
     /**
+     **Status selon le stade de l'estimation:
+     * ** 0 => estimation effectuée.
+     * ** 1 => estimation finalisée et payée.
+     * ** 2 => estimation envoyée par chronopost avec étiquette.
+     * ** 3 => Estimation refusée par BipBip.
+     * ** 4 => estimation envoyées par chronopost avec un code recu par message.
+     * ** 5 => estimation inscrit à une collecte.
      * @ORM\Column(type="integer")
      */
     private $status;
@@ -110,6 +117,11 @@ class Estimations
      * @ORM\OneToOne(targetEntity="App\Entity\Reporting", mappedBy="estimation", cascade={"persist", "remove"})
      */
     private $reporting;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Collects", inversedBy="estimations")
+     */
+    private $collect;
 
 
     public function getId(): ?int
@@ -346,6 +358,18 @@ class Estimations
         if ($reporting->getEstimation() !== $this) {
             $reporting->setEstimation($this);
         }
+
+        return $this;
+    }
+
+    public function getCollect(): ?Collects
+    {
+        return $this->collect;
+    }
+
+    public function setCollect(?Collects $collect): self
+    {
+        $this->collect = $collect;
 
         return $this;
     }

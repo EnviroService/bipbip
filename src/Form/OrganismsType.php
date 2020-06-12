@@ -37,7 +37,7 @@ class OrganismsType extends AbstractType
                     'Collecteur public' => 'Collecteur public',
                     'Partenaire économique' => 'Partenaire économique'
                 ],
-                'help' => 'Type de collecteur',
+                'placeholder' => 'Type de collecteur',
             ])
         ;
     }

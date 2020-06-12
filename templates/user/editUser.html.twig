@@ -64,9 +64,10 @@
         </div>
         <div class="row text-center">
             <div class="col pt-2">
-        <button class="primary-button mr-3">{{ button_label|default('Modifier') }}</button>
-        {{ form_end(form ) }}
-    <a href="{{ path('user_show') }}" class="third-button">Annuler</a>
+                <button class="primary-button mr-3">{{ button_label|default('Modifier') }}</button>
+                {{ form_end(form ) }}
+                <a href="{{ path('user_show') }}" class="third-button">Annuler</a>
+                <a href="{{ path('request_resetting') }}" class="secondary-button ml-2">Changer Mot de passe</a>
             </div>
         </div>
     </main>

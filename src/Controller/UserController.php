@@ -9,11 +9,13 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\CollectsRepository;
+use App\Repository\EstimationsRepository;
 use App\Repository\UserRepository;
 use App\Repository\OrganismsRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use phpDocumentor\Reflection\Types\Integer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -73,8 +75,10 @@ class UserController extends AbstractController
      * @return Response
      * @throws Exception
      */
-    public function searchCollect(CollectsRepository $collectsRepository, OrganismsRepository $organismsRepository)
-    {
+    public function searchCollect(
+        CollectsRepository $collectsRepository,
+        OrganismsRepository $organismsRepository
+    ) {
         if (!empty($this->getUser())) {
             $organism = $this->getUser()->getOrganism();
         } else {
@@ -119,10 +123,13 @@ class UserController extends AbstractController
         }
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
-            'collector' => $organism
+            'collector' => $organism,
+            'user' => $this->getUser(),
+            'id' => $_GET['id']
         ]);
     }
 // le user choisie sa collecte et un mail de confirmation lui est envoyé
+
     /**
      * @Route("/choice/{collect}", name="choice")
      * @ParamConverter("collect" , class="App\Entity\Collects", options={"id"="collect"})
@@ -130,6 +137,7 @@ class UserController extends AbstractController
      * @param CollectsRepository $repository
      * @param Collects $collect
      * @param MailerInterface $mailer
+     * @param EstimationsRepository $estimationsRepo
      * @return RedirectResponse
      * @throws TransportExceptionInterface
      */
@@ -137,11 +145,20 @@ class UserController extends AbstractController
         EntityManagerInterface $em,
         CollectsRepository $repository,
         Collects $collect,
-        MailerInterface $mailer
+        MailerInterface $mailer,
+        EstimationsRepository $estimationsRepo
     ) {
         $user = $this->getUser();
         $collect = $repository->findOneBy(['id' => $collect]);
         if (!empty($collect)) {
+            $estimation = $estimationsRepo->find($_GET['estimation']);
+            if ($estimation != null) {
+                $estimation->setStatus(5); // Estimation enregistrée à une collecte.
+                $collect->addEstimation($estimation);
+                $em->persist($collect);
+                $em->persist($estimation);
+            }
+
             $organism = $collect->getCollector();
             $user->setCollect($collect);
             $em->persist($user);
@@ -171,7 +188,10 @@ class UserController extends AbstractController
             }
         }
 
-        return $this->redirectToRoute("collect_confirm");
+        return $this->redirectToRoute("collect_confirm", [
+            'collectId' => $collect->getId(),
+            'estimation' => $estimation->getId()
+        ]);
     }
 
     // Désinscription collecte
@@ -179,10 +199,30 @@ class UserController extends AbstractController
     /**
      * @Route("/resetCollect/", name="reset_collect")
      * @param EntityManagerInterface $em
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
-    public function resetCollect(EntityManagerInterface $em)
+    public function resetCollect(EntityManagerInterface $em, CollectsRepository $collectsRepo)
     {
+        $user = $this->getUser();
+        $estimationsUser = $user->getEstimations();
+        $collect = $collectsRepo->find($_GET['collect']);
+
+        if ($collect) {
+            $estimationsCollect = $collect->getEstimations();
+            foreach ($estimationsCollect as $estimationCollect) {
+                $idEstimationCollect = $estimationCollect->getId();
+                foreach ($estimationsUser as $estimation) {
+                    if ($idEstimationCollect == $estimation->getId()) {
+                        $collect->removeEstimation($estimation);
+                        $estimation->setStatus(0);
+                        $em->persist($estimation);
+                        $em->persist($collect);
+                    }
+                }
+            }
+        }
+
         $user = $this->getUser();
         $user->setCollect(null);
         $em->persist($user);
@@ -192,16 +232,24 @@ class UserController extends AbstractController
     }
 
 // Confirmation inscription collecte
+
     /**
      * @Route("/confirm/collect/", name="collect_confirm")
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
-    public function collectConfirm()
+    public function collectConfirm(CollectsRepository $collectsRepo, EstimationsRepository $estimationsRepo)
     {
         $user = $this->getUser();
+        $collectId = $_GET['collectId'];
+        $estimationId = $_GET['estimation'];
+        $collect = $collectsRepo->findOneBy(['id' => $collectId]);
+        $estimation = $estimationsRepo->findOneBy(['id' => $estimationId]);
 
         return $this->render('user/confirmCollect.html.twig', [
             'user' => $user,
+            'collect' => $collect,
+            'estimation' => $estimation
         ]);
     }
 // Permet a l'admin de lister ces collecteurs
@@ -310,6 +358,40 @@ class UserController extends AbstractController
         return $this->render('user/editUser.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/showBDC/{id}", name="showBDC")
+     * @param string $id
+     * @return Response
+     */
+    public function showBDC(string $id)
+    {
+        // Ouverture du dossier de BDC.
+        $files = scandir('uploads/BDC/');
+        $repertory = 'uploads/BDC/';
+
+        // Boucle sur chaques fichiers.
+        foreach ($files as $file) {
+            // Récupération du nom de fichier pour obtenir l'id de l'estimation présente juste apres la lettre P.
+            $name = strrchr($file, 'P');
+            // On explode la chaine de caractere en tableau pour séparer l'extension et récupérer juste "P...".
+            // On supprime également le caractere 'P'.
+            $explode = explode(".", str_replace("P", "", $name));
+            // La valeur de l'id estimation se trouve en clé 0 de chaques tableaux
+            $repertoryId = $explode[0];
+
+            // Verification entre id estimation et id present dans les uploads
+            // Si on trouve l'id, on récupére le contenu du fichier
+            if ($repertoryId == $id) {
+                $fichier = $repertory . $file;
+                $pdf = file_get_contents($fichier);
+            }
+        }
+
+        return new Response($pdf, 200, [
+            'Content-Type' => 'application/pdf'
         ]);
     }
 }
