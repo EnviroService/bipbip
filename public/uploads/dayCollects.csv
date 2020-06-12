@@ -1,3 +1,3 @@
-"date de collecte",organisme,"nombre de telephone","montant total"
-12-06-2020,flunch,"rue auchan 59360 lomme",
-12-06-2020,mcDo,"rue de graisse 59000 lille",
+"date de collecte",organisme,adresse,"nombre tel","montant total"
+13-06-2020,flunch,"rue auchan 59360 lomme",2,338€
+13-06-2020,Bip-Bip,"391 Avenue Clément Ader 59118 Wambrechies",0,0€

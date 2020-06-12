@@ -1,0 +1,12 @@
+{% block body %}
+    <div class="font-weight-bold">Téléphones à collecter aujourd'hui:</div>
+    <p>
+        Bonjour Natacha, comment va tu? :-) Voici en pièce jointe, le fichier des collectes d'aujourd'hui.<br>
+        Bonne journée et bon courage !
+    </p>
+    <p>
+        --<br>
+        Ce message vous a été envoyé automatiquement le
+        {{ "now"|date("d/m/Y à H:i:s") }}
+    </p>
+{% endblock %}
