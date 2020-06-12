@@ -38,6 +38,14 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("infos/grade", name="grade")
+     */
+    public function grade()
+    {
+        return $this->render('infos/grade.html.twig');
+    }
+
+    /**
      * @Route("infos/bipbip", name="qui-sommes-nous")
      */
     public function who()
