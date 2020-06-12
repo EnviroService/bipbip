@@ -40,7 +40,8 @@ class PayPerDay extends Command
         fputcsv($handle, [
             'date de collecte',
             'organisme',
-            'nombre de telephone',
+            'adresse',
+            'nombre tel',
             'montant total'
         ]);
 
@@ -56,8 +57,10 @@ class PayPerDay extends Command
             $estimations = $collecte->getEstimations();
 
             $totalPrice = [];
+            $nbrTel = 0;
             foreach ($estimations as $estimation) {
                 array_push($totalPrice, $estimation->getEstimatedPrice());
+                $nbrTel++;
             }
             $total = array_sum($totalPrice);
 
@@ -65,6 +68,7 @@ class PayPerDay extends Command
                 $dateCollecte,
                 $organisme->getOrganismName(),
                 $lieu,
+                $nbrTel,
                 "$total" . "€"
             ]);
         }
@@ -72,16 +76,12 @@ class PayPerDay extends Command
 
         $email = (new TemplatedEmail())
             ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
-            ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile')) // For Paul
             ->addTo(new Address('github-prod@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
             ->replyTo('github-test@bipbip-mobile.fr')
             ->subject("Téléphones à collectés aujourd'hui")
             ->htmlTemplate(
-                'contact/mailAutoToBeCollected.html.twig'
+                'contact/sendMailForDayCollect.html.twig'
             )
-            ->context([
-                'collects' => $this->collectes
-            ])
             ->attachFromPath($directory . $fileName);
 
         $this->mailer->send($email);
