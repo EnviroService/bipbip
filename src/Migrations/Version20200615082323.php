@@ -22,7 +22,7 @@ final class Version20200615082323 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE estimations CHANGE imei imei INT NOT NULL');
+        $this->addSql('ALTER TABLE estimations CHANGE imei imei VARCHAR(30)');
     }
 
     public function down(Schema $schema) : void

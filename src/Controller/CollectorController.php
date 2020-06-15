@@ -66,8 +66,8 @@ class CollectorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $imei = $data->getImei();
-            $estimation->setImei($imei);
-
+            $estimation->setImei(intval($imei));
+//dd(intval($imei));
             $em->persist($estimation);
             $em->flush();
 

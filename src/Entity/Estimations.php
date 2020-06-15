@@ -98,13 +98,12 @@ class Estimations
     private $user;
 
     /**
-     * @ORM\Column(type="integer", length=15)
+     * @ORM\Column(type="string", length=17)
      * @Assert\Length(
      *     min=15,
      *     max=15,
      *     minMessage="Le numéro IMEI doit comporter 15 chiffres",
-     *     maxMessage="Le numéro IMEI doit comporter 15 chiffres maximum"
-     * )
+     *     maxMessage="Le numéro IMEI doit comporter 15 chiffres maximum")
      */
     private $imei;
 
@@ -328,12 +327,12 @@ class Estimations
         return $this;
     }
 
-    public function getImei(): ?string
+    public function getImei(): ?int
     {
         return $this->imei;
     }
 
-    public function setImei(string $imei): self
+    public function setImei(int $imei): self
     {
         $this->imei = $imei;
 
