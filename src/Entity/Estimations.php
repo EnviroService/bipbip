@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EstimationsRepository")
@@ -97,7 +98,13 @@ class Estimations
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=17)
+     * @ORM\Column(type="integer", length=15)
+     * @Assert\Length(
+     *     min=15,
+     *     max=15,
+     *     minMessage="Le numéro IMEI doit comporter 15 chiffres",
+     *     maxMessage="Le numéro IMEI doit comporter 15 chiffres maximum"
+     * )
      */
     private $imei;
 
