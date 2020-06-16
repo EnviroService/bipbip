@@ -70,9 +70,14 @@ class EstimationsController extends AbstractController
         $estimations = [];
         if ($liste != null) {
             foreach ($liste as $estimation) {
-                $date = $estimation->getCollect()->getDateCollect();
-                $interval = date_diff($now, $date)->invert;
-                if ($interval == 0) {
+                $collect = $estimation->getCollect();
+                if ($collect != null) {
+                    $date = $collect->getDateCollect();
+                    $interval = date_diff($now, $date)->invert;
+                    if ($interval == 0) {
+                        $estimations[] = $estimation;
+                    }
+                } else {
                     $estimations[] = $estimation;
                 }
             }

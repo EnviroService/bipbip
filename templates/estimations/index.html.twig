@@ -109,14 +109,21 @@
 
                     {% if estimation.user is not null %}
                         {% if estimation.user.collect is not null %}
-                        <div class="col-2 text-center mt-1 mb-1">
-                            <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
-                            {{ estimation.user.collect.collector.organismAddress }}<br>
-                            {{ estimation.user.collect.collector.organismPostCode }}
-                            {{ estimation.user.collect.collector.organismCity }}<br>
-                            le {{ estimation.collect.dateCollect | date('d/m/Y') }}
-                            à {{ estimation.collect.dateCollect | date('H:i') }}
-                        </div>
+                            {% if estimation.collect is not null %}
+                            <div class="col-2 text-center mt-1 mb-1">
+                                <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
+                                {{ estimation.user.collect.collector.organismAddress }}<br>
+                                {{ estimation.user.collect.collector.organismPostCode }}
+                                {{ estimation.user.collect.collector.organismCity }}<br>
+                                le {{ estimation.collect.dateCollect | date('d/m/Y') }}
+                                à {{ estimation.collect.dateCollect | date('H:i') }}
+                            </div>
+                            {% else %}
+                                <div class="col-2 text-center mt-1 mb-1">
+                                    <span class="font-weight-bold">Envoie Chronopost</span>
+                                </div>
+                            {% endif %}
+
                         {% else %}
                             <div class="col-2 text-center">
                                 non inscrit
