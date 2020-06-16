@@ -23,8 +23,7 @@ class EstimationsRepository extends ServiceEntityRepository
     public function findByUncollected()
     {
         $qb = $this->createQueryBuilder('e')
-            ->where('e.isCollected = 0')
-            ->andWhere('e.user is not null')
+            ->where('e.isCollected = 0 AND e.user is not null AND e.status = 5')
             ->orderBy('e.id', 'DESC');
 
         $query = $qb->getQuery();

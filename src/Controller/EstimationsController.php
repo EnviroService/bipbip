@@ -65,7 +65,18 @@ class EstimationsController extends AbstractController
      */
     public function indexUncollected(EstimationsRepository $eRepo, CollectsRepository $collectsRepo): Response
     {
-        $estimations = $eRepo->findByUncollected();
+        $liste = $eRepo->findByUncollected();
+        $now = new DateTime('now');
+        $estimations = [];
+        if ($liste != null) {
+            foreach ($liste as $estimation) {
+                $date = $estimation->getCollect()->getDateCollect();
+                $interval = date_diff($now, $date)->invert;
+                if ($interval == 0) {
+                    $estimations[] = $estimation;
+                }
+            }
+        }
 
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
