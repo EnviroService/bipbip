@@ -56,7 +56,8 @@
                                             </div>
                                         {% endif %}
                                     </div>
-                                    <img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
+
+                                    <a href="{{ path('home') }}"><img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/></a>
                                     <div class="user-infos-menu mt-5 d-none d-sm-block">
                                         {% if app.user %}
                                                 <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
