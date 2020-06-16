@@ -142,6 +142,9 @@
                         <p class="text-success">
                             Acheté
                         </p>
+                        <a target="_blank" href="/../uploads/CI/{{ filename[estimation.user.id] }}" class="secondary-button">
+                            Voir vendeur
+                        </a>
                     {% else %}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails

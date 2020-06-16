@@ -83,8 +83,17 @@ class EstimationsController extends AbstractController
     public function indexCollected(EstimationsRepository $eRepo): Response
     {
         $estimations = $eRepo->findByCollected();
+        $filenames = [];
+        foreach ($estimations as $estimation) {
+            $user = $estimation->getUser();
+            $firstname = $user->getFirstname();
+            $lastname = $user->getLastname();
+            $filenames[$user->getId()] = 'E' . $estimation->getId() . '-' . $lastname . '-' . $firstname . '.jpeg';
+        }
+
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
+            'filename' => $filenames,
             'pageTitle' => 'Estimations collectées'
         ]);
     }
