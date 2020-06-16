@@ -66,8 +66,8 @@ class CollectorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $imei = $data->getImei();
-            $estimation->setImei($imei);
-
+            $estimation->setImei(intval($imei));
+//dd(intval($imei));
             $em->persist($estimation);
             $em->flush();
 
@@ -307,15 +307,6 @@ class CollectorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $user) {
-            $data = $form-> getData();
-            $user->setLastname($data['lastname'])
-                ->setFirstname($data['firstname'])
-                ->setEmail($data['email'])
-                ->setPhoneNumber($data['phoneNumber'])
-                ->setAddress($data['address'])
-                ->setPostCode($data['postCode'])
-                ->setCity($data['city']);
-
             $em->persist($user);
             $em->flush();
         }

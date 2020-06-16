@@ -44,13 +44,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
 
-    public function findSearch($value)
+    public function search($value)
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.lastname LIKE :val')
-            ->setParameter('val', $value .'%')
+            ->setParameter('val', strtoupper($value) .'%')
             ->getQuery()
-            ->getResult();
+            ->execute();
     }
   
     public function findCollectors($role)

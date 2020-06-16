@@ -491,17 +491,17 @@ class AdminController extends AbstractController
 // Permet a l'admin de nettoyer les données aprés 3 ans d'inactivitée.
     /**
      * @Route("/anon", name="users_anon")
-     * @param UserRepository $users
+     * @param UserRepository $userRepo
      * @param EntityManagerInterface $em
+     * @param Request $request
      * @return Response
-     * @throws Exception
      */
     // route to anonymise users after 3 years
-    public function anonUsers(UserRepository $users, EntityManagerInterface $em)
+    public function anonUsers(UserRepository $userRepo, EntityManagerInterface $em, Request $request)
     {
         $date = new DateTime('now');
         $date->sub(new DateInterval('P3Y'));
-        $users = $users->findOldUsers($date);
+        $users = $userRepo->findOldUsers($date);
 
         $empty = 0; // find users
         if (empty($users)) {
@@ -526,10 +526,43 @@ class AdminController extends AbstractController
                 $this->addFlash('success', 'Utilisateur(s) anonymisé(s)');
             }
         }
+        $form = $this->createForm(SearchType::class);
+        $form->handleRequest($request);
+        $users = $userRepo->findAll();
+
+        if (isset($_GET['id'])) {
+            $user = $userRepo->find($_GET['id']);
+            $newEmail = $user->getId()."@olduser.bipbip";
+            $user->setEmail($newEmail)
+                ->setFirstname("xxx")
+                ->setLastname("xxx")
+                ->setPhonenumber("0000000000")
+                ->setAddress("xxx")
+                ->setSigninDate(\DateTime::createFromFormat('Y-m-d', "1970-01-01"))
+                ->setOrganism(null)
+                ->setCollect(null);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', "l'utilisateur à bien été anonymisé!");
+        }
+
+        $names = "";
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()->getLastname();
+            $names = $userRepo->search($search);
+
+            if ($names == null) {
+                $this->addFlash('danger', 'Aucun utilisateur contenant 
+                                                      ce nom n\'a été trouvé, essayez en un autre.');
+            }
+        }
 
         return $this->render('admin/anon.html.twig', [
+            'form' => $form->createView(),
             'users' => $users,
             'empty' => $empty,
+            'names' => $names
         ]);
     }
 }

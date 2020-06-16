@@ -18,11 +18,62 @@
             {%  endfor %}
            <a class="primary-button" href="{{ path('users_anon', {anon:1}) }}">Anonymiser ces utilisateurs</a>
         {% elseif empty == 1 %}
-            <p class="text-success">Il n'y a pas actuellement d'utilisateur concerné.</p>
+            <p class="text-success">Il n'y a pas d'utilisateur concerné pour l'instant.</p>
             <a class="secondary-button" href="{{ path('estimations_index') }}">Retour aux estimations</a>
         {% else %}
             <a class="secondary-button" href="{{ path('estimations_index') }}">Retour aux estimations</a>
         {% endif %}
+
+        <div class="row mt-5">
+            <div class="mx-auto">
+                <h4 class="text-center">
+                    Gérer les utillisateurs
+                </h4>
+            </div>
+            <div class="col-12">
+                <div class="search_user">
+                    {{ form_start(form) }}
+                    <p>Nom de l'utilisateur</p>
+                    {{ form_row(form.lastname) }}
+                    <input type="submit" value="Rechercher" class="primary-button">
+                    {{ form_end(form) }}
+                </div>
+                <div id="result" class="mt-5">
+                    <table class="col-12 text-center" >
+                        <tr class="bg-light">
+                            <th class="p-2">id</th>
+                            <th class="">Nom</th>
+                            <th class="">Prénom</th>
+                            <th class="">Adresse</th>
+                            <th class="">Code Postal</th>
+                            <th class="">Ville</th>
+                            <th class="">Téléphone</th>
+                            <th class="">Email</th>
+                            <th class="">Action</th>
+                        </tr>
+                        {% for name in names %}
+                        <tr class="">
+                            <td class="p-2">{{ name.id }}</td>
+                            <td class="">{{ name.lastname }}</td>
+                            <td class="">{{ name.firstname }}</td>
+                            <td class="">{{ name.Address }}</td>
+                            <td class="">{{ name.PostCode }}</td>
+                            <td class="">{{ name.City }}</td>
+                            <td class="">0{{ name.PhoneNumber }}</td>
+                            <td class="">{{ name.Email }}</td>
+                            <td class="">
+                                <a href="{{ path('users_anon', {id:name.id}) }}" class="btn btn-info"
+                                   onclick="return confirm('Etes-vous sûre de vouloir anonymiser cet utilisateur?')">
+                                    Anonymiser
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 {%  endblock %}
 
