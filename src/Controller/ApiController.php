@@ -224,7 +224,6 @@ class ApiController extends AbstractController
                 if ($_GET['status'] == 2) {
                     $estimation = $repository->find($estimationId);
                     $estimation->setStatus(2)->setUser($user);
-                    $em->persist($estimation);
 
                     $organism = $organismsRepository->findOneBy([
                         'organismName' => 'Bip-Bip'
@@ -232,6 +231,9 @@ class ApiController extends AbstractController
 
                     $collect = new Collects();
                     $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
+                    $estimation->setCollect($collect);
+
+                    $em->persist($estimation);
                     $em->persist($collect);
                     $em->flush();
                 }
