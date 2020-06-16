@@ -3,9 +3,9 @@
 {% block title %}Rendez-vous à la collecte !{% endblock %}
 
 {% block body %}
-    <main class="container shadow-lg p-4 bg-light">
+    <main class="container shadow-lg p-4 bg-light w-100">
         <div class="row">
-            <div class="col-12 mx-auto text-center">
+            <div class="col-12 text-center">
                 <h3>Merci pour ton inscription {{ user.firstname }} !</h3>
             </div>
         </div>
@@ -13,10 +13,10 @@
                 <h5>Présente-toi le jour de la collecte avec :</h5>
         </div>
         <dl class="row">
-            <dt class="col-sm-3 p-3 text-right">Ton téléphone !</dt>
+            <dt class="col-sm-3 p-3 text-center">Ton téléphone !</dt>
             <dd class="col-sm-9 p-3">Pas de mot de passe, d'empreinte digitale, il faut que BipBip puisse y accèder !</dd>
 
-            <dt class="col-sm-3 p-3 text-right">Ta carte d'identité</dt>
+            <dt class="col-sm-3 p-3 text-center">Ta carte d'identité</dt>
             <dd class="col-sm-9 p-3">Elle sera nécessaire pour que nous puissions valider le contrat de cession.</dd>
 
         </dl>
@@ -28,12 +28,12 @@
             <p>Pour le <span class="font-weight-bold">{{ estimation.brand }} {{ estimation.model }}</span> de {{ estimation.capacity }} Go</p>
         </div>
         <div class="row">
-            <ul class="col-7 mx-auto text-left">
+            <ul class="col-7 text-left">
                 <li>Un collecteur de {{ collect.collector.organismName }} t'accueillera pour procéder à la collecte.</li>
                 <li class="mt-1">Les informations fournies seront vérifiées et la vente signée.</li>
                 <li class="mt-3">Grâce à Pumpkin, tu pourras être payé immédiatement !</li>
             </ul>
-            <div class="col-5 mx-auto">
+            <div class="col-5">
                 <a href="https://pumpkin-app.co/" title="Pumpkin" target="_blank">
                     <img src="{{ asset('images/pumkin.png') }}" alt="Pumpkin">
                 </a>

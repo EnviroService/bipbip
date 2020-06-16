@@ -490,6 +490,13 @@ header {
         }
     }
 }
+// confirm collect
+.container{
+    width: 100%;
+    @include media-breakpoint-up(sm) {
+        width: 100%;
+    }
+}
 
 /* 5 PICTOS */
 
@@ -683,6 +690,7 @@ footer {
         background-color: $secondary-color;
         font-size: 0.9rem;
         line-height: 1.2rem;
+
         @include media-breakpoint-up(md) {
             font-size: 1rem;
             line-height: 1.4rem;
