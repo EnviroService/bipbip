@@ -76,7 +76,7 @@ class PayPerDay extends Command
 
         $email = (new TemplatedEmail())
             ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
-            ->addTo(new Address('github-prod@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
+            ->addTo(new Address('contact@bipbip-mobile.fr', 'BipBip Mobile')) // For Natacha
             ->replyTo('github-test@bipbip-mobile.fr')
             ->subject("Téléphones à collectés aujourd'hui")
             ->htmlTemplate(
