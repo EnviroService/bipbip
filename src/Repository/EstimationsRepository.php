@@ -33,6 +33,19 @@ class EstimationsRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function findByNotcollected()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->join('e.collect', 'c')
+            ->where('CURRENT_DATE() <= c.dateCollect AND e.isCollected = 0 AND e.user is not null')
+            ->andWhere('e.status = 5 or e.status = 2 or e.status = 4')
+            ->orderBy('c.dateCollect');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
     public function findByCollected()
     {
         $qb = $this->createQueryBuilder('e')

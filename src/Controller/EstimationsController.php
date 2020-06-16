@@ -9,6 +9,7 @@ use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,6 +88,23 @@ class EstimationsController extends AbstractController
             'pageTitle' => 'Estimations collectées'
         ]);
     }
+
+// Estimations non présentée à la collecte ou non recu
+    /**
+     * @Route("/notCollected", name="estimations_notcollected_index")
+     * @param EstimationsRepository $eRepo
+     * @return Response
+     */
+    public function indexNotcollected(EstimationsRepository $eRepo)
+    {
+        $estimations = $eRepo->findByNotcollected();
+
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+            'pageTitle' => 'non réceptionné'
+        ]);
+    }
+
 // Estimations inachevées
     /**
      * @Route("/unfinished", name="estimations_unfinished_index", methods={"GET"})
@@ -185,20 +203,18 @@ class EstimationsController extends AbstractController
         return $this->redirectToRoute('home');
     }
 // Permet d'effacer une estimation
+
     /**
-     * @Route("/{id}", name="estimations_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="estimations_delete")
      * @IsGranted("ROLE_ADMIN")
-     * @param Request $request
+     * @param EntityManagerInterface $em
      * @param Estimations $estimation
      * @return Response
      */
-    public function delete(Request $request, Estimations $estimation): Response
+    public function delete(EntityManagerInterface $em, Estimations $estimation): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$estimation->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($estimation);
-            $entityManager->flush();
-        }
+        $em->remove($estimation);
+        $em->flush();
 
         return $this->redirectToRoute('estimations_index');
     }

@@ -118,15 +118,6 @@
                                 à {{ estimation.user.collect.dateCollect | date('H:i') }}
                             </div>
 
-                            {#
-                            {% else %}
-                                <div class="col-2 text-center mt-1 mb-1">
-                                    <span class="font-weight-bold">Envoie Chronopost</span>
-                                </div>
-                            {% endif %}
-                            #}
-
-
                         {% else %}
                             <div class="col-2 text-center">
                                 non inscrit
@@ -139,7 +130,7 @@
                     {% endif %}
 
                     <div class="col-2 text-center">
-                    {% if estimation.isCollected == 0 and estimation.user is null %}
+                    {% if estimation.isCollected == 0 and estimation.user is null%}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
                         </a>
@@ -154,6 +145,12 @@
                     {% else %}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
+                        </a>
+                    {% endif %}
+                    {% if pageTitle == "non réceptionné" %}
+                        <a class="fourth-button" href="{{ path('estimations_delete', {id: estimation.id}) }}"
+                        onclick="return confirm('Etes-vous sûre de vouloir supprimer cette estimations?')">
+                            Supprimer
                         </a>
                     {% endif %}
                     </div>
