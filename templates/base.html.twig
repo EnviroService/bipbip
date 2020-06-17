@@ -31,61 +31,61 @@
                 </div>
                 <div class="col-6 col-md-6 col-lg-12">
                     <nav id="menu">
-                        <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
-                        <div class="row justify-content-center pl-2 pr-2 pb-5">
-                            <div class="col-12 col-sm-6 col-lg-5 mt-lg-5 text-center">
-                                <div class="row smallLogoMenu align-content-around">
-                                    <div class="col">
-                                        {% if app.user %}
-                                            <a href="{{ path('user_show') }}">
-                                        {% else %}
-                                            <a href="{{ path('app_login') }}">
-                                        {% endif %}
-                                            <img src="{{ asset('images/silhouette.png') }}" alt="Profil"></a>
-                                    </div>
-                                    <div class="col">
-                                        <a href="{{ path('add_message') }}">
-                                            <img src="{{ asset('images/bulle-contact.png') }}" alt="">
-                                        </a>
-                                    </div>
-                                    {% if app.user %}
+                            <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
+                            <div class="row justify-content-center pl-2 pr-2 pb-5">
+                                <div class="col-12 col-sm-6 col-lg-5 mt-lg-5 text-center">
+                                    <div class="row smallLogoMenu align-content-around">
                                         <div class="col">
-                                            <a href="{{ path('user_show') }}">
-                                                <img src="{{ asset('images/shopping-cart.png') }}" alt="">
+                                            {% if app.user %}
+                                                <a href="{{ path('user_show') }}">
+                                            {% else %}
+                                                <a href="{{ path('app_login') }}">
+                                            {% endif %}
+                                                <img src="{{ asset('images/silhouette.png') }}" alt="Profil"></a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{{ path('add_message') }}">
+                                                <img src="{{ asset('images/bulle-contact.png') }}" alt="">
                                             </a>
                                         </div>
-                                    {% endif %}
-                                </div>
-                                <img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/>
-                                <div class="user-infos-menu mt-5 d-none d-sm-block">
-                                    {% if app.user %}
-                                            <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
-                                            {% for role in app.user.roles %}
-                                                {% if role == 'ROLE_COLLECTOR' or role == 'ROLE_ADMIN' %}
-                                                    <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
-                                                {% else %}
-                                                    <a class="primary-title-menu" href="{{ path('user_show') }}">Mon profil</a>
-                                                {% endif %}
-                                            {% endfor %}
-                                        <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+                                        {% if app.user %}
+                                            <div class="col">
+                                                <a href="{{ path('user_show') }}">
+                                                    <img src="{{ asset('images/shopping-cart.png') }}" alt="">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
 
-                                    {% else %}
-                                        <a href="{{ path('app_login') }}" class="primary-button text-white"> Se connecter</a>
-                                        <a href="{{ path('app_register') }}" class="secondary-button text-white"> S'inscrire</a>
-                                    {% endif %}
-                                </div>
-                                <div class="laCommuDiv">
-                                    <p class="laCommu">
-                                        Rejoins la commu'
-                                    </p>
-                                </div>
-                                <div class="">
-                                    <a href="#"><img src="{{ asset('images/logo-fb.png') }}" class="logoSociaux" alt=""></a>
-                                    <a href="#"><img src="{{ asset('images/logo-insta.png') }}" class="logoSociaux" alt=""></a>
-                                    <a href="#"><img src="{{ asset('images/logo-linkedin.png') }}" class="logoSociaux" alt=""></a>
-                                </div>
-                            </div>
+                                    <a href="{{ path('home') }}"><img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/></a>
+                                    <div class="user-infos-menu mt-5 d-none d-sm-block">
+                                        {% if app.user %}
+                                                <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                                {% for role in app.user.roles %}
+                                                    {% if role == 'ROLE_COLLECTOR' or role == 'ROLE_ADMIN' %}
+                                                        <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
+                                                    {% else %}
+                                                        <a class="primary-title-menu" href="{{ path('user_show') }}">Mon profil</a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
 
+                                        {% else %}
+                                            <a href="{{ path('app_login') }}" class="primary-button text-white"> Se connecter</a>
+                                            <a href="{{ path('app_register') }}" class="secondary-button text-white"> S'inscrire</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="laCommuDiv">
+                                        <p class="laCommu">
+                                            Rejoins la commu'
+                                        </p>
+                                    </div>
+                                    <div class="">
+                                        <a href="#"><img src="{{ asset('images/logo-fb.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-insta.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-linkedin.png') }}" class="logoSociaux" alt=""></a>
+                                    </div>
+                                </div>
 
 
                             <div class="text-menu col-10 mt-1 ml-3 col-sm-6 pl-lg-5 mt-lg-5">
@@ -106,9 +106,10 @@
                                     <li><a href="{{ path("add_message") }}" title="Contacte nous" class="primary-title-menu">Contacte nous</a></li>
                                     <li><a href="{{ path("presse") }}" title="Presse kit" class="primary-title-menu">Notre actu</a></li>
                                 </ul>
+                                
                             </div>
-                        </div>
                     </nav>
+
                     <div class="circle-buttons">
                         <div id="menu-burger">
                             <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
@@ -121,7 +122,7 @@
 
                        <div class="col-lg">
                            <button onclick="topFunction()" title="Go to top">
-                               <script>
+                              {# <script>
                                 mybutton = document.getElementById('myBtn');
 
                                 // When the user scrolls down 20px from the top of the document, show the button
@@ -142,6 +143,7 @@
                                 }
 
                             </script>
+                                         #}
                             <img id="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
                         </button>
                        </div>
@@ -173,7 +175,7 @@
         {% endblock %}
 
         {% block footer %}
-        <footer>
+        <footer class="w-100">
             <h2 class="primary-title">T'en veux plus ?</h2>
             <div class="row social-networks justify-content-center mt-2 mb-4">
                 <div class="col-3 col-1-md text-center">
@@ -234,7 +236,8 @@
         {% endblock %}
             </div>
         </div>
+            </div>
+        </div>
     </div>
     </body>
-
 </html>
