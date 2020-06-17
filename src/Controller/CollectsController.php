@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Collects;
 use App\Form\CollectsType;
 use App\Repository\CollectsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,17 +38,31 @@ class CollectsController extends AbstractController
     /**
      * @Route("/new", name="collects_new", methods={"GET","POST"})
      * @param Request $request
+     * @param EntityManagerInterface $entityManager
      * @return Response
      * @IsGranted("ROLE_ADMIN")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $collect = new Collects();
         $form = $this->createForm(CollectsType::class, $collect);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+            $dateDébut = $data->getDateEndCollect();
+            $dateDeFin = $data->getDateCollect();
+
+            if (date_diff($dateDébut, $dateDeFin)->invert === 0) {
+                $error = "L'heure de fin ne doit pas être inférieur à l'heure de début";
+
+                return $this->render('collects/new.html.twig', [
+                    'error' => $error,
+                    'collect' => $collect,
+                    'form' => $form->createView(),
+                ]);
+            }
+
             $entityManager->persist($collect);
             $entityManager->flush();
 
