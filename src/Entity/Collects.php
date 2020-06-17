@@ -39,6 +39,11 @@ class Collects
      */
     private $estimations;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateEndCollect;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
@@ -132,6 +137,18 @@ class Collects
                 $estimation->setCollect(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateEndCollect(): ?\DateTimeInterface
+    {
+        return $this->dateEndCollect;
+    }
+
+    public function setDateEndCollect(\DateTimeInterface $dateEndCollect): self
+    {
+        $this->dateEndCollect = $dateEndCollect;
 
         return $this;
     }

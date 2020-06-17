@@ -31,6 +31,7 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
+            $upload = $form->get('upload')->getData();
 
             // mail for bipbip
             $emailBip = (new Email())
@@ -39,6 +40,11 @@ class ContactController extends AbstractController
                 ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
                 ->replyTo($contactFormData->getEmail())
                 ->subject($contactFormData->getSubject())
+                ->attachFromPath(
+                    $upload->getPathname(),
+                    "upload_M-" . $contactFormData->getLastname(),
+                    $upload->getMimeType()
+                )
                 ->html($this->renderView(
                     'contact/sentmail.html.twig',
                     array('form' => $contactFormData)
@@ -55,7 +61,7 @@ class ContactController extends AbstractController
                     'contact/sentmailexp.html.twig',
                     array('form' => $contactFormData)
                 ));
-
+            //github-test@bipbip-mobile.fr
             $mailer->send($emailBip);
             $mailer->send($emailExp);
 
@@ -73,7 +79,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("asso", name="asso")
+     * @Route("devenir-un-site-de-collecte", name="asso")
      * @param Request $request
      * @param MailerInterface $mailer
      * @return RedirectResponse|Response
@@ -121,5 +127,59 @@ class ContactController extends AbstractController
         return $this->render('home/asso.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @return Response
+     * @throws TransportExceptionInterface
+     */
+    public function recrutement(Request $request, MailerInterface $mailer): Response
+    {
+        $form = $this->createForm(ContactType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contactFormData = $form->getData();
+
+            // mail for bipbip
+            $emailBip = (new Email())
+                ->from(new Address($contactFormData->getEmail(), $contactFormData
+                        ->getFirstname() . ' ' . $contactFormData->getLastname()))
+                ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                ->replyTo($contactFormData->getEmail())
+                ->subject($contactFormData->getSubject())
+                ->html($this->renderView(
+                    'contact/sentmail.html.twig',
+                    array('form' => $contactFormData)
+                ));
+
+            // send a copie to sender
+            $emailExp = (new Email())
+                ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                ->to(new Address($contactFormData->getEmail(), $contactFormData
+                        ->getFirstname() . ' ' . $contactFormData->getLastname()))
+                ->replyTo('github-test@bipbip-mobile.fr')
+                ->subject('Votre message envoyé à BipBip Mobile')
+                ->html($this->renderView(
+                    'contact/sentmailexp.html.twig',
+                    array('form' => $contactFormData)
+                ));
+
+            $mailer->send($emailBip);
+            $mailer->send($emailExp);
+
+            $this->addFlash('success', 'Ton message a été envoyé, nous te répondrons rapidement !');
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render(
+            'contact/contact.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 }
