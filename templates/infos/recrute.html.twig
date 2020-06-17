@@ -4,12 +4,31 @@
 
 {% block body %}
     <main class="container">
+        <h1 class="title-page">Recrutement</h1>
         <div class="row">
-            <div class="col-12 col-lg-8 mx-auto form p-4">
-                <h1 class="primary-title">Recrutement</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultrices interdum maximus. Vivamus sagittis ex turpis, nec rhoncus massa dignissim sit amet. Aliquam rhoncus nulla massa, a varius elit venenatis et. Proin interdum dictum rhoncus. Donec quis augue vel diam viverra venenatis vitae et mi. Duis mollis odio mi, vel fermentum ligula semper sit amet. Vestibulum rhoncus massa a laoreet sollicitudin. Maecenas interdum neque turpis, vitae fermentum mi ultrices ac. Cras nec augue tellus. Nullam tincidunt est vel erat efficitur, non fringilla risus bibendum. Nunc leo nunc, pellentesque mollis ultricies sit amet, dictum nec ipsum. Suspendisse dui dui, ultricies vel eleifend et, tincidunt ut purus. Nullam neque sapien, blandit in ligula id, lobortis viverra nisi. Nulla lobortis nibh leo, maximus iaculis massa pellentesque volutpat. Maecenas mi ligula, porta nec efficitur vel, euismod non nisl. Sed leo sem, ultricies sit amet ligula et, efficitur convallis eros.</p>
-                <p>Sed mattis ac turpis elementum congue. Morbi sit amet ipsum a eros vulputate sollicitudin ac ac tortor. Pellentesque id magna purus. Etiam id luctus quam. Praesent quis nulla lacus. Aliquam sit amet neque sagittis, tristique eros eget, pretium lorem. Maecenas ac sodales mauris. Nullam nisi nisl, maximus ac ultrices vel, faucibus et nisl. Proin laoreet, turpis ut posuere vestibulum, eros risus convallis erat, a malesuada lacus leo a nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse potenti.</p>
+            <div class="col-12 col-lg-8 mx-auto form p-4 text-center">
+                <p>
+                    BipBip ne recrute pas actuellement.
+                </p>
+                <p>
+                    Tu peux nous laisser ta candidature spontanée avec un CV et une lettre de motivation
+                    dans le formulaire de contact <a href="#recrutement"><span class="font-weight-bold">ici</span></a>
+                </p>
+                <p>
+                    Nous te recontacterons en cas de besoin.
+                </p>
+                <p>
+                    N’hésite pas à nous suivre sur nos réseaux sociaux pour être alerté si on recrute&#8239;!
+                </p>
             </div>
+            <div class="tenor-gif-embed" data-postid="9561662" data-share-method="host" data-width="100%" data-aspect-ratio="1.7307692307692308">
+                <a href="https://tenor.com/view/penguin-job-gif-9561662">Penguin Job GIF</a> from <a href="https://tenor.com/search/penguin-gifs">Penguin GIFs</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+
+        <div class="row" id="recrutement">
+            {% include 'infos/_form_recrutement.html.twig' %}
         </div>
     </main>
 {% endblock %}

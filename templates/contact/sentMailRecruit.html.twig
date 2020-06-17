@@ -1,0 +1,14 @@
+{% block body %}
+    <p>Un utilisateur vous à envoyé son CV et lettre de motivation pour une candidature spontanée</p>
+    <ul>
+        <li>Auteur : {{ form['firstname'] }} {{ form['lastname'] }}</li>
+        <li>Mail : {{ form.email }}</li>
+        <li>Téléphone : {{ form.phone }}</li>
+    </ul>
+    <p>Message :<br>
+        {{ form.message }}
+    </p>
+
+    <p>--<br>
+        Une réponse à ce message enverra le message à l'expéditeur.</p>
+{% endblock %}

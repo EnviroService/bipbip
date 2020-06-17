@@ -21,6 +21,10 @@ class CollectsType extends AbstractType
                 'label' => 'Date et heure de collecte',
                 'date_widget' => 'single_text',
             ])
+            ->add('dateEndCollect', DateTimeType::class, [
+                'label' => 'Date et heure de fin de collecte',
+                'date_widget' => 'single_text'
+            ])
             ->add(
                 'collector',
                 EntityType::class,

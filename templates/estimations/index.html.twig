@@ -109,14 +109,15 @@
 
                     {% if estimation.user is not null %}
                         {% if estimation.user.collect is not null %}
-                        <div class="col-2 text-center mt-1 mb-1">
-                            <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
-                            {{ estimation.user.collect.collector.organismAddress }}<br>
-                            {{ estimation.user.collect.collector.organismPostCode }}
-                            {{ estimation.user.collect.collector.organismCity }}<br>
-                            le {{ estimation.user.collect.dateCollect | date('d/m/Y') }}
-                            à {{ estimation.user.collect.dateCollect | date('H:i') }}
-                        </div>
+                            <div class="col-2 text-center mt-1 mb-1">
+                                <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
+                                {{ estimation.user.collect.collector.organismAddress }}<br>
+                                {{ estimation.user.collect.collector.organismPostCode }}
+                                {{ estimation.user.collect.collector.organismCity }}<br>
+                                le {{ estimation.user.collect.dateCollect | date('d/m/Y') }}
+                                à {{ estimation.user.collect.dateCollect | date('H:i') }}
+                            </div>
+
                         {% else %}
                             <div class="col-2 text-center">
                                 non inscrit
@@ -129,7 +130,7 @@
                     {% endif %}
 
                     <div class="col-2 text-center">
-                    {% if estimation.isCollected == 0 and estimation.user is null %}
+                    {% if estimation.isCollected == 0 and estimation.user is null%}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
                         </a>
@@ -139,11 +140,20 @@
                         </a>
                     {% elseif estimation.isCollected == 1 %}
                         <p class="text-success">
-                            Acheté
+                            Collecté
                         </p>
+                        <a target="_blank" href="/../uploads/CI/{{ filename[estimation.user.id] }}" class="secondary-button">
+                            Voir vendeur
+                        </a>
                     {% else %}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
                             Détails
+                        </a>
+                    {% endif %}
+                    {% if pageTitle == "non réceptionné" %}
+                        <a class="fourth-button" href="{{ path('estimations_delete', {id: estimation.id}) }}"
+                        onclick="return confirm('Etes-vous sûre de vouloir supprimer cette estimations?')">
+                            Supprimer
                         </a>
                     {% endif %}
                     </div>
