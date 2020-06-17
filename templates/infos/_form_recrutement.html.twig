@@ -1,0 +1,56 @@
+<div class="mx-auto mt-5 border bg-light">
+    <h4 class="text-center mt-3 mb-3">Candidature spontanée</h4>
+    <div class="w-75 mx-auto">
+        {{ form_start(form) }}
+        <div class="mb-3">
+            <p class="border-top p-2 mb-0">
+                Prénom:
+            </p>
+            {{ form_widget(form.firstname) }}
+        </div>
+
+        <div class="mb-3">
+            <p class="border-top p-2 mb-0">
+                Nom:
+            </p>
+            {{ form_widget(form.lastname) }}
+        </div>
+
+        <div class="mb-3">
+            <p class="border-top p-2 mb-0">
+                Email:
+            </p>
+            {{ form_widget(form.email) }}
+            {% if errors is defined %}
+            <p class="text-danger">{{ errors }}</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <p class="border-top p-2 mb-0">
+                Téléphone:
+            </p>
+            {{ form_widget(form.phone) }}
+        </div>
+
+        <div class="mb-3">
+            <p class="border-top p-2 mb-0">
+                Message:
+            </p>
+            {{ form_widget(form.message) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.CV) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.lettre) }}
+        </div>
+
+        <div class="text-center mb-3">
+            <button type="submit" value="recrutement" class="secondary-button">Envoyer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

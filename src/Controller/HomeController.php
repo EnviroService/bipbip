@@ -3,11 +3,19 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Form\RecrutementType;
 use App\Repository\CollectsRepository;
 use App\Repository\OrganismsRepository;
+use JsonSchema\Constraints\NumberConstraint;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Email as EmailAssert;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class HomeController extends AbstractController
 {
@@ -119,10 +127,88 @@ class HomeController extends AbstractController
 
     /**
      * @Route("recrute", name="recrute")
+     * @param Request $request
+     * @param MailerInterface $mailer
+     * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
-    public function recrute()
+    public function recrute(Request $request, MailerInterface $mailer, ValidatorInterface $validator)
     {
-        return $this->render('infos/recrute.html.twig');
+        $form = $this->createForm(RecrutementType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $email = $form->get('email')->getData();
+            $emailConstraint = new EmailAssert();
+            $emailConstraint->message = 'Cet email est invalide';
+
+            $errorsMail = $validator->validate(
+                $email,
+                $emailConstraint
+            );
+
+            if (0 < count($errorsMail)) {
+                $errors = $errorsMail[0]->getMessage();
+                return $this->render('infos/recrute.html.twig', [
+                    'form' => $form->createView(),
+                    'errors' => $errors
+                ]);
+            }
+
+            $data = $form->getData();
+            $cvExp = $form->get('CV')->getData()->getPathname();
+            $lettre = $form->get('lettre')->getData()->getPathname();
+
+            $emailBip = (new Email())
+                ->from(new Address(
+                    $email,
+                    $data['firstname'] . ' ' . $data['lastname']
+                ))
+                ->to(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                ->replyTo($email)
+                ->attachFromPath(
+                    $cvExp,
+                    "CV_" . $data['lastname'] . "_" . $data['firstname'],
+                    "application/pdf"
+                )
+                ->attachFromPath(
+                    $lettre,
+                    "Lettre_" . $data['lastname'] . "_" . $data['firstname'],
+                    "application/pdf"
+                )
+                ->subject('recrutement')
+                ->html($this->renderView(
+                    'contact/sentMailRecruit.html.twig',
+                    [
+                        'form' => $data
+                    ]
+                ));
+
+            // send a copie to sender
+            $emailExp = (new Email())
+                ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                ->to(new Address(
+                    $email,
+                    $data['firstname'] . ' ' . $data['lastname']
+                ))
+                ->replyTo('github-test@bipbip-mobile.fr')
+                ->subject('Votre message à bien était envoyé à BipBip Mobile')
+                ->html($this->renderView(
+                    'contact/sentMailExpRecruit.html.twig',
+                    [
+                        'form' => $data
+                    ]
+                ));
+
+            $mailer->send($emailBip);
+            $mailer->send($emailExp);
+            $this->addFlash('success', 'Candidature envoyée avec succés');
+        }
+
+
+        return $this->render('infos/recrute.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
