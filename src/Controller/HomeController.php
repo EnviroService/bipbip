@@ -119,10 +119,15 @@ class HomeController extends AbstractController
 
     /**
      * @Route("histoire", name="histoire")
+     * @param OrganismsRepository $organismsRepository
+     * @return Response
      */
-    public function histoire()
+    public function histoire(OrganismsRepository $organismsRepository)
     {
-        return $this->render('infos/histoire.html.twig');
+        return $this->render(
+            'infos/histoire.html.twig',
+            ['organisms' => $organismsRepository->findAll()]
+        );
     }
 
     /**
