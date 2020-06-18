@@ -32,6 +32,11 @@
         width: 80%;
         max-width: 200px;
         height: auto;
+
+        &:hover {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
     }
 
     .constat{
