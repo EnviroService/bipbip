@@ -50,11 +50,31 @@ class CollectsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $dateDébut = $data->getDateEndCollect();
-            $dateDeFin = $data->getDateCollect();
+            $dateDebut = $data->getDateCollect();
+            $dateDeFin = $data->getDateEndCollect();
 
-            if (date_diff($dateDébut, $dateDeFin)->invert === 0) {
+            $timestampDebut =
+                date_create_from_format(
+                    'd/m/Y H:i',
+                    date_format($dateDebut, 'd/m/Y H:i')
+                )->getTimestamp();
+            $timestampFin =
+                date_create_from_format(
+                    'd/m/Y H:i',
+                    date_format($dateDeFin, 'd/m/Y H:i')
+                )->getTimestamp();
+            $diff = $timestampFin - $timestampDebut;
+
+            if (date_diff($dateDebut, $dateDeFin)->invert === 1) {
                 $error = "L'heure de fin ne doit pas être inférieur à l'heure de début";
+
+                return $this->render('collects/new.html.twig', [
+                    'error' => $error,
+                    'collect' => $collect,
+                    'form' => $form->createView(),
+                ]);
+            } elseif ($diff > 72000) {
+                $error = "Le temp maximum entre début et fin est de 20h";
 
                 return $this->render('collects/new.html.twig', [
                     'error' => $error,
