@@ -53,40 +53,42 @@ class CollectsController extends AbstractController
             $dateDebut = $data->getDateCollect();
             $dateDeFin = $data->getDateEndCollect();
 
-            $timestampDebut =
-                date_create_from_format(
-                    'd/m/Y H:i',
-                    date_format($dateDebut, 'd/m/Y H:i')
-                )->getTimestamp();
-            $timestampFin =
-                date_create_from_format(
-                    'd/m/Y H:i',
-                    date_format($dateDeFin, 'd/m/Y H:i')
-                )->getTimestamp();
-            $diff = $timestampFin - $timestampDebut;
+            if ($dateDebut != null && $dateDeFin != null) {
+                $timestampDebut =
+                    date_create_from_format(
+                        'd/m/Y H:i',
+                        date_format($dateDebut, 'd/m/Y H:i')
+                    )->getTimestamp();
+                $timestampFin =
+                    date_create_from_format(
+                        'd/m/Y H:i',
+                        date_format($dateDeFin, 'd/m/Y H:i')
+                    )->getTimestamp();
+                $diff = $timestampFin - $timestampDebut;
 
-            if (date_diff($dateDebut, $dateDeFin)->invert === 1) {
-                $error = "L'heure de fin ne doit pas être inférieur à l'heure de début";
+                if (date_diff($dateDebut, $dateDeFin)->invert === 1) {
+                    $error = "L'heure de fin ne doit pas être inférieur à l'heure de début";
 
-                return $this->render('collects/new.html.twig', [
-                    'error' => $error,
-                    'collect' => $collect,
-                    'form' => $form->createView(),
-                ]);
-            } elseif ($diff > 72000) {
-                $error = "Le temp maximum entre début et fin est de 20h";
+                    return $this->render('collects/new.html.twig', [
+                        'error' => $error,
+                        'collect' => $collect,
+                        'form' => $form->createView(),
+                    ]);
+                } elseif ($diff > 72000) {
+                    $error = "Le temp maximum entre début et fin est de 20h";
 
-                return $this->render('collects/new.html.twig', [
-                    'error' => $error,
-                    'collect' => $collect,
-                    'form' => $form->createView(),
-                ]);
+                    return $this->render('collects/new.html.twig', [
+                        'error' => $error,
+                        'collect' => $collect,
+                        'form' => $form->createView(),
+                    ]);
+                }
+
+                $entityManager->persist($collect);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('collects_index');
             }
-
-            $entityManager->persist($collect);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('collects_index');
         }
 
         return $this->render('collects/new.html.twig', [

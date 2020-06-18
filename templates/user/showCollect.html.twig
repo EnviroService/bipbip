@@ -49,14 +49,17 @@
         {% else %}
             <div class="container">
                 <div class="row align-items-center table-head rounded-top">
-                    <div class=" col-sm-3 text-center">
+                    <div class=" col-sm-2 text-center">
                         Lieux de collecte
                     </div>
                     <div class="d-none d-sm-block col-sm-3 text-center">
                         Adresse
                     </div>
-                    <div class="d-none d-sm-block col-sm-3 text-center">
+                    <div class="d-none d-sm-block col-sm-2 text-center">
                         Date de collecte
+                    </div>
+                    <div class="d-none d-sm-block col-sm-2 text-center">
+                        Fin de collecte
                     </div>
                     {% if app.user.roles is defined %}
                         <div class="col-12 col-sm-3">
@@ -64,8 +67,9 @@
                     {% endif %}
                 </div>
 
+                {% if id is defined %}
                 <div class="row align-items-center border-bottom bg-light">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-sm-2 text-center">
                         <h5>Chronopost</h5>
                     </div>
                     <div class="col-sm-3 text-center">
@@ -79,12 +83,12 @@
                             J'envoie
                         </a>
                     </div>
-
                 </div>
+                {% endif %}
 
             {% for collect in collects %}
                 <div class="row align-items-center border-bottom">
-                    <div class="col-sm-3 text-center">
+                    <div class="col-sm-2 text-center">
                         <h5>{{ collect.collector.organismName }}</h5>
                     </div>
                     <div class="col-sm-3 text-center">
@@ -92,8 +96,11 @@
                         {{ collect.collector.organismPostcode }}
                         {{ collect.collector.organismCity }}
                     </div>
-                    <div class="col-sm-3 text-center">
-                        {{ collect.dateCollect|date('d/m/Y') }} à {{ collect.dateCollect|date('H:i') }}
+                    <div class="col-sm-2 text-center">
+                        {{ collect.dateCollect|date('d/m/Y') }} <br>à {{ collect.dateCollect|date('H:i') }}
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        {{ collect.dateEndCollect|date('d/m/Y') }} <br>à {{ collect.dateEndCollect|date('H:i') }}
                     </div>
                     {% if app.user.roles is defined %}
                         <div class="col-sm-2 p-0">

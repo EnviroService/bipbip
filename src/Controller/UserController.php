@@ -121,11 +121,20 @@ class UserController extends AbstractController
                 unset($repo[$i]);
             }
         }
+
+        if (isset($_GET['id'])) {
+            return $this->render('user/showCollect.html.twig', [
+                'collects' => $repo,
+                'collector' => $organism,
+                'user' => $this->getUser(),
+                'id' => $_GET['id']
+            ]);
+        }
+
         return $this->render('user/showCollect.html.twig', [
             'collects' => $repo,
             'collector' => $organism,
-            'user' => $this->getUser(),
-            'id' => $_GET['id']
+            'user' => $this->getUser()
         ]);
     }
 // le user choisie sa collecte et un mail de confirmation lui est envoyé
