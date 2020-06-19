@@ -27,7 +27,7 @@
             <div class="row align-items-center mb-2 mt-4">
                 {# legende #}
                 <div class="col-2 text-center">
-                    Vendu : <i class="far fa-handshake icon-green"></i>
+                    Collecté : <i class="far fa-handshake icon-green"></i>
                 </div>
                 <div class="col-2 text-center">
                     Estimation active : <i class="fas fa-mobile-alt icon-green"></i>
@@ -142,8 +142,8 @@
                         <p class="text-success">
                             Collecté
                         </p>
-                        <a target="_blank" href="/../uploads/CI/{{ filename[estimation.user.id] }}" class="secondary-button">
-                            Voir vendeur
+                        <a target="_blank" href="/../uploads/CI/E{{ estimation.id }}-{{ estimation.user.lastname}}-{{ estimation.user.firstname }}.pdf" class="secondary-button">
+                            Voir CNI
                         </a>
                     {% else %}
                         <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
