@@ -10,6 +10,16 @@
 
 
     {{ include ('admin/_form.html.twig') }}
+    {#
+    Sur cette page, nous n'avons plus accés aux onglets 'estimations' 'gestion' 'document'
+    la div suivante permet de mettre un boutons de redirection vers l'index des estimations.
+    #}
+
+    <div class="text-center">
+        <a href="{{ path('estimations_uncollected_index') }}" class="primary-button">
+            retour à l'index
+        </a>
+    </div>
 
     {% if nbrPhoneBdd is defined %}
       {#  <div class="container">
