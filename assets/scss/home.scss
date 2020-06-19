@@ -24,7 +24,7 @@
        }
 
        img {
-           max-height: 250px;
+           max-height: 400px;
        }
      }
 
@@ -37,8 +37,13 @@
             -webkit-transform: scale(1.1);
             transform: scale(1.1);
         }
-    }
 
+    .silouette {
+         width: 100%;
+        max-width: 450px;
+        height: 400px;
+    }
+}
     .constat{
         p {
             color: $primary-color;
