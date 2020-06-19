@@ -24,8 +24,7 @@ body{
     color : black;
     font-size : 1rem;
     background-image: url("../images/fond.png");
-    background-size: contain;
-    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 @mixin bg($color) {
