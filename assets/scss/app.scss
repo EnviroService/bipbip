@@ -268,8 +268,11 @@ a{
         color: white;
         text-decoration: none;
     }
+}
 
-
+// Pour retourner la flèche du top haut vers le haut
+.revert {
+    transform: rotate(3.1416rad);
 }
 
 /* HEADER NAV */
@@ -469,7 +472,7 @@ header {
         }
 
         // SCROLL
-        #myBtn {
+        .myBtn {
             display: flex; /* Hidden by default */
             position: fixed; /* Fixed/sticky position */
             right: 5vw;
