@@ -595,22 +595,6 @@ header {
     }
 }
 
-
-/* TEAM */
-
-.team-page {
-    .carousel {
-        width: 195px;
-        box-shadow: 5px 3px 10px grey;
-    }
-    .carousel-item {
-        img {
-            height: 350px;
-            width: 195px;
-        }
-    }
-}
-
 /* CONTACT */
 
 #faq-btn {
@@ -681,8 +665,9 @@ header {
 footer {
     .social-networks {
         img{
-            width: 50px;
+            width: 60px;
             height: auto;
+            margin: 5px 0 5px 0;
         }
     }
 
