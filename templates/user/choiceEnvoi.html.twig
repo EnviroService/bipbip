@@ -14,8 +14,8 @@
                     arrive chez nous.
                 </p>
                 <p class="text-center">
-                    <a class="primary-button button-chrono mt-1" href="{{ path('envoi_chronopost', {'user': user, 'id': estimation.id} ) }}">
-                        Envoi par Chronopost
+                    <a class="primary-button button-chrono m-auto" href="{{ path('envoi_chronopost', {'user': user, 'id': estimation.id} ) }}">
+                        Envoi<br> par Chronopost
                     </a>
                 </p>
             </div>
@@ -31,7 +31,7 @@
                     la page te proposant différentes collectes disponibles
                 </p>
                 <p class="text-center">
-                    <a class="primary-button button-depot m-auto" href="{{ path('show_collect', {'id': estimation.id}) }}">
+                    <a class="primary-button button-chrono m-auto" href="{{ path('show_collect', {'id': estimation.id}) }}">
                         Trouver un point de collecte
                     </a>
                 </p>
