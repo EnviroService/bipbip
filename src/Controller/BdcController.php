@@ -68,6 +68,7 @@ class BdcController extends AbstractController
         $estimationIds = [];
         $end = '.';
         $start = 'P';
+        $estimations = [];
         $files = scandir('uploads/BDC/');
         if (is_array($files)) {
             $files = array_slice($files, 3);
@@ -75,9 +76,17 @@ class BdcController extends AbstractController
                 $year = substr($file, 0, 4);
                 $month = substr($file, 4, 2);
                 $day = substr($file, 6, 2);
-                $date = "$day/$month/$year";
-                array_push($dates, $date);
+                $date = "$day-$month-$year";
 
+                // recupérer uniquement le nom du fichier sans l'extension
+                $fileNew = strtok($file, '.');
+                // Extraire le numero id, juste apres la lettre P du $file
+                $id = str_replace('P', '', strrchr($fileNew, "P"));
+                // Envoie de la date et de l'id sous forme de tableau
+                $estimations[$fileNew] = [$date,$id,$file];
+
+                /*
+                array_push($dates, $date);
                 $file = ' ' . $file;
                 $ini = strpos($file, $start);
                 if ($ini == 0) {
@@ -87,13 +96,13 @@ class BdcController extends AbstractController
                 $len = strpos($file, $end, $ini) - $ini;
                 $estimationId = substr($file, $ini, $len);
                 array_push($estimationIds, $estimationId);
+                */
             }
+            krsort($estimations);
         }
 
         return $this->render('bdc/index.html.twig', [
-            'files' => $files,
-            'dates' => $dates,
-            'estimationIds' => $estimationIds,
+            'estimations' => $estimations
         ]);
     }
 // Permet la génération d'un pdf
