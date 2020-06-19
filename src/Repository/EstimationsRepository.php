@@ -24,9 +24,9 @@ class EstimationsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->join('e.collect', 'c')
-            ->where('CURRENT_DATE() >= c.dateCollect AND e.isCollected = 0 AND e.user is not null')
+            ->where('CURRENT_DaTE() <= c.dateCollect AND e.isCollected = 0 AND e.user is not null')
             ->andWhere('e.status = 5 or e.status = 2 or e.status = 4')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('c.dateCollect', 'DESC');
 
         $query = $qb->getQuery();
 
@@ -37,7 +37,7 @@ class EstimationsRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->join('e.collect', 'c')
-            ->where('CURRENT_DATE() <= c.dateCollect AND e.isCollected = 0 AND e.user is not null')
+            ->where('CURRENT_DATE() >= c.dateCollect AND e.isCollected = 0 AND e.user is not null')
             ->andWhere('e.status = 5 or e.status = 2 or e.status = 4')
             ->orderBy('c.dateCollect');
 

@@ -10,7 +10,7 @@
 {% block body %}
 
     <main class="admin-tables">
-        <h1 class="primary-title">Lieux de collecte</h1>
+        <h1 class="title-page"><span>Lieux de collecte</span></h1>
         {% if app.user.roles is defined %}
             <p>Choisis une collecte pour déposer ton téléphone</p>
             {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
