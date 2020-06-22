@@ -4,18 +4,21 @@
 
 {% block body %}
     <h1 class="title-page"><span>Livraisons et garanties</span></h1>
-    <div class="row">
-        <div class="col-12 p-4">
+    <div class="d-flex flex-column align-items-center">
+        <div>
             <h2 class="primary-title">Transport et frais de livraison</h2>
+        </div>
+        <div>
+            <p class="second-primary-title mb-4">Pour l'achat d'un BipBip Mobile</p>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-4">
-            <img src="{{ asset('images/chronopost-logo.png') }}" alt="Chronopost" class="img-fluid" id="chronopost-logo">
+        <div class="col-4 mt-5">
+            <img src="{{ asset('images/chronopost-logo.png') }}" alt="Chronopost" class="img-fluid " id="chronopost-logo">
         </div>
         <div class="col-3 text-center border-top-liv p-3">
-            <p class="font-weight-bold pt-2">Standard<br>
+            <p class="font-weight-bold text-center mt-1">Standard<br>
                 <span class="small-blue-text">à domicile</span></p>
         </div>
         <div class="col-1">
@@ -128,15 +131,18 @@
                 Vous trouverez avec votre smartphone :</p>
         </div>
     </div>
-    <div class="row justify-content-around p-4">
-        <div class="col p-4 text-center accessoire">
-            <img src="https://via.placeholder.com/100" alt="Prise">
+    <div class="row justify-content-around mb-3">
+        <div class="col-6 col-sm-6 col-md-3 col-xl-3 p-1 text-center mb-3">
+            <img class="accessoire" src="{{asset('images/chargeur.png')}}" alt="Prise">
         </div>
-        <div class="col p-4 text-center accessoire">
-            <img src="https://via.placeholder.com/100" alt="Câble">
+        <div class="col-6 col-sm-6 col-md-3 col-xl-3 p-1 text-center mb-3">
+            <img class="accessoire" src="{{asset('images/fil-chargeur.png')}}" alt="Câble">
         </div>
-        <div class="col p-4 text-center accessoire">
-            <img src="https://via.placeholder.com/100" alt="Ecouteurs">
+        <div class="col-6 col-sm-6 col-md-3 col-xl-3 p-1 text-center mb-3">
+            <img class="accessoire" src="{{asset('images/ecouteur.png')}}" alt="Ecouteurs">
+        </div>
+        <div class="col-6 col-sm-6 col-md-3 col-xl-3 p-1 text-center mb-3">
+            <img class="accessoire" src="{{asset('images/trombone.png')}}" alt="Trombone">
         </div>
     </div>
 
