@@ -64,8 +64,24 @@
     }
 
   }
-
 }
+
+/* CAROUSEL */
+
+.carousel {
+  width: 80vh;
+  height: 20vh;
+  left: 5vh;
+
+  .img-carousel {
+
+  }
+
+  .carousel-indicators{
+    bottom: -50px;
+  }
+}
+
 // notre team
 .for-4 {
   width: 70%;

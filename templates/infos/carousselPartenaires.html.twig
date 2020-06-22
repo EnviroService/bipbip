@@ -1,0 +1,29 @@
+<div id="carouselExampleIndicators" class="carousel slide w-75 mx-auto" data-ride="carousel">
+    <ol class="carousel-indicators ">
+        {% set i = 0 %}
+        {% for organism in organisms %}
+            <li data-target="#carouselExampleIndicators"
+                data-slide-to="{{ i }}"
+                class="{% if i == 0 %}active{% endif %} bg-danger">
+            </li>
+            {% set i = i + 1 %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner text-center">
+        {% set i = 0 %}
+        {% for organism in organisms %}
+            <div class="carousel-item {% if i == 0 %}active{% endif %}">
+                <img src="uploads/Logos/Logos/{{ organism.logo }}" class="d-block w-50" alt="...">
+            </div>
+            {% set i = i + 1 %}
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Précédent</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+    </a>
+</div>

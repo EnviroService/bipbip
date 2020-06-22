@@ -9,13 +9,16 @@
 
 {% block body %}
 <main class="home">
-    <div id="notreHistoire">
+    <div id="notreHistoire" class="mb-5">
         <h1 class="title-page"><span>Notre histoire</span></h1>
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
                 <img src="{{ asset('images/video.png') }}" alt="video" class="videoNatacha">
             </div>
         </div>
+
+        {{ include('home/constat.html.twig') }}
+
         <div class="row mb-5 justify-content-center">
             <div class="col-6 col-sm-4 col-md-4 mt-md-5 text-center">
                 <img class="img-fluid p-4 p-lg-1 justify-content-center" src="{{ asset('images/idee-notrehistoire.png') }}" alt="logo">
@@ -33,12 +36,14 @@
                 <p>Au plus nous collectons de téléphones, plus les prix de nos BipBip Mobile pourront être avantageux tout en gardant leur qualité absolue !<br></p>
                 <p>On compte sur toi pour collecter un <strong>MAXIMUM</strong> de téléphones et mettre la machine en marche !</p>
             </div>
-
-                    {{ include('home/constat.html.twig') }}
+        </div>
+            <div class="mb-5">
+                {{ include('infos/carousselPartenaires.html.twig') }}
             </div>
+
     </div>
-    <div id="solution">
-        <h1 class="title-page"><span>Notre solution</span></h1>
+    <div id="solution" class="mt-5">
+        <h1 class="title-page mt-5"><span>Notre solution</span></h1>
 
         <div class="row justify-content-center m-4">
             <p>BipBip est la solution innovante et environnementale pour la région... on te fait un dessin ?</p>
