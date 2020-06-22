@@ -106,7 +106,7 @@
                                     <li><a href="{{ path("add_message") }}" title="Contacte nous" class="primary-title-menu">Contacte nous</a></li>
                                     <li><a href="{{ path("presse") }}" title="Presse kit" class="primary-title-menu">Notre actu</a></li>
                                 </ul>
-                                
+
                             </div>
                     </nav>
 
@@ -121,7 +121,14 @@
                         </a>
 
                        <div class="col-lg">
+                           <button id="haut" onclick="retourHaut()" title="Retour haut de page">
+                               <img class="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
+                           </button>
+                           {#
                            <button onclick="topFunction()" title="Go to top">
+                                <img id="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
+                            </button>
+                           #}
                               {# <script>
                                 mybutton = document.getElementById('myBtn');
 
@@ -141,11 +148,8 @@
                                     document.body.scrollTop = 0; // For Safari
                                     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
                                 }
-
                             </script>
                                          #}
-                            <img id="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
-                        </button>
                        </div>
                     </div>
                 </div>
@@ -232,7 +236,26 @@
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+            <script>
+                function scrollFunction()
+                {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        $(document).ready(function () {
+                            $('.myBtn').addClass('revert')
+                        });
+                    } else {
+                        $('.myBtn').removeClass('revert');
+                    }
+                }
+                window.onscroll = function () {
+                    scrollFunction();
+                };
+                function retourHaut()
+                {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
         {% endblock %}
             </div>
         </div>

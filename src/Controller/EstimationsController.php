@@ -110,7 +110,7 @@ class EstimationsController extends AbstractController
 
         return $this->render('estimations/index.html.twig', [
             'estimations' => $estimations,
-            'pageTitle' => 'non réceptionné'
+            'pageTitle' => 'Absent'
         ]);
     }
 
