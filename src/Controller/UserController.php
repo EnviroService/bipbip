@@ -347,18 +347,24 @@ class UserController extends AbstractController
      */
     public function editUser(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UserEditType::class, $user);
-        $form->handleRequest($request);
+        if ($user == $this->getUser()) {
+            $form = $this->createForm(UserEditType::class, $user);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
 
-            return $this->redirectToRoute('user_show');
+                return $this->redirectToRoute('user_show');
+            }
+            return $this->render('user/editUser.html.twig', [
+                'user' => $user,
+                'form' => $form->createView(),
+            ]);
+        } else {
+            return $this->redirectToRoute('user_show', [
+                'id' => $this->getUser()->getId()
+            ]);
         }
-        return $this->render('user/editUser.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
