@@ -57,6 +57,22 @@ class EstimationsController extends AbstractController
             ]);
         }
     }
+
+    /**
+     * @Route ("/chrono", name="estimations_chrono_index")
+     * @param EstimationsRepository $estimationsRepo
+     * @return Response()
+     */
+    public function indexChronopost(EstimationsRepository $estimationsRepo)
+    {
+        $estimations = $estimationsRepo->findByChronopost();
+
+        return $this->render('estimations/index.html.twig', [
+            'estimations' => $estimations,
+            'pageTitle' => 'estimations en chemin'
+        ]);
+    }
+
 // Pour l'admin  : estimations a collecter
     /**
      * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
@@ -64,7 +80,7 @@ class EstimationsController extends AbstractController
      * @param EstimationsRepository $eRepo
      * @return Response
      */
-    public function indexUncollected(EstimationsRepository $eRepo, CollectsRepository $collectsRepo): Response
+    public function indexUncollected(EstimationsRepository $eRepo): Response
     {
         $estimations = $eRepo->findByUncollected();
 
