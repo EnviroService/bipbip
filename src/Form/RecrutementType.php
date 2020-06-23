@@ -40,7 +40,7 @@ class RecrutementType extends AbstractType
                 ]
             ])
             ->add('lettre', FileType::class, [
-                'label' => 'Lettre de motivation',
+                'label' => 'Lettre de motivation (facultative)',
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
