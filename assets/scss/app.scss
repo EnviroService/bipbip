@@ -105,6 +105,7 @@ a{
     @include media-breakpoint-up(md) {
         font-size : 1.9rem;
     }
+
 }
 
 .primary-title-left {
@@ -329,9 +330,8 @@ header {
             }
         }
 
-
         .laCommuDiv {
-            margin-top: 50px;
+            margin-top: 5px;
 
             .laCommu {
                 color: $third-color;
@@ -598,7 +598,11 @@ header {
 /* LIVAISON */
 
 #chronopost-logo {
-    max-width: 150px;
+    max-width: 85px;
+    @include media-breakpoint-up(sm) {
+        max-width: 158px;
+        max-height: 100px;
+    }
 }
 
 .small-blue-text {
@@ -640,18 +644,35 @@ header {
     border-right: solid black 2px;
     border-bottom: solid black 2px;
 }
+.accessoire{
+    width: 15vh;
+    height: 15vh;
+    @media screen and (min-width: 570px) {
+        width: 20vh;
+        height: 20vh;
+     }
+    @media screen and (min-width: 768px) {
+        width: 21vh;
+        height: 21vh;
+     }
+    @media screen and (min-width: 991px) {
+        width: 20vh;
+        height: 20vh;
+     }
 
-.accessoire {
-    max-width: 150px;
-    max-height: 150px;
-    background-color: $primary-color;
-    border-radius: 75px;
 }
-
 .blue-text {
     color: $primary-color;
     font-weight: 900;
 }
+ .second-primary-title {
+     font-size: 0.9rem;
+     font-family: $secondary-font, sans-serif;
+     font-weight: 600;
+     @include media-breakpoint-up(md) {
+     font-size: 1.2rem;
+ }
+ }
 
 /* FOOTER */
 

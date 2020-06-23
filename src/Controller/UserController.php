@@ -365,6 +365,7 @@ class UserController extends AbstractController
                 'id' => $this->getUser()->getId()
             ]);
         }
+      
     }
 
     /**

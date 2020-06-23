@@ -115,13 +115,16 @@
             </div>
         {% endif %}
     {% else %}
-    <div class="row mb-3">
-        <div class="offset-2 col-8">
-            Tu n'as encore estimé aucun téléphone.
-            <a href="{{ path('new_estimation') }}" class="primary-button">
-                Faire une estimation ?
+    <div class="d-flex flex-column justify-content-center">
+        <div class="">
+            <p class="text-center">Tu n'as encore estimé aucun téléphone.</p>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{{ path('new_estimation') }}" class="primary-button text-center">
+                Faire une estimation
             </a>
         </div>
+
     </div>
     {% endfor %}
 
@@ -199,8 +202,8 @@
             {% endif %}
         </div>
     </div>
-    <p class="text-right">
-        <a href="{{ path('user_edit', {'id': user.id}) }}" class="secondary-button text-center"> modifier</a>
+    <p class="text-center mt-4">
+        <a href="{{ path('user_edit', {'id': user.id}) }}" class="secondary-button text-center">Modifier</a>
     </p>
 
 </main>

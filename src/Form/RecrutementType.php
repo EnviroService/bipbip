@@ -23,7 +23,7 @@ class RecrutementType extends AbstractType
             ->add('phone', TextType::class)
             ->add('message', TextareaType::class, [
                 'attr' => [
-                    'placeholder' => "Si vous souhaitez apporter un commentaire a votre candidature..."
+                    'placeholder' => "Si tu souhaites apporter un commentaire à ta candidature …"
                 ],
                 'required' => false
             ])
@@ -40,7 +40,8 @@ class RecrutementType extends AbstractType
                 ]
             ])
             ->add('lettre', FileType::class, [
-                'label' => 'lettre de motivation',
+                'label' => 'Lettre de motivation (facultative)',
+                'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new File([
