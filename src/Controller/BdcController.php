@@ -111,6 +111,7 @@ class BdcController extends AbstractController
      * @Route("/pdf/{id}", name="bdc_pdf")
      * @IsGranted("ROLE_COLLECTOR")
      * @param Estimations $estimation
+     * @param MailerInterface $mailer
      * @return RedirectResponse
      * @throws TransportExceptionInterface
      */
