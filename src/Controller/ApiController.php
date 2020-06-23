@@ -5,18 +5,26 @@ namespace App\Controller;
 use App\Entity\Collects;
 use App\Entity\Estimations;
 use App\Entity\User;
+use App\Form\ImeiType;
 use App\Repository\EstimationsRepository;
 use App\Repository\OrganismsRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use SoapClient;
 use SoapFault;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
@@ -50,13 +58,40 @@ class ApiController extends AbstractController
         }
     }
 // Le user choisi d'envoyer par chronopost
+
     /**
      * @Route("/envoi-chronopost", name="envoi_chronopost")
+     * @param EstimationsRepository $estimationsRepo
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
      */
-    public function envoiChronopost()
-    {
+    public function envoiChronopost(
+        EstimationsRepository $estimationsRepo,
+        Request $request,
+        EntityManagerInterface $em
+    ) {
         $user = $this->getUser();
         $estimation = $_GET['id'];
+        $estimation = $estimationsRepo->find($estimation);
+
+        $form = $this->createForm(ImeiType::class, $estimation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $imei = $data->getImei();
+            $estimation->setImei(intval($imei));
+            $em->persist($estimation);
+            $em->flush();
+
+            return $this->render("user/envoi_chronopost.html.twig", [
+                'form' => $form->createView(),
+                'user' => $user,
+                'estimation' => $estimation
+            ]);
+        }
+
         if ($user == null) {
             $this->addFlash("error", "Tu as été déconnecté pour le bien de la planéte... Connecte-toi 
             à nouveau ...");
@@ -64,32 +99,35 @@ class ApiController extends AbstractController
         }
 
         return $this->render("user/envoi_chronopost.html.twig", [
+            'form' => $form->createView(),
             'user' => $user,
             'estimation' => $estimation
         ]);
     }
 // Lien API chronopost avec envoi
+
     /**
      * @Route("/chronopost/{id}", name="api_chronopost_ae")
      * @param User $user
      * @param EstimationsRepository $repository
      * @param EntityManagerInterface $em
      * @param OrganismsRepository $organismsRepository
+     * @param MailerInterface $mailer
      * @return Response
      * @throws SoapFault
+     * @throws TransportExceptionInterface
      */
     public function apiChronopostAe(
         User $user,
         EstimationsRepository $repository,
         EntityManagerInterface $em,
-        OrganismsRepository $organismsRepository
+        OrganismsRepository $organismsRepository,
+        MailerInterface $mailer
     ) {
 
         if ($this->getUser()->getId() == $user->getId()) {
             $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
             $clientCh = new SoapClient($wsdl);
-            //$clientCh->soap_defencoding = 'UTF-8';
-            //$clientCh->decode_utf8 = false;
 
             $firstname = $user->getFirstname();
             $name = $user->getLastname();
@@ -220,7 +258,7 @@ class ApiController extends AbstractController
                 //récupération de l'étiquette en base64
                 $pdf = $results->return->resultMultiParcelValue->pdfEtiquette;
 
-                // statut estimation "2" correspond à une génération d'étiquette Chronopost, sauvée sur le serveur
+                // statut estimation "2" correspond à une génération d'étiquette Chronopost.
                 if ($_GET['status'] == 2) {
                     $estimation = $repository->find($estimationId);
                     $estimation->setStatus(2)->setUser($user);
@@ -244,7 +282,7 @@ class ApiController extends AbstractController
                     foreach ($openDir as $value) {
                         if ($filename === $value) {
                             $this->addFlash('danger', 'Votre étiquette a déjà été enregistrée, 
-                        elle est disponible sur votre profil');
+                            elle est disponible sur votre profil');
                             return $this->redirectToRoute('user_show');
                         }
                     }
@@ -253,6 +291,78 @@ class ApiController extends AbstractController
                 $fichier = fopen($filenameSave, "w");
                 fwrite($fichier, $pdf);
                 fclose($fichier);
+
+                // create barcode image
+                $imei = $estimation->getImei();
+                $text = "*" . $imei . "*";
+                header("Content-Type: image/png");
+                $imgPath = "uploads/barcodes/";
+                $barcode = @imagecreate(240, 40);
+                if ($barcode) {
+                    imagecolorallocate($barcode, 255, 255, 255);
+                    $font = 'fonts/code128.ttf';
+                    $black = imagecolorallocate($barcode, 0, 0, 0);
+                    imagettftext($barcode, 30, 0, 2, 38, $black, $font, $text);
+                    imagetruecolortopalette($barcode, true, 255);
+                    imagepng($barcode, "$imei.png");
+                    move_uploaded_file("$imei.png", $imgPath);
+                    imagedestroy($barcode);
+                }
+
+                // Configure Dompdf according to your needs
+                $pdfOptions = new Options();
+                $pdfOptions->set('defaultFont', 'Arial');
+
+                // Instantiate Dompdf with our options
+                $dompdf = new Dompdf($pdfOptions);
+
+                // Retrieve the HTML generated in our twig file
+                $html = $this->renderView('bdc/bdc.html.twig', [
+                    'estimation' => $estimation,
+                ]);
+
+                // Create Filename
+                $filename = date("Ymd") . "C" . $idUser . "P" . $estimationId . ".pdf";
+
+                // Load HTML to Dompdf
+                $dompdf->loadHtml($html);
+
+                // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+                $dompdf->setPaper('A4', 'portrait');
+
+                // Render the HTML as PDF
+                $dompdf->render();
+
+                // Store PDF Binary Data
+                $output = $dompdf->output();
+
+                // we want to write the file in the public directory
+                $publicDirectory = 'uploads/BDC';
+                $pdfFilepath =  $publicDirectory . '/' . $filename;
+
+                // Write file to the desired path
+                file_put_contents($pdfFilepath, $output);
+
+                // Prepare flash message
+                $message = "Le bon de cession a été généré";
+                $this->addFlash('success', $message);
+
+                //$user = $estimation->getUser();
+                $emailExp = (new Email())
+                    ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+                    ->to(new Address($user->getEmail(), $user
+                            ->getFirstname() . ' ' . $user->getLastname()))
+                    ->replyTo('github-test@bipbip-mobile.fr')
+                    ->subject('Voici ton bon de cession')
+                    ->attachFromPath($pdfFilepath)
+                    ->html($this->renderView(
+                        'contact/envoiBDC.html.twig',
+                        [
+                            'user' => $user,
+                            'estimation' => $estimation
+                        ]
+                    ));
+                $mailer->send($emailExp);
 
                 return new Response($pdf, 200, [
                     'Content-Disposition' => "attachment; filename=$filename"
@@ -265,7 +375,6 @@ class ApiController extends AbstractController
         } else {
             $this->addFlash('danger', 'Vous ne pouvez pas éditer cette étiquette. Seules 
             les étiquettes vous appartenant sont disponibles');
-            $id = $this->getUser()->getId();
 
             return $this->redirectToRoute("user_show");
         }
@@ -286,8 +395,6 @@ class ApiController extends AbstractController
 
         $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
         $clientCh = new SoapClient($wsdl);
-        //$clientCh->soap_defencoding = 'UTF-8';
-        //$clientCh->decode_utf8 = false;
 
         $firstname = $user->getFirstname();
         $name = $user->getLastname();
