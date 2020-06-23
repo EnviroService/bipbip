@@ -103,7 +103,7 @@
                     </p>
                     <p class="text-center">
                         {# statut estimation "4" correspond à un code Chronopost envoyé au client #}
-                        <a class="primary-button" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation, 'status': 4}) }}">
+                        <a class="primary-button" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation.id, 'status': 4}) }}">
                             Recevoir mon code
                         </a>
                     </p>
