@@ -5,7 +5,7 @@
 {% block body %}
     <main class="container">
         <h1 class="title-page">
-            <span>Pourquoi organiser une collecte ?</span>
+            <span>Devenir un site de collecte ?</span>
         </h1>
         <p>Texte en construction</p>
         <p>
@@ -17,20 +17,20 @@
             -   	Apposer notre logo sur vos supports de communication <br>
             -   	Développer votre publicité et votre business
         </p>
-        <p>
-            Tu souhaites soutenir le projet en organisant une collecte proche de chez toi ? Pas de problème !
-            <br>
-            J'organise une collecte
+
+        <div class="row mt-5 mb-5" id="plaquettes">
+            <div class="col-12 text-center">
+                <h3 class="title_inter">
+                    Devenir site de collecte
+                </h3>
+                <div class="plaquette">
+                    <a href="{{ plaquette }}" class="btn btn-info" target="_blank">Voir la plaquette</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="formulaire">
             {{ include ('includeForm.html.twig')}}
-        </p>
-        <p>
-            Les points de collectes <br>
-            * Carte avec les lieux de collectes <br>
-            * Calendrier <br>
-            Rendez-vous dans points de collecte pour rencontrer notre équipe ainsi que nos différents étudiants de la région !
-            N’oublie pas d’estimer ton téléphone avant de venir nous voir via l’application pour une estimation précise ou sur notre site internet pour une estimation approximative.
-
-        </p>
-
+        </div>
     </main>
 {% endblock %}

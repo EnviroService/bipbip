@@ -89,6 +89,10 @@ class ContactController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
 
+        $directory = "uploads/plaquette/";
+        $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
+        $filenameSave = $directory . $filename;
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
@@ -125,7 +129,8 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('home');
         }
         return $this->render('home/asso.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'plaquette' => $filenameSave
         ]);
     }
 
