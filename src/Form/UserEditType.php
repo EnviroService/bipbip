@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Organisms;
 use App\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +30,12 @@ class UserEditType extends AbstractType
                     'expanded' => false,
                     'multiple' => false,
                     'attr' => ['class' => 'selectpicker'],
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('o')
+                            ->where('o.organismStatus = \'Collecteur privé\'')
+                            ->orderBy('o.organismName', 'ASC')
+                            ;
+                    },
                 ]
             )
         ;
