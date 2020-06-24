@@ -26,7 +26,12 @@
        img {
            max-height: 400px;
        }
-     }
+    }
+
+    .bientot-dispo {
+        height: 3vh;
+        width: 7vw;
+    }
 
     .img-home {
         width: 80%;
@@ -80,7 +85,7 @@
 
         .video {
             width: 70%;
-            height: auto;
+            height: 35vh;
             @include media-breakpoint-up(lg) {
                 width: 100%;
             }
