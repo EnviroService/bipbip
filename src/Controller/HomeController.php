@@ -242,19 +242,16 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("bipers", name="bipers")
+     * @Route("points-de-collecte", name="bipers")
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
     public function collectorBipers(CollectsRepository $collectsRepo)
     {
         $form = $this->createForm(ContactType::class);
-        $directory = "uploads/plaquette/";
-        $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
-        $filenameSave = $directory . $filename;
 
         return $this->render('home/collectorBipers.html.twig', [
             'form' => $form->createView(),
-            'plaquette' => $filenameSave,
             'collects' => $collectsRepo->findByDateValid()
         ]);
     }

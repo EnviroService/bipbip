@@ -531,7 +531,7 @@ header {
     font-size: 3rem;
     color: $primary-color;
 }
-
+/*
 .comment-marche-vends {
     background-color:$fifth-color;
     font-weight: 700;
@@ -543,6 +543,27 @@ header {
     img {
         width: 25px;
         height: auto;
+    }
+}
+*/
+
+.bientot_dispo{
+    position: fixed;
+    z-index: 1;
+
+    .content_image {
+        position: absolute;
+        margin: 0;
+        height: 200px;
+        width: 200px;
+    }
+
+    img {
+        @media screen and (max-width: 992px ){
+            width: 97vw;
+        }
+        width: 65vw;
+        height: 73vh;
     }
 }
 
