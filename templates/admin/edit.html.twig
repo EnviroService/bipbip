@@ -1,0 +1,22 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Modifier partenaire{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('editPartner') }}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="primary-title">Modifier Partenaire</h1>
+
+    {{ include('organisms/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <button class="secondary-button editLink">Modifier</button>
+    {{ form_end(form) }}
+
+    {{ include('organisms/_delete_form.html.twig') }}
+
+    <a class="secondary-button editLink" href="{{ path('admin_organisms_index') }}">Retour à la liste</a>
+{% endblock %}
+

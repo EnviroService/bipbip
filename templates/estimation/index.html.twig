@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+    <h1 class="title-page"><span>Estime ton tel</span></h1>
+
+        <div class="row">
+            <div class="col-12">
+                <h1 class="primary-title text-left">
+                    <img class="img-fleche mr-lg-2" src="{{ asset('images/fleche_droite.png') }}" alt="→">On a quelques questions pour toi</h1>
+                <p><span class="font-weight-bold">Pour nous aider</span> à estimer la valeur de ton téléphone, sois honnête sur sa description pour en
+                connaître sa valeur réelle</p>
+            </div>
+        </div>
+
+        <section id="brand">
+            <div class="row">
+                <div class="col-12 text-center p-5">
+                    <span class="estim-round-bubble">Quelle est la marque de ton mobile&#8239;?</span>
+                </div>
+                {% for brand in brands %}
+                    <div class="col-12 col-sm-4 mx-auto text-center p-2">
+                <p class="grey-button brand" id="{{ brand.brand }}" href="{{ path('estimation_brand', {'brand':brand.brand}) }}">{{ brand.brand }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto text-center p-4">
+                    <a class="grey-button" href="{{ path("autres") }}">Autre marque</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="model" style="display:none;">
+            <div class="row text-center justify-content-center" id="model-js">
+                <div class="col-12 text-center p-5">
+                    <span class="estim-round-bubble">Quel est le modèle&#8239;?</span>
+                </div>
+                <div class="col-12 text-center p-5 patience">
+                    {# ici apparait la petite roue qui tourne #}
+                </div>
+                {# ici apparaissent les modèles via le script JS #}
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto text-center p-4">
+                    <a class="grey-button" href="{{ path("autres") }}">Autre modèle</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="capacity" style="display:none;">
+            <div class="row text-center justify-content-center" id="capacity-js">
+                <div class="col-12 text-center p-5">
+                    <span class="estim-round-bubble">Quel est la capacité&#8239;?</span>
+                </div>
+                <div class="col-12 text-center p-5 patience">
+                    {# ici apparait la petite roue qui tourne #}
+                </div>
+                {# ici apparaissent les capacités via le script JS #}
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto text-center p-4">
+                    <a class="grey-button" href="{{ path("autres") }}">Autre capacité</a>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+
+{%  block javascripts %}
+    <script src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function(){
+            // au clic sur une marque
+            $('.brand').on('click', function(){
+                // on récupère la marque cliquée
+                const brand = $(this).attr('id');
+                // on affiche un gif de recherche
+                $('.patience').html('<img src="{{ asset('images/ajax-loader.gif') }}">');
+                // ça va chercher les modeles en requête json
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('model_id') }}",
+                    data: {brand: brand},
+                    dataType:"json",
+                    success: function(models){
+                        // et ça show le modele
+                        $('#model').show();
+                        // quand on clique ça scrolle vers le bas
+                        $('html,body').animate({scrollTop: $("#model").offset().top}, 'slow');
+                        // si on choisit une autre marque ça vide les modèles précédents
+                        $('.patience').remove();
+                        $('.provisoire').remove();
+                        console.log(models);
+                        $.each(models, function(key, element) {
+                            const json = $.parseJSON(element);
+                            for (let i=0;i<json.length;++i)
+                            {
+                                console.log(json[i].model);
+                                $('#model-js').append('<div class="col-12 col-sm-4 text-center p-2 provisoire">' +
+                                    '<a class="grey-button model" id="json[i].model" href="/estimation/' + brand + '/' + json[i].model + '">' + json[i].model + '</a></div>');
+                            }
+                        });
+                    },
+                });
+            });
+
+            // Au clic sur un modèle
+            $('.model').on('click', function(){
+
+                $('#capacity').show();
+                const model = $(this).attr('id');
+                console.log("clic");
+                console.log(model);
+
+                /*
+                // on récupère le modèle cliqué
+                const model = $(this).attr('id');
+                const brand = "Apple"; // TO DO récupérer la marque
+                console.log(model);
+                // on affiche un gif de recherche
+                $('.patience').html('<img src="{{ asset('images/ajax-loader.gif') }}">');
+                // ça va chercher les modeles en requête json
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('capacity_id') }}",
+                    data: {model: model, brand: brand},
+                    dataType:"json",
+                    success: function(capacities){
+                        // et ça show le modele
+                        $('#capacity').show();
+                        // quand on clique ça scrolle vers le bas
+                        $('html,body').animate({scrollTop: $("#capacity").offset().top}, 'slow');
+                        // si on choisit un autre modèle ça vide les capacités précédentes
+                        $('.patience').remove();
+                        $('.provisoire').remove();
+                        $.each(capacities, function(key, element) {
+                            const json = $.parseJSON(element);
+                            for (let i=0;i<json.length;++i)
+                            {
+                                $('#capacity-js').append('<div class="col-12 col-sm-4 text-center p-2 provisoire">' +
+                                    '<p class="grey-button capacity">' + json[i].capacity + '</p></div>');
+                            }
+                        });
+                    },
+                });
+                */
+            });
+        });
+    </script>
+{% endblock %}

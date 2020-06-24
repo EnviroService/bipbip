@@ -1,0 +1,89 @@
+@import "vars";
+@import '~bootstrap/scss/bootstrap';
+
+.home {
+  font-family: $primary-font;
+  margin: 0;
+
+  .header {
+    .header-text {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+
+      .color-primary {
+        color: $primary-color;
+      }
+
+      .color-third {
+        color: $third-color;
+      }
+
+      sup {
+        text-transform: none;
+      }
+    }
+
+    img {
+      max-height: 250px;
+    }
+  }
+}
+
+.videoNatacha {
+  width: 80%;
+  @include media-breakpoint-up(lg) {
+    width: 100%;
+  }
+  }
+.logo{
+  width: 100px;
+  height: 100px;
+}
+.constat{
+  p {
+    color: $primary-color;
+  }
+  .accroche_primaire{
+    color: $third-color;
+
+    .mot_cle{
+      font-size: 32px;
+    }
+  }
+
+  .img-constat {
+    height: 23vh;
+    width: 145px;
+    margin-bottom: 40px;
+    @include media-breakpoint-up(sm) {
+      height: 150px;
+    }
+    @include media-breakpoint-up(md) {
+      height: 170px;
+    }
+
+  }
+}
+
+/* CAROUSEL */
+
+.carousel {
+  width: 80vh;
+  height: 20vh;
+  left: 5vh;
+
+  .img-carousel {
+
+  }
+
+  .carousel-indicators{
+    bottom: -50px;
+  }
+}
+
+// notre team
+.for-4 {
+  width: 70%;
+  max-width: 80%;
+}

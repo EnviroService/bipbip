@@ -1,0 +1,35 @@
+<div class="mt-5">
+    {{ form_start(form) }}
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.subject, {'attr': {'class': 'form-control', 'label': 'Objet du message', 'required': true}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Prénom',
+            'label': 'Prénom', 'required': true}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom',
+            'label': 'Nom', 'required': true}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Email',
+            'label': 'Email', 'required': true}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.phone, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Téléphone',
+            'label': 'Téléphone'}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_widget(form.message, {'attr': {'class': 'form-control mt-3 mb-3',
+            'placeholder': 'Message (10 caractères minimum)', 'label': 'Message', 'required': true}}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2 form-text text-muted">
+        {{ form_row(form.agreeTerms, {'label': 'Aucune donnée personnelle n\’est conservée par notre site via
+                ce formulaire, mais tu acceptes que BipBip te recontacte afin de répondre à ta demande.', 'required': true}) }}
+    </div>
+    <div class="offset-sm-2 col-sm-8 offset-sm-2">
+        {{ form_row(form.save, {'label': 'Envoyer le message', 'attr': {'class': 'fourth-button'}}) }}
+    </div>
+    {{ form_end(form) }}
+
+</div>

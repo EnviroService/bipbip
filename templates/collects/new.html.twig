@@ -1,0 +1,11 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Nouvelle collecte{% endblock %}
+
+{% block body %}
+    <main id="new-collect">
+        <h2 class="primary-title">Ajout d'une collecte</h2>
+
+        {{ include('collects/_form.html.twig') }}
+    </main>
+{% endblock %}

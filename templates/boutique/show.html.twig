@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+    <h1 class="mb-5 text-center">Boutique</h1>
+
+    <div class="container mb-5">
+        <div class="row border align-items-center">
+            <div class="image col-12 col-md-5 text-center mt-3">
+                <img src="{{ asset(boutique.image) }}" class="mr-5 ml-auto mr-auto" alt="">
+            </div>
+            <div class="col-12 col-md-5 text-center mt-3">
+                <div class="row">
+                    <div class="info col-12 col-md-12 border-bottom">
+                        <h2>{{ boutique.brand }}</h2>
+                        <h3>{{ boutique.model }}</h3>
+                        <h4>{{ boutique.capacity }} Go</h4>
+                    </div>
+                    <div class="description col-12 col-md-12 p-2">
+                        <h4>Description</h4>
+                        <p class="border-bottom">{{ boutique.description }}</p>
+                        <p>Prix: {{ boutique.prix }} €</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <a href=javascript:history.go(-1) class="btn btn-info">Retour</a>
+
+    {% if app.user %}
+        {% for role in app.user.roles %}
+            {% if role == "ROLE_ADMIN" %}
+                <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">Modifier</a>
+                {{ include('boutique/_delete_form.html.twig') }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

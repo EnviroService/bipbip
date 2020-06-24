@@ -1,0 +1,22 @@
+{% block title %}{% endblock %}
+
+ {% block stylesheets %}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-10 mx-auto text-center form p-4">
+            {{ form_start(form) }}
+            <h1 class="third-title mb-4">Mettre à jour la matrice</h1>
+                {{ form_widget(form.matrice_field, {'attr': {'class': 'form-control mb-3', 'placeholder': 'Charger la matrice'}}) }}
+            <button class="secondary-button matrix_button mt-4">Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('matrice_upload') }}
+{% endblock %}

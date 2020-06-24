@@ -1,0 +1,70 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Liste des bons de cession stockés{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1 class="third-title m-4">Liste des bons de cession stockés</h1>
+            </div>
+        </div>
+        <div>
+            <p class="text-center text-danger">
+                Pour faire une recherche, faite ctrl/F.
+            </p>
+        </div>
+        <div class="row bg-info align-items-center">
+            <div class="col-3 text-center font-weight-bold p-3">
+                Date de la collecte
+            </div>
+            <div class="col-5 text-center font-weight-bold">
+                Estimation d'origine
+            </div>
+            <div class="col-4 mx-auto text-left font-weight-bold">
+                Consulter le fichier
+            </div>
+        </div>
+
+        {% for estimation in estimations %}
+            <div class="row bg-light align-items-center">
+                <div class="col-3 text-center p-2">
+                    {#-- La date correspond a la clé 0 du tableau estimation, l'id as la clé 1 et le filename a la clé 2 --#}
+                    {{ estimation[0] }}
+                </div>
+                <div class="col-5 text-center">
+                    <a href="{{ path('estimations_show', {id: estimation[1]}) }}" title="">Estimation n°{{estimation[1]}}</a>
+                </div>
+                <div class="col-4 mx-auto text-left">
+                    <a target="_blank" href="/../uploads/BDC/{{ estimation[2] }}">Consulter  {{ estimation[2] }}</a>
+                </div>
+            </div>
+        {% endfor %}
+
+
+        {#
+        {%  set number = 0 %}
+        {% for file in files %}
+        <div class="row bg-light align-items-center">
+            <div class="col-3 text-center p-2">
+                {{ dates[number] }}
+            </div>
+            <div class="col-5 text-center">
+                <a href="{{ path('estimations_show', {id: estimationIds[number]}) }}" title="">Estimation n°{{estimationIds[number]}}</a>
+            </div>
+            <div class="col-4 mx-auto text-left">
+                <a target="_blank" href="/../uploads/BDC/{{ file }}">Consulter  {{ file }}</a>
+            </div>
+        </div>
+            {% set number = number +1 %}
+        {% endfor %}
+        #}
+
+
+
+
+
+
+
+    </main>
+{% endblock %}
+

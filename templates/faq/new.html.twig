@@ -1,0 +1,17 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Nouvel question{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="third-title text-center m-4">Créer une nouvelle question</h1>
+
+    {{ include('faq/_form.html.twig') }}
+    <div class="row justify-content-center">
+        <a class="fourth-button mt-3" href="{{ path('faq_index') }}">Retour à la liste</a>
+    </div>
+{% endblock %}

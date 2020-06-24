@@ -1,0 +1,23 @@
+{% block header %}
+
+        <style>
+        </style>
+
+{% endblock %}
+{% block body %}
+     <div class="jumbotron">
+        <p>Salut {{ user.firstname }} !</p>
+        <p>Merci d'avoir choisi BipBip pour offrir une seconde vie à ton tel ! </p>
+        <p>Ton tel est en route vers l'atelier pour y être rénové</p>
+        <p>Tu trouveras en pièce jointe ton bon de cession pour ton :</p>
+        <ul>
+            <li>Marque : {{ estimation.brand }}</li>
+            <li>Modéle : {{ estimation.model }}</li>
+            <li>Capacité : {{ estimation.capacity }} Go</li>
+        </ul>
+        <p>Pour une valeur de <span> {{ estimation.estimatedPrice }} €</span></p>
+
+         {% include('contact/include_image_signature_bipbip.html.twig') %}
+
+     </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Nouveau collecteur{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('signup') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="primary-title">Ajout d'un collecteur</h1>
+
+    <div class="container">
+        {{ form_start(registrationCollectorForm) }}
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.organism, { 'label': 'Organisme Collecteur associé' }) }}
+                <a href="{{ path('organisms_new') }}" class="fourth-button">Ajouter un organisme collecteur</a>
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.firstname, { 'label': 'Prénom' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.lastname, { 'label': 'Nom' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.address, { 'label': 'Adresse' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.postcode, { 'label': 'Code Postal' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.city, { 'label': 'Ville' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.phoneNumber, { 'label': 'N° de téléphone' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.email, { 'label': 'Email' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationCollectorForm.password, { 'label': 'Mot de passe' }) }}
+            </div>
+
+            <button class="fourth-button">Valider le collecteur</button>
+        {{ form_end(registrationCollectorForm) }}
+    </div>
+{% endblock %}

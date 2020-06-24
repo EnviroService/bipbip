@@ -1,0 +1,81 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Détails Estimation{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('showEstimationAdmin') }}
+{% endblock %}
+{% block body %}
+    <main id="estimations-show">
+        <h2 class="primary-title">Détails Estimation</h2>
+
+        {% if estimation.user is not null%}
+            <h3>{{  estimation.user.firstname }} {{ estimation.user.lastname }}</h3>
+        {% else %}
+            <h3>Utilisateur Anonyme</h3>
+        {% endif %}
+
+        <div class="tables">
+            <table class="table-left">
+                <tbody>
+                    <tr>
+                        <th>Date d'estimation</th>
+                        <td>{{ estimation.estimationDate ? estimation.estimationDate|date('d-m-Y H:i') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Collecté ?</th>
+                        <td>{{ estimation.isCollected ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Marque</th>
+                        <td>{{ estimation.brand }}</td>
+                    </tr>
+                    <tr>
+                        <th>Modèle</th>
+                        <td>{{ estimation.model }}</td>
+                    </tr>
+                    <tr>
+                        <th>Capacité</th>
+                        <td>{{ estimation.capacity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prix estimé</th>
+                        <td>{{ estimation.estimatedPrice }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table-right">
+                <tbody>
+                    <tr>
+                        <th>Dommages causés par du liquide</th>
+                        <td>{{ estimation.liquidDamage ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dommages au niveau de l'écran</th>
+                        <td>{{ estimation.screenCracks ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dommages au niveau de la coque</th>
+                        <td>{{ estimation.casingCracks ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Batterie endommagée</th>
+                        <td>{{ estimation.batteryCracks ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Boutons endommagés</th>
+                        <td>{{ estimation.buttonCracks ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <section>
+            <a class="fourth-button" href="{{ path('estimations_index') }}">Revenir à l'index</a>
+
+            {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                <a class="fourth-button" href="{{ path('estimations_delete', {'id': estimation.id}) }}">Supprimer</a>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}

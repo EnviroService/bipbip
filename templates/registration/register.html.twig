@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscris toi !{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('signup') }}
+{% endblock %}
+
+{% block body %}
+    <main id="registration">
+        <h1 class="primary-title">Inscription</h1>
+
+        {{ form_start(registrationForm) }}
+        <div class="container">
+            <div class="row">
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                <p>Afin d'accéder aux points de collecte te concernant, appartiens-tu à un des organismes de la liste ci-dessous ?</p>
+                <p class="font-italic">
+                    Aucun organisme? pas d'inquiétude il y a des collectes public et également la possibilité d'envoyer par chronopost
+                </p>
+                {{ form_row(registrationForm.organism, { 'label': 'Organismes partenaires de BipBip Mobile :', 'label_attr': {'class': 'label-registration-form'} }) }}
+                <p class="contact-link">Tu souhaites que ton entreprise ou ton école organise une collecte ? N'hésite pas à nous envoyer un message en <a href="{{ path('add_message') }}" class="font-italic" target="_blank">cliquant ici !</a></p>
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.firstname, { 'label': 'Prénom' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.lastname, { 'label': 'Nom' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.address, { 'label': 'Adresse' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.postcode, { 'label': 'Code Postal' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.city, { 'label': 'Ville' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.phoneNumber, { 'label': 'N° de téléphone ', 'attr': {'class': '', 'placeholder': 'ex: 0612345678'} }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.email, { 'label': 'Email' }) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {{ form_row(registrationForm.password) }}
+            </div>
+            <div class="offset-sm-2 col-sm-8 offset-sm-2">
+                {% set terms_link %}J'accepte que BipBip stocke mes données afin de me
+                    permettre d'accéder à des lieux de collectes et de procéder à la revente de mon téléphone.
+                {% endset %}
+                    {{ form_row(registrationForm.agreeTerms, { 'label': terms_link }) }}
+                    <a href="{{ path('protection') }}" target="_blank">En savoir plus</a>
+            </div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="primary-button">S'inscrire</button>
+            </div>
+        </div>
+    {{ form_end(registrationForm) }}
+    </main>
+{% endblock %}

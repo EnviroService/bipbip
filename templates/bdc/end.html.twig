@@ -1,0 +1,26 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}Confirmation{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="progress mt-4">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="7" style="width: 100%">
+                7 sur 7
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Etape 7 : confirmation</h1>
+                <p>Merci, une copie du bon de cession a été envoyée à l'adresse mail fournie par le client.</p>
+                <p>Le téléphone est à rendre à EnviroServices</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto text-left form p-4">
+                <a href="{{ path('bdc_pay', { id: estimation.id}) }}" class="btn btn-dark"><- Précédent</a>
+            </div>
+            <div class="col-8 mx-auto text-right form p-4">
+                <a href="{{ path('estimations_index') }}" class="btn btn-success">Accueil des estimations</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

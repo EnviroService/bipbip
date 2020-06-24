@@ -1,0 +1,59 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Boutique admin{% endblock %}
+
+{% block body %}
+
+    <main>
+        <h1 class="third-title text-center mt-3">Boutique</h1>
+        <div class="text-center">
+            <a href="{{ path('boutique_new') }}" class="btn btn-dark mb-3">Ajouter un Tél</a>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr class="bg-light">
+                    <th>Id</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Capacité</th>
+                    <th>Couleur</th>
+                    <th>Etat</th>
+                    <th>Prix</th>
+                    <th>DateAjout</th>
+                    <th>Promo</th>
+                    <th>Vendu</th>
+                    <th>DateSold</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for boutique in boutiques %}
+                <tr>
+                    <td>{{ boutique.id }}</td>
+                    <td>{{ boutique.brand }}</td>
+                    <td>{{ boutique.model }}</td>
+                    <td>{{ boutique.capacity }}</td>
+                    <td>{{ boutique.couleur }}</td>
+                    <td>{{ boutique.etat }}</td>
+                    <td>{{ boutique.prix }}</td>
+                    <td>{{ boutique.dateAjout ? boutique.dateAjout|date('d-m-Y') : '' }}</td>
+                    <td>{{ boutique.isPromo ? 'Yes' : 'No' }}</td>
+                    <td>{{ boutique.isSold ? 'Yes' : 'No' }}</td>
+                    <td>{{ boutique.dateSold ? boutique.dateSold|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <a href="{{ path('boutique_show', {'id': boutique.id}) }}" class="btn btn-info mb-2">Voir</a>
+                        <a href="{{ path('boutique_edit', {'id': boutique.id}) }}" class="btn btn-success">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">Aucun téléphone dans la boutique</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </main>
+{% endblock %}

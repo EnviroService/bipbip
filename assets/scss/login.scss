@@ -1,0 +1,42 @@
+@import "vars";
+
+#login{
+    .row{
+        margin-bottom : 20px;
+        font-family: "co-headline", sans-serif;
+    }
+
+    .fourth-button{
+        width : 140px;
+        @media screen and (min-width: 740px) {
+            margin: 30px auto;
+        }
+    }
+
+    .registration, p{
+        display : block;
+        font-size : 1rem;
+        text-align: center;
+        margin : 10px auto;
+        color : $primary-color;
+    }
+
+    .disconnection {
+        display: flex;
+        justify-content: center;
+        margin: 80px auto;
+    }
+}
+
+#mdp {
+    margin: 7% 0;
+}
+
+#new-mdp {
+    margin: 7% 0;
+    width: 50%;
+    @media screen and (min-width: 1025px) {
+        margin: auto;
+
+    }
+}

@@ -1,0 +1,22 @@
+    <div class="row">
+        <div class="col-lg-6 col-sm-8 mx-auto text-center form p-3">
+            {{ form_start(form, {'class': 'form-group'}) }}
+            {{ form_widget(form.subject, {'attr': {'class': 'form-control',
+                'placeholder': 'Objet du message', 'label': 'Objet du message', 'required': true}}) }}
+            {{ form_widget(form.firstname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Prénom',
+                'label': 'Prénom', 'required': true}}) }}
+            {{ form_widget(form.lastname, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Nom',
+                'label': 'Nom', 'required': true}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Email',
+                'label': 'Email', 'required': true}}) }}
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control mt-3', 'placeholder': 'Téléphone',
+                'label': 'Téléphone'}}) }}
+            {{ form_widget(form.message, {'attr': {'class': 'form-control mt-3 mb-3',
+                'placeholder': 'Message', 'label': 'Message', 'required': true}}) }}
+            {{ form_row(form.agreeTerms, {'class': 'form-text text-muted',
+                'label': 'Aucune donnée personnelle n\’est conservée par notre site via ce formulaire,
+            mais tu acceptes que BipBip te recontacte afin de répondre à ta demande.', 'required': true}) }}
+            {{ form_row(form.save, {'label': 'Envoyer le message', 'attr': {'class': 'fourth-button'}}) }}
+            {{ form_end(form) }}
+        </div>
+    </div>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto text-center">
+                <h1 class="primary-title">Désolé...</h1>
+                <p class="alert alert-danger">Désolé, ton téléphone n'est pas repris par BipBip actuellement,
+                    reviens plus tard, nous aurons une liste qui pourrait t'intéresser.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-5 text-center p-1">
+                <a class="secondary-button" href="{{ path('new_estimation') }}">Autre estimation ?</a>
+            </div>
+            <div class="col-5 text-center p-1">
+                <a class="primary-button" href="{{ path('home') }}">Retour à l'accueil</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

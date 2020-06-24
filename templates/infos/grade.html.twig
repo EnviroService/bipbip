@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Smartphone reconditionné{% endblock %}
+
+{% block body %}
+
+    <main>
+        <div class="container">
+            <h1 class="title-page"><span>Smartphone reconditionné</span></h1>
+            <div class="mt-3 text-center">
+                <p>
+                    Tu ne sais pas vivre sans téléphone ? Ne t’inquiète pas tu n’es pas le seul.
+                </p>
+                <p>
+                    BipBip te propose une sélection de smartphones collectés dans la région Hauts-de-France.
+                </p>
+            </div>
+
+            <div class="w-100">
+                <img class="img-fluid w-100 mt-3" src="{{ asset('images/BipBip_grade.png') }}" alt="">
+            </div>
+            <div class="mt-3">
+                <p>
+                    Après une remise à neuf avec les produits d’origine, nos experts ont installé les applications
+                    de nos partenaires pour te faciliter la vie en te donnant accès à des bons plans.
+                </p>
+                <p>
+                    Profites des dernières technologies tout en ayant la possibilité d’économiser de l’argent
+                    tout en consommant de manière responsable.
+                </p>
+                <p>
+                    Toujours pas convaincu ?<br>
+                    - Nos produits sont garantis 12 mois minimum.<br>
+                    - Tu offres une deuxième vie à une téléphone.<br>
+                    - Tu fais un geste pour notre planète.<br>
+                    Alors ? Qu’est ce que tu attends pour acheter ton green mobile ? :p
+
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}

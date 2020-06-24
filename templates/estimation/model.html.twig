@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <h1 class="primary-title">Quel est ton modèle ?</h1>
+                <h4 class="text-dark">Marque : {{ brand.brand }}</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for model in models %}
+            <div class="col mx-auto text-center p-1">
+                <a class="primary-button" href="/estimation/{{ brand.brand }}/{{ model }}">{{ model }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12 mx-auto text-center form p-4">
+                <a class="third-button" href="{{ path("autres") }}">Autre modèle</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

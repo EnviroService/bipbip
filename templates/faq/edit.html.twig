@@ -1,0 +1,20 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Modification{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('faq') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="primary-title">Modifier</h1>
+
+    {{ include('faq/_form.html.twig') }}
+    <div class="row justify-content-center">
+        <a class="primary-button m-2" href="{{ path('admin_faq_index') }}">Retour à la liste</a>
+    </div>
+    <div class="row justify-content-center">
+        {{ include('faq/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

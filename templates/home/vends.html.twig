@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BipBip - Ton Green Mobile{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    <main class="home">
+
+        <h1 class="title-page"><span>Vends ton tél</span></h1>
+        <section>
+            <div class="row justify-content-center">
+
+                <div class="col-12 text-center">
+                    <p class="primary-title">Go, faire l'estimation&#8239;!</p>
+                </div>
+                <div class="col-2 text-center my-auto">
+                    <img class="img-fleche mr-lg-2" src="{{ asset('images/fleche_droite.png') }}" alt="→">
+                </div>
+                <div class="col-8">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-5 text-center">
+                            <p class="primary-button mb-2">via l'appli</p>
+                        </div>
+                        <div class="col-12 col-sm-5 text-center">
+                            <a href="{{ path('new_estimation') }}" class="primary-button">via le site</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 text-center my-auto">
+                    <img class="img-fleche mr-lg-2" src="{{ asset('images/fleche_gauche.png') }}" alt="→">
+                </div>
+
+                <div class="col-12 col-sm-8 text-justify mt-3">
+                    BipBip te propose une super appli pour diagnostiquer et connaître la valeur de ton téléphone.
+                    <br>L’application est bien-sûr disponible sur l’App Store et également sur Play Store.
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="row comment-marche mt-5 pb-3 align-items-center">
+                <div class="col-12">
+                    <h2 class="primary-title">Comment vendre ton téléphone ?</h2>
+                </div>
+
+                <div class="col-12 col-lg-6 text-center">
+                    <img src="{{ asset('images/video.png') }}" alt="video" class="video">
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-right">
+                            <img src="{{ asset('images/1.png') }}" alt="1">
+                        </div>
+                        <div class="col">
+                            Teste ton téléphone sur
+                            <a href="{{ path('new_estimation') }}">
+                                <span class="explain-text-color">notre site</span>
+                            </a>
+                            ou sur notre
+                            <a href="{{ path('home') }}">
+                                <span class="explain-text-color">appli</span>
+                            </a>
+                            et découvre notre offre de rachat
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-right">
+                            <img src="{{ asset('images/2.png') }}" alt="2">
+                        </div>
+                        <div class="col">
+                            Après la création de ton compte
+                            <a href="{{ path('show_collect') }}"><span class="explain-text-color">
+                    choisis un mode de collecte</span></a>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-right">
+                            <img src="{{ asset('images/3.png') }}" alt="4">
+                        </div>
+                        <div class="col">
+                            Notre expert procède à l’effacement de tes données, vérifie ton smartphone,
+                            te fournit un bon de cession et réalise le paiement.
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-right">
+                            <img src="{{ asset('images/4.png') }}" alt="5">
+                        </div>
+                        <div class="col">
+                        <span class="explain-text-color">- Récupère ton argent<br>
+                        - Fais un don</span> de la valeur de ton tél pour une association<br>
+                            <span class="explain-text-color">- Profite d'un bon de réduction</span> sur l'achat
+                            d'un BipBip mobile
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-2 text-right">
+                            <img src="{{ asset('images/coche.png') }}" alt="Bonne action" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            Tu as fait une bonne action pour ta planète !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8">
+
+                    <h2 class="primary-title-left mt-5">Pourquoi&#8239;vendre&#8239;mon&#8239;tél&#8239;à&#8239;BipBip&nbsp;?</h2>
+
+                    <p class="text-justify">Vendre ton téléphone à BipBip c'est permettre à une petite entreprise du Nord de se
+                        développer. Favoriser l'emploi local chez nous mais aussi chez nos partenaires. C'est aider
+                        à construire une économie plus durable et surtout gagner de l'argent en faisant
+                        une bonne action.</p>
+                </div>
+                <div class="col-12 col-sm-4 text-center">
+                    <img src="{{ asset('images/phone-green.png') }}" alt="Téléphones collectés" id="tel-collectes">
+                    <div class="blue-cadre mx-auto">
+                        <span id="number">1520</span><br>téléphones<br>collectés<br>par nos Bipers
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="d-flex flex-column ">
+                        <h2 class="primary-title-left">Que devient mon tél ?</h2>
+                        <p class="text-justify">Lorsqu'un téléphone passe avec succès les tests de fonctionnement, il sera ensuite vendu sur notre site Internet.</p>
+                        <p class="text-justify">Donne vie à des BipBip mobile en mettant en oeuvre des actions locales&nbsp;!</p>
+                        <p class="text-justify">Au plus nous collectons de téléphones, plus les prix de nos BipBip mobiles pourront être bas tout en
+                            gardant sa qualité absolue&nbsp;!</p>
+                        <p>Et ne t'inquiète pas&nbsp;! L'équipe BipBip assure la qualité de tous nos produits reconditionnés.</p>
+                        <p class="text-justify">Si tu ne sais pas comment choisir le grade de ton téléphone,
+                            <span class="font-weight-bold">jette un coup d'oeil par ici&nbsp;!</span></p>
+                        <p class="explain-text-color mb-5">On compte sur toi pour collecter un MAXIMUM de téléphones&nbsp;!</p>
+                    </div>
+                </div>
+                    <div class="p-3 mt-3">
+                        <img src="{{ asset('images/photo-main-gant.png') }}"
+                             alt="Processus de recyclage"
+                             class="img-fluid mt-5"
+                             id="photo-processus">
+                    </div>
+                </div>
+        </section>
+
+        <section>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <h2 class="secondary-round-title">Découvre le processus de recyclage en BD</h2>
+                </div>
+
+                <div class="col-12">
+                     <img src="" alt="bd">
+                </div>
+            </div>
+        </section>
+
+        {% include('home/5pictos.html.twig') %}
+
+    </main>
+{% endblock %}

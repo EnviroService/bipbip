@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}BipBip Mobile{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Century+Gothic" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/2710711f76.js" crossorigin="anonymous"></script>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+    <div class="container-fluid">
+        {# Tout le site version User apparaît en colonne centrée 8/12 en grand écran, #}
+
+        {% if '/admin/' in app.request.uri  %}
+        <div class="row justify-content-center">
+            <div class="col col-lg-12 bg-white">
+        {% else %}
+        <div class="row justify-content-center">
+            <div class="col col-lg-8 bg-white">
+        {% endif %}
+
+    {% block header %}
+        <header>
+            <div class="row pb-1">
+                <div class="col-8 col-sm-12 pt-4 text-center">
+                    <a href="{{ path('home') }}" class="logo-title "><img src="{{ asset('/images/logo-bipbip.png') }}"
+                                                                          alt="BipBip ton Green Mobile" /></a>
+                </div>
+                <div class="col-6 col-md-6 col-lg-12">
+                    <nav id="menu">
+                            <img src="{{ asset('images/close.png') }}" alt="Fermer le menu" class="close-button"/>
+                            <div class="row justify-content-center pl-2 pr-2 pb-1">
+                                <div class="col-12 col-sm-6 col-lg-5 mt-lg-5 text-center">
+                                    <div class="row smallLogoMenu align-content-around">
+                                        <div class="col">
+                                            {% if app.user %}
+                                                <a href="{{ path('user_show') }}">
+                                            {% else %}
+                                                <a href="{{ path('app_login') }}">
+                                            {% endif %}
+                                                <img src="{{ asset('images/silhouette.png') }}" alt="Profil"></a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{{ path('add_message') }}">
+                                                <img src="{{ asset('images/bulle-contact.png') }}" alt="">
+                                            </a>
+                                        </div>
+                                        {% if app.user %}
+                                            <div class="col">
+                                                <a href="{{ path('user_show') }}">
+                                                    <img src="{{ asset('images/shopping-cart.png') }}" alt="">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <a href="{{ path('home') }}"><img class="d-none d-sm-block m-auto" src="{{ asset('images/logo-bipbip.png') }}" alt="Téléphone" id="phone-menu"/></a>
+                                    <div class="user-infos-menu mt-5 d-none d-sm-block">
+                                        {% if app.user %}
+                                                <h3 class="primary-title-menu-color">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                                {% for role in app.user.roles %}
+                                                    {% if role == 'ROLE_COLLECTOR' or role == 'ROLE_ADMIN' %}
+                                                        <a href="{{ path('estimations_index') }}" title="plateforme d'administration" class="primary-title-menu">Accès à l'administration</a>
+                                                    {% else %}
+                                                        <a class="primary-title-menu" href="{{ path('user_show') }}">Mon profil</a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            <a href="{{ path('app_logout') }}" class="disconnection"> Se déconnecter</a>
+                                        {% else %}
+                                            <div class="d-flex flex-column justify-content-center mt-3">
+                                                <a href="{{ path('app_login') }}" class="primary-button text-white mb-2 "> Se connecter</a>
+                                                <a href="{{ path('app_register') }}" class="secondary-button text-white"> S'inscrire</a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+
+
+                                <div class="text-menu col-10 mt-1 ml-3 col-sm-6 pl-lg-5 mt-lg-5">
+                                    <ul>
+                                        <li><h3 class="primary-title-menu-black pt-3">BipBip</h3></li>
+                                        <li><a href="{{ path("histoire") }}" title="Notre histoire" class="primary-title-menu">Notre histoire</a></li>
+                                        <li><a href="{{ "/histoire/#solution" }}" title="Notre solution" class="primary-title-menu">Notre solution</a></li>
+                                        <li><a href="{{ path("team") }}" title="Description Bip Bip" class="primary-title-menu">Notre team</a></li>
+                                        <li class="pt-3"><h3 class="primary-title-menu-black">#BipBipAttitude</h3></li>
+                                        <li><a href="{{ path("vends") }}" title="Vends ton téléphone" class="primary-title-menu">Vends ton tél</a></li>
+                                        <li><a href="{{ path("boutique") }}" title="Achète un BipBip" class="primary-title-menu">Achète un BipBip</a></li>
+                                        <li class="pt-3"><h3 class="primary-title-menu-black">BipBip a besoin de toi</h3></li>
+                                        <li><a href="{{ path("bipers") }}" title="Bipers" class="primary-title-menu">Collecteurs / Bipers</a></li>
+                                        <li><a href="{{ path("asso") }}" title="Organiser une collecte" class="primary-title-menu">Devenir un site de collecte</a></li>
+                                        <li><a href="{{ path("organisms_index") }}" title="Nos partenaires" class="primary-title-menu">Nos partenaires</a></li>
+                                        <li><a href="{{ path("add_message") }}" title="Parrain" class="primary-title-menu">Parrain</a></li>
+                                        <li class="pt-3"><h3 class="primary-title-menu-black">Parlons BipBip</h3></li>
+                                        <li><a href="{{ path("add_message") }}" title="Contacte nous" class="primary-title-menu">Contacte nous</a></li>
+                                        <li><a href="{{ path("presse") }}" title="Presse kit" class="primary-title-menu">Notre actu</a></li>
+                                        <a href="#"><img src="{{ asset('images/logo-fb.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-insta.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-linkedin.png') }}" class="logoSociaux" alt=""></a>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div class="row mb-5">
+                           {#     <div class="col-8 col-sm-10 mt-sm-3 col-md-9 col-lg-6 text-center">
+                                    <div class="laCommuDiv">
+                                        <p class="laCommu">
+                                            Rejoins la commu'
+                                        </p>
+                                    </div>
+                                   <div>
+                                        <a href="#"><img src="{{ asset('images/logo-fb.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-insta.png') }}" class="logoSociaux" alt=""></a>
+                                        <a href="#"><img src="{{ asset('images/logo-linkedin.png') }}" class="logoSociaux" alt=""></a>
+                                    </div>
+                                </div>
+                            #} <div class="col-4 text-center">
+                                    <a href="{{ path('home') }}"><img class="d-sm-none text-center mr-2" src="{{ asset('images/favicon2.png') }}" alt="BipBip" id="phone-menu-icon"/></a>
+                                </div>
+                        </div>
+                    </nav>
+
+                    <div class="circle-buttons">
+                        <div id="menu-burger">
+                            <img src="{{ asset('/images/menu-burger.png') }}" alt="menu burger" />
+                            <p>Menu</p>
+                        </div>
+
+                        <a href="{{ path('faq_index') }}">
+                            <img src="{{ asset('images/faq.png') }}" alt="FAQ" id="faq-button" />
+                        </a>
+
+                       <div class="col-lg">
+                           <button id="haut" onclick="retourHaut()" title="Retour haut de page">
+                               <img class="myBtn" src="{{ asset('images/flechejaune.gif') }}" alt="scroll">
+                           </button>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center mt-1 alert-dismissible fade show">
+                    {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger text-center mt-1 alert-dismissible fade show">
+                    {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            {% endfor %}
+            </div>
+        </header>
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+
+        {% block footer %}
+        <footer class="w-100">
+            <div class="d-flex flex-column">
+                <div>
+                    <h2 class="primary-title">T'en veux plus ?</h2>
+                </div>
+                <div class="social-networks text-center m-3">
+                    <a href="https://www.facebook.com/MobileBipbip/" target="_blank" title="Page Facebook">
+                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+                    </a>
+
+                    <a href="#" target="_blank" title="Instagram">
+                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+                    </a>
+                    <a href="#" target="_blank" title="LinkedIn">
+                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="row links-footer justify-content-center pt-3 p-4">
+
+                <div class="col-12 text-center pb-2">
+                    <img src="{{ asset('images/bipbip-footer.png') }}" alt="BipBip">
+                </div>
+
+                <div class="col-6 col-sm mb-4 text-center">
+                    <div class="font-weight-bold pb-2">Infos BipBip<br></div>
+                    <a href="{{ path("bonsplans") }}" title="Les bons plans">Les bons plans</a><br>
+                    <a href="{{ path("recrute") }}" title="Jobs/recrutement">Jobs/recrutement</a><br>
+                    <a href="{{ path("livraisons") }}" title="Livraison et garanties">Livraison et garanties</a><br>
+                </div>
+
+                <div class="col-6 col-sm mb-4 text-center">
+                    <div class="font-weight-bold pb-2">Parlons BipBip<br></div>
+                    <a href="{{ path("presse") }}" title="Espace Presse">Espace Presse</a><br>
+                    <p class="m-0">
+                        Ce qu'on oublie de lire:
+                    </p>
+                    <a href="{{ path('cgu') }}">CGU</a> / <a href="{{ path('cgv') }}">CGV</a>
+                </div>
+
+                <div class="col-9 offset-sm-0 col-sm-12 mb-4 text-center">
+                    <div class="font-weight-bold pb-2">Besoin d'aide ?<br></div>
+                    <a href="{{ path("add_message") }}" title="Contact">Contacte-nous</a><br>
+                    <a href="/faq/category/2" title="Comment bien choisir son smartphone reconditionné ?">Comment bien choisir son smartphone reconditionné&#8239;?</a><br>
+                    <a href="{{ path('grade') }}" title="Nos partenaires">Les grades de smartphones reconditionnés BipBip</a><br>
+                </div>
+
+            </div>
+        </footer>
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script>
+                function scrollFunction()
+                {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        $(document).ready(function () {
+                            $('.myBtn').addClass('revert')
+                        });
+                    } else {
+                        $('.myBtn').removeClass('revert');
+                    }
+                }
+                window.onscroll = function () {
+                    scrollFunction();
+                };
+                function retourHaut()
+                {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+        {% endblock %}
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

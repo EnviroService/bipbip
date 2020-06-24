@@ -1,0 +1,14 @@
+@import "app";
+@import "~bootstrap/scss/bootstrap";
+
+.bdcCard{
+    background-color: $fourth-color;
+
+    li a{
+        display: flex;
+        justify-content: center;
+        color:white;
+        font-size: 18px;
+        text-align: center;
+    }
+}

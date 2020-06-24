@@ -1,0 +1,179 @@
+@import "vars";
+@import '~bootstrap/scss/bootstrap';
+
+.home {
+    font-family: $primary-font;
+    margin:0;
+    .header {
+       .header-text {
+           font-size: 1rem;
+           font-weight: 600;
+           text-transform: uppercase;
+
+           .color-primary {
+               color: $primary-color;
+           }
+
+           .color-third {
+               color: $third-color;
+           }
+
+           sup {
+               text-transform: none;
+           }
+       }
+
+       img {
+           max-height: 400px;
+       }
+     }
+
+    .img-home {
+        width: 80%;
+        max-width: 200px;
+        height: auto;
+
+        &:hover {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+    .silouette {
+         width: 100%;
+        max-width: 450px;
+        height: 400px;
+    }
+}
+    .constat{
+        p {
+            color: $primary-color;
+        }
+        .accroche_primaire{
+            color: $third-color;
+
+            .mot_cle{
+                font-size: 32px;
+            }
+        }
+
+        .img-constat {
+            height: 150px;
+            margin-bottom: 40px;
+            @include media-breakpoint-up(sm) {
+                height: 150px;
+            }
+            @include media-breakpoint-up(md) {
+                height: 170px;
+            }
+
+        }
+    }
+
+
+    .comment-marche {
+        background-color:$fifth-color;
+        font-weight: 700;
+        font-size: 0.7rem;
+        @include media-breakpoint-down(md) {
+            background-color:white;
+            font-size: 0.9rem;
+        }
+
+        .video {
+            width: 70%;
+            height: auto;
+            @include media-breakpoint-up(lg) {
+                width: 100%;
+            }
+        }
+
+        img {
+            width: 25px;
+            height: auto;
+        }
+    }
+
+    .photography {
+        background-color: $sixth-color;
+        img {
+            width: 60%;
+            height: auto;
+            @include media-breakpoint-up(sm) {
+                width: 100%;
+            }
+        }
+    }
+
+    .phones-collected {
+        background-color: $secondary-color;
+        .explain-text {
+            font-size: 1.3rem;
+        }
+
+        .recolted-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            @include media-breakpoint-up(md) {
+                font-size: 2.7rem;
+            }
+            @include media-breakpoint-up(lg) {
+                font-size: 3.1rem;
+            }
+        }
+
+        .recolted-text {
+            margin-top: -1.3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 1.3rem;
+            }
+
+            a{
+                color: $primary-color;
+            }
+            .font-weight-bold {
+                font-weight: 900;
+            }
+        }
+
+        .img-phone {
+            margin-top: -20%;
+            height: 160px;
+            @include media-breakpoint-up(md) {
+                margin-top: -20%;
+                height: 240px;
+            }
+        }
+    }
+
+    #bipbip-logo {
+        height: 40px;
+        width: auto;
+    }
+
+    .logos-bas {
+        img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 600;
+            @include media-breakpoint-up(md) {
+                font-size: 1.3rem;
+            }
+        }
+
+        .small-text {
+            margin-top: -1rem;
+            font-size: 0.6rem;
+            @include media-breakpoint-up(md) {
+                font-size: 0.8rem;
+                font-weight: 100;
+            }
+        }
+    }
+}

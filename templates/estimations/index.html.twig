@@ -1,0 +1,164 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+{% block body %}
+    <main class="admin-tables">
+        <div class="container">
+            {% if app.user.roles[0] == "ROLE_COLLECTOR" %}
+            <div class="progress mt-4">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="7" style="width: 14%">
+                    1 sur 7
+                </div>
+            </div>
+            {% endif %}
+
+            <h1 class="third-title text-center">{{ pageTitle }}</h1>
+            <div class="text-right">
+                <a class="third-button text-right" href="{{ path('collects_index') }}">
+                    Collectes à venir
+                </a>
+            </div>
+            <div class="row align-items-center mb-2 mt-4">
+                {# legende #}
+                <div class="col-2 text-center">
+                    Collecté : <i class="far fa-handshake icon-green"></i>
+                </div>
+                <div class="col-2 text-center">
+                    Estimation active : <i class="fas fa-mobile-alt icon-green"></i>
+                </div>
+                <div class="col-2 text-center">
+                    + de 15 jours : <i class="fas fa-mobile-alt icon-orange"></i>
+                </div>
+                <div class="col-2 text-center">
+                    + de 30 jours : <i class="fas fa-mobile-alt icon-red"></i>
+                </div>
+                <div class="col-4 text-center">
+                    Envoi Chronopost : <i class="fas fa-truck icon-blue"></i>
+                </div>
+
+            </div>
+            <div class="row align-items-center table-head rounded-top">
+                {# titles #}
+                <div class="col-1 text-center">
+                    Status
+                </div>
+                <div class="col-2 text-center">
+                    Nom - Prénom
+                </div>
+                <div class="col-2 text-center">
+                    Téléphone
+                </div>
+                <div class="col-1 text-center">
+                    Montant
+                </div>
+                <div class="col-2 text-center">
+                    Date
+                </div>
+                <div class="col-2 text-center">
+                    Collecteur
+                </div>
+                <div class="col-2 text-center">
+                    Action
+                </div>
+            </div>
+
+            {% for estimation in estimations %}
+                <div class="row align-items-center border-bottom">
+                    {# content #}
+
+                    <div class="col-1 text-center">
+                    {% set difference = date(estimation.estimationDate()).diff(date("now")) %}
+                    {% if estimation.status == 2 or estimation.status == 4 %}
+                        <i class="fas fa-truck icon-blue"></i>
+                    {% elseif difference.days < 15 and estimation.status != 1 %}
+                        <i class="fas fa-mobile-alt icon-green"></i>
+                    {% elseif difference.days > 15 and difference.days < 30 %}
+                        <i class="fas fa-mobile-alt icon-orange"></i>
+                    {% elseif estimation.status == 1 or estimation.isCollected == 1 %}
+                        <i class="far fa-handshake icon-green"></i>
+                    {% else %}
+                        <i class="fas fa-mobile-alt icon-red"></i>
+                    {% endif %}
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {% if estimation.user is not null%}
+                            {{  estimation.user.lastname }} {{ estimation.user.firstname }}
+                        {% else %}
+                            Utilisateur Anonyme
+                        {% endif %}
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {{ estimation.brand }} {{ estimation.model }}
+                    </div>
+
+                    <div class="col-1 text-center">
+                        {{ estimation.estimatedPrice }} €
+                    </div>
+
+                    <div class="col-2 text-center">
+                        {{ estimation.estimationDate | date('d/m/Y') }}
+                    </div>
+
+                    {% if estimation.user is not null %}
+                        {% if estimation.user.collect is not null %}
+                            <div class="col-2 text-center mt-1 mb-1">
+                                <span class="font-weight-bold">{{ estimation.user.collect.collector.organismName }}</span><br>
+                                {{ estimation.user.collect.collector.organismAddress }}<br>
+                                {{ estimation.user.collect.collector.organismPostCode }}
+                                {{ estimation.user.collect.collector.organismCity }}<br>
+                                le {{ estimation.user.collect.dateCollect | date('d/m/Y') }}
+                                à {{ estimation.user.collect.dateCollect | date('H:i') }}
+                            </div>
+
+                        {% else %}
+                            <div class="col-2 text-center">
+                                non inscrit
+                            </div>
+                        {% endif %}
+                        {% else %}
+                            <div class="col-2 text-center">
+                                non inscrit
+                            </div>
+                    {% endif %}
+
+                    <div class="col-2 text-center">
+                    {% if estimation.isCollected == 0 and estimation.user is null%}
+                        <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
+                    {% elseif estimation.isCollected == 0 %}
+                        <a class="primary-button" href="{{ path('verifyEstim', {id: estimation.id}) }}">
+                            Collecter
+                        </a>
+                    {% elseif estimation.isCollected == 1 %}
+                        <p class="text-success">
+                            Collecté
+                        </p>
+                        <a target="_blank" href="/../uploads/CI/E{{ estimation.id }}-{{ estimation.user.lastname}}-{{ estimation.user.firstname }}.pdf" class="secondary-button">
+                            Voir CNI
+                        </a>
+                    {% else %}
+                        <a class="fourth-button" href="{{ path('estimations_show', {id: estimation.id}) }}">
+                            Détails
+                        </a>
+                    {% endif %}
+                    {% if pageTitle == "non réceptionné" %}
+                        <a class="fourth-button" href="{{ path('estimations_delete', {id: estimation.id}) }}"
+                        onclick="return confirm('Etes-vous sûre de vouloir supprimer cette estimations?')">
+                            Supprimer
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

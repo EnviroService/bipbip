@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if user %}
+        <div class="row mb-5 mt-5 border bg-light align-items-center">
+            <div class="col-1 text-danger text-center">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="col-10">
+                <h5 class="text-danger text-center">
+                    Lors de ton envoie, nous avons besoin d'avoir la photocopie
+                    recto verso de ta carte d'identité dans ton colis avec le bon de cession reçu en
+                    pièce jointe signé. Dans le cas contraire,
+                    la reprise du téléphone ne sera pas effectuée et le retour sera à ta charge.
+                </h5>
+            </div>
+            <div class="col-1 text-danger text-center">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+        </div>
+
+
+        {% if estimation.imei is null or estimation.imei | length != 15  %}
+        <div class="">
+            <p class="text-center">
+                Pour générer ton étiquette, nous avons besoin de connaitre le numéro IMEI de ton tél afin
+                de créer le bon de cession.
+            </p>
+            <p class="">
+                Pour obtenir l'IMEI de votre téléphone, plusieurs cas de figure se posent.
+                Pour retrouver un IMEI Samsung ou le code d'un téléphone mobile classique, vous pouvez :
+                <ul>
+                    <li>
+                        1/ Taper le numéro suivant *#06#, à partir de votre téléphone mobile,
+                        afin que le code IMEI s'affiche sur votre écran.
+                    </li>
+                    <li>
+                        2/ Retrouver le numéro recherché directement sur/sous la batterie de votre téléphone
+                        ou à proximité de celle-ci. Cette possibilité ne s'applique pas pour tous les téléphones,
+                        notamment pour retrouver un IMEI Iphone.
+                    </li>
+                    <li>
+                        3/ Trouver le code sur votre facture d'achat ou sur la boîte de votre téléphone.
+                        Pensez donc à toujours conserver ces éléments, lorsque vous procédez à l'achat d'un nouvel appareil.
+                    </li>
+                    <li>
+                        4/ Contacter votre opérateur, afin qu'il vous fournisse le numéro IMEI du téléphone que vous utilisez.
+                    </li>
+                </ul>
+            </p>
+        </div>
+
+        {{ form_start(form) }}
+        <div class="row bg-light pt-2">
+            <div class="col-4 mx-auto text-center align-items-center">
+                <p>
+                    {{ form_label(form.imei) }}
+                </p>
+                <div class="m-2">
+                    {{ form_widget(form.imei) }}
+                </div>
+
+                {% if errors is defined %}
+                    <p class="text-danger">{{ errors }}</p>
+                {% endif %}
+                {{ form_widget(form.submit) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+        {% else %}
+
+        <div class="container col-10 d-flex flex-wrap justify-content-between mt-5">
+            <div class="card col-5 mt-2 mb-2 border-dark p-2">
+                <img src="{{ asset('/images/etiq_chrono.jpeg') }}" class="card-img-top" alt="Générer une étiquette">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        GENERER UNE ETIQUETTE
+                    </h5>
+                    <p class="card-text">
+                        Tu imprimes ton étiquette Chronopost et tu la colles sur ton colis.
+                        Tu n’auras plus qu’à présenter ton colis au bureau de poste.
+                    </p>
+                    <p class="text-center">
+                        {# statut estimation "2" correspond à une génération d'étiquette Chronopost, sauvée sur le serveur #}
+                        <a class="primary-button" href="{{ path('api_chronopost_ae', {'id': user.id, 'estimation': estimation.id, 'status': 2}) }}">
+                            Générer mon étiquette
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="card col-5 mt-2 mb-2 border-dark p-2">
+                <img src="{{ asset('/images/tel_chrono.jpeg') }}" class="card-img-top" alt="Recevoir un code">
+                <div class="card-body">
+                    <h5 class="card-title text-center">
+                        RECEVOIR UN CODE
+                    </h5>
+                    <p class="card-text">
+                        Tu reçois un code. Présente-le au bureau de poste le plus proche de chez toi
+                        et ils imprimeront l’étiquette pour toi.
+                    </p>
+                    <p class="text-center">
+                        {# statut estimation "4" correspond à un code Chronopost envoyé au client #}
+                        <a class="primary-button" href="{{ path('api_chronopost_se', {'id': user.id, 'estimation': estimation, 'status': 4}) }}">
+                            Recevoir mon code
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+    {% else %}
+
+        <div class="jumbotron">
+            <a class="btn btn-info m-auto" href="{{ path('app_login') }}">Reconnecte toi</a>
+        </div>
+
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,259 @@
+@import "vars";
+
+// En tête
+header{
+    height : 80px;
+    background-color: white;
+
+    .card-id{
+        display: flex;
+        flex-direction : row;
+        border-radius: 5px;
+        height : 80px;
+        font-family: 'co-headline', Arial sans-serif;
+        box-shadow: 5px 0 10px rgb(135,151,151);
+
+        ul{
+            display : flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 25%;
+            height : 80px;
+            color : White;
+            margin : auto;
+            font-size: 1rem;
+            font-style: italic;
+            text-align : center;
+            padding: 5px;
+            font-weight: 600;
+            background-color: $primary-color;
+
+            li{
+                margin-left: 10px;
+                @media screen and (max-width: 960px) {
+                    font-size : 0.9rem;
+                    margin-left: 5px;
+                }
+
+                span{
+                    font-weight : 400;
+                    font-size: 1rem;
+                    @media screen and (max-width: 960px) {
+                        font-size : 0.9rem;
+                    }
+                }
+
+                a{
+                    color : white;
+                    font-size : 0.8rem;
+                    font-weight: 300;
+                    border-bottom : white 1px solid;
+                }
+            }
+
+            .date{
+                font-size : 0.9rem;
+                font-weight : 400;
+                @media screen and (max-width: 960px) {
+                    font-size : 0.7rem;
+                }
+            }
+        }
+
+        h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 75%;
+            height : 50px;
+            padding : 5px;
+            margin : auto;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: $primary-color;
+            @media screen and (max-width: 960px) {
+                font-size : 1.2rem;
+            }
+        }
+
+        a{
+            height : 80px;
+
+            div{
+                display : flex;
+                flex-direction: column;
+                justify-content: center;
+                width : 220px;
+                height : 80px;
+                padding : 5px 50px 5px 10px;
+
+                img{
+                    width : 50%;
+                    margin : 0 auto;
+                }
+
+                p{
+                    color : $primary-color;
+                    font-size: 0.8rem;
+                    margin : 0;
+                    text-align: center;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+
+// Menu gauche
+.menu-admin {
+    width: 100%;
+    position : relative;
+    z-index : 999;
+    color: white;
+    text-decoration: none;
+    height: 50px;
+
+    .icon-menu-collector {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        width: 80%;
+        margin : auto;
+        border-radius: 5px;
+
+        .secondary-button{
+            width : 200px;
+        }
+    }
+
+    .icon-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        width: 100%;
+        box-shadow: 5px 3px 10px rgb(135, 151, 151);
+        border-radius: 5px;
+        background-color: $primary-color;
+
+        .bar-title {
+            box-shadow: -1px 0 5px white, 1px 0 5px white;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+
+            .title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 50px;
+                text-decoration: none;
+                color: white;
+                font-weight: 500;
+                font-size: 1.1rem;
+                margin: 0;
+                z-index: 100;
+                cursor : pointer;
+                @media screen and (max-width: 960px) {
+                    font-size : 1rem;
+                }
+            }
+
+            .block {
+                display: none;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 2px 0 10px rgb(223,216,222);
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    a {
+                        color: $primary-color;
+                        padding: 5px;
+                        border : rgb(223,216,222) 1px solid;
+                        width : 100%;
+                        text-align : center;
+                    }
+                }
+            }
+
+            .block.displayed {
+                display: block;
+            }
+        }
+    }
+
+
+}
+
+body{
+    padding-bottom : 80px;
+    font-family: "co-headline", sans-serif;
+}
+
+
+.mainFaq {
+    position: relative;
+
+    .tableFaq {
+        margin: 2%;
+        width: 100%;
+        @media screen and (max-width: 1024px){
+            margin: auto;
+            width: 85%;
+        }
+        .head-table {
+            background-color: $primary-color;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            height: 280px;
+        }
+
+        tbody {
+
+            .questionFaq {
+                border-bottom: #dee2e6 1px solid;
+                width: 70%;
+
+                .fourth-button {
+                    margin: 10px auto;
+                    padding: 1px;
+                    width: 110px;
+                    height: 35px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+
+    }
+}
+
+
+
+/* ADMIN ESTIMATIONS */
+
+.icon-green {
+    color:green;
+}
+
+.icon-orange {
+    color:orange;
+}
+
+.icon-red {
+    color:red;
+}
+
+.icon-blue {
+    color:blue;
+}

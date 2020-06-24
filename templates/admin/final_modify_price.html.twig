@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto text-center form p-4">
+                <h1 class="primary-title">Estimation</h1>
+                {% if message %}
+                    <p class="text-danger">{{ message }}</p>
+                {% else %}
+                    <h2 class="text-dark">Ton téléphone a une valeur de :</h2>
+                    <h3 class="secondary-button">{{ estimation.estimatedPrice }} Euros</h3>
+                {% endif %}
+                <div class="jumbotron">
+                    <a class="btn btn-primary" href="{{ path("verifyEstim", {'id': id}) }}">retour sur l'interface admin</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer tél{% endblock %}
+
+{% block body %}
+    <h1>Editer le téléphone</h1>
+
+    {{ include('boutique/_form.html.twig', {'button_label': 'Valider'}) }}
+
+    <a href="{{ path('boutique_index') }}" class="btn btn-dark mt-3">Retour à la liste</a>
+
+    {{ include('boutique/_delete_form.html.twig') }}
+{% endblock %}

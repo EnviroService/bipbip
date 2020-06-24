@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lieux de collecte - BipBip{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('admin-tables') }}
+ {% endblock %}
+
+{% block body %}
+
+    <main class="admin-tables">
+        <h1 class="title-page"><span>Lieux de collecte</span></h1>
+        {% if app.user.roles is defined %}
+            <p>Choisis une collecte pour déposer ton téléphone</p>
+            {% if app.user.roles[0] == "ROLE_COLLECTOR" or app.user.roles[0] == "ROLE_ADMIN" %}
+                <div class="text-right">
+                    <a class="text-right" href="{{ path('estimations_index') }}">
+                        Retour aux collectes
+                    </a>
+                </div>
+            {% endif %}
+        {% else %}
+            <p>Voici les collectes actuellement organisées par BipBip :</p>
+        {% endif %}
+        {%  if collects is empty %}
+            <div class="container">
+                <div class="row align-items-center mt-3">
+                    <div class="offset-2 col-8 text-center">
+                        Désolé, aucune collecte n'est programmée pour l'instant.
+                    </div>
+                </div>
+                <div class="row align-items-center mt-5">
+                    <div class="offset-2 col-8 text-center">
+                        <a class="btn btn-warning" href="{{ path('add_message') }}">
+                            Propose un lieu ou une date !
+                        </a>
+                    </div>
+                </div>
+                <div class="row align-items-center mt-3">
+                    <div class="offset-2 col-8 text-center">
+                        Ton estimation est sauvegardée sur
+                        <a href="{{ path('user_show') }}">
+                            ton compte client
+                        </a>.
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="container">
+                <div class="row align-items-center table-head rounded-top">
+                    <div class=" col-sm-3 text-center">
+                        Lieux de collecte
+                    </div>
+                    <div class="d-none d-sm-block col-sm-3 text-center">
+                        Adresse
+                    </div>
+                    <div class="d-none d-sm-block col-sm-3 text-center">
+                        Date de collecte
+                    </div>
+                    {% if app.user.roles is defined %}
+                        <div class="col-12 col-sm-3">
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="row align-items-center border-bottom bg-light">
+                    <div class="col-sm-3 text-center">
+                        <h5>Chronopost</h5>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        Chez BipBip
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        Quand tu veux
+                    </div>
+                    <div class="col-sm-2 p-0">
+                        <a class="primary-button button-chrono mt-1" href="{{ path('envoi_chronopost', {'user': user, 'id': id} ) }}">
+                            J'envoie
+                        </a>
+                    </div>
+
+                </div>
+
+            {% for collect in collects %}
+                <div class="row align-items-center border-bottom">
+                    <div class="col-sm-3 text-center">
+                        <h5>{{ collect.collector.organismName }}</h5>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        {{ collect.collector.organismAddress }},<br>
+                        {{ collect.collector.organismPostcode }}
+                        {{ collect.collector.organismCity }}
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        {{ collect.dateCollect|date('d/m/Y') }} à {{ collect.dateCollect|date('H:i') }}
+                    </div>
+                    {% if app.user.roles is defined %}
+                        <div class="col-sm-2 p-0">
+                            <a class="primary-button" href="{{ path('choice', {collect: collect.id, estimation:id }) }}">J'y vais !</a>
+                        </div>
+                    {% else %}
+                        <div class="col-sm-2">
+                            <a class="primary-button" href="{{ path('app_login') }}">J'y vais !</a>
+                        </div>
+                    {% endif %}
+                </div>
+        {% endfor %}
+                <div class="row align-items-center mt-5">
+                    <div class="offset-2 col-8 text-center">
+                    Aucune collecte ne te convient ?
+                    </div>
+                </div>
+                <div class="row align-items-center mt-2">
+                    <div class="offset-2 col-8 text-center">
+                        <a class="btn btn-warning" href="{{ path('add_message') }}">
+                            Propose un lieu ou une date !
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}
+

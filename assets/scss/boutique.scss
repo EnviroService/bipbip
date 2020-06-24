@@ -1,0 +1,111 @@
+@import "app";
+@import "vars";
+
+#title{
+    img{
+        width: 100%;
+    }
+}
+#container{
+
+    #infoBipbip{
+        background-image: url("../images/fond.png");
+        font-weight: bold;
+
+        p{
+            font-size: 1.6rem;
+        }
+
+        .blueText{
+            color: $primary-color;
+            a{
+                text-decoration-line: underline;
+                color: $primary-color;
+            }
+            a:hover{
+                color: #718C00;
+            }
+        }
+    }
+
+    #telephone{
+
+        h2{
+            border-bottom: 1px solid black;
+        }
+
+        .titleAll{
+            background-color: $secondary-color;
+            color: #FFFFFF;
+            border: none;
+        }
+        #telephonePromo{
+            img{
+                height: 200px;
+                width: 200px;
+            }
+            .priceContener{
+                .price{
+                    h3{
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        padding: 0;
+                        margin-top: 10px;
+                        background-color: $primary-color;
+                        width: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+        }
+
+        #allPhones{
+            //background-image: url("../images/fond.png");
+            background-color: $secondary-color;
+                .phone{
+                    background-color: #FFFFFF;
+                    border: 1px solid black;
+                    border-radius: 10px;
+                    height: 270px;
+
+                    figure img{
+                        width: 110px;
+                        height: 110px;
+                    }
+
+                    .priceContent{
+                        position: relative;
+                        top: 20px;
+
+                        a{
+                            border: 1px solid black;
+                            border-radius: 30px;
+                            background-color: $secondary-color;
+                            padding: 6px;
+                        }
+
+                        .price{
+                            border: 1px solid black;
+                            border-radius: 17px;
+                            padding: 8px;
+                            background-color: $primary-color;
+                            color: #FFFFFF;
+                            font-weight: bold;
+                            font-size: 21px;
+                        }
+                    }
+
+                }
+
+        }
+
+        #textAsso{
+            .textBlue{
+                color: $primary-color;
+            }
+        }
+
+    }
+}

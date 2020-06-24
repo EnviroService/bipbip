@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('faq') }}
+{% endblock %}
+
+{% block title %} Foire Aux Questions {% endblock %}
+
+{% block body %}
+    <main id="faq">
+        <h1 class="primary-title">
+            Foire Aux Questions
+        </h1>
+        <div class="row p-3 justify-content-center">
+            {% if category is defined %}
+            <a class="faq-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+               href="{{ path('faq_index') }}">
+            {% else %}
+                <a class="faq-category selected-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                   href="{{ path('faq_index') }}">
+            {% endif %}
+                    Toutes les questions
+                </a>
+
+            {% for categ in categories %}
+                {% if category is defined and categ == category %}
+                    <a class="faq-category selected-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                       href="{{ path('faq_category', {'id': categ.id }) }}">
+                        {{ categ.name }}
+                    </a>
+                        {% else %}
+                <a class="faq-category col-3 col-sm-2 col-xl-1 text-center p-3 m-1 justify-content-center align-items-center"
+                   href="{{ path('faq_category', {'id': categ.id }) }}">
+                    {{ categ.name }}
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if faqs is defined %}
+            <h2 class="secondary-title text-center">{{ category.name }}</h2>
+            {% for faq in faqs %}
+            <div class="menu-faq">
+                <article class="question">{{faq.question}}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="p-2" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
+                            Modifier
+                        </a>
+                    {% endif %}
+                </article>
+                <article class="answer">{{faq.answer | nl2br }} </article>
+            </div>
+            {% endfor %}
+        {% else %}
+            {% for faq in faqContent %}
+                <div class="menu-faq">
+                    <article class="question">{{faq.question}}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="p-2" href="{{ path('faq_edit', { 'id': faq.id} ) }}">
+                                Modifier
+                            </a>
+                        {% endif %}
+                    </article>
+                <article class="answer">{{faq.answer | nl2br}} </article>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </main>
+
+{% endblock %}
+{%  block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('faq') }}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% block header %}
+    <style>
+     </style>
+
+        <div class="jumbotron">
+            <p>A bientôt sur <a href="{{absolute_url (path('home')) }}"> BipBip Mobile !</a> </p>
+             <a href="{{absolute_url (path('home')) }}"><img src="{{ asset('images/Service-client-mail.png') }}" alt="signature"></a>
+            <div class="Allreseaux">
+                <p>Suis notre actu !</p>
+                <ul class="reseaux">
+                    <li><a href="https://www.facebook.com/MobileBipbip/" target="_blank" title="Page Facebook">
+                            <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook"/></a>
+                    </li>
+                    <li><a href="#" target="_blank" title="Instagram">
+                            <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram"/></a>
+                    </li>
+                    <li><a href="#" target="_blank" title="LinkedIn">
+                            <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn"/></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+{% endblock %}

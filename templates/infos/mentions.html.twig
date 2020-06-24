@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions légales{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-12 mx-auto text-center">
+                <h1 class="primary-title">Mentions légales</h1>
+            </div>
+        </div>
+        <div class="list-group mt-2">
+            <div class="flex-column align-items-start mb-4">
+                <small class="text-muted"></small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Responsable de publication</p>
+                <small class="text-muted">Bipbip Mobile est édité par la société Enviro Services France.<br>
+                Enviro Services France<br>
+                391 avenue Clément Ader<br>
+                59111 Wambrechies </p></small>
+            </div>
+            <div class="flex-column align-items-start mb-4">
+                <p class="mb-1">Autres informations</p>
+                <small class="text-muted"><a href="{{ path('add_message') }}">Formulaire de contact</a><br>
+                    <a href="{{ path('protection') }}">Protection des données</a></small>
+            </div>
+        </div>
+        <div class="offset-4 col-4">
+            <a href="{{ path('home') }}" class="primary-button">Accueil</a>
+        </div>
+    </main>
+{% endblock %}
