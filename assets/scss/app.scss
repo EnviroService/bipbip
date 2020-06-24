@@ -75,20 +75,20 @@ a{
     font-size: 1.5rem;
     text-align: center;
     font-weight: 400;
-        span {
-            background-image: url("../../public/images/feuille-bipbip-title.png");
-            background-repeat: no-repeat;
-            background-position: right bottom;
-            background-size: 32px;
-            padding-bottom: 5px;
-            padding-right: 30px;
-            @include media-breakpoint-up(sm) {
-                background-size: 48px;
-                padding-bottom: 12px;
-                padding-right: 50px;
-                font-size: 2.5rem;
-            }
+    span {
+        background-image: url("../../public/images/feuille-bipbip-title.png");
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        background-size: 32px;
+        padding-bottom: 5px;
+        padding-right: 30px;
+        @include media-breakpoint-up(sm) {
+            background-size: 48px;
+            padding-bottom: 12px;
+            padding-right: 50px;
+            font-size: 2.5rem;
         }
+    }
 }
 
 .primary-title{
@@ -514,6 +514,14 @@ header {
 
 /* VENDS */
 
+.title-vends {
+    background-color: $secondary-color;
+    img {
+        height: 80px;
+        width: auto;
+    }
+}
+
 .img-fleche {
     height: 30px;
     width: auto;
@@ -524,10 +532,18 @@ header {
     color: $primary-color;
 }
 
-.comment-marche {
+.comment-marche-vends {
     background-color:$fifth-color;
     font-weight: 700;
     font-size: 0.8rem;
+    @include media-breakpoint-up(md) {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 25px;
+        height: auto;
+    }
 }
 
 #tel-collectes {
@@ -634,29 +650,29 @@ header {
     @media screen and (min-width: 570px) {
         width: 20vh;
         height: 20vh;
-     }
+    }
     @media screen and (min-width: 768px) {
         width: 21vh;
         height: 21vh;
-     }
+    }
     @media screen and (min-width: 991px) {
         width: 20vh;
         height: 20vh;
-     }
+    }
 
 }
 .blue-text {
     color: $primary-color;
     font-weight: 900;
 }
- .second-primary-title {
-     font-size: 0.9rem;
-     font-family: $secondary-font, sans-serif;
-     font-weight: 600;
-     @include media-breakpoint-up(md) {
-     font-size: 1.2rem;
- }
- }
+.second-primary-title {
+    font-size: 0.9rem;
+    font-family: $secondary-font, sans-serif;
+    font-weight: 600;
+    @include media-breakpoint-up(md) {
+        font-size: 1.2rem;
+    }
+}
 
 /* FOOTER */
 

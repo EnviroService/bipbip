@@ -40,7 +40,6 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
-        "twig/cssinliner-extra": "^3.0",
         "twig/extensions": "^1.5"
     },
     "require-dev": {

@@ -139,6 +139,24 @@ class ApiController extends AbstractController
             $filenameSave = $repertory . "id" . $idUser . "_E" . $estimationId . ".pdf";
             $filename = "id" . $idUser . "_E" . $estimationId . ".pdf";
 
+            // statut estimation "2" correspond à une génération d'étiquette Chronopost.
+            if ($_GET['status'] == 2) {
+                $estimation = $repository->find($estimationId);
+                $estimation->setStatus(2)->setUser($user);
+
+                $organism = $organismsRepository->findOneBy([
+                    'organismName' => 'Bip-Bip'
+                ]);
+
+                $collect = new Collects();
+                $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
+                $estimation->setCollect($collect);
+
+                $em->persist($estimation);
+                $em->persist($collect);
+                $em->flush();
+            }
+
             $params = [
                 //STRUCTURE HEADER VALUE
                 'headerValue' => [
@@ -166,37 +184,37 @@ class ApiController extends AbstractController
                 ],
                 //STRUCTURE CUSTOMERVALUE (client)
                 'customerValue' => [
-                    'customerAdress1' => '391 avenue Clément Ader',
+                    'customerAdress1' => $organism->getOrganismName(),
                     'customerAdress2' => '',
-                    'customerCity' => 'Wambrechies',
+                    'customerCity' => $organism->getOrganismCity(),
                     'customerCivility' => 'M',
                     'customerContactName' => 'Natacha',
                     'customerCountry' => 'FR',
                     'customerCountryName' => 'FRANCE',
                     'customerEmail' => $_ENV['mail_Natacha'],
                     'customerMobilePhone' => '',
-                    'customerName' => 'Bip Bip',
+                    'customerName' => $organism->getOrganismName(),
                     'customerName2' => '',
                     'customerPhone' => $_ENV['mobile_Natacha'],
                     'customerPreAlert' => 0,
-                    'customerZipCode' => '59118',
+                    'customerZipCode' => $organism->getOrganismPostcode(),
                     'printAsSender' => 'N',
                 ],
                 //STRUCTURE RECIPIENTVALUE (destinataire)
                 'recipientValue' => [
-                    'recipientAdress1' => '391 avenue Clément Ader',
+                    'recipientAdress1' => $organism->getOrganismAddress(),
                     'recipientAdress2' => '',
-                    'recipientCity' => 'Wambrechies',
+                    'recipientCity' => $organism->getOrganismCity(),
                     'recipientContactName' => 'Natacha',
                     'recipientCountry' => 'FR',
                     'recipientCountryName' => 'FRANCE',
                     'recipientEmail' => $_ENV['mail_Natacha'],
                     'recipientMobilePhone' => '',
                     'recipientName' => 'Enviro Services',
-                    'recipientName2' => 'Bip Bip',
+                    'recipientName2' => $organism->getOrganismName(),
                     'recipientPhone' => $_ENV['mobile_Natacha'],
                     'recipientPreAlert' => 0,
-                    'recipientZipCode' => '59118',
+                    'recipientZipCode' => $organism->getOrganismPostcode(),
                     'recipientCivility' => 'M',
                 ],
                 //STRUCTURE REFVALUE
@@ -258,23 +276,7 @@ class ApiController extends AbstractController
                 //récupération de l'étiquette en base64
                 $pdf = $results->return->resultMultiParcelValue->pdfEtiquette;
 
-                // statut estimation "2" correspond à une génération d'étiquette Chronopost.
-                if ($_GET['status'] == 2) {
-                    $estimation = $repository->find($estimationId);
-                    $estimation->setStatus(2)->setUser($user);
 
-                    $organism = $organismsRepository->findOneBy([
-                        'organismName' => 'Bip-Bip'
-                    ]);
-
-                    $collect = new Collects();
-                    $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
-                    $estimation->setCollect($collect);
-
-                    $em->persist($estimation);
-                    $em->persist($collect);
-                    $em->flush();
-                }
 
                 $openDir = scandir($repertory);
 
@@ -382,15 +384,22 @@ class ApiController extends AbstractController
         return $this->redirectToRoute("user_show");
     }
 // Lien avec l'API chronopost Sans envoi : génération du code
+
     /**
      * @Route("/chronopost/se/{id}", name="api_chronopost_se")
+     * @param User $user
+     * @param EstimationsRepository $repository
+     * @param EntityManagerInterface $em
+     * @param OrganismsRepository $organismsRepository
      * @return Response
      * @throws SoapFault
      */
     public function apiChronopostSe(
         User $user,
         EstimationsRepository $repository,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        OrganismsRepository $organismsRepository,
+        MailerInterface $mailer
     ) {
 
         $wsdl = "https://ws.chronopost.fr/shipping-cxf/ShippingServiceWS?wsdl";
@@ -398,6 +407,27 @@ class ApiController extends AbstractController
 
         $firstname = $user->getFirstname();
         $name = $user->getLastname();
+        $estimation = $repository->find($_GET['estimation']);
+
+        // YOU CAN FIND PARAMETERS YOU NEED IN HERE
+        //var_dump($client_ch->__getFunctions());
+        //var_dump($client_ch->__getTypes());
+
+        // statut estimation "4" correspond à une génération de code envoyé au client
+        if ($_GET['status'] == 4) {
+            $estimation->setStatus(4)->setUser($user);
+            $organism = $organismsRepository->findOneBy([
+                'organismName' => 'Bip-Bip'
+            ]);
+
+            $collect = new Collects();
+            $collect->setCollector($organism)->addClient($user)->setDateCollect(new DateTime('now'));
+            $estimation->setCollect($collect);
+
+            $em->persist($estimation);
+            $em->persist($collect);
+            $em->flush();
+        }
 
         $params = [
             //STRUCTURE HEADER VALUE
@@ -417,7 +447,7 @@ class ApiController extends AbstractController
                 'shipperCountry' => 'FR',
                 'shipperCountryName' => 'FRANCE',
                 'shipperEmail' => $user->getEmail(),
-                'shipperMobilePhone' => "",
+                'shipperMobilePhone' => '0' . $user->getPhoneNumber(),
                 'shipperName' => $firstname,
                 'shipperName2' => $name,
                 'shipperPhone' => '0' . $user->getPhoneNumber(),
@@ -426,37 +456,37 @@ class ApiController extends AbstractController
             ],
             //STRUCTURE CUSTOMERVALUE
             'customerValue' => [
-                'customerAdress1' => '391 avenue Clément Ader',
+                'customerAdress1' => $organism->getOrganismAddress(),
                 'customerAdress2' => '',
-                'customerCity' => 'Wambrechies',
+                'customerCity' => $organism->getOrganismCity(),
                 'customerCivility' => 'M',
                 'customerContactName' => 'Natacha',
                 'customerCountry' => 'FR',
                 'customerCountryName' => 'FRANCE',
                 'customerEmail' => $_ENV['mail_Natacha'],
                 'customerMobilePhone' => '',
-                'customerName' => 'BipBip',
+                'customerName' => $organism->getOrganismName(),
                 'customerName2' => '',
                 'customerPhone' => $_ENV['mobile_Natacha'],
                 'customerPreAlert' => 0,
-                'customerZipCode' => '59118',
+                'customerZipCode' => $organism->getOrganismPostcode(),
                 'printAsSender' => 'N',
             ],
             //STRUCTURE RECIPIENTVALUE (destinataire)
             'recipientValue' => [
-                'recipientAdress1' => '391 avenue Clément Ader',
+                'recipientAdress1' => $organism->getOrganismAddress(),
                 'recipientAdress2' => '',
-                'recipientCity' => 'Wambrechies',
+                'recipientCity' => $organism->getOrganismCity(),
                 'recipientContactName' => 'Natacha',
                 'recipientCountry' => 'FR',
                 'recipientCountryName' => 'FRANCE',
                 'recipientEmail' => $_ENV['mail_Natacha'],
                 'recipientMobilePhone' => '',
-                'recipientName' => 'Bip Bip',
+                'recipientName' => $organism->getOrganismName(),
                 'recipientName2' => '',
                 'recipientPhone' => $_ENV['mobile_Natacha'],
                 'recipientPreAlert' => 0,
-                'recipientZipCode' => '59118',
+                'recipientZipCode' => $organism->getOrganismPostcode(),
                 'recipientCivility' => 'M',
             ],
             //STRUCTURE REFVALUE
@@ -505,20 +535,79 @@ class ApiController extends AbstractController
             'multiparcel' => 'N'
         ];
 
-        // YOU CAN FIND PARAMETERS YOU NEED IN HERE
-        //var_dump($client_ch->__getFunctions());
-        //var_dump($client_ch->__getTypes());
-
-        // statut estimation "4" correspond à une génération de code envoyé au client
-        if ($_GET['status'] == 4) {
-            $estimation = $repository->find($_GET['estimation']);
-            $estimation->setStatus(4)->setUser($user);
-            $em->persist($estimation);
-            $em->flush();
-        }
-
         $clientCh->shippingMultiParcelV2($params);
 
+        // create barcode image
+        $imei = $estimation->getImei();
+        $text = "*" . $imei . "*";
+        header("Content-Type: image/png");
+        $imgPath = "uploads/barcodes/";
+        $barcode = @imagecreate(240, 40);
+        if ($barcode) {
+            imagecolorallocate($barcode, 255, 255, 255);
+            $font = 'fonts/code128.ttf';
+            $black = imagecolorallocate($barcode, 0, 0, 0);
+            imagettftext($barcode, 30, 0, 2, 38, $black, $font, $text);
+            imagetruecolortopalette($barcode, true, 255);
+            imagepng($barcode, "$imei.png");
+            move_uploaded_file("$imei.png", $imgPath);
+            imagedestroy($barcode);
+        }
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('bdc/bdc.html.twig', [
+            'estimation' => $estimation,
+        ]);
+
+        // Create Filename
+        $filename = date("Ymd") . "C" . $user->getId() . "P" . $estimation->getId() . ".pdf";
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Store PDF Binary Data
+        $output = $dompdf->output();
+
+        // we want to write the file in the public directory
+        $publicDirectory = 'uploads/BDC';
+        $pdfFilepath =  $publicDirectory . '/' . $filename;
+
+        // Write file to the desired path
+        file_put_contents($pdfFilepath, $output);
+
+        // Prepare flash message
+        $message = "Le bon de cession a été généré";
+        $this->addFlash('success', $message);
+
+        //$user = $estimation->getUser();
+        $emailExp = (new Email())
+            ->from(new Address('github-test@bipbip-mobile.fr', 'BipBip Mobile'))
+            ->to(new Address($user->getEmail(), $user
+                    ->getFirstname() . ' ' . $user->getLastname()))
+            ->replyTo('github-test@bipbip-mobile.fr')
+            ->subject('Voici ton bon de cession')
+            ->attachFromPath($pdfFilepath)
+            ->html($this->renderView(
+                'contact/envoiBDC.html.twig',
+                [
+                    'user' => $user,
+                    'estimation' => $estimation
+                ]
+            ));
+        $mailer->send($emailExp);
         $this->addFlash("success", "Félicitations, tu vas recevoir un mail contenant le numéro à 
         présenter au bureau de poste");
 

@@ -20,6 +20,20 @@ class EstimationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Estimations::class);
     }
 
+
+    public function findByChronopost()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->join('e.collect', 'c')
+            ->where('e.status = 2 OR e.status = 4')
+            ->orderBy('c.dateCollect');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
+
     public function findByUncollected()
     {
         $qb = $this->createQueryBuilder('e')
