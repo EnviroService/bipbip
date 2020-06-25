@@ -90,7 +90,7 @@
                                         <li><a href="{{ path("vends") }}" title="Vends ton téléphone" class="primary-title-menu">Vends ton tél</a></li>
                                         <li><a href="{{ path("boutique") }}" title="Achète un BipBip" class="primary-title-menu">Achète un BipBip</a></li>
                                         <li class="pt-3"><h3 class="primary-title-menu-black">BipBip a besoin de toi</h3></li>
-                                        <li><a href="" title="" class="primary-title-menu">Who's who</a></li>
+                                        <li><a href="{{ path("who") }}" title="who" class="primary-title-menu">Who's who</a></li>
                                         <li><a href="{{ path("bipers") }}" title="Bipers" class="primary-title-menu">Nos points de collecte</a></li>
                                         <li><a href="" title="Site de rénovation et de recyclage" class="primary-title-menu">Sites de rénovation et de recyclage</a></li>
                                         <li><a href="{{ path("organisms_index") }}" title="Nos partenaires" class="primary-title-menu">Nos partenaires</a></li>
@@ -165,18 +165,17 @@
         <footer class="w-100">
             <div class="d-flex flex-column">
                 <div>
-                    <h2 class="primary-title">T'en veux plus ?</h2>
+                    <h2 class="primary-title align-content-center">T'en veux plus ?</h2>
                 </div>
-                <div class="social-networks text-center m-3">
-                    <a href="https://www.facebook.com/MobileBipbip/" target="_blank" title="Page Facebook">
-                        <img src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
+                <div class="social-networks d-flex flex-row justify-content-around m-3">
+                    <a  href="https://www.facebook.com/MobileBipbip/" target="_blank" title="Page Facebook">
+                        <img class="" src="{{ asset('images/logo-fb.png') }}" alt="Page Facebook" />
                     </a>
-
                     <a href="#" target="_blank" title="Instagram">
-                        <img src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
+                        <img class="" src="{{ asset('images/logo-insta.png') }}" alt="Instagram" />
                     </a>
                     <a href="#" target="_blank" title="LinkedIn">
-                        <img src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
+                        <img class="" src="{{ asset('images/logo-linkedin.png') }}" alt="LinkedIn" />
                     </a>
                 </div>
             </div>
