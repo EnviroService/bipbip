@@ -27,6 +27,12 @@ body{
     background-attachment: fixed;
 }
 
+.profil-etiquette {
+    @media screen and (max-width: 576px) {
+        font-size: 6px;
+    }
+}
+
 @mixin bg($color) {
     background-color: $color;
 }
@@ -240,7 +246,7 @@ a{
     display: inline-block;
     font-family: $secondary-font, sans-serif;
     background-color : $primary-color;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     font-weight: bold;
     text-align : center;
     color : white;
@@ -253,6 +259,10 @@ a{
 
     @media screen and (min-width: 768px) {
         font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 576px){
+        font-size: 0.6rem;
     }
 
     &:hover {
