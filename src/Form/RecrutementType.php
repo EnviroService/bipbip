@@ -30,6 +30,7 @@ class RecrutementType extends AbstractType
             ->add('CV', FileType::class, [
                 'label' => 'CV',
                 'mapped' => false,
+                'data_class' => null,
                 'constraints' => [
                     new File([
                         'mimeTypes' => [
