@@ -32,6 +32,19 @@ class CollectsRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+
+    public function findByDateValidPerOrganism(int $id)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.dateCollect > current_date() AND c.collector = :val')
+            ->setParameter(":val", $id)
+            ->orderBy('c.dateCollect', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
+
     public function findByTomorowCollect()
     {
         $dayCollects = [];
