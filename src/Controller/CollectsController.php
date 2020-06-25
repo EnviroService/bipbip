@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CollectsController extends AbstractController
 {
 
-    // Permet de lister les collectes
+    // Permet de lister les collectes pour l'admin
 
     /**
      * @Route("/", name="collects_index", methods={"GET"})
@@ -28,6 +28,24 @@ class CollectsController extends AbstractController
     public function index(CollectsRepository $collectsRepository): Response
     {
         $collectsValid = $collectsRepository->findByDateValid();
+        return $this->render('collects/index.html.twig', [
+            'collects' => $collectsValid
+        ]);
+    }
+
+    // Permet de lister les collectes pour l'admin
+
+    /**
+     * @Route("/collectes-a-venir", name="collects_index_collector", methods={"GET"})
+     * @IsGranted("ROLE_COLLECTOR")
+     * @param CollectsRepository $collectsRepository
+     * @return Response
+     */
+    public function indexCollector(CollectsRepository $collectsRepository): Response
+    {
+        $organismeId = $this->getUser()->getOrganism()->getId();
+        $collectsValid = $collectsRepository->findByDateValidPerOrganism($organismeId);
+
         return $this->render('collects/index.html.twig', [
             'collects' => $collectsValid
         ]);

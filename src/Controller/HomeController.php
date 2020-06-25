@@ -135,6 +135,7 @@ class HomeController extends AbstractController
      * @Route("recrute", name="recrute")
      * @param Request $request
      * @param MailerInterface $mailer
+     * @param ValidatorInterface $validator
      * @return Response
      * @throws TransportExceptionInterface
      */
@@ -163,7 +164,9 @@ class HomeController extends AbstractController
 
             $data = $form->getData();
             $cvExp = $form->get('CV')->getData()->getPathname();
-            $lettre = $form->get('lettre')->getData()->getPathname();
+            if (file_exists($form->get('lettre')->getData())) {
+                $lettre = $form->get('lettre')->getData()->getPathname();
+            }
 
             $emailBip = (new Email())
                 ->from(new Address(
@@ -250,19 +253,16 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("bipers", name="bipers")
+     * @Route("points-de-collecte", name="bipers")
+     * @param CollectsRepository $collectsRepo
      * @return Response
      */
     public function collectorBipers(CollectsRepository $collectsRepo)
     {
         $form = $this->createForm(ContactType::class);
-        $directory = "uploads/plaquette/";
-        $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
-        $filenameSave = $directory . $filename;
 
         return $this->render('home/collectorBipers.html.twig', [
             'form' => $form->createView(),
-            'plaquette' => $filenameSave,
             'collects' => $collectsRepo->findByDateValid()
         ]);
     }

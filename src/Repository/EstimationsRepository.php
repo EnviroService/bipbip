@@ -20,6 +20,7 @@ class EstimationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Estimations::class);
     }
 
+
     public function findByChronopost()
     {
         $qb = $this->createQueryBuilder('e')
@@ -31,6 +32,7 @@ class EstimationsRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
 
     public function findByUncollected()
     {

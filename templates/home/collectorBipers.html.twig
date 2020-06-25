@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Collecteurs / Bipers
+    Points de collecte
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
@@ -10,41 +10,17 @@
 {% block body %}
 
 <div class="row" id="title">
-    <h1 class="title-page"><span>Collecteurs / Bipers</span></h1>
+    <h1 class="title-page"><span>Points de collecte</span></h1>
 </div>
 
 <main class="container mt-5">
 
     <div class="row" id="bipers">
-            <div class="text-center">
-                <img src="{{ asset('/images/phone-bipers.png') }}" alt="">
-            </div>
-            <div class="content-text">
-                <h3 class="text-center title_inter">
-                    Pourquoi devenir Bipers ?
-                </h3>
-                <ul>
-                    <li>- Adhérer à un projet favorisant l’emploi local et le recyclage</li>
-                    <li>- Accéder à notre réseau partenaire</li>
-                    <li>- Communiquer sur nos évènements associatifs</li>
-                    <li>- Etre formé au métier de testeur téléphonique</li>
-                    <li>- Acquérir de nouvelles compétences pour ton CV</li>
-                    <li>- Pouvoir financer tes projets</li>
-                </ul>
-            </div>
-    </div>
-
-
-    <div class="row" id="plaquettes">
-        <div class="col-12 text-center">
-            <h3 class="title_inter">
-                Devenir site de collecte
-            </h3>
-            <div class="plaquette">
-                <a href="{{ plaquette }}" class="btn btn-info" target="_blank">Voir la plaquette</a>
-            </div>
-
-        </div>
+        <p>
+            Rendez-vous sur un point de collecte pour rencontrer notre équipe ainsi que nos différents étudiants de la region !
+            N'oublie pas d'estimer ton téléphone avant de venir nous voir via l'application pour une estimation précise
+            ou sur notre site pour une estimation approximative
+        </p>
     </div>
 
     <div class="row" id="collectes">
@@ -59,13 +35,26 @@
                 <div>
                     <table>
                         <thead>
-                            <tr class="text-center head_row">
-                                <th class="head_tab">Partenaire de collecte</th>
-                                <th class="head_tab">Adresse</th>
-                                <th class="head_tab">Date de collecte</th>
-                            </tr>
+                        <tr class="text-center head_row">
+                            <th class="head_tab">Partenaire de collecte</th>
+                            <th class="head_tab">Adresse</th>
+                            <th class="head_tab">Date de collecte</th>
+                        </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td class="body_tab text-center">
+                                <img
+                                        src="{{ asset('images/chronopost.png') }}"
+                                        alt="chronopost"
+                                        id="chronopost"
+                                >
+                            </td>
+                            <td class="body_tab text-center">
+                                <a href="#part-chrono" class="text-info">En savoir plus</a>
+                            </td>
+                            <td class="body_tab text-center">Quand tu veux !</td>
+                        </tr>
                         {% for collect in collects %}
                             <tr>
                                 <td class="body_tab text-center">{{ collect.collector.organismName }}</td>
@@ -82,12 +71,26 @@
                 </div>
 
                 <div class="row text-center mt-5">
-                    <div class="ml-auto mr-auto">
-                        <p class="text-center w-auto">
-                            Aucune collecte ne te convient ?<br>
-                            Pas de soucis !
-                        </p>
+                    <div class="mx-auto">
+                        <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d20220.479443764885!2d3.0689462!3d50.69099309999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1592993614866!5m2!1sfr!2sfr"
+                                width="auto"
+                                height="400"
+                                frameborder="0"
+                                style="border:0;"
+                                allowfullscreen=""
+                                aria-hidden="false"
+                                tabindex="0">
+                        </iframe>
+                    </div>
+                    <div class="ml-auto mr-auto mt-3">
+                        <h5 class="text-center col-6 mx-auto font-weight-bold">
+                            Tu souhaites proposer un nouveau site de collecte. Clique là !<br>
+                        </h5>
                         <a href="{{ path('add_message') }}" class="secondary-button">Propose un lieu<br>ou une date ici !</a>
+                        <h5 class="text-center col-6 mx-auto font-weight-bold mt-5">
+                            Galerie photo<br>
+                        </h5>
                         <div class="content_image mt-5">
                             <a href="/images/photos_1.jpg" target="_blank"><img src="/images/photos_1.jpg" alt="" class="m-1 h-25 w-25"></a>
                             <a href="/images/photos_3.jpg" target="_blank"><img src="/images/photos_3.jpg" alt="" class="m-1 h-25 w-25"></a>
@@ -97,6 +100,66 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <div id="part-chrono">
+        <h1 class="title-page mt-5">
+            <span>
+                Envoi par Chronopost
+            </span>
+        </h1>
+    </div>
+
+    <div class="container col-10 d-flex flex-wrap justify-content-between mt-5">
+        <p>
+            Tu ne trouves pas de lieu de collecte qui te convient ?
+            Pas de soucis, BipBip te propose d’envoyer ton tél gratuitement sur notre site de rénovation.
+            Tu as pour cela deux choix : tu peux imprimer directement l’étiquette à coller sur le colis
+            ou on t’envoie un QR code à présenter au bureau de poste le plus proche de chez toi.
+
+        </p>
+        <div class="card col-12 col-md-5 mt-2 mb-2 border-dark justify-content-center">
+            <img src="{{ asset('/images/chronopost-colis.png') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center">
+                    CHRONOPOST
+                </h5>
+                <p class="card-text text-center">
+                    BipBip te génère une étiquette à coller sur ton colis ou un QR code pour que ton téléphone
+                    arrive chez nous.
+                </p>
+                <p class="text-center">
+                    <a class="primary-button button-chrono m-auto w-auto" href="#part-chrono">
+                        Envoi<br> par Chronopost
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="card col-12 col-md-5 mt-2 mb-2 border-dark justify-content-center">
+            <img src="{{ asset('/images/echange-tel.png') }}" class="card-img-top mt-3" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center">
+                    DEPOT
+                </h5>
+                <p class="card-text text-center">
+                    En cliquant sur "Trouver un point de collecte", tu seras redirigé vers
+                    la page te proposant différentes collectes disponibles
+                </p>
+                <p class="text-center">
+                    <a class="primary-button button-chrono m-auto w-auto" href="#collectes">
+                        Trouver un point de collecte
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <p class="card-text text-danger text-center font-italic mt-3 mb-5">
+                Le paiement sera
+                effectué lors de la réception du téléphone après validation de l'état indiqué lors de
+                ton estimation.
+            </p>
         </div>
     </div>
 

@@ -58,6 +58,7 @@ class EstimationsController extends AbstractController
         }
     }
 
+
     /**
      * @Route ("/chrono", name="estimations_chrono_index")
      * @param EstimationsRepository $estimationsRepo
@@ -73,6 +74,7 @@ class EstimationsController extends AbstractController
         ]);
     }
 
+
 // Pour l'admin  : estimations a collecter
     /**
      * @Route("/uncollected", name="estimations_uncollected_index", methods={"GET"})
@@ -80,7 +82,8 @@ class EstimationsController extends AbstractController
      * @param EstimationsRepository $eRepo
      * @return Response
      */
-    public function indexUncollected(EstimationsRepository $eRepo): Response
+
+    public function indexUncollected(EstimationsRepository $eRepo)
     {
         $estimations = $eRepo->findByUncollected();
 
