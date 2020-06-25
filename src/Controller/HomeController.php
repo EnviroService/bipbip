@@ -226,6 +226,14 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("whos_who", name="who")
+     */
+    public function whos()
+    {
+        return $this->render('collects/whos_who.html.twig');
+    }
+
+    /**
      * @Route("presse", name="presse")
      */
     public function presse()

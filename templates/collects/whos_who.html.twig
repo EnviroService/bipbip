@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BipBip - Ton Green Mobile{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+<main class="home">
+
+    <h1 class="title-page"><span>Who's who</span></h1>
+    <section>
+    <div class="d-flex flex-wrap justify-content-around mb-5 mt-5">
+        <div class="giver ">
+           <img class="img-top" src="{{ asset('images/GiverAv.png') }}" alt="Givers_front">
+        </div>
+        <div class="collecteur">
+            <img class="img-top" src="{{ asset('images/CollecteurAv.png') }}" alt="Collecteurs">
+        </div>
+          <div class="partenaire">
+                <img class="img-top" src="{{ asset('images/PartenaireAv.png') }}" alt="Partenaires">
+          </div>
+        <div class="biper">
+            <img class="img-top" src="{{ asset('images/BiperAv.png') }}" alt="Bipers">
+        </div>
+    </div>
+    </section>
+
+        <h1 class="title-page"><span>Nos Partenaires</span></h1>
+    <section>
+
+    </section>
+
+    <h1 class="title-page"><span>Nos Collecteurs experts</span></h1>
+    <section>
+
+    </section>
+</main>
+{% endblock %}
