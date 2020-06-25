@@ -77,9 +77,9 @@
                             En cours d'envoi
                         </p>
                     </div>
-                    <div class="col-4">
-                        <a class="primary-button mb-3 " href="{{ path('show_etiquette', {'user': user.id, 'estimation': estimation.id}) }}" target="_blank">
-                            Voir l'étiquette Chronopost
+                    <div class="col-3 d-flex align-items-center">
+                        <a class="small-button w-auto mb-3" href="{{ path('show_etiquette', {'user': user.id, 'estimation': estimation.id}) }}" target="_blank">
+                            Etiquette Chronopost
                         </a>
                     </div>
                 {% elseif estimation.status == 4 %}
