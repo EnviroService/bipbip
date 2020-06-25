@@ -20,9 +20,15 @@
 
             <h1 class="third-title text-center">{{ pageTitle }}</h1>
             <div class="text-right">
+                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
                 <a class="third-button text-right" href="{{ path('collects_index') }}">
                     Collectes à venir
                 </a>
+                {% elseif app.user.roles[0] == 'ROLE_COLLECTOR' %}
+                <a class="third-button text-right" href="{{ path('collects_index_collector') }}">
+                    Collectes à venir
+                </a>
+                {% endif %}
             </div>
             <div class="row align-items-center mb-2 mt-4">
                 {# legende #}
