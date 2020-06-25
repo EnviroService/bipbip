@@ -12,24 +12,29 @@
     <div class="row mb-3">
             <div class="offset-2 col-8">
         {% if user.collect is not empty %}
-            <p class="font-weight-bold">Collecte à laquelle tu es inscrit :</p>
-            <p>Date : le {{ user.collect.dateCollect ? user.collect.dateCollect|date('d/m/Y à H:i') : '' }}</p>
-            <p>Chez : {{ user.collect.collector.organismName }}</p>
-            <p>Adresse : {{ user.collect.collector.organismAddress }}, {{ user.collect.collector.organismPostcode }}
-                {{ user.collect.collector.organismCity }}</p>
-            <p>Téléphone : 0{{ user.collect.collector.organismPhone }}</p>
-            <p>Pour les téléphones suivants:</p>
-            {% for estimation in user.collect.estimations %}
-                <div>
-                    <p>
+        {% for estimation in user.collect.estimations %}
+            {% if estimation.status == 5 %}
+                <p class="font-weight-bold">Collecte à laquelle tu es inscrit :</p>
+                <p>Date : le {{ user.collect.dateCollect ? user.collect.dateCollect|date('d/m/Y à H:i') : '' }}</p>
+                <p>Chez : {{ user.collect.collector.organismName }}</p>
+                <p>Adresse : {{ user.collect.collector.organismAddress }}, {{ user.collect.collector.organismPostcode }}
+                    {{ user.collect.collector.organismCity }}</p>
+                <p>Téléphone : 0{{ user.collect.collector.organismPhone }}</p>
+                <p>Pour les téléphones suivants:</p>
+                {% for estimation in user.collect.estimations %}
+                    <div>
+                        <p>
                             _ {{ estimation.brand }}
-                        {{ estimation.model }}
-                        de {{ estimation.capacity }} Go
-                        pour une valeur de: {{ estimation.estimatedPrice }} €
-                    </p>
-                </div>
+                            {{ estimation.model }}
+                            de {{ estimation.capacity }} Go
+                            pour une valeur de: {{ estimation.estimatedPrice }} €
+                        </p>
+                    </div>
+                {% endfor %}
+                <p><a href="{{ path('reset_collect', {collect: user.collect.id }) }}" class="font-weight-bold">Se désinscrire de cette collecte</a></p>
+            {% endif %}
             {% endfor %}
-            <p><a href="{{ path('reset_collect', {collect: user.collect.id }) }}" class="font-weight-bold">Se désinscrire de cette collecte</a></p>
+
         {% else %}
             <p>Tu n'es inscrit à aucune collecte.</p>
         {% endif %}
