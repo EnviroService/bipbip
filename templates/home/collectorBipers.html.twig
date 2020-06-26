@@ -88,14 +88,9 @@
                             Tu souhaites proposer un nouveau site de collecte. Clique là !<br>
                         </h5>
                         <a href="{{ path('add_message') }}" class="secondary-button">Propose un lieu<br>ou une date ici !</a>
-                        <h5 class="text-center col-6 mx-auto font-weight-bold mt-5">
-                            Galerie photo<br>
-                        </h5>
-                        <div class="content_image mt-5">
-                            <a href="/images/photos_1.jpg" target="_blank"><img src="/images/photos_1.jpg" alt="" class="m-1 h-25 w-25"></a>
-                            <a href="/images/photos_3.jpg" target="_blank"><img src="/images/photos_3.jpg" alt="" class="m-1 h-25 w-25"></a>
-                            <a href="/images/photos_2.jpg" target="_blank"><img src="/images/photos_2.jpg" alt="" class="m-1 h-25 w-25"></a>
-                        </div>
+
+                        {% include('home/include_galerie.html.twig') %}
+
                     </div>
                 </div>
 
@@ -155,14 +150,13 @@
         </div>
 
         <div class="col-12">
-            <p class="card-text text-danger text-center font-italic mt-3 mb-5">
+            <p class="card-text text-danger text-center font-italic mt-3 mb-3">
                 Le paiement sera
                 effectué lors de la réception du téléphone après validation de l'état indiqué lors de
                 ton estimation.
             </p>
         </div>
     </div>
-
 </main>
 
 {% endblock %}

@@ -245,6 +245,14 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("renovation-et-recyclage", name="reno")
+     */
+    public function reno()
+    {
+        return $this->render('home/siteDeRenovation.html.twig');
+    }
+
+    /**
      * @Route("bonsplans", name="bonsplans")
      */
     public function bonsplans()
