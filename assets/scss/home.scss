@@ -182,50 +182,54 @@
 
     // Who's who
     .giver {
-            background-repeat: no-repeat;
+        background-repeat: no-repeat;
+        background-color: white;
         .img-top:hover{
             visibility: hidden;
         }
-        }
-        .giver:hover {
-            background-image: url("../../public/images/GiverArr.png");
-            background-repeat: no-repeat;
-            transition: background-image 5s;
-        }
-
-        .collecteurs {
-            background-repeat: no-repeat;
-            .img-top:hover{
-                visibility: hidden;
-        }
     }
-        .collecteurs:hover {
-            background-image: url("../../public/images/CollecteursArr.png");
-            background-repeat: no-repeat;
-            transition: background-image 1s;
-        }
-
-        .partenaire {
-            background-repeat: no-repeat;
-            .img-top:hover{
-                visibility: hidden;
-            }
-        }
-        .partenaire:hover {
-            background-image: url("../../public/images/PartenaireArr.png");
-            background-repeat: no-repeat;
-            transition: background-image 1s;
+    .giver:hover {
+        background-image: url("../../public/images/GiverArr.png");
+        background-repeat: no-repeat;
+        transition: background-image 0.01s;
     }
 
-        .biper {
-            background-repeat: no-repeat;
-            .img-top:hover{
-                visibility: hidden;
-            }
+    .collecteurs {
+        background-repeat: no-repeat;
+        background-color: white;
+        .img-top:hover{
+            visibility: hidden;
         }
-        .biper:hover {
-            background-image: url("../../public/images/BiperArr.png");
-            background-repeat: no-repeat;
-            transition: background-image 1s;
+    }
+    .collecteurs:hover {
+        background-image: url("../../public/images/CollecteursArr.png");
+        background-repeat: no-repeat;
+        transition: background-image 0.01s;
+    }
+
+    .partenaire {
+        background-repeat: no-repeat;
+        background-color: white;
+        .img-top:hover{
+            visibility: hidden;
+        }
+    }
+    .partenaire:hover {
+        background-image: url("../../public/images/PartenaireArr.png");
+        background-repeat: no-repeat;
+        transition: background-image 0.01s;
+    }
+
+    .biper {
+        background-repeat: no-repeat;
+        background-color: white;
+        .img-top:hover{
+            visibility: hidden;
+        }
+    }
+    .biper:hover {
+        background-image: url("../../public/images/BiperArr.png");
+        background-repeat: no-repeat;
+        transition: background-image 0.01s;
     }
 }
