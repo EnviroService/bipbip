@@ -185,7 +185,7 @@ class HomeController extends AbstractController
                     "Lettre_" . $data['lastname'] . "_" . $data['firstname'],
                     "application/pdf"
                 )
-                ->subject('recrutement')
+                ->subject('Recrutement')
                 ->html($this->renderView(
                     'contact/sentMailRecruit.html.twig',
                     [
@@ -201,7 +201,7 @@ class HomeController extends AbstractController
                     $data['firstname'] . ' ' . $data['lastname']
                 ))
                 ->replyTo('github-test@bipbip-mobile.fr')
-                ->subject('Votre message à bien était envoyé à BipBip Mobile')
+                ->subject('Votre message a bien été envoyé à BipBip Mobile')
                 ->html($this->renderView(
                     'contact/sentMailExpRecruit.html.twig',
                     [
@@ -211,7 +211,7 @@ class HomeController extends AbstractController
 
             $mailer->send($emailBip);
             $mailer->send($emailExp);
-            $this->addFlash('success', 'Candidature envoyée avec succés');
+            $this->addFlash('success', 'Candidature envoyée avec succès');
         }
 
 
@@ -233,7 +233,14 @@ class HomeController extends AbstractController
      */
     public function whos()
     {
-        return $this->render('collects/whos_who.html.twig');
+        $directory = "uploads/plaquette/";
+        $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
+        $filenameSave = $directory . $filename;
+
+        return $this->render(
+            'collects/whos_who.html.twig',
+            ['plaquette' => $filenameSave]
+        );
     }
 
     /**
