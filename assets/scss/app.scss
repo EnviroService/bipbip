@@ -271,6 +271,12 @@ a{
     }
 }
 
+.carousel-inner {
+    img {
+        height: 25vh;
+    }
+}
+
 .grade_paysage{
     @media screen and (max-width: 768px){
         display: none;
