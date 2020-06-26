@@ -5,10 +5,13 @@
     font-family: $primary-font;
     margin:0;
     .header {
-       .header-text {
-           font-size: 1rem;
+       .header-content {
+           @media screen and(max-width: 750px){
+               font-size: 0.8rem;
+           }
+           font-size: 2rem;
            font-weight: 600;
-           text-transform: uppercase;
+           //text-transform: uppercase;
 
            .color-primary {
                color: $primary-color;
