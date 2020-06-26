@@ -29,7 +29,10 @@ class OrganismsController extends AbstractController
     public function index(OrganismsRepository $organismsRepository): Response
     {
         return $this->render('organisms/index.html.twig', [
-            'organisms' => $organismsRepository->findBy([], ["organismName" => "ASC"])]);
+            'organisms' => $organismsRepository->findBy(
+                ['organismStatus'=>'Partenaires economique'],
+                ["organismName" => "ASC"]
+            )]);
     }
 // Permet a l'admin d'ajouter des partenaires.
     /**
