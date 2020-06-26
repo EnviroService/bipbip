@@ -190,7 +190,7 @@
         .giver:hover {
             background-image: url("../../public/images/GiverArr.png");
             background-repeat: no-repeat;
-            transition: background-image 0.01s;
+            transition: background-image 5s;
         }
 
         .collecteurs {
@@ -202,7 +202,7 @@
         .collecteurs:hover {
             background-image: url("../../public/images/CollecteursArr.png");
             background-repeat: no-repeat;
-            transition: background-image 0.01s;
+            transition: background-image 1s;
         }
 
         .partenaire {
@@ -214,7 +214,7 @@
         .partenaire:hover {
             background-image: url("../../public/images/PartenaireArr.png");
             background-repeat: no-repeat;
-            transition: background-image 0.01s;
+            transition: background-image 1s;
     }
 
         .biper {
@@ -226,6 +226,6 @@
         .biper:hover {
             background-image: url("../../public/images/BiperArr.png");
             background-repeat: no-repeat;
-            transition: background-image 0.01s;
+            transition: background-image 1s;
     }
 }
