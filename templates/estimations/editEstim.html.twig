@@ -143,7 +143,9 @@
             </div>
             <div class="col-8 mx-auto text-right form p-4">
                 <a href="{{ path('modify_estimationBrand', {id: estimation.id}) }}" class="btn btn-info">Mettre à jour</a>
+                {% if estimation.imei | length == 15 %}
                 <a href="{{ path('verifyUser', { id: estimation.id}) }}" class="btn btn-success">Informations vérifiées, étape suivante -></a>
+                {% endif %}
             </div>
         </div>
     </main>
