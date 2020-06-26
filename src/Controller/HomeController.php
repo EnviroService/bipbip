@@ -245,11 +245,12 @@ class HomeController extends AbstractController
 
         return $this->render(
             'collects/whos_who.html.twig',
-            ['plaquette' => $filenameSave,
-             'organisms' => $organismsRepository->findBy(
-                ['organismStatus'=>'Partenaire économique'],
-                ["organismName" => "ASC"]
-            ) 
+            [
+                'plaquette' => $filenameSave,
+                'organisms' => $organismsRepository->findBy(
+                    ['organismStatus'=>'Partenaire économique'],
+                    ["organismName" => "ASC"]
+                )]
         );
     }
 
