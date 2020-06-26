@@ -127,7 +127,10 @@ class HomeController extends AbstractController
     {
         return $this->render(
             'infos/histoire.html.twig',
-            ['organisms' => $organismsRepository->findAll()]
+            ['organisms' => $organismsRepository->findBy(
+                ['organismStatus'=>'Partenaire économique'],
+                ["organismName" => "ASC"]
+            )]
         );
     }
 
@@ -230,16 +233,23 @@ class HomeController extends AbstractController
 
     /**
      * @Route("whos_who", name="who")
+     * @param OrganismsRepository $organismsRepository
+     * @return Response
      */
-    public function whos()
+    public function whos(OrganismsRepository $organismsRepository)
     {
+
         $directory = "uploads/plaquette/";
         $filename = "Plaquette_de_presentation_generale_BipBip.pdf";
         $filenameSave = $directory . $filename;
 
         return $this->render(
             'collects/whos_who.html.twig',
-            ['plaquette' => $filenameSave]
+            ['plaquette' => $filenameSave,
+             'organisms' => $organismsRepository->findBy(
+                ['organismStatus'=>'Partenaire économique'],
+                ["organismName" => "ASC"]
+            ) 
         );
     }
 

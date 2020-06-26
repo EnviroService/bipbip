@@ -1,20 +1,20 @@
-<div id="carouselExampleIndicators" class="carousel slide w-75 mx-auto" data-ride="carousel">
-    <ol class="carousel-indicators ">
+<div id="carouselExampleIndicators" class="carousel slide w-75 h-50 mx-auto" data-ride="carousel">
+    <div class="carousel-inner text-center mb-5">
+        {% set i = 0 %}
+        {% for organism in organisms %}
+            <div class="carousel-item {% if i == 0 %}active{% endif %}">
+                <img src="uploads/Logos/Logos/{{ organism.logo }}" class="d-block w-50 mx-auto" alt="...">
+            </div>
+            {% set i = i + 1 %}
+        {% endfor %}
+    </div>
+    <div class="carousel-indicators mt-3 mb-0">
         {% set i = 0 %}
         {% for organism in organisms %}
             <li data-target="#carouselExampleIndicators"
                 data-slide-to="{{ i }}"
                 class="{% if i == 0 %}active{% endif %} bg-danger">
             </li>
-            {% set i = i + 1 %}
-        {% endfor %}
-    </ol>
-    <div class="carousel-inner text-center">
-        {% set i = 0 %}
-        {% for organism in organisms %}
-            <div class="carousel-item {% if i == 0 %}active{% endif %}">
-                <img src="uploads/Logos/Logos/{{ organism.logo }}" class="d-block w-50" alt="...">
-            </div>
             {% set i = i + 1 %}
         {% endfor %}
     </div>

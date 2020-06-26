@@ -30,7 +30,7 @@ class OrganismsController extends AbstractController
     {
         return $this->render('organisms/index.html.twig', [
             'organisms' => $organismsRepository->findBy(
-                ['organismStatus'=>'Partenaires economique'],
+                ['organismStatus'=>'Partenaire économique'],
                 ["organismName" => "ASC"]
             )]);
     }
