@@ -56,7 +56,7 @@ class ContactController extends AbstractController
                 ->to(new Address($contactFormData->getEmail(), $contactFormData
                         ->getFirstname() . ' ' . $contactFormData->getLastname()))
                 ->replyTo('github-test@bipbip-mobile.fr')
-                ->subject('Votre message envoyé à BipBip Mobile')
+                ->subject('Votre message a été envoyé à BipBip Mobile')
                 ->html($this->renderView(
                     'contact/sentmailexp.html.twig',
                     array('form' => $contactFormData)
@@ -115,7 +115,7 @@ class ContactController extends AbstractController
                 ->to(new Address($contactFormData->getEmail(), $contactFormData
                         ->getFirstname() . ' ' . $contactFormData->getLastname()))
                 ->replyTo('github-test@bipbip-mobile.fr')
-                ->subject('Votre message envoyé à BipBip Mobile')
+                ->subject('Votre message a été envoyé à BipBip Mobile')
                 ->html($this->renderView(
                     'contact/sentmailexp.html.twig',
                     array('form' => $contactFormData)

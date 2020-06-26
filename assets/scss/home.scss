@@ -183,7 +183,6 @@
     // Who's who
     .giver {
             background-repeat: no-repeat;
-            background-color: white;
         .img-top:hover{
             visibility: hidden;
         }
@@ -194,22 +193,20 @@
             transition: background-image 0.01s;
         }
 
-        .collecteur {
+        .collecteurs {
             background-repeat: no-repeat;
-            background-color: white;
             .img-top:hover{
                 visibility: hidden;
         }
     }
-        .collecteur:hover {
-            background-image: url("../../public/images/CollecteurArr.png");
+        .collecteurs:hover {
+            background-image: url("../../public/images/CollecteursArr.png");
             background-repeat: no-repeat;
             transition: background-image 0.01s;
         }
 
         .partenaire {
             background-repeat: no-repeat;
-            background-color: white;
             .img-top:hover{
                 visibility: hidden;
             }
@@ -222,7 +219,6 @@
 
         .biper {
             background-repeat: no-repeat;
-            background-color: white;
             .img-top:hover{
                 visibility: hidden;
             }
