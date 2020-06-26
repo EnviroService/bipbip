@@ -1,13 +1,13 @@
 {% block body %}
     <p>Salut {{ user.firstname }} !</p>
     <p>Nous confirmons ton inscription à une collecte pour déposer et offir une seconde vie à ton tél.</p>
-    <p>Prends note des lieux et de l'horaire :</p>
+    <p>Prends note du lieu et de l'horaire :</p>
     <ul>
         <li>Collecteur : {{ organism.organismName }}</li>
         <li>Adresse : {{ organism.organismAddress }}</li>
         <li>Horaire : {{ day}} à {{ hour }}</li>
     </ul>
     <p>Tu ne peux pas y aller ? </p>
-    <p><a href="{{absolute_url (path('reset_collect', {collect: user.collect.id })) }}">Se désinscrire de cette collecte</a></p>
+    <p><a href="{{absolute_url (path('user_show', {collect: user.collect.id })) }}">Se désinscrire de cette collecte</a></p>
 {% endblock %}
 
