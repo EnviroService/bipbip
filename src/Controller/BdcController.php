@@ -64,10 +64,6 @@ class BdcController extends AbstractController
     public function index()
     {
         // list all pdf in public/uploads/BDC/
-        $dates = [];
-        $estimationIds = [];
-        $end = '.';
-        $start = 'P';
         $estimations = [];
         $files = scandir('uploads/BDC/');
         if (is_array($files)) {
@@ -84,19 +80,6 @@ class BdcController extends AbstractController
                 $id = str_replace('P', '', strrchr($fileNew, "P"));
                 // Envoie de la date et de l'id sous forme de tableau
                 $estimations[$fileNew] = [$date,$id,$file];
-
-                /*
-                array_push($dates, $date);
-                $file = ' ' . $file;
-                $ini = strpos($file, $start);
-                if ($ini == 0) {
-                    $estimationId = '';
-                }
-                $ini += strlen($start);
-                $len = strpos($file, $end, $ini) - $ini;
-                $estimationId = substr($file, $ini, $len);
-                array_push($estimationIds, $estimationId);
-                */
             }
             krsort($estimations);
         }

@@ -153,13 +153,9 @@
         <tr>
             <td style="width:20%" class="bold-text">
                 Lieu de collecte :<br>
-                Code Collecte :<br>
-                Code Association :
             </td>
             <td style="width:30%; padding-left:20px;">
                 Wild Code School - Lille<br>
-                74543829<br>
-                L745
             </td>
             <td style="width:50%;">
                 <span class="bold-text">Le propriétaire du bien</span><br>
@@ -171,12 +167,10 @@
     <table style="height:160px;">
         <tr>
             <td style="width:50%; border:2px solid black; text-align:center;">
-                <img src="/uploads/signatures/ImageCachetEnviroServicesFrance.jpg" alt="BipBip Mobile">
+                <img src="uploads/signatures/ImageCachetEnviroServicesFrance.jpg" style="width: 200px;" alt="BipBip Mobile">
             </td>
-            <td style="width:50%; border:2px solid black;">
-                {% if app.user.roles == "ROLE_ADMIN" or app.user.roles == "ROLE_COLLECTOR" %}
-                <img width="200px; margin-top:30px;" src="/uploads/signatures/user{{ estimation.user.id }}.png" alt="BipBip Mobile">
-                {% endif %}
+            <td style="width:50%; border:2px solid black; text-align:center;">
+                <img width="200px; margin-top:30px;" src="uploads/signatures/user{{ estimation.user.id }}.png" alt="BipBip Mobile">
             </td>
         </tr>
     </table>
